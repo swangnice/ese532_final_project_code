@@ -48,6 +48,7 @@ int main(int argc, char* argv[]) {
 	stopwatch sha_timer;
 	stopwatch dedup_timer;
 	stopwatch lzw_timer;
+	stopwatch overall_timer;
 	unsigned char* input[NUM_PACKETS];
 	int writer = 0;
 	int done = 0;
@@ -93,6 +94,7 @@ int main(int argc, char* argv[]) {
 
 	// we are just memcpy'ing here, but you should call your
 	// top function here.
+	overall_timer.start();
 	memcpy(&file[offset], &buffer[HEADER], length);
 	//printf("%.*s\n", length, &buffer[HEADER]);
 	unsigned char **chunks = NULL;
@@ -274,7 +276,8 @@ int main(int argc, char* argv[]) {
 	}
 
 
-
+	//overall time
+	overall_timer.stop();
 
 
 
@@ -331,11 +334,14 @@ int main(int argc, char* argv[]) {
 	float sha_latency = sha_timer.latency() / 1000.0;
 	float dedup_latency = dedup_timer.latency() / 1000.0;
 	float lzw_latency = lzw_timer.latency() / 1000.0;
+	float overall_latency = overall_timer.latency() / 1000.0;
+
 	float input_throughput = (bytes_written * 8 / 1000000.0) / ethernet_latency; // Mb/s
 	float cdc_throughput = (bytes_written * 8 / 1000000.0) / cdc_latency; // Mb/s
 	float sha_throughput = (bytes_written * 8 / 1000000.0) / sha_latency; // Mb/s
 	float dedup_throughput = (bytes_written * 8 / 1000000.0) / dedup_latency; // Mb/s
 	float lzw_throughput = (bytes_written * 8 / 1000000.0) / lzw_latency; // Mb/s
+	float overall_throughput = (bytes_written * 8 / 1000000.0) / overall_latency; // Mb/s
 
 
 	std::cout << "Input Throughput to Encoder: " << input_throughput << " Mb/s."
@@ -344,6 +350,7 @@ int main(int argc, char* argv[]) {
 	std::cout << "SHA Throughput: " << sha_throughput << " Mb/s." << " (Latency: " << sha_latency << "s)." << std::endl;
 	std::cout << "Deduplication Throughput: " << dedup_throughput << " Mb/s." << " (Latency: " << dedup_latency << "s)." << std::endl;
 	std::cout << "LZW Throughput: " << lzw_throughput << " Mb/s." << " (Latency: " << lzw_latency << "s)." << std::endl;
+	std::cout << "Overall Throughput: " << overall_throughput << " Mb/s." << " (Latency: " << overall_latency << "s)." << std::endl;
 
 	return 0;
 }
