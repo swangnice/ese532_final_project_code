@@ -87,8 +87,24 @@ int main(int argc, char* argv[]) {
 
 	// we are just memcpy'ing here, but you should call your
 	// top function here.
-	memcpy(&file[offset], &buffer[HEADER], length);
-	printf("%.*s\n", length, &buffer[HEADER]);
+	//memcpy(&file[offset], &buffer[HEADER], length);
+	//printf("%.*s\n", length, &buffer[HEADER]);
+	unsigned char **chunks = NULL;
+    unsigned int chunk_count = 0;
+    unsigned int *chunk_sizes = NULL;
+	cdc(&buffer[HEADER], length, &chunks, &chunk_count, &chunk_sizes);
+
+	printf("Chunk count: %u\n", chunk_count);
+	printf("Chunk sizes:\n");
+	for (unsigned int i = 0; i < chunk_count; i++) {
+		printf("Chunk %u size: %u bytes\n", i, chunk_sizes[i]);
+	}
+	printf("Chunk data (as string):\n");
+	for (unsigned int i = 0; i < chunk_count; i++) {
+		printf("Chunk %u: ", i);
+		printf("%.*s\n", chunk_sizes[i], (char *)chunks[i]);
+	}
+
 
 
 	offset += length;
@@ -132,6 +148,9 @@ int main(int argc, char* argv[]) {
 	}
 
 	free(file);
+	free(chunks);
+    free(chunk_sizes);
+    free(buffer);
 	std::cout << "--------------- Key Throughputs ---------------" << std::endl;
 	float ethernet_latency = ethernet_timer.latency() / 1000.0;
 	float input_throughput = (bytes_written * 8 / 1000000.0) / ethernet_latency; // Mb/s
