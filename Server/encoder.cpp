@@ -198,28 +198,56 @@ int main(int argc, char* argv[]) {
 		memcpy(sha256_output[i], temp_sha256_output, 32);
 		
 	}
+
+	int dict[MAX_DICT_SIZE][256];
+
+	init_dict(dict);
 	
 	//deduplication and assign lzw header
-	uint32_t header[chunk_count];
-	int index = 0;
-	header[0] = 0;
+	uint32_t dup_flag[chunk_count];
 	for (unsigned int i = 1; i < chunk_count; i++) {				
-		header[i] = 0;	
+		dup_flag[i] = 0;	
 		for (unsigned int j = 0; j < i; j++) {
 			if (memcmp(sha256_output[i], sha256_output[j], 32) == 0) {
-				header[i] = header[j] & 0x00000001;
+				dup_flag[i] = 0;
 				break;
 			}
 		}
-		index++;
-		header[i] = (index<<1);
 	}
-	//print all header and sha output
 	for (unsigned int i = 0; i < chunk_count; i++) {
-		printf("Chunk %u: ", i);
-		for (unsigned int j = 0; j < 32; j++) printf("%02x", sha256_output[i][j]);
-		printf("\nHeader: %#010x\n", header[i]);
+		printf("Chunk %u: %d", i, dup_flag[i]);
 	}
+
+
+
+
+
+
+
+
+
+
+	// uint32_t header[chunk_count];
+	// int index = 0;
+	// header[0] = 0;
+	// for (unsigned int i = 1; i < chunk_count; i++) {				
+	// 	header[i] = 0;	
+	// 	for (unsigned int j = 0; j < i; j++) {
+	// 		if (memcmp(sha256_output[i], sha256_output[j], 32) == 0) {
+	// 			header[i] = (j << 1) | 1;  // Duplicate Chunk: bit 0 = 1, bits 31-1 = j
+	// 			break;
+	// 		}
+
+	// 	}
+	// 	index++;
+	// 	header[i] = (index<<1);
+	// }
+	// //print all header and sha output
+	// for (unsigned int i = 0; i < chunk_count; i++) {
+	// 	printf("Chunk %u: ", i);
+	// 	for (unsigned int j = 0; j < 32; j++) printf("%02x", sha256_output[i][j]);
+	// 	printf("\nHeader: %#010x\n", header[i]);
+	// }
 
 
 
