@@ -15,6 +15,7 @@
 #include <errno.h>
 #include <fcntl.h>
 #include <sys/mman.h>
+#include <sys/stat.h>
 #include "stopwatch.h"
 
 #define NUM_PACKETS 8
@@ -310,6 +311,32 @@ int main(int argc, char* argv[]) {
 
 
 	// write file to root and you can use diff tool on board
+	FILE *file = fopen(filename, "wb");
+    if (!file) {
+        perror("Failed to open file");
+        return;
+    }
+	for (unsigned int i = 0; i < chunk_count; i++) {
+        if (dup_flag[i] == 0) {
+            fwrite(lzw_compressed_output[i], sizeof(uint8_t), compressed_byte[i], file);
+        }
+    }
+	fwrite(header, sizeof(uint32_t), chunk_count, file);
+
+    // Write dictionary to file
+    fwrite(dict, sizeof(int), MAX_DICT_SIZE * 256, file);
+
+    fclose(file);
+
+	struct stat st;
+    if (stat(filename, &st) != 0) {
+        perror("Failed to get file size");
+        return;
+    }
+    printf("File size: %ld bytes\n", st.st_size);
+	printf("Compress Ratio: %ld x\n", (bytes_written * 8)/st.st_size);
+
+
 	
 
 	for (int i = 0; i < NUM_PACKETS; i++) {
