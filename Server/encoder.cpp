@@ -153,10 +153,10 @@ int main(int argc, char* argv[]) {
 	}
 
 	// write file to root and you can use diff tool on board
-	// FILE *outfd = fopen("output_cpu.bin", "wb");
-	// int bytes_written = fwrite(&file[0], 1, offset, outfd);
-	// printf("write file with %d\n", bytes_written);
-	// fclose(outfd);
+	FILE *outfd = fopen("output_cpu.bin", "wb");
+	int bytes_written = fwrite(&file[0], 1, offset, outfd);
+	printf("write file with %d\n", bytes_written);
+	fclose(outfd);
 
 	for (int i = 0; i < NUM_PACKETS; i++) {
 		free(input[i]);
