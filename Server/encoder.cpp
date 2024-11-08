@@ -1,6 +1,7 @@
 #include "encoder.h"
 #include "chunk.h"
 #include "cdc.h"
+#include "sha.h"
 #include <stdio.h>
 #include <stdint.h>
 #include <stdlib.h>
@@ -98,16 +99,6 @@ int main(int argc, char* argv[]) {
     chunk_sizes = (unsigned int *)malloc(sizeof(unsigned int) * estimated_chunks);
 	cdc(&buffer[HEADER], length, &chunks, &chunk_count, &chunk_sizes);
 
-	// printf("Chunk count: %u\n", chunk_count);
-	// printf("Chunk sizes:\n");
-	// for (unsigned int i = 0; i < chunk_count; i++) {
-	// 	printf("Chunk %u size: %u bytes\n", i, chunk_sizes[i]);
-	// }
-	// printf("Chunk data (as string):\n");
-	// for (unsigned int i = 0; i < chunk_count; i++) {
-	// 	printf("Chunk %u: ", i);
-	// 	printf("%.*s\n", chunk_sizes[i], (char *)chunks[i]);
-	// }
 
 
 
@@ -137,16 +128,7 @@ int main(int argc, char* argv[]) {
 		//printf("length: %d offset %d\n",length,offset);
 		//memcpy(&file[offset], &buffer[HEADER], length);
 		cdc(&buffer[HEADER], length, &chunks, &chunk_count, &chunk_sizes);
-		// printf("Chunk count: %u\n", chunk_count);
-		// printf("Chunk sizes:\n");
-		// for (unsigned int i = 0; i < chunk_count; i++) {
-		// 	printf("Chunk %u size: %u bytes\n", i, chunk_sizes[i]);
-		// }
-		// printf("Chunk data (as string):\n");
-		// for (unsigned int i = 0; i < chunk_count; i++) {
-		// 	printf("Chunk %u: ", i);
-		// 	printf("%.*s\n", chunk_sizes[i], (char *)chunks[i]);
-		// }
+		
 
 		offset += length;
 		writer++;
@@ -162,6 +144,30 @@ int main(int argc, char* argv[]) {
 	for (unsigned int i = 0; i < chunk_count; i++) {
 		printf("Chunk %u: ", i);
 		printf("%.*s\n", chunk_sizes[i], (char *)chunks[i]);
+	}
+
+	// SHA-256 hash calculation
+	for (unsigned int i = 0; i < chunk_count; i++) {
+		unsigned char *temp_chunk_data = chunks[i];
+    	unsigned int temp_chunk_size = chunk_sizes[i];
+
+		unsigned char compressed_data[BLOCKSIZE];
+    	int compressed_size = rle_compress((const unsigned char*)temp_chunk_data, temp_chunk_size, compressed_data, BLOCKSIZE);
+
+		std::cout << "Original Size: " << temp_chunk_size << " bytes\n";
+		std::cout << "Compressed Size: " << compressed_size << " bytes\n";
+
+		// 计算压缩数据的 SHA-256 哈希
+		uint8_t sha256_output[32]; // SHA-256 输出为 32 字节的 uint8_t 数组
+		calculate_sha256(compressed_data, compressed_size, sha256_output);
+
+		// 输出 SHA-256 哈希结果
+		std::cout << "SHA-256 Hash of Compressed Data: ";
+		for (int i = 0; i < 32; i++) {
+			printf("%02x", sha256_output[i]);
+		}
+		std::cout << std::endl;
+		
 	}
 
 
