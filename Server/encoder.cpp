@@ -153,25 +153,26 @@ int main(int argc, char* argv[]) {
 	}
 
 	// SHA-256 hash calculation
-	unsigned char **sha256_output = NULL;
-	sha256_output = (unsigned char **)malloc(sizeof(unsigned char *) * chunk_count);
-	if (sha256_output == NULL) {
-		printf("Failed to allocate memory for sha256_output.\n");
-		return 1;
-	}
+	// unsigned char **sha256_output = NULL;
+	// sha256_output = (unsigned char **)malloc(sizeof(unsigned char *) * chunk_count);
+	// if (sha256_output == NULL) {
+	// 	printf("Failed to allocate memory for sha256_output.\n");
+	// 	return 1;
+	// }
 
-	// 32byte for each chunk
-	for (unsigned int i = 0; i < chunk_count; i++) {
-		sha256_output[i] = (unsigned char *)malloc(32 * sizeof(unsigned char));
-		if (sha256_output[i] == NULL) {
-			printf("Failed to allocate memory for sha256_output[%u].\n", i);
-			for (unsigned int j = 0; j < i; j++) {
-				free(sha256_output[j]);
-			}
-			free(sha256_output);
-			return 1;
-		}
-	}
+	// // 32byte for each chunk
+	// for (unsigned int i = 0; i < chunk_count; i++) {
+	// 	sha256_output[i] = (unsigned char *)malloc(32 * sizeof(unsigned char));
+	// 	if (sha256_output[i] == NULL) {
+	// 		printf("Failed to allocate memory for sha256_output[%u].\n", i);
+	// 		for (unsigned int j = 0; j < i; j++) {
+	// 			free(sha256_output[j]);
+	// 		}
+	// 		free(sha256_output);
+	// 		return 1;
+	// 	}
+	// }
+	uint8_t sha256_output[chunk_count][32];
 
 	for (unsigned int i = 0; i < chunk_count; i++) {
 		unsigned char *temp_chunk_data = chunks[i];
@@ -209,7 +210,7 @@ int main(int argc, char* argv[]) {
 			if (chunk_sizes[i] == chunk_sizes[j]) {
 				if (memcmp(sha256_output[i], sha256_output[j], 32) == 0) {
 					duplicate_flag[i] = 1;
-					header[i] = header[j] | 0xFFFFFFFE;
+					header[i] = header[j] &0x00000001;
 					break;
 				}
 			}
