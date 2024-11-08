@@ -88,6 +88,8 @@ int main(int argc, char* argv[]) {
 	// we are just memcpy'ing here, but you should call your
 	// top function here.
 	memcpy(&file[offset], &buffer[HEADER], length);
+	printf("%.*s\n", length, &buffer[HEADER]);
+
 
 	offset += length;
 	writer++;
