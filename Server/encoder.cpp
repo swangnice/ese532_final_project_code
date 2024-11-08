@@ -311,7 +311,7 @@ int main(int argc, char* argv[]) {
 
 
 	// write file to root and you can use diff tool on board
-	FILE *file = fopen(filename, "wb");
+	FILE *file = fopen("compressed_file.txt", "wb");
     if (!file) {
         perror("Failed to open file");
         return;
@@ -329,7 +329,7 @@ int main(int argc, char* argv[]) {
     fclose(file);
 
 	struct stat st;
-    if (stat(filename, &st) != 0) {
+    if (stat("compressed_file.txt", &st) != 0) {
         perror("Failed to get file size");
         return;
     }
