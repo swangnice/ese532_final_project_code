@@ -322,8 +322,6 @@ int main(int argc, char* argv[]) {
     }
 	fwrite(header, sizeof(uint32_t), chunk_count, file);
 
-    // Write dictionary to file
-    fwrite(dict, sizeof(int), MAX_DICT_SIZE * 256, file);
 
 	struct stat st;
     if (stat("compressed_file.txt", &st) != 0) {
