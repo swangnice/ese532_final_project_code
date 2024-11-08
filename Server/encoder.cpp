@@ -203,9 +203,9 @@ int main(int argc, char* argv[]) {
 	uint32_t header[chunk_count];
 	duplicate_flag[0] = 0;
 	int index = 0;
-	for (int i = 1; i < chunk_count; i++) {
+	for (unsigned int i = 1; i < chunk_count; i++) {
 		duplicate_flag[i] = 0;						//initialize all flags to 0
-		for (int j = 0; j < i; j++) {
+		for (unsigned int j = 0; j < i; j++) {
 			if (chunk_sizes[i] == chunk_sizes[j]) {
 				if (sha256_output[i] == sha256_output[j]) {
 					duplicate_flag[i] = 1;
@@ -217,7 +217,7 @@ int main(int argc, char* argv[]) {
 		index++;
 		header[i] = (index<<1) | duplicate_flag[i];
 	}
-	for (int i = 0; i < chunk_count; i++) {
+	for (unsigned int i = 0; i < chunk_count; i++) {
 		printf("Chunk %u: ", i);
 		printf("%.*s\n", chunk_sizes[i], (char *)chunks[i]);
 		printf("Header: %u\n", header[i]);
