@@ -314,7 +314,6 @@ int main(int argc, char* argv[]) {
 	FILE *file = fopen("compressed_file.txt", "wb");
     if (!file) {
         perror("Failed to open file");
-        return;
     }
 	for (unsigned int i = 0; i < chunk_count; i++) {
         if (dup_flag[i] == 0) {
@@ -331,7 +330,6 @@ int main(int argc, char* argv[]) {
 	struct stat st;
     if (stat("compressed_file.txt", &st) != 0) {
         perror("Failed to get file size");
-        return;
     }
     printf("File size: %ld bytes\n", st.st_size);
 	printf("Compress Ratio: %ld x\n", (bytes_written * 8)/st.st_size);
