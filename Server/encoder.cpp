@@ -219,8 +219,7 @@ int main(int argc, char* argv[]) {
 	}
 	for (unsigned int i = 0; i < chunk_count; i++) {
 		printf("Chunk %u: ", i);
-		printf("%.*s\n", chunk_sizes[i], (char *)chunks[i]);
-		printf("Header: %u\n", header[i]);
+		printf("Header: %#010x\n", header[i]);
 	}
 
 
