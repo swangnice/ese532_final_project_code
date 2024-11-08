@@ -227,7 +227,7 @@ int main(int argc, char* argv[]) {
 	}
 
 	//compress unduplicated chunks
-	uint8_t lzw_compressed_output[undup_count][1024];
+	uint8_t lzw_compressed_output[undup_count][2048];
 	uint32_t header[chunk_count];
 	for (unsigned int i = 0; i < chunk_count; i++) {
 		if (dup_flag[i] == 0) {
@@ -238,9 +238,9 @@ int main(int argc, char* argv[]) {
 		}
 	}
 	for (unsigned int i = 0; i < chunk_count; i++) {
-		if (dup_flag[i] == 1) {
+		if (dup_flag[i] == 0) {
 			printf("Chunk %u: ", i);
-			for (int j = 0;j < 1024; j++) {
+			for (int j = 0;j < 2048; j++) {
 				printf("%02X ", lzw_compressed_output[i][j]);
 			}
 			printf("\n");
