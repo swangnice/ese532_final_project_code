@@ -2,6 +2,7 @@
 #include "chunk.h"
 #include "cdc.h"
 #include "sha.h"
+#include "lzw_encode.h"
 #include <stdio.h>
 #include <stdint.h>
 #include <stdlib.h>
@@ -152,8 +153,25 @@ int main(int argc, char* argv[]) {
 	}
 
 	// SHA-256 hash calculation
-	// unsigned char **sha256_output = NULL;
-    // sha256_output = (unsigned char **)malloc(sizeof(unsigned char *) * estimated_chunks);
+	unsigned char **sha256_output = NULL;
+	sha256_output = (unsigned char **)malloc(sizeof(unsigned char *) * chunk_count);
+	if (sha256_output == NULL) {
+		printf("Failed to allocate memory for sha256_output.\n");
+		return 1;
+	}
+
+	// 32byte for each chunk
+	for (unsigned int i = 0; i < chunk_count; i++) {
+		sha256_output[i] = (unsigned char *)malloc(32 * sizeof(unsigned char));
+		if (sha256_output[i] == NULL) {
+			printf("Failed to allocate memory for sha256_output[%u].\n", i);
+			for (unsigned int j = 0; j < i; j++) {
+				free(sha256_output[j]);
+			}
+			free(sha256_output);
+			return 1;
+		}
+	}
 
 	for (unsigned int i = 0; i < chunk_count; i++) {
 		unsigned char *temp_chunk_data = chunks[i];
@@ -170,12 +188,29 @@ int main(int argc, char* argv[]) {
 		calculate_sha256(compressed_data, compressed_size, temp_sha256_output);
 
 		// 输出 SHA-256 哈希结果
+
+		memcpy(sha256_output[i], temp_sha256_output, 32);
 		std::cout << "SHA-256 Hash of Compressed Data: ";
 		for (int i = 0; i < 32; i++) {
 			printf("%02x", temp_sha256_output[i]);
 		}
 		std::cout << std::endl;
 		
+	}
+	
+	//deduplication
+	int duplicate_flag[chunk_count];    //0-LZW 1-Dup
+	duplicate_flag[0] = 0;
+	for (unsigned int i = 1; i < chunk_count; i++) {
+		duplicate_flag[i] = 0;
+		for (unsigned int j = 0; j < i; j++) {
+			if (chunk_sizes[i] == chunk_sizes[j]) {
+				if (sha256_output[i] == sha256_output[j]) {
+					duplicate_flag[i] = 1;
+					break;
+				}
+			}
+		}
 	}
 
 
@@ -194,6 +229,10 @@ int main(int argc, char* argv[]) {
     free(chunks);
     free(chunk_sizes);
     //free(buffer);
+	for (unsigned int i = 0; i < chunk_count; i++) {
+		free(sha256_output[i]);
+	}
+	free(sha256_output);
 
 	free(file);
 	std::cout << "--------------- Key Throughputs ---------------" << std::endl;
