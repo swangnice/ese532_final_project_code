@@ -210,7 +210,7 @@ int main(int argc, char* argv[]) {
 		dup_flag[i] = 0;	
 		for (unsigned int j = 0; j < i; j++) {
 			if (memcmp(sha256_output[i], sha256_output[j], 32) == 0) {
-				dup_flag[i] = 0;
+				dup_flag[i] = 1;
 				break;
 			}
 		}
