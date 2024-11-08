@@ -229,23 +229,38 @@ int main(int argc, char* argv[]) {
 	//compress unduplicated chunks
 	uint8_t lzw_compressed_output[undup_count][2048];
 	uint32_t header[chunk_count];
+	int compressed_byte[undup_count];
 	for (unsigned int i = 0; i < chunk_count; i++) {
 		if (dup_flag[i] == 0) {
 			int output_index = 0;
 			uint16_t temp_lzw_compressed_output[chunk_sizes[i]];
 			lzw(chunks[i], chunk_sizes[i], dict, temp_lzw_compressed_output, output_index);
 			convert_output(temp_lzw_compressed_output, lzw_compressed_output[i], output_index);
+			compressed_byte[i] = output_index;
 		}
 	}
 	for (unsigned int i = 0; i < chunk_count; i++) {
 		if (dup_flag[i] == 0) {
 			printf("Chunk %u: ", i);
-			for (int j = 0;j < 2048; j++) {
+			for (int j = 0;j < compressed_byte[i]; j++) {
 				printf("%02X ", lzw_compressed_output[i][j]);
 			}
 			printf("\n");
 		}
     }
+
+
+	// build header
+	for (unsigned int i = 0; i < chunk_count; i++) {
+		header[i] = 0;
+		if (dup_flag[i] == 0) {
+			header[i] = compressed_byte[i] << 1;
+		} else {
+			header[i] = compressed_byte[dup_index[i]] << 1 & 0x00000001;
+		}
+		printf("Header: %#010x\n", header[i]);
+	}
+
 
 
 
