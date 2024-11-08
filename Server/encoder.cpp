@@ -221,8 +221,8 @@ int main(int argc, char* argv[]) {
 	//print all header and sha output
 	for (unsigned int i = 0; i < chunk_count; i++) {
 		printf("Chunk %u: ", i);
-		printf("%02x", sha256_output[i]);
-		printf("Header: %#010x\n", header[i]);
+		for (unsigned int j = 0; j < 32; j++) printf("%02x", sha256_output[i][j]);
+		printf("\nHeader: %#010x\n", header[i]);
 	}
 
 
