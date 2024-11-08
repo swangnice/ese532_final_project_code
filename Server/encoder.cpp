@@ -239,7 +239,7 @@ int main(int argc, char* argv[]) {
 	}
 	for (unsigned int i = 0; i < undup_count; i++) {
         printf("Chunk %u: ", i);
-        for (int j = 0; lzw_compressed_output[i][j] != 0 && j < 1024; j++) {
+        for (int j = 0;j < 1024; j++) {
             printf("%02X ", lzw_compressed_output[i][j]);
         }
         printf("\n");
