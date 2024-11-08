@@ -205,21 +205,45 @@ int main(int argc, char* argv[]) {
 	init_dict(dict);
 	
 	//deduplication and assign lzw header
-	uint32_t dup_flag[chunk_count];
+	uint8_t dup_flag[chunk_count];
+	int dup_index[chunk_count];
+	dup_flag[0] = 0;	
+	dup_index[0] = 0;
+	int undup_count = 1;
 	for (unsigned int i = 1; i < chunk_count; i++) {				
-		dup_flag[i] = 0;	
+		dup_flag[i] = 0;	//un duplicated
+		dup_index[i] = i;
 		for (unsigned int j = 0; j < i; j++) {
 			if (memcmp(sha256_output[i], sha256_output[j], 32) == 0) {
 				dup_flag[i] = 1;
+				dup_index[i] = j;
 				break;
 			}
 		}
+		undup_count++;
 	}
 	for (unsigned int i = 0; i < chunk_count; i++) {
-		printf("Chunk %u: %d\n", i, dup_flag[i]);
+		printf("Chunk %u: %d, duplicated with %d\n", i, dup_flag[i], dup_index[i]);
 	}
 
-
+	//compress unduplicated chunks
+	uint8_t lzw_compressed_output[undup_count][1024];
+	uint32_t header[chunk_count];
+	for (unsigned int i = 0; i < chunk_count; i++) {
+		if (dup_flag[i] == 0) {
+			int output_index = 0;
+			uint16_t temp_lzw_compressed_output[chunk_sizes[i]];
+			lzw(chunks[i], chunk_sizes[i], dict, temp_lzw_compressed_output, output_index);
+			convert_output(temp_lzw_compressed_output, lzw_compressed_output[i], output_index);
+		}
+	}
+	for (unsigned int i = 0; i < undup_count; i++) {
+        printf("Chunk %u: ", i);
+        for (int j = 0; lzw_compressed_output[i][j] != 0 && j < 1024; j++) {
+            printf("%02X ", lzw_compressed_output[i][j]);
+        }
+        printf("\n");
+    }
 
 
 
