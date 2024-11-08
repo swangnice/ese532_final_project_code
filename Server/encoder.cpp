@@ -256,7 +256,7 @@ int main(int argc, char* argv[]) {
 		if (dup_flag[i] == 0) {
 			header[i] = compressed_byte[i] << 1;
 		} else {
-			header[i] = compressed_byte[dup_index[i]] << 1 & 0x00000001;
+			header[i] = header[dup_index[i]] & 0x00000001;
 		}
 		printf("Header: %#010x\n", header[i]);
 	}
