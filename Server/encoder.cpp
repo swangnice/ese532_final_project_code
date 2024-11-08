@@ -147,13 +147,14 @@ int main(int argc, char* argv[]) {
 		free(input[i]);
 	}
 
-	    for (unsigned int i = 0; i < chunk_count; ++i) {
+	for (unsigned int i = 0; i < chunk_count; ++i) {
         free(chunks[i]);
     }
     free(chunks);
     free(chunk_sizes);
     free(buffer);
-    fclose(file);
+
+	free(file);
 	std::cout << "--------------- Key Throughputs ---------------" << std::endl;
 	float ethernet_latency = ethernet_timer.latency() / 1000.0;
 	float input_throughput = (bytes_written * 8 / 1000000.0) / ethernet_latency; // Mb/s
