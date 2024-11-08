@@ -191,9 +191,10 @@ int main(int argc, char* argv[]) {
 		// 输出 SHA-256 哈希结果
 		std::cout << "SHA-256 Hash of Compressed Data: ";
 		for (int i = 0; i < 32; i++) {
-			printf("%02x", temp_sha256_output);
+			printf("%02x", temp_sha256_output[i]);  // 打印每个字节
 		}
 		std::cout << std::endl;
+
 
 		memcpy(sha256_output[i], temp_sha256_output, 32);
 		
@@ -215,7 +216,7 @@ int main(int argc, char* argv[]) {
 		}
 	}
 	for (unsigned int i = 0; i < chunk_count; i++) {
-		printf("Chunk %u: %d", i, dup_flag[i]);
+		printf("Chunk %u: %d\n", i, dup_flag[i]);
 	}
 
 
