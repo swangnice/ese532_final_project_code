@@ -151,8 +151,8 @@ int main(int argc, char* argv[]) {
 		unsigned char *temp_chunk_data = chunks[i];
     	unsigned int temp_chunk_size = chunk_sizes[i];
 
-		unsigned char compressed_data[BLOCKSIZE];
-    	int compressed_size = rle_compress((const unsigned char*)temp_chunk_data, temp_chunk_size, compressed_data, BLOCKSIZE);
+		unsigned char compressed_data[SHA_BLOCKSIZE];
+    	int compressed_size = rle_compress((const unsigned char*)temp_chunk_data, temp_chunk_size, compressed_data, SHA_BLOCKSIZE);
 
 		std::cout << "Original Size: " << temp_chunk_size << " bytes\n";
 		std::cout << "Compressed Size: " << compressed_size << " bytes\n";

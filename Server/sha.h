@@ -9,7 +9,7 @@
 #include <time.h>
 #include <memory.h>
 
-#define BLOCKSIZE 2048      // 默认块大小
+#define SHA_BLOCKSIZE 2048      // 默认块大小
 #define SHA256_BLOCK_SIZE 32 // SHA256 outputs a 32 byte digest
 
 /**************************** DATA TYPES ****************************/
