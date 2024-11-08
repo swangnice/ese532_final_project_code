@@ -192,7 +192,7 @@ int main(int argc, char* argv[]) {
 		memcpy(sha256_output[i], temp_sha256_output, 32);
 		std::cout << "SHA-256 Hash of Compressed Data: ";
 		for (int i = 0; i < 32; i++) {
-			printf("%02x", temp_sha256_output[i]);
+			printf("%02x", sha256_output[i]);
 		}
 		std::cout << std::endl;
 		
@@ -207,7 +207,7 @@ int main(int argc, char* argv[]) {
 		duplicate_flag[i] = 0;						//initialize all flags to 0
 		for (unsigned int j = 0; j < i; j++) {
 			if (chunk_sizes[i] == chunk_sizes[j]) {
-				if (sha256_output[i] == sha256_output[j]) {
+				if (memcmp(sha256_output[i], sha256_output[j], 32) == 0) {
 					duplicate_flag[i] = 1;
 					header[i] = header[j] | 0xFFFFFFFE;
 					break;
@@ -217,8 +217,10 @@ int main(int argc, char* argv[]) {
 		index++;
 		header[i] = (index<<1) | duplicate_flag[i];
 	}
+	//print all header and sha output
 	for (unsigned int i = 0; i < chunk_count; i++) {
 		printf("Chunk %u: ", i);
+		printf("%02x", sha256_output[i]);
 		printf("Header: %#010x\n", header[i]);
 	}
 
