@@ -131,8 +131,18 @@ int main(int argc, char* argv[]) {
 		length = buffer[0] | (buffer[1] << 8);
 		length &= ~DONE_BIT_H;
 		//printf("length: %d offset %d\n",length,offset);
-		memcpy(&file[offset], &buffer[HEADER], length);
+		//memcpy(&file[offset], &buffer[HEADER], length);
 		cdc(&buffer[HEADER], length, &chunks, &chunk_count, &chunk_sizes);
+		printf("Chunk count: %u\n", chunk_count);
+		printf("Chunk sizes:\n");
+		for (unsigned int i = 0; i < chunk_count; i++) {
+			printf("Chunk %u size: %u bytes\n", i, chunk_sizes[i]);
+		}
+		printf("Chunk data (as string):\n");
+		for (unsigned int i = 0; i < chunk_count; i++) {
+			printf("Chunk %u: ", i);
+			printf("%.*s\n", chunk_sizes[i], (char *)chunks[i]);
+		}
 
 		offset += length;
 		writer++;
