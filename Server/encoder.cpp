@@ -134,6 +134,11 @@ int main(int argc, char* argv[]) {
 		writer++;
 	}
 
+	FILE *outfd = fopen("output_cpu.bin", "wb");
+	int bytes_written = fwrite(&file[0], 1, offset, outfd);
+	printf("write file with %d\n", bytes_written);
+	fclose(outfd);
+
 	//print all chunks
 	printf("Chunk count: %u\n", chunk_count);
 	printf("Chunk sizes:\n");
@@ -147,6 +152,9 @@ int main(int argc, char* argv[]) {
 	}
 
 	// SHA-256 hash calculation
+	// unsigned char **sha256_output = NULL;
+    // sha256_output = (unsigned char **)malloc(sizeof(unsigned char *) * estimated_chunks);
+
 	for (unsigned int i = 0; i < chunk_count; i++) {
 		unsigned char *temp_chunk_data = chunks[i];
     	unsigned int temp_chunk_size = chunk_sizes[i];
@@ -158,24 +166,23 @@ int main(int argc, char* argv[]) {
 		std::cout << "Compressed Size: " << compressed_size << " bytes\n";
 
 		// 计算压缩数据的 SHA-256 哈希
-		uint8_t sha256_output[32]; // SHA-256 输出为 32 字节的 uint8_t 数组
-		calculate_sha256(compressed_data, compressed_size, sha256_output);
+		uint8_t temp_sha256_output[32]; // SHA-256 输出为 32 字节的 uint8_t 数组
+		calculate_sha256(compressed_data, compressed_size, temp_sha256_output);
 
 		// 输出 SHA-256 哈希结果
 		std::cout << "SHA-256 Hash of Compressed Data: ";
 		for (int i = 0; i < 32; i++) {
-			printf("%02x", sha256_output[i]);
+			printf("%02x", temp_sha256_output[i]);
 		}
 		std::cout << std::endl;
 		
 	}
 
 
+
+
 	// write file to root and you can use diff tool on board
-	FILE *outfd = fopen("output_cpu.bin", "wb");
-	int bytes_written = fwrite(&file[0], 1, offset, outfd);
-	printf("write file with %d\n", bytes_written);
-	fclose(outfd);
+	
 
 	for (int i = 0; i < NUM_PACKETS; i++) {
 		free(input[i]);
