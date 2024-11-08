@@ -200,22 +200,19 @@ int main(int argc, char* argv[]) {
 	}
 	
 	//deduplication and assign lzw header
-	uint32_t duplicate_flag[chunk_count];    //0-LZW 1-Dup
 	uint32_t header[chunk_count];
-	duplicate_flag[0] = 0;
 	int index = 0;
 	header[0] = 0;
-	for (unsigned int i = 1; i < chunk_count; i++) {
-		duplicate_flag[i] = 0;						//initialize all flags to 0
+	for (unsigned int i = 1; i < chunk_count; i++) {				
+		header[i] = 0;	
 		for (unsigned int j = 0; j < i; j++) {
 			if (memcmp(sha256_output[i], sha256_output[j], 32) == 0) {
-				duplicate_flag[i] = 1;
 				header[i] = header[j] & 0x00000001;
 				break;
 			}
 		}
 		index++;
-		header[i] = (index<<1) | duplicate_flag[i];
+		header[i] = (index<<1);
 	}
 	//print all header and sha output
 	for (unsigned int i = 0; i < chunk_count; i++) {
