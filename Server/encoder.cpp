@@ -273,9 +273,12 @@ int main(int argc, char* argv[]) {
 		} else {
 			header[i] = header[dup_index[i]] | 0x00000001;
 		}
-		printf("Header: %#010x\n", header[i]);
+		printf("chunk: %u, Header: %#010x\n", i, header[i]);
 	}
 
+	for (unsigned int i = 0; i < chunk_count; i++) {
+		printf("chunk: %u, original size:%d, duplicated: %d, duplicated with %d compressed sized: %d\n", i, chunk_sizes[i], dup_flag[i], dup_index[i], compressed_byte[dup_index[i]]);
+	}
 
 	//overall time
 	overall_timer.stop();
@@ -310,23 +313,27 @@ int main(int argc, char* argv[]) {
 
 
 
-	// write file to root and you can use diff tool on board
-	FILE *file = fopen("compressed_file.bin", "wb");
-    if (!file) {
-        perror("Failed to open file");
-    }
-	for (unsigned int i = 0; i < chunk_count; i++) {
-        if (dup_flag[i] == 0) {
-            fwrite(lzw_compressed_output[i], sizeof(uint8_t), compressed_byte[i], file);
-        }
-    }
-	fwrite(header, sizeof(uint32_t), chunk_count, file);
-	struct stat st;
-    if (stat("compressed_file.txt", &st) != 0) {
-        perror("Failed to get file size");
-    }
-    printf("File size: %ld bytes\n", st.st_size);
-	printf("Compress Ratio: %ld x\n", bytes_written/st.st_size);
+	// // write file to root and you can use diff tool on board
+	// FILE *file = fopen("compressed_file.txt", "wb");
+    // if (!file) {
+    //     perror("Failed to open file");
+    // }
+	// for (unsigned int i = 0; i < chunk_count; i++) {
+    //     if (dup_flag[i] == 0) {
+    //         fwrite(lzw_compressed_output[i], sizeof(uint8_t), compressed_byte[i], file);
+    //     }
+    // }
+	// fwrite(header, sizeof(uint32_t), chunk_count, file);
+
+    // // Write dictionary to file
+    // fwrite(dict, sizeof(int), MAX_DICT_SIZE * 256, file);
+
+	// struct stat st;
+    // if (stat("compressed_file.txt", &st) != 0) {
+    //     perror("Failed to get file size");
+    // }
+    // printf("File size: %ld bytes\n", st.st_size);
+	// printf("Compress Ratio: %ld x\n", (bytes_written * 8)/st.st_size);
 
 
 	
