@@ -98,16 +98,16 @@ int main(int argc, char* argv[]) {
     chunk_sizes = (unsigned int *)malloc(sizeof(unsigned int) * estimated_chunks);
 	cdc(&buffer[HEADER], length, &chunks, &chunk_count, &chunk_sizes);
 
-	printf("Chunk count: %u\n", chunk_count);
-	printf("Chunk sizes:\n");
-	for (unsigned int i = 0; i < chunk_count; i++) {
-		printf("Chunk %u size: %u bytes\n", i, chunk_sizes[i]);
-	}
-	printf("Chunk data (as string):\n");
-	for (unsigned int i = 0; i < chunk_count; i++) {
-		printf("Chunk %u: ", i);
-		printf("%.*s\n", chunk_sizes[i], (char *)chunks[i]);
-	}
+	// printf("Chunk count: %u\n", chunk_count);
+	// printf("Chunk sizes:\n");
+	// for (unsigned int i = 0; i < chunk_count; i++) {
+	// 	printf("Chunk %u size: %u bytes\n", i, chunk_sizes[i]);
+	// }
+	// printf("Chunk data (as string):\n");
+	// for (unsigned int i = 0; i < chunk_count; i++) {
+	// 	printf("Chunk %u: ", i);
+	// 	printf("%.*s\n", chunk_sizes[i], (char *)chunks[i]);
+	// }
 
 
 
@@ -137,20 +137,33 @@ int main(int argc, char* argv[]) {
 		//printf("length: %d offset %d\n",length,offset);
 		//memcpy(&file[offset], &buffer[HEADER], length);
 		cdc(&buffer[HEADER], length, &chunks, &chunk_count, &chunk_sizes);
-		printf("Chunk count: %u\n", chunk_count);
-		printf("Chunk sizes:\n");
-		for (unsigned int i = 0; i < chunk_count; i++) {
-			printf("Chunk %u size: %u bytes\n", i, chunk_sizes[i]);
-		}
-		printf("Chunk data (as string):\n");
-		for (unsigned int i = 0; i < chunk_count; i++) {
-			printf("Chunk %u: ", i);
-			printf("%.*s\n", chunk_sizes[i], (char *)chunks[i]);
-		}
+		// printf("Chunk count: %u\n", chunk_count);
+		// printf("Chunk sizes:\n");
+		// for (unsigned int i = 0; i < chunk_count; i++) {
+		// 	printf("Chunk %u size: %u bytes\n", i, chunk_sizes[i]);
+		// }
+		// printf("Chunk data (as string):\n");
+		// for (unsigned int i = 0; i < chunk_count; i++) {
+		// 	printf("Chunk %u: ", i);
+		// 	printf("%.*s\n", chunk_sizes[i], (char *)chunks[i]);
+		// }
 
 		offset += length;
 		writer++;
 	}
+
+	//print all chunks
+	printf("Chunk count: %u\n", chunk_count);
+	printf("Chunk sizes:\n");
+	for (unsigned int i = 0; i < chunk_count; i++) {
+		printf("Chunk %u size: %u bytes\n", i, chunk_sizes[i]);
+	}
+	printf("Chunk data (as string):\n");
+	for (unsigned int i = 0; i < chunk_count; i++) {
+		printf("Chunk %u: ", i);
+		printf("%.*s\n", chunk_sizes[i], (char *)chunks[i]);
+	}
+
 
 	// write file to root and you can use diff tool on board
 	FILE *outfd = fopen("output_cpu.bin", "wb");
