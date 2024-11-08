@@ -17,10 +17,7 @@ uint64_t rolling_hash(uint64_t previous_hash, unsigned char old_char, unsigned c
 void cdc(const unsigned char *buff, unsigned int buff_size, unsigned char ***chunks, unsigned int *chunk_count, unsigned int **chunk_sizes) {
     if (buff_size < WIN_SIZE) return;
 
-    *chunk_count = 0;
-    unsigned int estimated_chunks = buff_size / WIN_SIZE + 1;
-    *chunks = (unsigned char **)malloc(sizeof(unsigned char *) * estimated_chunks);
-    *chunk_sizes = (unsigned int *)malloc(sizeof(unsigned int) * estimated_chunks);
+    
 
     // Calculate initial hash for the first window
     uint64_t current_hash = initial_hash_func(buff, 0);

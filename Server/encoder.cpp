@@ -92,6 +92,10 @@ int main(int argc, char* argv[]) {
 	unsigned char **chunks = NULL;
     unsigned int chunk_count = 0;
     unsigned int *chunk_sizes = NULL;
+	chunk_count = 0;
+    unsigned int estimated_chunks = 15360 / WIN_SIZE + 1;
+    chunks = (unsigned char **)malloc(sizeof(unsigned char *) * estimated_chunks);
+    chunk_sizes = (unsigned int *)malloc(sizeof(unsigned int) * estimated_chunks);
 	cdc(&buffer[HEADER], length, &chunks, &chunk_count, &chunk_sizes);
 
 	printf("Chunk count: %u\n", chunk_count);
