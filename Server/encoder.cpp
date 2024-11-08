@@ -237,12 +237,14 @@ int main(int argc, char* argv[]) {
 			convert_output(temp_lzw_compressed_output, lzw_compressed_output[i], output_index);
 		}
 	}
-	for (unsigned int i = 0; i < undup_count; i++) {
-        printf("Chunk %u: ", i);
-        for (int j = 0;j < 1024; j++) {
-            printf("%02X ", lzw_compressed_output[i][j]);
-        }
-        printf("\n");
+	for (unsigned int i = 0; i < chunk_count; i++) {
+		if (dup_flag[i] == 1) {
+			printf("Chunk %u: ", i);
+			for (int j = 0;j < 1024; j++) {
+				printf("%02X ", lzw_compressed_output[i][j]);
+			}
+			printf("\n");
+		}
     }
 
 
