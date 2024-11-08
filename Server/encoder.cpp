@@ -189,13 +189,13 @@ int main(int argc, char* argv[]) {
 		calculate_sha256(compressed_data, compressed_size, temp_sha256_output);
 
 		// 输出 SHA-256 哈希结果
-
-		memcpy(sha256_output[i], temp_sha256_output, 32);
 		std::cout << "SHA-256 Hash of Compressed Data: ";
 		for (int i = 0; i < 32; i++) {
-			printf("%02x", sha256_output[i]);
+			printf("%02x", temp_sha256_output);
 		}
 		std::cout << std::endl;
+
+		memcpy(sha256_output[i], temp_sha256_output, 32);
 		
 	}
 	
@@ -204,15 +204,14 @@ int main(int argc, char* argv[]) {
 	uint32_t header[chunk_count];
 	duplicate_flag[0] = 0;
 	int index = 0;
+	header[0] = 0;
 	for (unsigned int i = 1; i < chunk_count; i++) {
 		duplicate_flag[i] = 0;						//initialize all flags to 0
 		for (unsigned int j = 0; j < i; j++) {
-			if (chunk_sizes[i] == chunk_sizes[j]) {
-				if (memcmp(sha256_output[i], sha256_output[j], 32) == 0) {
-					duplicate_flag[i] = 1;
-					header[i] = header[j] &0x00000001;
-					break;
-				}
+			if (memcmp(sha256_output[i], sha256_output[j], 32) == 0) {
+				duplicate_flag[i] = 1;
+				header[i] = header[j] & 0x00000001;
+				break;
 			}
 		}
 		index++;
@@ -241,10 +240,10 @@ int main(int argc, char* argv[]) {
     free(chunks);
     free(chunk_sizes);
     //free(buffer);
-	for (unsigned int i = 0; i < chunk_count; i++) {
-		free(sha256_output[i]);
-	}
-	free(sha256_output);
+	// for (unsigned int i = 0; i < chunk_count; i++) {
+	// 	free(sha256_output[i]);
+	// }
+	// free(sha256_output);
 
 	free(file);
 	std::cout << "--------------- Key Throughputs ---------------" << std::endl;
