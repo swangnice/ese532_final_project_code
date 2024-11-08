@@ -325,8 +325,6 @@ int main(int argc, char* argv[]) {
     // Write dictionary to file
     fwrite(dict, sizeof(int), MAX_DICT_SIZE * 256, file);
 
-    fclose(file);
-
 	struct stat st;
     if (stat("compressed_file.txt", &st) != 0) {
         perror("Failed to get file size");
