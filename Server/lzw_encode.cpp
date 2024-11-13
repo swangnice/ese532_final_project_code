@@ -12,7 +12,7 @@ int compare_match(int dict[MAX_DICT_SIZE][256], uint8_t curr_string[], int curr_
         }
         if (match) {
             return i; 
-        }
+        } 
     }
     return -1; 
 }
@@ -63,24 +63,28 @@ void init_dict(int dict[MAX_DICT_SIZE][256]){
     }
 }
 
-void convert_output(uint16_t in[], uint8_t out[], int size){
+void convert_output(uint16_t in[], uint8_t out[], int size, int& index){
     //header
-    out[0] = size >> 23;
-    out[1] = size >> 15;
-    out[2] = size >> 7;
-    out[3] = size << 1 + 1;
+    out[index++] = ((size & 0x7f) << 1) | 0x01;
+    out[index++] = size >> 7;
+    out[index++] = size >> 15;
+    out[index++] = size >> 23;
+    //out[3] = size >> 23;
+    //out[2] = size >> 15;
+    //out[1] = size >> 7;
+    //out[0] = ((size & 0x7f) << 1) | 0x01;
 
     //data
-    int index = 5;
+    //int index = 5;
     
-    out[4] = in[0] >> 5;
+    out[index++] = in[0] >> 5;
 
     for(int i = 0; i < size - 1; i++){
         out[index++] = in[i] << 3 | in[i + 1] >> 10;
         out[index++] = in[i + 1] >> 5;
     }
 
-    out[index] = in[size - 1] << 3;
+    out[index++] = in[size - 1] << 3;
 }
 
 // int main() {

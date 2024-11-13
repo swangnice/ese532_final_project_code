@@ -15,7 +15,6 @@
 #include <errno.h>
 #include <fcntl.h>
 #include <sys/mman.h>
-#include <sys/stat.h>
 #include "stopwatch.h"
 
 #define NUM_PACKETS 8
@@ -45,11 +44,6 @@ void handle_input(int argc, char* argv[], int* blocksize) {
 
 int main(int argc, char* argv[]) {
 	stopwatch ethernet_timer;
-	stopwatch cdc_timer;
-	stopwatch sha_timer;
-	stopwatch dedup_timer;
-	stopwatch lzw_timer;
-	stopwatch overall_timer;
 	unsigned char* input[NUM_PACKETS];
 	int writer = 0;
 	int done = 0;
@@ -95,7 +89,6 @@ int main(int argc, char* argv[]) {
 
 	// we are just memcpy'ing here, but you should call your
 	// top function here.
-	overall_timer.start();
 	memcpy(&file[offset], &buffer[HEADER], length);
 	//printf("%.*s\n", length, &buffer[HEADER]);
 	unsigned char **chunks = NULL;
@@ -105,11 +98,7 @@ int main(int argc, char* argv[]) {
     unsigned int estimated_chunks = 15360 / WIN_SIZE + 1;
     chunks = (unsigned char **)malloc(sizeof(unsigned char *) * estimated_chunks);
     chunk_sizes = (unsigned int *)malloc(sizeof(unsigned int) * estimated_chunks);
-	cdc_timer.start();
 	cdc(&buffer[HEADER], length, &chunks, &chunk_count, &chunk_sizes);
-
-
-
 
 	offset += length;
 	writer++;
@@ -136,54 +125,27 @@ int main(int argc, char* argv[]) {
 		length &= ~DONE_BIT_H;
 		//printf("length: %d offset %d\n",length,offset);
 		memcpy(&file[offset], &buffer[HEADER], length);
-		
 		cdc(&buffer[HEADER], length, &chunks, &chunk_count, &chunk_sizes);
 		
 
 		offset += length;
 		writer++;
 	}
-	cdc_timer.stop();
 
-	FILE *outfd = fopen("output_cpu.bin", "wb");
-	int bytes_written = fwrite(&file[0], 1, offset, outfd);
-	printf("write file with %d\n", bytes_written);
-	fclose(outfd);
+	// FILE *outfd = fopen("output_cpu.bin", "wb");
+	// int bytes_written = fwrite(&file[0], 1, offset, outfd);
+	// printf("write file with %d\n", bytes_written);
+	// fclose(outfd);
+	
+	int dict[MAX_DICT_SIZE][256];
 
-	//print all chunks
-	printf("Chunk count: %u\n", chunk_count);
-	printf("Chunk sizes:\n");
-	for (unsigned int i = 0; i < chunk_count; i++) {
-		printf("Chunk %u size: %u bytes\n", i, chunk_sizes[i]);
-	}
-	printf("Chunk data (as string):\n");
-	for (unsigned int i = 0; i < chunk_count; i++) {
-		printf("Chunk %u: ", i);
-		printf("%.*s\n", chunk_sizes[i], (char *)chunks[i]);
-	}
+	init_dict(dict);
 
-	// SHA-256 hash calculation
-	// unsigned char **sha256_output = NULL;
-	// sha256_output = (unsigned char **)malloc(sizeof(unsigned char *) * chunk_count);
-	// if (sha256_output == NULL) {
-	// 	printf("Failed to allocate memory for sha256_output.\n");
-	// 	return 1;
-	// }
-
-	// // 32byte for each chunk
-	// for (unsigned int i = 0; i < chunk_count; i++) {
-	// 	sha256_output[i] = (unsigned char *)malloc(32 * sizeof(unsigned char));
-	// 	if (sha256_output[i] == NULL) {
-	// 		printf("Failed to allocate memory for sha256_output[%u].\n", i);
-	// 		for (unsigned int j = 0; j < i; j++) {
-	// 			free(sha256_output[j]);
-	// 		}
-	// 		free(sha256_output);
-	// 		return 1;
-	// 	}
-	// }
-	sha_timer.start();
-	uint8_t sha256_output[chunk_count][32];
+	uint8_t dict_isdup[32 * chunk_count];
+	memset(dict_isdup, 0, 32 * chunk_count);
+	int index = 0;//indicate last part of the dict_isdup
+	int out_index = 0;//indictae output index
+	unsigned char* buffer_out = (unsigned char*) malloc(sizeof(unsigned char) * 70000000);
 
 	for (unsigned int i = 0; i < chunk_count; i++) {
 		unsigned char *temp_chunk_data = chunks[i];
@@ -192,151 +154,56 @@ int main(int argc, char* argv[]) {
 		unsigned char compressed_data[SHA_BLOCKSIZE];
     	int compressed_size = rle_compress((const unsigned char*)temp_chunk_data, temp_chunk_size, compressed_data, SHA_BLOCKSIZE);
 
-		std::cout << "Original Size: " << temp_chunk_size << " bytes\n";
-		std::cout << "Compressed Size: " << compressed_size << " bytes\n";
-
-		// 计算压缩数据的 SHA-256 哈希
-		uint8_t temp_sha256_output[32]; // SHA-256 输出为 32 字节的 uint8_t 数组
+		// calculate hash
+		uint8_t temp_sha256_output[32]; // SHA-256 输出�? 32 字节�? uint8_t 数组
 		calculate_sha256(compressed_data, compressed_size, temp_sha256_output);
 
-		// 输出 SHA-256 哈希结果
-		std::cout << "SHA-256 Hash of Compressed Data: ";
-		for (int i = 0; i < 32; i++) {
-			printf("%02x", temp_sha256_output[i]);  // 打印每个字节
+		int isdup = 0;
+
+		// dedup module
+		// determine if it is dup
+		for(int j = 0; j < index; ++j){
+			int flag = 0;
+			for(int k = 0; k < 32; ++k){
+				if(dict_isdup[j * 32 + k] == temp_sha256_output[k]){
+					flag++;
+				}
+			}
+			//uint8_t header[4];
+
+			//this is dup
+			if(flag == 32){
+				//send dup header
+				isdup = 1;
+				//header for dup
+				buffer_out[out_index++] = ((j & 0x7f) << 1);
+				buffer_out[out_index++] = j >> 7;
+				buffer_out[out_index++] = j >> 15;
+				buffer_out[out_index++] = j >> 23;
+			}
 		}
-		std::cout << std::endl;
 
+		int output_index = 0;
 
-		memcpy(sha256_output[i], temp_sha256_output, 32);
+		//this is not dup
+		if(!isdup){
+			for(int j = 0; j < 32; ++j){
+				dict_isdup[index * 32 + j] = temp_sha256_output[j];
+			}
+			index++;
+			uint16_t temp_output[compressed_size];
+			lzw(compressed_data, compressed_size, dict, temp_output, output_index);
+			convert_output(temp_output, buffer_out, output_index, out_index);
+		}
 		
 	}
-	sha_timer.stop();
-	int dict[MAX_DICT_SIZE][256];
-
-	init_dict(dict);
 	
-	//deduplication and assign lzw header
-	dedup_timer.start();
-	uint8_t dup_flag[chunk_count];
-	int dup_index[chunk_count];
-	dup_flag[0] = 0;	
-	dup_index[0] = 0;
-	int undup_count = 1;
-	for (unsigned int i = 1; i < chunk_count; i++) {				
-		dup_flag[i] = 0;	//un duplicated
-		dup_index[i] = i;
-		for (unsigned int j = 0; j < i; j++) {
-			if (memcmp(sha256_output[i], sha256_output[j], 32) == 0) {
-				dup_flag[i] = 1;
-				dup_index[i] = j;
-				break;
-			}
-		}
-		undup_count++;
-	}
-	for (unsigned int i = 0; i < chunk_count; i++) {
-		printf("Chunk %u: %d, duplicated with %d\n", i, dup_flag[i], dup_index[i]);
-	}
-	dedup_timer.stop();
-
-	//compress unduplicated chunks
-	lzw_timer.start();
-	uint8_t lzw_compressed_output[undup_count][2048];
-	uint32_t header[chunk_count];
-	int compressed_byte[undup_count];
-	for (unsigned int i = 0; i < chunk_count; i++) {
-		if (dup_flag[i] == 0) {
-			int output_index = 0;
-			uint16_t temp_lzw_compressed_output[chunk_sizes[i]];
-			lzw(chunks[i], chunk_sizes[i], dict, temp_lzw_compressed_output, output_index);
-			convert_output(temp_lzw_compressed_output, lzw_compressed_output[i], output_index);
-			compressed_byte[i] = output_index;
-		}
-	}
-	for (unsigned int i = 0; i < chunk_count; i++) {
-		if (dup_flag[i] == 0) {
-			printf("Chunk %u: ", i);
-			for (int j = 0;j < compressed_byte[i]; j++) {
-				printf("%02X ", lzw_compressed_output[i][j]);
-			}
-			printf("\n");
-		}
-    }
-	lzw_timer.stop();
-
-
-	// build header
-	for (unsigned int i = 0; i < chunk_count; i++) {
-		header[i] = 0;
-		if (dup_flag[i] == 0) {
-			header[i] = compressed_byte[i] << 1;
-		} else {
-			header[i] = header[dup_index[i]] | 0x00000001;
-		}
-		printf("chunk: %u, Header: %#010x\n", i, header[i]);
-	}
-
-	for (unsigned int i = 0; i < chunk_count; i++) {
-		printf("chunk: %u, original size:%d, duplicated: %d, duplicated with %d compressed sized: %d\n", i, chunk_sizes[i], dup_flag[i], dup_index[i], compressed_byte[dup_index[i]]);
-	}
-
-	//overall time
-	overall_timer.stop();
-
-
-
-
-
-
-	// uint32_t header[chunk_count];
-	// int index = 0;
-	// header[0] = 0;
-	// for (unsigned int i = 1; i < chunk_count; i++) {				
-	// 	header[i] = 0;	
-	// 	for (unsigned int j = 0; j < i; j++) {
-	// 		if (memcmp(sha256_output[i], sha256_output[j], 32) == 0) {
-	// 			header[i] = (j << 1) | 1;  // Duplicate Chunk: bit 0 = 1, bits 31-1 = j
-	// 			break;
-	// 		}
-
-	// 	}
-	// 	index++;
-	// 	header[i] = (index<<1);
-	// }
-	// //print all header and sha output
-	// for (unsigned int i = 0; i < chunk_count; i++) {
-	// 	printf("Chunk %u: ", i);
-	// 	for (unsigned int j = 0; j < 32; j++) printf("%02x", sha256_output[i][j]);
-	// 	printf("\nHeader: %#010x\n", header[i]);
-	// }
-
-
-
-
-	// // write file to root and you can use diff tool on board
-	// FILE *file = fopen("compressed_file.txt", "wb");
-    // if (!file) {
-    //     perror("Failed to open file");
-    // }
-	// for (unsigned int i = 0; i < chunk_count; i++) {
-    //     if (dup_flag[i] == 0) {
-    //         fwrite(lzw_compressed_output[i], sizeof(uint8_t), compressed_byte[i], file);
-    //     }
-    // }
-	// fwrite(header, sizeof(uint32_t), chunk_count, file);
-
-    // // Write dictionary to file
-    // fwrite(dict, sizeof(int), MAX_DICT_SIZE * 256, file);
-
-	// struct stat st;
-    // if (stat("compressed_file.txt", &st) != 0) {
-    //     perror("Failed to get file size");
-    // }
-    // printf("File size: %ld bytes\n", st.st_size);
-	// printf("Compress Ratio: %ld x\n", (bytes_written * 8)/st.st_size);
-
-
+	FILE *outfd = fopen("output.bin", "wb");
+	size_t bytes_written = fwrite(buffer_out, 1, out_index, outfd);
+	fclose(outfd);
+	// write file to root and you can use diff tool on board
 	
+	free(buffer_out);
 
 	for (int i = 0; i < NUM_PACKETS; i++) {
 		free(input[i]);
@@ -347,36 +214,13 @@ int main(int argc, char* argv[]) {
     }
     free(chunks);
     free(chunk_sizes);
-    //free(buffer);
-	// for (unsigned int i = 0; i < chunk_count; i++) {
-	// 	free(sha256_output[i]);
-	// }
-	// free(sha256_output);
 
 	free(file);
 	std::cout << "--------------- Key Throughputs ---------------" << std::endl;
 	float ethernet_latency = ethernet_timer.latency() / 1000.0;
-	float cdc_latency = cdc_timer.latency() / 1000.0;
-	float sha_latency = sha_timer.latency() / 1000.0;
-	float dedup_latency = dedup_timer.latency() / 1000.0;
-	float lzw_latency = lzw_timer.latency() / 1000.0;
-	float overall_latency = overall_timer.latency() / 1000.0;
-
 	float input_throughput = (bytes_written * 8 / 1000000.0) / ethernet_latency; // Mb/s
-	float cdc_throughput = (bytes_written * 8 / 1000000.0) / cdc_latency; // Mb/s
-	float sha_throughput = (bytes_written * 8 / 1000000.0) / sha_latency; // Mb/s
-	float dedup_throughput = (bytes_written * 8 / 1000000.0) / dedup_latency; // Mb/s
-	float lzw_throughput = (bytes_written * 8 / 1000000.0) / lzw_latency; // Mb/s
-	float overall_throughput = (bytes_written * 8 / 1000000.0) / overall_latency; // Mb/s
-
-
 	std::cout << "Input Throughput to Encoder: " << input_throughput << " Mb/s."
 			<< " (Latency: " << ethernet_latency << "s)." << std::endl;
-	std::cout << "CDC Throughput: " << cdc_throughput << " Mb/s." << " (Latency: " << cdc_latency << "s)." << std::endl;
-	std::cout << "SHA Throughput: " << sha_throughput << " Mb/s." << " (Latency: " << sha_latency << "s)." << std::endl;
-	std::cout << "Deduplication Throughput: " << dedup_throughput << " Mb/s." << " (Latency: " << dedup_latency << "s)." << std::endl;
-	std::cout << "LZW Throughput: " << lzw_throughput << " Mb/s." << " (Latency: " << lzw_latency << "s)." << std::endl;
-	std::cout << "Overall Throughput: " << overall_throughput << " Mb/s." << " (Latency: " << overall_latency << "s)." << std::endl;
 
 	return 0;
 }
