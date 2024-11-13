@@ -191,8 +191,8 @@ int main(int argc, char* argv[]) {
 				dict_isdup[index * 32 + j] = temp_sha256_output[j];
 			}
 			index++;
-			uint16_t temp_output[compressed_size];
-			lzw(compressed_data, compressed_size, dict, temp_output, output_index);
+			uint16_t temp_output[temp_chunk_size];
+			lzw(temp_chunk_data, temp_chunk_size, dict, temp_output, output_index);
 			convert_output(temp_output, buffer_out, output_index, out_index);
 		}
 		
