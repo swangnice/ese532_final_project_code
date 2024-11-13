@@ -6,7 +6,7 @@
 #include <stdint.h>
 #include <string.h>
 
-#define MAX_DICT_SIZE 4096 //local computer test can adjust value
+#define MAX_DICT_SIZE 8192 //local computer test can adjust value
 
 int compare_match(int dict[MAX_DICT_SIZE][256], uint8_t curr_string[], int curr_string_len, int dict_index);
 
