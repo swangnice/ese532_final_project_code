@@ -2,6 +2,7 @@
 #include <vector>
 #include <unordered_map>
 #include <stdlib.h>
+#include "lzw.h"
 //****************************************************************************************************************
 #define CAPACITY 32768 // hash output is 15 bits, and we have 1 entry per bucket, so capacity is 2^15
 //#define CAPACITY 4096
