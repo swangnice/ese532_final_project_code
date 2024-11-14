@@ -70,11 +70,18 @@ int convert_output(uint16_t in[], uint8_t out[], int input_size){
     int adjusted_input_size = input_size - (input_size % 2);
 
     for(int i = 0; i < adjusted_input_size; i+=2){
+        printf("in[i]: %hu\n", in[i]);
+        printf("in[i+1]: %hu\n", in[i+1]);
+        
+
         out[output_size] = (in[i]>>4) & 0xff;
+        printf("out[1]: %u\n", static_cast<unsigned int>(out[output_size]));
         output_size++;
         out[output_size] = ((in[i] << 4) & 0xf0) | ((in[i+1] >> 8) & 0x0f);
+        printf("out[2]: %u\n", static_cast<unsigned int>(out[output_size]));
         output_size++;
         out[output_size] = (in[i+1] >> 4) & 0xff;
+        printf("out[3]: %u\n", static_cast<unsigned int>(out[output_size]));
         output_size++;
     }
 
