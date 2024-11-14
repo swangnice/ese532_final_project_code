@@ -284,6 +284,7 @@ int main(int argc, char* argv[]) {
 	}
 	for (unsigned int i = 0; i < chunk_count; i++) {
 		header[i] = (header[i] << 24) & 0xff000000 | (header[i]<<8)&0x00ff0000 | (header[i]>>8)&0x0000ff00 | (header[i]>>24)&0x000000ff;
+		printf("chunk: %u, Header: %#010x\n", i, header[i]);
 
 	}
 
