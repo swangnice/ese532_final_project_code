@@ -270,17 +270,21 @@ int main(int argc, char* argv[]) {
 	// build header
 	uint32_t header[chunk_count];
 	for (unsigned int i = 0; i < chunk_count; i++) {
-		uint32_t temp_header = 0;
+
 		header[i] = 0;
 		if (dup_flag[i] == 0) {
-			temp_header = compressed_data_size[i] << 1;
+			header[i] = compressed_data_size[i] << 1;
 		} else {
-			temp_header = header[dup_index[i]] | 0x00000001;
+			header[i] = header[dup_index[i]] | 0x00000001;
 		}
 		//header[i] = (temp_header << 24) & 0xff000000 | (temp_header<<8)&0x00ff0000 | (temp_header>>8)&0x0000ff00 | (temp_header>>24)&0x000000ff;
 
 		//printf("chunk: %u, Header: %#010x\n", i, header[i]);
-		printf("chunk: %u, Header: %#010x\n", i, temp_header);
+		//printf("chunk: %u, Header: %#010x\n", i, temp_header);
+	}
+	for (unsigned int i = 0; i < chunk_count; i++) {
+		header[i] = (header[i] << 24) & 0xff000000 | (header[i]<<8)&0x00ff0000 | (header[i]>>8)&0x0000ff00 | (header[i]>>24)&0x000000ff;
+
 	}
 
 	// for (unsigned int i = 0; i < chunk_count; i++) {
