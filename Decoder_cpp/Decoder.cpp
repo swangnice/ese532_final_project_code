@@ -5,7 +5,7 @@
 #include <string>
 #include <stdint.h>
 
-#define CODE_LENGTH (13)
+#define CODE_LENGTH (12)
 
 typedef std::vector<std::string> code_table;
 typedef std::vector<std::string> chunk_list;
@@ -90,16 +90,22 @@ int main(int Parameter_count, char * Parameters[])
     if (Input.eof())
       break;
 
-    if ((Header & 1) == 0)
+    //printf("%#010x\n", Header);
+
+    if ((Header & 0x00000001) == 0)
     {
-      int Chunk_size = Header >> 1;
+      //printf("This is a unduplicated chunk\n");
+      uint32_t Chunk_size = Header >> 1;
+      //printf("chunk size: %d", Chunk_size);
       const std::string & Chunk = Decompress(Chunk_size);
+      std::cout << "Decompressed Chunk: " << Chunk << std::endl;
       Chunks.push_back(Chunk);
       std::cout << "Decompressed chunk of size " << Chunk.length() << ".\n";
       Output.write(&Chunk[0], Chunk.length());
     }
     else
     {
+      printf("This is a duplicated chunk\n");
      int Location = Header >> 1;
       if (Location<Chunks.size()) {  // defensive programming to avoid out-of-bounds reference
           const std::string & Chunk = Chunks[Location];
