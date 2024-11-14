@@ -5,7 +5,7 @@
 #include <string>
 #include <stdint.h>
 
-#define CODE_LENGTH (13)
+#define CODE_LENGTH (12)
 
 typedef std::vector<std::string> code_table;
 typedef std::vector<std::string> chunk_list;
@@ -89,6 +89,8 @@ int main(int Parameter_count, char * Parameters[])
     Input.read((char *) &Header, sizeof(int32_t));
     if (Input.eof())
       break;
+
+    printf("%#010x\n", Header);
 
     if ((Header & 1) == 0)
     {
