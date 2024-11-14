@@ -3,7 +3,7 @@
 #include "cdc.h"
 #include "sha.h"
 #include "lzw.h"
-#include "lzw_encode.h"
+//#include "lzw_encode.h"
 #include <stdio.h>
 #include <stdint.h>
 #include <stdlib.h>
@@ -212,7 +212,7 @@ int main(int argc, char* argv[]) {
 		
 	}
 	sha_timer.stop();
-	int dict[MAX_DICT_SIZE][256];
+	//int dict[MAX_DICT_SIZE][256];
 
 	//init_dict(dict);
 	
