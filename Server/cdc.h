@@ -6,7 +6,7 @@
 
 #define WIN_SIZE 16    // Window size for hashing
 #define PRIME 3      // Prime number for hash calculation
-#define MODULUS 512  // Modulus for chunk split condition
+#define MODULUS 256  // Modulus for chunk split condition
 #define TARGET 256    // Target hash value for chunk splitting
 
 uint64_t initial_hash_func(const unsigned char *input, unsigned int pos);
