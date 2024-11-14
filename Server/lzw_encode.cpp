@@ -80,7 +80,7 @@ int convert_output(uint16_t in[], uint8_t out[], int input_size){
         out[output_size] = ((in[i] << 4) & 0xf0) | ((in[i+1] >> 8) & 0x0f);
         printf("out[2]: %u\n", static_cast<unsigned int>(out[output_size]));
         output_size++;
-        out[output_size] = (in[i+1] >> 4) & 0xff;
+        out[output_size] = (in[i+1]) & 0xff;
         printf("out[3]: %u\n", static_cast<unsigned int>(out[output_size]));
         output_size++;
     }
