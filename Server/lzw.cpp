@@ -1,7 +1,3 @@
-#include <iostream>
-#include <vector>
-#include <unordered_map>
-#include <stdlib.h>
 #include "lzw.h"
 //****************************************************************************************************************
 #define CAPACITY 32768 // hash output is 15 bits, and we have 1 entry per bucket, so capacity is 2^15
@@ -248,20 +244,6 @@ void lzw(unsigned char* s1, int length, uint16_t* out_code, uint32_t &header, in
     out_len = j;
     // write_encoded_file(out_code, out_len, header, outputFile);
 
-    // header = static_cast<uint32_t>(out_len) << 1;
-    
-    //std::cout << std::endl << "assoc mem entry count: " << my_assoc_mem.fill << std::endl;
-
-    // std::ofstream outfile("encoded_data.bin", std::ios::binary);
-    // if (!outfile) {
-    //     std::cerr << "Could not open the file for writing." << std::endl;
-    //     return;
-    // }
-    // outfile.write(reinterpret_cast<const char*>(&header), sizeof(header));
-    // for (int i = 0; i < out_len; ++i) {
-    //     outfile.write(reinterpret_cast<const char*>(&out_code[i]), sizeof(uint16_t));
-    // }
-    // outfile.close();
 } 
 //hardware
 //****************************************************************************************************************

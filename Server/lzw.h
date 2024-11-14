@@ -1,12 +1,27 @@
 #ifndef LZW_H
 #define LZW_H
 
-#include <vector>
-#include <unordered_map>
-#include <string>
+#include "encoder.h"
+#include "chunk.h"
+#include "cdc.h"
+#include "sha.h"
+#include "lzw.h"
+#include "lzw_encode.h"
+#include <stdio.h>
+#include <stdint.h>
+#include <stdlib.h>
+#include <string.h>
+#include <iostream>
+#include "server.h"
+#include <unistd.h>
+#include <fcntl.h>
+#include <pthread.h>
+#include <errno.h>
+#include <fcntl.h>
+#include <sys/mman.h>
+#include <sys/stat.h>
+#include "stopwatch.h"
 
-// 前置声明，以便在其他类和函数中使用
-//class assoc_mem;
 
 typedef struct
 {   
@@ -35,18 +50,5 @@ void lookup(unsigned long* hash_table, assoc_mem* mem, unsigned int key, bool* h
 void lzw(unsigned char* s1, int length, uint16_t* out_code, int *out_len);
 int convert_output(uint16_t in[], uint8_t out[], int input_size);
 
-// // 定义LZW压缩算法类
-// class LZWCompressor {
-// public:
-//     LZWCompressor();
-//     std::vector<int> encode(const unsigned char* data, size_t size);
-
-// private:
-//     unsigned long* hash_table;    // 指向哈希表的指针
-//     assoc_mem* associative_memory;  // 指向关联存储器的指针
-//     std::unordered_map<std::string, int> table;  // 字典表
-
-//     void initializeTable();
-// };
 
 #endif // LZW_H 
