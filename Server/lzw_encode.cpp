@@ -91,7 +91,7 @@ int convert_output(uint16_t in[], uint8_t out[], int input_size){
         out[output_size] = (in[adjusted_input_size] >> 4) & 0xFF;
         output_size++;
         out[output_size] = (in[adjusted_input_size] << 4) & 0xF0;
-        output_size++;
+        //output_size++;
     }
 
     return output_size;
