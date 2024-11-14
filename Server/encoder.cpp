@@ -256,7 +256,7 @@ int main(int argc, char* argv[]) {
 
 			std::string temp_chunk = reinterpret_cast<const char*>(chunks[i]);
 			const unsigned char* temp_data = reinterpret_cast<const unsigned char*>(temp_chunk.c_str());
-			lzw(chunks[i], chunk_sizes[i], temp_lzw_compressed_output, &temp_output_index);
+			lzw_compress(chunks[i], chunk_sizes[i], temp_lzw_compressed_output, &temp_output_index);
 
 
 			//lzw(chunks[i], chunk_sizes[i], dict, temp_lzw_compressed_output, temp_output_index);
