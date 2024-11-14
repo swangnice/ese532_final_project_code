@@ -242,8 +242,6 @@ void lzw_compress(unsigned char* s1, int length, uint16_t out_code[], int out_le
         i += 1;
     }
     out_len = j;
-    // write_encoded_file(out_code, out_len, header, outputFile);
-
 } 
 //hardware
 //****************************************************************************************************************
