@@ -2,6 +2,7 @@
 #include "chunk.h"
 #include "cdc.h"
 #include "sha.h"
+#include "lzw.h"
 #include "lzw_encode.h"
 #include <stdio.h>
 #include <stdint.h>
@@ -250,9 +251,29 @@ int main(int argc, char* argv[]) {
 			int temp_output_index = 0;
 			
 			uint16_t temp_lzw_compressed_output[chunk_sizes[i]];
-			lzw(chunks[i], chunk_sizes[i], dict, temp_lzw_compressed_output, temp_output_index);
-			int output_index = convert_output(temp_lzw_compressed_output, lzw_compressed_output[i], temp_output_index);
-			compressed_data_size[i] = output_index;
+
+
+
+			std::string temp_chunk = reinterpret_cast<const char*>(chunks[i]);
+			const unsigned char* temp_data = reinterpret_cast<const unsigned char*>(temp_chunk.c_str());
+			std::vector<int> output_code = encoding(temp_data, chunk_sizes[i]);
+			compressed_data_size[i] = output_code.size()*sizeof(int);
+			int index = 0;
+			for (int output : output_code) {
+				lzw_compressed_output[i][index] = ((output >> 24) & 0xFF);
+				index++;
+				lzw_compressed_output[i][index] = ((output >> 16) & 0xFF);
+				index++;
+				lzw_compressed_output[i][index] = ((output >> 8) & 0xFF);
+				index++;
+				lzw_compressed_output[i][index] = (output & 0xFF);
+				index++;
+			}
+
+
+			//lzw(chunks[i], chunk_sizes[i], dict, temp_lzw_compressed_output, temp_output_index);
+			//int output_index = convert_output(temp_lzw_compressed_output, lzw_compressed_output[i], temp_output_index);
+			//compressed_data_size[i] = output_index;
 		}
 	}
 	// for (unsigned int i = 0; i < chunk_count; i++) {

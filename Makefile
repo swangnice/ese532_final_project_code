@@ -60,7 +60,7 @@ CLIENT_EXE = client
 CLIENT_SOURCES_MAC = Client/client-mac.cpp
 CLIENT_EXE_MAC = client_mac
 
-SERVER_SOURCES = Server/encoder.cpp Server/server.cpp Server/cdc.cpp Server/sha.cpp Server/lzw_encode.cpp
+SERVER_SOURCES = Server/encoder.cpp Server/server.cpp Server/cdc.cpp Server/sha.cpp Server/lzw.cpp
 #Server/chunck.c
 SERVER_OBJECTS =$(SERVER_SOURCES:.cpp=.o)
 SERVER_EXE = encoder
