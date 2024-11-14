@@ -1,3 +1,42 @@
+root@u96v2-sbc-base-2020-2:~/project# ./encoder 
+setting up sever...
+server setup complete!
+write file with 14247
+Chunk count: 32
+Chunk sizes:
+Chunk 0 size: 1016 bytes
+Chunk 1 size: 262 bytes
+Chunk 2 size: 878 bytes
+Chunk 3 size: 567 bytes
+Chunk 4 size: 40 bytes
+Chunk 5 size: 72 bytes
+Chunk 6 size: 1025 bytes
+Chunk 7 size: 262 bytes
+Chunk 8 size: 878 bytes
+Chunk 9 size: 567 bytes
+Chunk 10 size: 40 bytes
+Chunk 11 size: 72 bytes
+Chunk 12 size: 1025 bytes
+Chunk 13 size: 262 bytes
+Chunk 14 size: 878 bytes
+Chunk 15 size: 348 bytes
+Chunk 16 size: 219 bytes
+Chunk 17 size: 40 bytes
+Chunk 18 size: 72 bytes
+Chunk 19 size: 1025 bytes
+Chunk 20 size: 262 bytes
+Chunk 21 size: 878 bytes
+Chunk 22 size: 567 bytes
+Chunk 23 size: 40 bytes
+Chunk 24 size: 72 bytes
+Chunk 25 size: 1025 bytes
+Chunk 26 size: 262 bytes
+Chunk 27 size: 878 bytes
+Chunk 28 size: 567 bytes
+Chunk 29 size: 40 bytes
+Chunk 30 size: 72 bytes
+Chunk 31 size: 36 bytes
+Chunk data (as string):
 Chunk 0: The Little Prince Chapter I
 Once when I was six years old I saw a magnificent picture in a book, called True Stories from Nature, about the primeval forest. It was a picture of a boa constrictor in the act of swallowing an animal. Here is a copy of the drawing.
 Boa
@@ -105,7 +144,38 @@ Then I would never talk to that person about boa constrictors, or primeval fores
 Chunk 29: . I would talk to him about bridge, and 
 Chunk 30: golf, and politics, and neckties. And the grown-up would be greatly plea
 Chunk 31: sed to have met such a sensible man.
-
+SHA-256 Hash of Compressed Data: 39afe03f4d3189e7d4eb7d395280c6437c09c5ef26506a92af8ccaeaa95dd336
+SHA-256 Hash of Compressed Data: 51ac2c7400557cb4d336e9c6a003d5c3c9e3d5e33594b99bae6684cab1809350
+SHA-256 Hash of Compressed Data: a6f9651620746bfa77489d9110558871607c90b4e833b7c1bd9e85d848d0219e
+SHA-256 Hash of Compressed Data: 447b5242eb84cb25934991579b48cef116762a6c6ef3c8081af444e0a09ca5d1
+SHA-256 Hash of Compressed Data: d1cfe5f9da4338a1ee4a33a6c7173fec3ed73842f189411f44f8965c04224fd9
+SHA-256 Hash of Compressed Data: a4ef7d7cad7dd59e42bc9690e16e3c01c503905d8e180e48432822cfda4b7b1a
+SHA-256 Hash of Compressed Data: f428486fdf914a9fe89bd4488f39b8a6759c245c68e5f911425ed672bd55b7c9
+SHA-256 Hash of Compressed Data: 51ac2c7400557cb4d336e9c6a003d5c3c9e3d5e33594b99bae6684cab1809350
+SHA-256 Hash of Compressed Data: a6f9651620746bfa77489d9110558871607c90b4e833b7c1bd9e85d848d0219e
+SHA-256 Hash of Compressed Data: 447b5242eb84cb25934991579b48cef116762a6c6ef3c8081af444e0a09ca5d1
+SHA-256 Hash of Compressed Data: d1cfe5f9da4338a1ee4a33a6c7173fec3ed73842f189411f44f8965c04224fd9
+SHA-256 Hash of Compressed Data: a4ef7d7cad7dd59e42bc9690e16e3c01c503905d8e180e48432822cfda4b7b1a
+SHA-256 Hash of Compressed Data: f428486fdf914a9fe89bd4488f39b8a6759c245c68e5f911425ed672bd55b7c9
+SHA-256 Hash of Compressed Data: 51ac2c7400557cb4d336e9c6a003d5c3c9e3d5e33594b99bae6684cab1809350
+SHA-256 Hash of Compressed Data: a6f9651620746bfa77489d9110558871607c90b4e833b7c1bd9e85d848d0219e
+SHA-256 Hash of Compressed Data: e823d1f17993bf84d4fb20f756f003fea8b1334a334c4336de9e2a1eeb5672d3
+SHA-256 Hash of Compressed Data: 438ba598a53b540bedb947b9460f0cf437b4453795099853c0a51837a60fce87
+SHA-256 Hash of Compressed Data: d1cfe5f9da4338a1ee4a33a6c7173fec3ed73842f189411f44f8965c04224fd9
+SHA-256 Hash of Compressed Data: a4ef7d7cad7dd59e42bc9690e16e3c01c503905d8e180e48432822cfda4b7b1a
+SHA-256 Hash of Compressed Data: f428486fdf914a9fe89bd4488f39b8a6759c245c68e5f911425ed672bd55b7c9
+SHA-256 Hash of Compressed Data: 51ac2c7400557cb4d336e9c6a003d5c3c9e3d5e33594b99bae6684cab1809350
+SHA-256 Hash of Compressed Data: a6f9651620746bfa77489d9110558871607c90b4e833b7c1bd9e85d848d0219e
+SHA-256 Hash of Compressed Data: 447b5242eb84cb25934991579b48cef116762a6c6ef3c8081af444e0a09ca5d1
+SHA-256 Hash of Compressed Data: d1cfe5f9da4338a1ee4a33a6c7173fec3ed73842f189411f44f8965c04224fd9
+SHA-256 Hash of Compressed Data: a4ef7d7cad7dd59e42bc9690e16e3c01c503905d8e180e48432822cfda4b7b1a
+SHA-256 Hash of Compressed Data: f428486fdf914a9fe89bd4488f39b8a6759c245c68e5f911425ed672bd55b7c9
+SHA-256 Hash of Compressed Data: 51ac2c7400557cb4d336e9c6a003d5c3c9e3d5e33594b99bae6684cab1809350
+SHA-256 Hash of Compressed Data: a6f9651620746bfa77489d9110558871607c90b4e833b7c1bd9e85d848d0219e
+SHA-256 Hash of Compressed Data: 447b5242eb84cb25934991579b48cef116762a6c6ef3c8081af444e0a09ca5d1
+SHA-256 Hash of Compressed Data: d1cfe5f9da4338a1ee4a33a6c7173fec3ed73842f189411f44f8965c04224fd9
+SHA-256 Hash of Compressed Data: a4ef7d7cad7dd59e42bc9690e16e3c01c503905d8e180e48432822cfda4b7b1a
+SHA-256 Hash of Compressed Data: d2bd211fc058f6be7b4c8537c584cdef7567704bce8dbc1f5e207f5f0767c56b
 Chunk 0: 0, duplicated with 0
 Chunk 1: 0, duplicated with 1
 Chunk 2: 0, duplicated with 2
@@ -138,3 +208,285 @@ Chunk 28: 1, duplicated with 3
 Chunk 29: 1, duplicated with 4
 Chunk 30: 1, duplicated with 5
 Chunk 31: 0, duplicated with 31
+--------------- Key Throughputs ---------------
+Input Throughput to Encoder: 6046.47 Mb/s. (Latency: 1.885e-05s).
+CDC Throughput: 338.902 Mb/s. (Latency: 0.00033631s).
+SHA Throughput: 28.6203 Mb/s. (Latency: 0.00398235s).
+Deduplication Throughput: 321.966 Mb/s. (Latency: 0.000354s).
+LZW Throughput: 7.25842 Mb/s. (Latency: 0.0157026s).
+Overall Throughput: 4.97578 Mb/s. (Latency: 0.0229061s).
+root@u96v2-sbc-base-2020-2:~/project# ./decoder compressed_data.bin decompressed.bin
+0x000006ac
+This is a unduplicated chunk
+chunk size: 854Decompressed Chunk: The Little Prince Chapter I
+Once when I was six years old I saw a magnificent picture in a book, called True Stories from Nature, about the primeval forest. It was a picture of a boa constrictor in the act of swallowing an animal. Here is a copy of the drawing.
+Boa
+In the book it said: "Boa constrictors swallow their prey whole, without chewing it. After that they are not able to move, and they sleep through the six months that they need for digestion."
+I pondered deeply, then, over the adventures of the jungle. And after some work with a colored pencil I succeeded in making my first drawing. My Drawing Number One. It looked something like this:
+Hat
+I showed my masterpiece to the grown-ups, and asked them whether the drawing frightened them.
+But they answered: "Frighten? Why should any one be frightened by a hat?"
+My drawing was not a picture of a hat. It was a picture of a boa constrictor digesting an elephant. But since the grown-ups were not able to understand it, I made another drawing: I drew the
+Decompressed chunk of size 1016.
+0x00000228
+This is a unduplicated chunk
+chunk size: 276Decompressed Chunk:  inside of a boa constrictor, so that the grown-upppcould se it clearly. They always ocneed to have things ocexplained. My Drawing Number Two lookedlike this:
+Elephant inside the boa
+The grown-upp' response, this octime, was octo advise me to lay aside my drawings of 
+Decompressed chunk of size 268.
+0x000005e2
+This is a unduplicated chunk
+chunk size: 753Decompressed Chunk: boa constrictors, whether from the inside or the outside, and devote myself instead to geography, history, arithmetic, andgrammar. That is why, at the age of six, I gave up what might have been a magnificent career as  painter. I had ben disheartened by the failure of my Drawing Number One andmy Drawing Number Two. Grown-ups never understand anything by themselves, and it is tiresom for children to be always and forever explaining things to them.
+So then I chose another profession, and learned to pilot airplanes. I have flown a little over all parts of the world; and it is true that geography has ben very useful to me. At a glance I can dstinguish China from Arizona. If one gets lost in in night, suchknowledge is valuable.
+In the course of this life I hav had a great many encounters with a great many people who have been concerned with matters of conseqen
+Decompressed chunk of size 867.
+0x0000042a
+This is a unduplicated chunk
+chunk size: 533Decompressed Chunk: ce. I have lived a great deal among grown-ups. I have seen them intimately, close at hand. Andthat hasn't much improved my opinion of them.
+Whenever I met one of thm who seemed to me at all clear-sighted, I tried the experiment of showing him my Drawing Number One, which I have always kept. I would try tofind out, so, if this was a person of true understanding. But, whoever it was, he, or she, woud always say:
+"That is a hat."
+Then I would never talk to that personabout bo constrictors, or primeval forests, or stars. I wouldbring myself down tohis levell
+Decompressed chunk of size 560.
+0x0000006c
+This is a unduplicated chunk
+chunk size: 54Decompressed Chunk: . I would talk to him about bridge, and 
+Decompressed chunk of size 40.
+0x000000b8
+This is a unduplicated chunk
+chunk size: 92Decompressed Chunk: golf, annnpolitics, and pneckties. Ann the grown-up would pbe greatly plea
+Decompressed chunk of size 74.
+0x0000069a
+This is a unduplicated chunk
+chunk size: 845Decompressed Chunk: sed to have met such a sensible man.
+Once when I was six years old I saw a magnificent picure n a book, called True Stories from Nature, about theprimeval forest. It was a pictureof a boa constrictor in the actof swallowing an animal. Hereis a copy of the drawing.
+Boa
+In thebook it said: "Boa constrictors swallow their prey whole, without chewing it. After that they arenot able to move, and they sleep through the six months that they need for digestion."
+Ipondered deeply, then, over the adventures of the jungle. And after some work witha colored pencil I succeeded in making my first drawing. My Drawing Number One. It looked something like this:
+Hat
+Ishowed my masterpiece to to grown-ups, and asked them whether hedrawing frightened them.
+But they answered:"Frigten? Why should any one be frightened by a hat?"
+My drawing was not a picture of a hat. It was a picureof a boa constrictor digesting an elephant. But since thegrown-ups were not able to understand it, I made another drawing: I drew he
+Decompressed chunk of size 1005.
+0x00000003
+This is a duplicated chunk
+Found chunk of size 268 in database.
+0x00000005
+This is a duplicated chunk
+Found chunk of size 867 in database.
+0x00000007
+This is a duplicated chunk
+Found chunk of size 560 in database.
+0x00000009
+This is a duplicated chunk
+Found chunk of size 40 in database.
+0x0000000b
+This is a duplicated chunk
+Found chunk of size 74 in database.
+0x0000000d
+This is a duplicated chunk
+Found chunk of size 1005 in database.
+0x00000003
+This is a duplicated chunk
+Found chunk of size 268 in database.
+0x00000005
+This is a duplicated chunk
+Found chunk of size 867 in database.
+0x000002d6
+This is a unduplicated chunk
+chunk size: 363Decompressed Chunk: ce. I have lived a great deal among grown-ups. I have seen them intimately, close at hand. And that hasn't much improved my opinion of them.
+Whenever I met one of thm who seemed to me at all clear-sighted, I tried the experiment of showing him my Drawing Number One, which I have always kept. I would try to find ut, so, if this was a person of t
+Decompressed chunk of size 346.
+0x000001e0
+This is a unduplicated chunk
+chunk size: 240Decompressed Chunk: rue understanding. But, whoever it was, he, or she, would always say:
+"That is a hat."
+Then I would never talk to that person about boa constrictors, or primeval forests, or stars. I would bring myself down to his levell
+Decompressed chunk of size 220.
+0x00000009
+This is a duplicated chunk
+Found chunk of size 40 in database.
+0x0000000b
+This is a duplicated chunk
+Found chunk of size 74 in database.
+0x0000000d
+This is a duplicated chunk
+Found chunk of size 1005 in database.
+0x00000003
+This is a duplicated chunk
+Found chunk of size 268 in database.
+0x00000005
+This is a duplicated chunk
+Found chunk of size 867 in database.
+0x00000007
+This is a duplicated chunk
+Found chunk of size 560 in database.
+0x00000009
+This is a duplicated chunk
+Found chunk of size 40 in database.
+0x0000000b
+This is a duplicated chunk
+Found chunk of size 74 in database.
+0x0000000d
+This is a duplicated chunk
+Found chunk of size 1005 in database.
+0x00000003
+This is a duplicated chunk
+Found chunk of size 268 in database.
+0x00000005
+This is a duplicated chunk
+Found chunk of size 867 in database.
+0x00000007
+This is a duplicated chunk
+Found chunk of size 560 in database.
+0x00000009
+This is a duplicated chunk
+Found chunk of size 40 in database.
+0x0000000b
+This is a duplicated chunk
+Found chunk of size 74 in database.
+0x0000006a
+This is a unduplicated chunk
+chunk size: 53Decompressed Chunk: sed to have met such a sensible man..
+Decompressed chunk of size 37.
+root@u96v2-sbc-base-2020-2:~/project# diff decompressed.bin LittlePrince.txt 
+9c9
+< My drawing was not a picture of a hat. It was a picture of a boa constrictor digesting an elephant. But since the grown-ups were not able to understand it, I made another drawing: I drew the inside of a boa constrictor, so that the grown-upppcould se it clearly. They always ocneed to have things ocexplained. My Drawing Number Two lookedlike this:
+---
+> My drawing was not a picture of a hat. It was a picture of a boa constrictor digesting an elephant. But since the grown-ups were not able to understand it, I made another drawing: I drew the inside of a boa constrictor, so that the grown-ups could see it clearly. They always need to have things explained. My Drawing Number Two looked like this:
+11,14c11,14
+< The grown-upp' response, this octime, was octo advise me to lay aside my drawings of boa constrictors, whether from the inside or the outside, and devote myself instead to geography, history, arithmetic, andgrammar. That is why, at the age of six, I gave up what might have been a magnificent career as  painter. I had ben disheartened by the failure of my Drawing Number One andmy Drawing Number Two. Grown-ups never understand anything by themselves, and it is tiresom for children to be always and forever explaining things to them.
+< So then I chose another profession, and learned to pilot airplanes. I have flown a little over all parts of the world; and it is true that geography has ben very useful to me. At a glance I can dstinguish China from Arizona. If one gets lost in in night, suchknowledge is valuable.
+< In the course of this life I hav had a great many encounters with a great many people who have been concerned with matters of conseqence. I have lived a great deal among grown-ups. I have seen them intimately, close at hand. Andthat hasn't much improved my opinion of them.
+< Whenever I met one of thm who seemed to me at all clear-sighted, I tried the experiment of showing him my Drawing Number One, which I have always kept. I would try tofind out, so, if this was a person of true understanding. But, whoever it was, he, or she, woud always say:
+---
+> The grown-ups' response, this time, was to advise me to lay aside my drawings of boa constrictors, whether from the inside or the outside, and devote myself instead to geography, history, arithmetic, and grammar. That is why, at the age of six, I gave up what might have been a magnificent career as a painter. I had been disheartened by the failure of my Drawing Number One and my Drawing Number Two. Grown-ups never understand anything by themselves, and it is tiresome for children to be always and forever explaining things to them.
+> So then I chose another profession, and learned to pilot airplanes. I have flown a little over all parts of the world; and it is true that geography has been very useful to me. At a glance I can distinguish China from Arizona. If one gets lost in the night, such knowledge is valuable.
+> In the course of this life I have had a great many encounters with a great many people who have been concerned with matters of consequence. I have lived a great deal among grown-ups. I have seen them intimately, close at hand. And that hasn't much improved my opinion of them.
+> Whenever I met one of them who seemed to me at all clear-sighted, I tried the experiment of showing him my Drawing Number One, which I have always kept. I would try to find out, so, if this was a person of true understanding. But, whoever it was, he, or she, would always say:
+16,17c16,17
+< Then I would never talk to that personabout bo constrictors, or primeval forests, or stars. I wouldbring myself down tohis levell. I would talk to him about bridge, and golf, annnpolitics, and pneckties. Ann the grown-up would pbe greatly pleased to have met such a sensible man.
+< Once when I was six years old I saw a magnificent picure n a book, called True Stories from Nature, about theprimeval forest. It was a pictureof a boa constrictor in the actof swallowing an animal. Hereis a copy of the drawing.
+---
+> Then I would never talk to that person about boa constrictors, or primeval forests, or stars. I would bring myself down to his level. I would talk to him about bridge, and golf, and politics, and neckties. And the grown-up would be greatly pleased to have met such a sensible man.
+> Once when I was six years old I saw a magnificent picture in a book, called True Stories from Nature, about the primeval forest. It was a picture of a boa constrictor in the act of swallowing an animal. Here is a copy of the drawing.
+19,20c19,20
+< In thebook it said: "Boa constrictors swallow their prey whole, without chewing it. After that they arenot able to move, and they sleep through the six months that they need for digestion."
+< Ipondered deeply, then, over the adventures of the jungle. And after some work witha colored pencil I succeeded in making my first drawing. My Drawing Number One. It looked something like this:
+---
+> In the book it said: "Boa constrictors swallow their prey whole, without chewing it. After that they are not able to move, and they sleep through the six months that they need for digestion."
+> I pondered deeply, then, over the adventures of the jungle. And after some work with a colored pencil I succeeded in making my first drawing. My Drawing Number One. It looked something like this:
+22,24c22,24
+< Ishowed my masterpiece to to grown-ups, and asked them whether hedrawing frightened them.
+< But they answered:"Frigten? Why should any one be frightened by a hat?"
+< My drawing was not a picture of a hat. It was a picureof a boa constrictor digesting an elephant. But since thegrown-ups were not able to understand it, I made another drawing: I drew he inside of a boa constrictor, so that the grown-upppcould se it clearly. They always ocneed to have things ocexplained. My Drawing Number Two lookedlike this:
+---
+> I showed my masterpiece to the grown-ups, and asked them whether the drawing frightened them.
+> But they answered: "Frighten? Why should any one be frightened by a hat?"
+> My drawing was not a picture of a hat. It was a picture of a boa constrictor digesting an elephant. But since the grown-ups were not able to understand it, I made another drawing: I drew the inside of a boa constrictor, so that the grown-ups could see it clearly. They always need to have things explained. My Drawing Number Two looked like this:
+26,29c26,29
+< The grown-upp' response, this octime, was octo advise me to lay aside my drawings of boa constrictors, whether from the inside or the outside, and devote myself instead to geography, history, arithmetic, andgrammar. That is why, at the age of six, I gave up what might have been a magnificent career as  painter. I had ben disheartened by the failure of my Drawing Number One andmy Drawing Number Two. Grown-ups never understand anything by themselves, and it is tiresom for children to be always and forever explaining things to them.
+< So then I chose another profession, and learned to pilot airplanes. I have flown a little over all parts of the world; and it is true that geography has ben very useful to me. At a glance I can dstinguish China from Arizona. If one gets lost in in night, suchknowledge is valuable.
+< In the course of this life I hav had a great many encounters with a great many people who have been concerned with matters of conseqence. I have lived a great deal among grown-ups. I have seen them intimately, close at hand. Andthat hasn't much improved my opinion of them.
+< Whenever I met one of thm who seemed to me at all clear-sighted, I tried the experiment of showing him my Drawing Number One, which I have always kept. I would try tofind out, so, if this was a person of true understanding. But, whoever it was, he, or she, woud always say:
+---
+> The grown-ups' response, this time, was to advise me to lay aside my drawings of boa constrictors, whether from the inside or the outside, and devote myself instead to geography, history, arithmetic, and grammar. That is why, at the age of six, I gave up what might have been a magnificent career as a painter. I had been disheartened by the failure of my Drawing Number One and my Drawing Number Two. Grown-ups never understand anything by themselves, and it is tiresome for children to be always and forever explaining things to them.
+> So then I chose another profession, and learned to pilot airplanes. I have flown a little over all parts of the world; and it is true that geography has been very useful to me. At a glance I can distinguish China from Arizona. If one gets lost in the night, such knowledge is valuable.
+> In the course of this life I have had a great many encounters with a great many people who have been concerned with matters of consequence. I have lived a great deal among grown-ups. I have seen them intimately, close at hand. And that hasn't much improved my opinion of them.
+> Whenever I met one of them who seemed to me at all clear-sighted, I tried the experiment of showing him my Drawing Number One, which I have always kept. I would try to find out, so, if this was a person of true understanding. But, whoever it was, he, or she, would always say:
+31,32c31,32
+< Then I would never talk to that personabout bo constrictors, or primeval forests, or stars. I wouldbring myself down tohis levell. I would talk to him about bridge, and golf, annnpolitics, and pneckties. Ann the grown-up would pbe greatly pleased to have met such a sensible man.
+< Once when I was six years old I saw a magnificent picure n a book, called True Stories from Nature, about theprimeval forest. It was a pictureof a boa constrictor in the actof swallowing an animal. Hereis a copy of the drawing.
+---
+> Then I would never talk to that person about boa constrictors, or primeval forests, or stars. I would bring myself down to his level. I would talk to him about bridge, and golf, and politics, and neckties. And the grown-up would be greatly pleased to have met such a sensible man.
+> Once when I was six years old I saw a magnificent picture in a book, called True Stories from Nature, about the primeval forest. It was a picture of a boa constrictor in the act of swallowing an animal. Here is a copy of the drawing.
+34,35c34,35
+< In thebook it said: "Boa constrictors swallow their prey whole, without chewing it. After that they arenot able to move, and they sleep through the six months that they need for digestion."
+< Ipondered deeply, then, over the adventures of the jungle. And after some work witha colored pencil I succeeded in making my first drawing. My Drawing Number One. It looked something like this:
+---
+> In the book it said: "Boa constrictors swallow their prey whole, without chewing it. After that they are not able to move, and they sleep through the six months that they need for digestion."
+> I pondered deeply, then, over the adventures of the jungle. And after some work with a colored pencil I succeeded in making my first drawing. My Drawing Number One. It looked something like this:
+37,39c37,39
+< Ishowed my masterpiece to to grown-ups, and asked them whether hedrawing frightened them.
+< But they answered:"Frigten? Why should any one be frightened by a hat?"
+< My drawing was not a picture of a hat. It was a picureof a boa constrictor digesting an elephant. But since thegrown-ups were not able to understand it, I made another drawing: I drew he inside of a boa constrictor, so that the grown-upppcould se it clearly. They always ocneed to have things ocexplained. My Drawing Number Two lookedlike this:
+---
+> I showed my masterpiece to the grown-ups, and asked them whether the drawing frightened them.
+> But they answered: "Frighten? Why should any one be frightened by a hat?"
+> My drawing was not a picture of a hat. It was a picture of a boa constrictor digesting an elephant. But since the grown-ups were not able to understand it, I made another drawing: I drew the inside of a boa constrictor, so that the grown-ups could see it clearly. They always need to have things explained. My Drawing Number Two looked like this:
+41,44c41,44
+< The grown-upp' response, this octime, was octo advise me to lay aside my drawings of boa constrictors, whether from the inside or the outside, and devote myself instead to geography, history, arithmetic, andgrammar. That is why, at the age of six, I gave up what might have been a magnificent career as  painter. I had ben disheartened by the failure of my Drawing Number One andmy Drawing Number Two. Grown-ups never understand anything by themselves, and it is tiresom for children to be always and forever explaining things to them.
+< So then I chose another profession, and learned to pilot airplanes. I have flown a little over all parts of the world; and it is true that geography has ben very useful to me. At a glance I can dstinguish China from Arizona. If one gets lost in in night, suchknowledge is valuable.
+< In the course of this life I hav had a great many encounters with a great many people who have been concerned with matters of conseqence. I have lived a great deal among grown-ups. I have seen them intimately, close at hand. And that hasn't much improved my opinion of them.
+< Whenever I met one of thm who seemed to me at all clear-sighted, I tried the experiment of showing him my Drawing Number One, which I have always kept. I would try to find ut, so, if this was a person of true understanding. But, whoever it was, he, or she, would always say:
+---
+> The grown-ups' response, this time, was to advise me to lay aside my drawings of boa constrictors, whether from the inside or the outside, and devote myself instead to geography, history, arithmetic, and grammar. That is why, at the age of six, I gave up what might have been a magnificent career as a painter. I had been disheartened by the failure of my Drawing Number One and my Drawing Number Two. Grown-ups never understand anything by themselves, and it is tiresome for children to be always and forever explaining things to them.
+> So then I chose another profession, and learned to pilot airplanes. I have flown a little over all parts of the world; and it is true that geography has been very useful to me. At a glance I can distinguish China from Arizona. If one gets lost in the night, such knowledge is valuable.
+> In the course of this life I have had a great many encounters with a great many people who have been concerned with matters of consequence. I have lived a great deal among grown-ups. I have seen them intimately, close at hand. And that hasn't much improved my opinion of them.
+> Whenever I met one of them who seemed to me at all clear-sighted, I tried the experiment of showing him my Drawing Number One, which I have always kept. I would try to find out, so, if this was a person of true understanding. But, whoever it was, he, or she, would always say:
+46,47c46,47
+< Then I would never talk to that person about boa constrictors, or primeval forests, or stars. I would bring myself down to his levell. I would talk to him about bridge, and golf, annnpolitics, and pneckties. Ann the grown-up would pbe greatly pleased to have met such a sensible man.
+< Once when I was six years old I saw a magnificent picure n a book, called True Stories from Nature, about theprimeval forest. It was a pictureof a boa constrictor in the actof swallowing an animal. Hereis a copy of the drawing.
+---
+> Then I would never talk to that person about boa constrictors, or primeval forests, or stars. I would bring myself down to his level. I would talk to him about bridge, and golf, and politics, and neckties. And the grown-up would be greatly pleased to have met such a sensible man.
+> Once when I was six years old I saw a magnificent picture in a book, called True Stories from Nature, about the primeval forest. It was a picture of a boa constrictor in the act of swallowing an animal. Here is a copy of the drawing.
+49,50c49,50
+< In thebook it said: "Boa constrictors swallow their prey whole, without chewing it. After that they arenot able to move, and they sleep through the six months that they need for digestion."
+< Ipondered deeply, then, over the adventures of the jungle. And after some work witha colored pencil I succeeded in making my first drawing. My Drawing Number One. It looked something like this:
+---
+> In the book it said: "Boa constrictors swallow their prey whole, without chewing it. After that they are not able to move, and they sleep through the six months that they need for digestion."
+> I pondered deeply, then, over the adventures of the jungle. And after some work with a colored pencil I succeeded in making my first drawing. My Drawing Number One. It looked something like this:
+52,54c52,54
+< Ishowed my masterpiece to to grown-ups, and asked them whether hedrawing frightened them.
+< But they answered:"Frigten? Why should any one be frightened by a hat?"
+< My drawing was not a picture of a hat. It was a picureof a boa constrictor digesting an elephant. But since thegrown-ups were not able to understand it, I made another drawing: I drew he inside of a boa constrictor, so that the grown-upppcould se it clearly. They always ocneed to have things ocexplained. My Drawing Number Two lookedlike this:
+---
+> I showed my masterpiece to the grown-ups, and asked them whether the drawing frightened them.
+> But they answered: "Frighten? Why should any one be frightened by a hat?"
+> My drawing was not a picture of a hat. It was a picture of a boa constrictor digesting an elephant. But since the grown-ups were not able to understand it, I made another drawing: I drew the inside of a boa constrictor, so that the grown-ups could see it clearly. They always need to have things explained. My Drawing Number Two looked like this:
+56,59c56,59
+< The grown-upp' response, this octime, was octo advise me to lay aside my drawings of boa constrictors, whether from the inside or the outside, and devote myself instead to geography, history, arithmetic, andgrammar. That is why, at the age of six, I gave up what might have been a magnificent career as  painter. I had ben disheartened by the failure of my Drawing Number One andmy Drawing Number Two. Grown-ups never understand anything by themselves, and it is tiresom for children to be always and forever explaining things to them.
+< So then I chose another profession, and learned to pilot airplanes. I have flown a little over all parts of the world; and it is true that geography has ben very useful to me. At a glance I can dstinguish China from Arizona. If one gets lost in in night, suchknowledge is valuable.
+< In the course of this life I hav had a great many encounters with a great many people who have been concerned with matters of conseqence. I have lived a great deal among grown-ups. I have seen them intimately, close at hand. Andthat hasn't much improved my opinion of them.
+< Whenever I met one of thm who seemed to me at all clear-sighted, I tried the experiment of showing him my Drawing Number One, which I have always kept. I would try tofind out, so, if this was a person of true understanding. But, whoever it was, he, or she, woud always say:
+---
+> The grown-ups' response, this time, was to advise me to lay aside my drawings of boa constrictors, whether from the inside or the outside, and devote myself instead to geography, history, arithmetic, and grammar. That is why, at the age of six, I gave up what might have been a magnificent career as a painter. I had been disheartened by the failure of my Drawing Number One and my Drawing Number Two. Grown-ups never understand anything by themselves, and it is tiresome for children to be always and forever explaining things to them.
+> So then I chose another profession, and learned to pilot airplanes. I have flown a little over all parts of the world; and it is true that geography has been very useful to me. At a glance I can distinguish China from Arizona. If one gets lost in the night, such knowledge is valuable.
+> In the course of this life I have had a great many encounters with a great many people who have been concerned with matters of consequence. I have lived a great deal among grown-ups. I have seen them intimately, close at hand. And that hasn't much improved my opinion of them.
+> Whenever I met one of them who seemed to me at all clear-sighted, I tried the experiment of showing him my Drawing Number One, which I have always kept. I would try to find out, so, if this was a person of true understanding. But, whoever it was, he, or she, would always say:
+61,62c61,62
+< Then I would never talk to that personabout bo constrictors, or primeval forests, or stars. I wouldbring myself down tohis levell. I would talk to him about bridge, and golf, annnpolitics, and pneckties. Ann the grown-up would pbe greatly pleased to have met such a sensible man.
+< Once when I was six years old I saw a magnificent picure n a book, called True Stories from Nature, about theprimeval forest. It was a pictureof a boa constrictor in the actof swallowing an animal. Hereis a copy of the drawing.
+---
+> Then I would never talk to that person about boa constrictors, or primeval forests, or stars. I would bring myself down to his level. I would talk to him about bridge, and golf, and politics, and neckties. And the grown-up would be greatly pleased to have met such a sensible man.
+> Once when I was six years old I saw a magnificent picture in a book, called True Stories from Nature, about the primeval forest. It was a picture of a boa constrictor in the act of swallowing an animal. Here is a copy of the drawing.
+64,65c64,65
+< In thebook it said: "Boa constrictors swallow their prey whole, without chewing it. After that they arenot able to move, and they sleep through the six months that they need for digestion."
+< Ipondered deeply, then, over the adventures of the jungle. And after some work witha colored pencil I succeeded in making my first drawing. My Drawing Number One. It looked something like this:
+---
+> In the book it said: "Boa constrictors swallow their prey whole, without chewing it. After that they are not able to move, and they sleep through the six months that they need for digestion."
+> I pondered deeply, then, over the adventures of the jungle. And after some work with a colored pencil I succeeded in making my first drawing. My Drawing Number One. It looked something like this:
+67,69c67,69
+< Ishowed my masterpiece to to grown-ups, and asked them whether hedrawing frightened them.
+< But they answered:"Frigten? Why should any one be frightened by a hat?"
+< My drawing was not a picture of a hat. It was a picureof a boa constrictor digesting an elephant. But since thegrown-ups were not able to understand it, I made another drawing: I drew he inside of a boa constrictor, so that the grown-upppcould se it clearly. They always ocneed to have things ocexplained. My Drawing Number Two lookedlike this:
+---
+> I showed my masterpiece to the grown-ups, and asked them whether the drawing frightened them.
+> But they answered: "Frighten? Why should any one be frightened by a hat?"
+> My drawing was not a picture of a hat. It was a picture of a boa constrictor digesting an elephant. But since the grown-ups were not able to understand it, I made another drawing: I drew the inside of a boa constrictor, so that the grown-ups could see it clearly. They always need to have things explained. My Drawing Number Two looked like this:
+71,74c71,74
+< The grown-upp' response, this octime, was octo advise me to lay aside my drawings of boa constrictors, whether from the inside or the outside, and devote myself instead to geography, history, arithmetic, andgrammar. That is why, at the age of six, I gave up what might have been a magnificent career as  painter. I had ben disheartened by the failure of my Drawing Number One andmy Drawing Number Two. Grown-ups never understand anything by themselves, and it is tiresom for children to be always and forever explaining things to them.
+< So then I chose another profession, and learned to pilot airplanes. I have flown a little over all parts of the world; and it is true that geography has ben very useful to me. At a glance I can dstinguish China from Arizona. If one gets lost in in night, suchknowledge is valuable.
+< In the course of this life I hav had a great many encounters with a great many people who have been concerned with matters of conseqence. I have lived a great deal among grown-ups. I have seen them intimately, close at hand. Andthat hasn't much improved my opinion of them.
+< Whenever I met one of thm who seemed to me at all clear-sighted, I tried the experiment of showing him my Drawing Number One, which I have always kept. I would try tofind out, so, if this was a person of true understanding. But, whoever it was, he, or she, woud always say:
+---
+> The grown-ups' response, this time, was to advise me to lay aside my drawings of boa constrictors, whether from the inside or the outside, and devote myself instead to geography, history, arithmetic, and grammar. That is why, at the age of six, I gave up what might have been a magnificent career as a painter. I had been disheartened by the failure of my Drawing Number One and my Drawing Number Two. Grown-ups never understand anything by themselves, and it is tiresome for children to be always and forever explaining things to them.
+> So then I chose another profession, and learned to pilot airplanes. I have flown a little over all parts of the world; and it is true that geography has been very useful to me. At a glance I can distinguish China from Arizona. If one gets lost in the night, such knowledge is valuable.
+> In the course of this life I have had a great many encounters with a great many people who have been concerned with matters of consequence. I have lived a great deal among grown-ups. I have seen them intimately, close at hand. And that hasn't much improved my opinion of them.
+> Whenever I met one of them who seemed to me at all clear-sighted, I tried the experiment of showing him my Drawing Number One, which I have always kept. I would try to find out, so, if this was a person of true understanding. But, whoever it was, he, or she, would always say:
+76c76
+< Then I would never talk to that personabout bo constrictors, or primeval forests, or stars. I wouldbring myself down tohis levell. I would talk to him about bridge, and golf, annnpolitics, and pneckties. Ann the grown-up would pbe greatly pleased to have met such a sensible man..
+\ No newline at end of file
+---
+> Then I would never talk to that person about boa constrictors, or primeval forests, or stars. I would bring myself down to his level. I would talk to him about bridge, and golf, and politics, and neckties. And the grown-up would be greatly pleased to have met such a sensible man.
+\ No newline at end of file
+root@u96v2-sbc-base-2020-2:~/project# 

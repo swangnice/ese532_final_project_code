@@ -4,7 +4,7 @@
 #include <string.h>
 #include <math.h>
 
-#define WIN_SIZE 8    // Window size for hashing
+#define WIN_SIZE 16    // Window size for hashing
 #define PRIME 3      // Prime number for hash calculation
 #define MODULUS 512  // Modulus for chunk split condition
 #define TARGET 256    // Target hash value for chunk splitting
