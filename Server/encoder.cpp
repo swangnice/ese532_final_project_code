@@ -277,9 +277,10 @@ int main(int argc, char* argv[]) {
 		} else {
 			temp_header = header[dup_index[i]] | 0x00000001;
 		}
-		header[i] = (temp_header << 24) & 0xff000000 | (temp_header<<8)&0x00ff0000 | (temp_header>>8)&0x0000ff00 | (temp_header>>24)&0x000000ff;
+		//header[i] = (temp_header << 24) & 0xff000000 | (temp_header<<8)&0x00ff0000 | (temp_header>>8)&0x0000ff00 | (temp_header>>24)&0x000000ff;
 
-		printf("chunk: %u, Header: %#010x\n", i, header[i]);
+		//printf("chunk: %u, Header: %#010x\n", i, header[i]);
+		printf("chunk: %u, Header: %#010x\n", i, temp_header);
 	}
 
 	// for (unsigned int i = 0; i < chunk_count; i++) {
@@ -289,7 +290,7 @@ int main(int argc, char* argv[]) {
 	//overall time
 	overall_timer.stop();
 	//write in output bin
-	FILE* out_file = fopen("Output.bin", "wb");
+	FILE* out_file = fopen("compressed_data.bin", "wb");
 	if (file == NULL) {
         perror("Failed to open file");
         
