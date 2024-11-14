@@ -65,7 +65,7 @@ SERVER_SOURCES = Server/encoder.cpp Server/server.cpp Server/cdc.cpp Server/sha.
 SERVER_OBJECTS =$(SERVER_SOURCES:.cpp=.o)
 SERVER_EXE = encoder
 
-DECODER_SOURCES = Decoder/Decoder.cpp
+DECODER_SOURCES = Decoder_cpp/Decoder.cpp
 DECODER_OBJECTS =$(DECODER_SOURCES:.cpp=.o)
 DECODER_EXE = decoder
 

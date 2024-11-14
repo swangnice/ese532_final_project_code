@@ -92,7 +92,7 @@ int main(int Parameter_count, char * Parameters[])
 
     printf("%#010x\n", Header);
 
-    if ((Header & 1) == 0)
+    if ((Header & 0x00000001) == 0)
     {
       int Chunk_size = Header >> 1;
       printf("chunk size: %d", Chunk_size);
