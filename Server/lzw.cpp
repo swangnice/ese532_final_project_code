@@ -171,7 +171,7 @@ void lookup(unsigned long* hash_table, assoc_mem* mem, unsigned int key, bool* h
 }
 //****************************************************************************************************************
 
-void encoding(unsigned char* s1, int length, uint16_t* out_code, uint32_t &header, int &out_len)
+void lzw(unsigned char* s1, int length, uint16_t* out_code, uint32_t &header, int &out_len)
 {
     // create hash table and assoc mem
     unsigned long hash_table[CAPACITY];
