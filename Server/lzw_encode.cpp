@@ -75,11 +75,13 @@ int convert_output(uint16_t in[], uint8_t out[], int input_size){
         out[output_size] = ((in[i] << 4) & 0xf0) | ((in[i+1] >> 8) & 0x0f);
         output_size++;
         out[output_size] = (in[i+1] >> 4) & 0xff;
+        output_size++;
     }
 
     if (input_size % 2 != 0) {
-        out[output_size++] = (in[adjusted_input_size] >> 4) & 0xFF;
-        out[output_size++] = (in[adjusted_input_size] << 4) & 0xF0;
+        out[output_size] = (in[adjusted_input_size] >> 4) & 0xFF;
+        output_size++;
+        out[output_size] = (in[adjusted_input_size] << 4) & 0xF0;
     }
 
     return output_size;
