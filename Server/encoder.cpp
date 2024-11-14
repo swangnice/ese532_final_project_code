@@ -302,7 +302,7 @@ int main(int argc, char* argv[]) {
     }
 	for (unsigned int i = 0; i < chunk_count; i++) {
 		fwrite(&header[i], sizeof(uint32_t), 1, out_file);
-		printf("%#010x", i, header[i]);
+		printf("%#010x", header[i]);
 		if (dup_flag[i] == 0) {
 			for (unsigned int j = 0; j < compressed_data_size[i]; j++) {
 				fwrite(&lzw_compressed_output[i][j], sizeof(uint8_t), 1, out_file);
