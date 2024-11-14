@@ -98,6 +98,7 @@ int main(int Parameter_count, char * Parameters[])
       uint32_t Chunk_size = Header >> 1;
       printf("chunk size: %d", Chunk_size);
       const std::string & Chunk = Decompress(Chunk_size);
+      std::cout << "Decompressed Chunk: " << Chunk << std::endl;
       Chunks.push_back(Chunk);
       std::cout << "Decompressed chunk of size " << Chunk.length() << ".\n";
       Output.write(&Chunk[0], Chunk.length());
