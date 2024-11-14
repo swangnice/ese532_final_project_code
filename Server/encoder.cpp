@@ -275,7 +275,7 @@ int main(int argc, char* argv[]) {
 		if (dup_flag[i] == 0) {
 			header[i] = compressed_data_size[i] << 1;
 		} else {
-			header[i] = header[dup_index[i]] | 0x00000001;
+			header[i] = (dup_index[i]<<1) | 0x00000001;
 		}
 		//header[i] = (temp_header << 24) & 0xff000000 | (temp_header<<8)&0x00ff0000 | (temp_header>>8)&0x0000ff00 | (temp_header>>24)&0x000000ff;
 
