@@ -239,24 +239,27 @@ int main(int argc, char* argv[]) {
 	}
 	dedup_timer.stop();
 
+	unsigned char* buffer_out = (unsigned char*) malloc(sizeof(unsigned char) * 70000000);
+	int output_index = 0;
 	//compress unduplicated chunks
 	lzw_timer.start();
 	uint8_t lzw_compressed_output[undup_count][2048];
 	uint32_t header[chunk_count];
-	int compressed_byte[undup_count];
+	int compressed_data_size[undup_count];
 	for (unsigned int i = 0; i < chunk_count; i++) {
 		if (dup_flag[i] == 0) {
-			int output_index = 0;
+			int temp_output_index = 0;
+			
 			uint16_t temp_lzw_compressed_output[chunk_sizes[i]];
-			lzw(chunks[i], chunk_sizes[i], dict, temp_lzw_compressed_output, output_index);
-			convert_output(temp_lzw_compressed_output, lzw_compressed_output[i], output_index);
-			compressed_byte[i] = output_index;
+			lzw(chunks[i], chunk_sizes[i], dict, temp_lzw_compressed_output, temp_output_index);
+			convert_output(temp_lzw_compressed_output, lzw_compressed_output[i], temp_output_index,output_index);
+			compressed_data_size[i] = output_index;
 		}
 	}
 	for (unsigned int i = 0; i < chunk_count; i++) {
 		if (dup_flag[i] == 0) {
 			printf("Chunk %u: ", i);
-			for (int j = 0;j < compressed_byte[i]; j++) {
+			for (int j = 0;j < compressed_data_size[i]; j++) {
 				printf("%02X ", lzw_compressed_output[i][j]);
 			}
 			printf("\n");
@@ -269,72 +272,19 @@ int main(int argc, char* argv[]) {
 	for (unsigned int i = 0; i < chunk_count; i++) {
 		header[i] = 0;
 		if (dup_flag[i] == 0) {
-			header[i] = compressed_byte[i] << 1;
+			header[i] = compressed_data_size[i] << 1;
 		} else {
 			header[i] = header[dup_index[i]] | 0x00000001;
 		}
 		printf("chunk: %u, Header: %#010x\n", i, header[i]);
 	}
 
-	for (unsigned int i = 0; i < chunk_count; i++) {
-		printf("chunk: %u, original size:%d, duplicated: %d, duplicated with %d compressed sized: %d\n", i, chunk_sizes[i], dup_flag[i], dup_index[i], compressed_byte[dup_index[i]]);
-	}
+	// for (unsigned int i = 0; i < chunk_count; i++) {
+	// 	printf("chunk: %u, original size:%d, duplicated: %d, duplicated with %d compressed sized: %d\n", i, chunk_sizes[i], dup_flag[i], dup_index[i], compressed_data_size[dup_index[i]]);
+	// }
 
 	//overall time
 	overall_timer.stop();
-
-
-
-
-
-
-	// uint32_t header[chunk_count];
-	// int index = 0;
-	// header[0] = 0;
-	// for (unsigned int i = 1; i < chunk_count; i++) {				
-	// 	header[i] = 0;	
-	// 	for (unsigned int j = 0; j < i; j++) {
-	// 		if (memcmp(sha256_output[i], sha256_output[j], 32) == 0) {
-	// 			header[i] = (j << 1) | 1;  // Duplicate Chunk: bit 0 = 1, bits 31-1 = j
-	// 			break;
-	// 		}
-
-	// 	}
-	// 	index++;
-	// 	header[i] = (index<<1);
-	// }
-	// //print all header and sha output
-	// for (unsigned int i = 0; i < chunk_count; i++) {
-	// 	printf("Chunk %u: ", i);
-	// 	for (unsigned int j = 0; j < 32; j++) printf("%02x", sha256_output[i][j]);
-	// 	printf("\nHeader: %#010x\n", header[i]);
-	// }
-
-
-
-
-	// // write file to root and you can use diff tool on board
-	// FILE *file = fopen("compressed_file.txt", "wb");
-    // if (!file) {
-    //     perror("Failed to open file");
-    // }
-	// for (unsigned int i = 0; i < chunk_count; i++) {
-    //     if (dup_flag[i] == 0) {
-    //         fwrite(lzw_compressed_output[i], sizeof(uint8_t), compressed_byte[i], file);
-    //     }
-    // }
-	// fwrite(header, sizeof(uint32_t), chunk_count, file);
-
-    // // Write dictionary to file
-    // fwrite(dict, sizeof(int), MAX_DICT_SIZE * 256, file);
-
-	// struct stat st;
-    // if (stat("compressed_file.txt", &st) != 0) {
-    //     perror("Failed to get file size");
-    // }
-    // printf("File size: %ld bytes\n", st.st_size);
-	// printf("Compress Ratio: %ld x\n", (bytes_written * 8)/st.st_size);
-
 
 	
 

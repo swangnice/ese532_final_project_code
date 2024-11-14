@@ -63,24 +63,46 @@ void init_dict(int dict[MAX_DICT_SIZE][256]){
     }
 }
 
-void convert_output(uint16_t in[], uint8_t out[], int size, int& index){
+int convert_output(uint16_t in[], uint8_t out[], int input_size){
     //header
-    out[index++] = ((size & 0x7f) << 1) | 0x01;
-    out[index++] = size >> 7;
-    out[index++] = size >> 15;
-    out[index++] = size >> 23;
+    int output_size = 0;
 
-    //data
-    
-    out[index++] = in[0] >> 4;
+    int adjusted_input_size = input_size - (input_size % 2);
 
-    for(int i = 0; i < size - 1; i++){
-        out[index++] = in[i] << 4 | in[i + 1] >> 8;
-        out[index++] = in[i + 1] >> 4;
+    for(int i = 0; i < adjusted_input_size; i+=2){
+        out[output_size] = (in[i]>>4) & 0xff;
+        output_size++;
+        out[output_size] = ((in[i] << 4) & 0xf0) | ((in[i+1] >> 8) & 0x0f);
+        output_size++;
+        out[output_size] = (in[i+1] >> 4) & 0xff;
     }
 
-    out[index++] = in[size - 1] << 4;
+    if (input_size % 2 != 0) {
+        out[output_size++] = (in[adjusted_input_size] >> 4) & 0xFF;
+        out[output_size++] = (in[adjusted_input_size] << 4) & 0xF0;
+    }
+
+    return output_size;
 }
+
+// void convert_output(uint16_t in[], uint8_t out[], int input_size, int index){
+//     //header
+//     out[index++] = ((size & 0x7f) << 1) | 0x01;
+//     out[index++] = size >> 7;
+//     out[index++] = size >> 15;
+//     out[index++] = size >> 23;
+
+//     //data
+    
+//     out[index++] = in[0] >> 4;
+
+//     for(int i = 0; i < size - 1; i++){
+//         out[index++] = in[i] << 4 | in[i + 1] >> 8;
+//         out[index++] = in[i + 1] >> 4;
+//     }
+
+//     out[index++] = in[size - 1] << 4;
+// }
 
 // int main() {
 //     uint8_t input[8] = {'A','B','A','B','A','A','C','A'}; 

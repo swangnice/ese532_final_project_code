@@ -14,6 +14,6 @@ void lzw(uint8_t input[], int size, int dict[MAX_DICT_SIZE][256], uint16_t outpu
 
 void init_dict(int dict[MAX_DICT_SIZE][256]);
 
-void convert_output(uint16_t in[], uint8_t out[], int size,  int& index);
+int convert_output(uint16_t in[], uint8_t out[], int input_size);
 
 #endif
