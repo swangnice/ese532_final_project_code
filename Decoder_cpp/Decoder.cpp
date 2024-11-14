@@ -94,6 +94,7 @@ int main(int Parameter_count, char * Parameters[])
 
     if ((Header & 0x00000001) == 0)
     {
+      printf("This is a unduplicated chunk\n");
       int Chunk_size = Header >> 1;
       printf("chunk size: %d", Chunk_size);
       const std::string & Chunk = Decompress(Chunk_size);
@@ -103,6 +104,7 @@ int main(int Parameter_count, char * Parameters[])
     }
     else
     {
+      printf("This is a duplicated chunk\n");
      int Location = Header >> 1;
       if (Location<Chunks.size()) {  // defensive programming to avoid out-of-bounds reference
           const std::string & Chunk = Chunks[Location];
