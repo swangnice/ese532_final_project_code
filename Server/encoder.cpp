@@ -239,7 +239,7 @@ int main(int argc, char* argv[]) {
 	}
 	dedup_timer.stop();
 
-	unsigned char* buffer_out = (unsigned char*) malloc(sizeof(unsigned char) * 70000000);
+	//gunsigned char* buffer_out = (unsigned char*) malloc(sizeof(unsigned char) * 70000000);
 	//compress unduplicated chunks
 	lzw_timer.start();
 	uint8_t lzw_compressed_output[undup_count][2048];
