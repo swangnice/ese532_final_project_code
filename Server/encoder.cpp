@@ -192,8 +192,8 @@ int main(int argc, char* argv[]) {
 		unsigned char compressed_data[SHA_BLOCKSIZE];
     	int compressed_size = rle_compress((const unsigned char*)temp_chunk_data, temp_chunk_size, compressed_data, SHA_BLOCKSIZE);
 
-		std::cout << "Original Size: " << temp_chunk_size << " bytes\n";
-		std::cout << "Compressed Size: " << compressed_size << " bytes\n";
+		//std::cout << "Original Size: " << temp_chunk_size << " bytes\n";
+		//std::cout << "Compressed Size: " << compressed_size << " bytes\n";
 
 		// 计算压缩数据的 SHA-256 哈希
 		uint8_t temp_sha256_output[32]; // SHA-256 输出为 32 字节的 uint8_t 数组
@@ -255,15 +255,15 @@ int main(int argc, char* argv[]) {
 			compressed_data_size[i] = output_index;
 		}
 	}
-	for (unsigned int i = 0; i < chunk_count; i++) {
-		if (dup_flag[i] == 0) {
-			printf("Chunk %u: ", i);
-			for (int j = 0;j < compressed_data_size[i]; j++) {
-				printf("%02X ", lzw_compressed_output[i][j]);
-			}
-			printf("\n");
-		}
-    }
+	// for (unsigned int i = 0; i < chunk_count; i++) {
+	// 	if (dup_flag[i] == 0) {
+	// 		printf("Chunk %u: ", i);
+	// 		for (int j = 0;j < compressed_data_size[i]; j++) {
+	// 			printf("%02X ", lzw_compressed_output[i][j]);
+	// 		}
+	// 		printf("\n");
+	// 	}
+    // }
 	lzw_timer.stop();
 
 	
@@ -282,11 +282,11 @@ int main(int argc, char* argv[]) {
 		//printf("chunk: %u, Header: %#010x\n", i, header[i]);
 		//printf("chunk: %u, Header: %#010x\n", i, temp_header);
 	}
-	for (unsigned int i = 0; i < chunk_count; i++) {
-		//header[i] = ((header[i] << 24) & 0xff000000) | ((header[i]<<8)&0x00ff0000) | ((header[i]>>8)&0x0000ff00) | ((header[i]>>24)&0x000000ff);
-		printf("chunk: %u, Header: %#010x\n", i, header[i]);
+	// for (unsigned int i = 0; i < chunk_count; i++) {
+	// 	//header[i] = ((header[i] << 24) & 0xff000000) | ((header[i]<<8)&0x00ff0000) | ((header[i]>>8)&0x0000ff00) | ((header[i]>>24)&0x000000ff);
+	// 	printf("chunk: %u, Header: %#010x\n", i, header[i]);
 
-	}
+	// }
 
 	// for (unsigned int i = 0; i < chunk_count; i++) {
 	// 	printf("chunk: %u, original size:%d, duplicated: %d, duplicated with %d compressed sized: %d\n", i, chunk_sizes[i], dup_flag[i], dup_index[i], compressed_data_size[dup_index[i]]);
@@ -302,11 +302,11 @@ int main(int argc, char* argv[]) {
     }
 	for (unsigned int i = 0; i < chunk_count; i++) {
 		fwrite(&header[i], sizeof(uint32_t), 1, out_file);
-		printf("%#010x", header[i]);
+		//printf("%#010x", header[i]);
 		if (dup_flag[i] == 0) {
 			for (int j = 0; j < compressed_data_size[i]; j++) {
 				fwrite(&lzw_compressed_output[i][j], sizeof(uint8_t), 1, out_file);
-				printf("%02X ", lzw_compressed_output[i][j]);
+				//printf("%02X ", lzw_compressed_output[i][j]);
 			}
 		}
 	}
