@@ -214,7 +214,7 @@ int main(int argc, char* argv[]) {
 	sha_timer.stop();
 	int dict[MAX_DICT_SIZE][256];
 
-	init_dict(dict);
+	//init_dict(dict);
 	
 	//deduplication and assign lzw header
 	dedup_timer.start();
