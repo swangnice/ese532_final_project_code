@@ -292,7 +292,7 @@ int main(int argc, char* argv[]) {
 	FILE* out_file = fopen("Output.bin", "wb");
 	if (file == NULL) {
         perror("Failed to open file");
-        return;
+        
     }
 	for (unsigned int i = 0; i < chunk_count; i++) {
 		fwrite(&header[i], 4, 1, out_file);
