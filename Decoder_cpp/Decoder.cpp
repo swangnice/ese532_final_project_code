@@ -95,7 +95,7 @@ int main(int Parameter_count, char * Parameters[])
     if ((Header & 0x00000001) == 0)
     {
       printf("This is a unduplicated chunk\n");
-      int Chunk_size = Header >> 1;
+      uint32_t Chunk_size = Header >> 1;
       printf("chunk size: %d", Chunk_size);
       const std::string & Chunk = Decompress(Chunk_size);
       Chunks.push_back(Chunk);
