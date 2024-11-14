@@ -167,7 +167,7 @@ void lookup(unsigned long* hash_table, assoc_mem* mem, unsigned int key, bool* h
 }
 //****************************************************************************************************************
 
-void lzw_compress(unsigned char* s1, int length, uint16_t* out_code, int &out_len)
+void lzw_compress(unsigned char* s1, int length, uint16_t* out_code, int out_len)
 {
     // create hash table and assoc mem
     unsigned long hash_table[CAPACITY];
