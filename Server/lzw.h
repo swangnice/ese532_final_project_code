@@ -1,12 +1,6 @@
 #ifndef LZW_H
 #define LZW_H
 
-#include "encoder.h"
-#include "chunk.h"
-#include "cdc.h"
-#include "sha.h"
-#include "lzw.h"
-//#include "lzw_encode.h"
 #include <stdio.h>
 #include <stdint.h>
 #include <stdlib.h>
