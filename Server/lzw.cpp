@@ -169,7 +169,6 @@ void lookup(unsigned long* hash_table, assoc_mem* mem, unsigned int key, bool* h
 
 void lzw_compress(unsigned char* s1, int length, uint16_t* out_code, int *out_len)
 {
-    // create hash table and assoc mem
     unsigned long hash_table[CAPACITY];
     assoc_mem my_assoc_mem;
 
@@ -240,8 +239,7 @@ void lzw_compress(unsigned char* s1, int length, uint16_t* out_code, int *out_le
     }
     *out_len = j;
 } 
-//hardware
-//****************************************************************************************************************
+
 
 
 int convert_output(uint16_t in[], uint8_t out[], int input_size){
@@ -276,60 +274,4 @@ int convert_output(uint16_t in[], uint8_t out[], int input_size){
     return output_size;
 }
 
-
-// void decoding(std::vector<int> op)
-// {
-//     std::cout << "\nDecoding\n";
-//     std::unordered_map<int, std::string> table;
-//     for (int i = 0; i <= 255; i++) {
-//         std::string ch = "";
-//         ch += char(i);
-//         table[i] = ch;
-//     }
-//     int old = op[0], n;
-//     std::string s = table[old];
-//     std::string c = "";
-//     c += s[0];
-//     std::cout << s;
-//     int count = 256;
-//     for (int i = 0; i < op.size() - 1; i++) {
-//         n = op[i + 1];
-//         if (table.find(n) == table.end()) {
-//             s = table[old];
-//             s = s + c;
-//         }
-//         else {
-//             s = table[n];
-//         }
-//         std::cout << s;
-//         c = "";
-//         c += s[0];
-//         table[count] = table[old] + c;
-//         count++;
-//         old = n;
-//     }
-// }
-// //****************************************************************************************************************
-// int main()
-// {
-
-//     std::string s = "WYS*WYGWYS*WYSWYSG";
-
-//     std::cout << "Our message is: " << s << std::endl << std::endl;
-//     std::cout << "Running the software compression we get: " << std::endl;
-//     const unsigned char* data = reinterpret_cast<const unsigned char*>(s.c_str());
-
-//     std::vector<int> output_code = encoding(data, s.size());
-//     //std::vector<unsigned char> output_code = encoding(data, s.size());
-    
-//     std::cout << "The compressed output stream is: ";
-//     for (int i = 0; i < output_code.size(); i++) {
-//         std::cout << output_code[i];
-        
-//     }
-//     std::cout << "\n";
-//     std::cout << output_code.size()*sizeof(int);
-//     std::cout << std::endl << std::endl;
-
-// }
 
