@@ -2,7 +2,7 @@
 #include "chunk.h"
 #include "cdc.h"
 #include "sha.h"
-#include "lzw.h"
+#include "../Server/lzw.h"
 #include <stdio.h>
 #include <stdint.h>
 #include <stdlib.h>
