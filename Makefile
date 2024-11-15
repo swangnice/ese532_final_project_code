@@ -64,7 +64,7 @@ HOST_SOURCES = hls/host.cpp hls/EventTimer.cpp hls/utils.cpp Server/cdc.cpp Serv
 HOST_OBJECTS =$(HOST_SOURCES:.cpp=.o)
 HOST_EXE = host
 
-SERVER_SOURCES = Server/encoder.cpp Server/server.cpp Server/cdc.cpp Server/lzw_encode.cpp Server/sha.cpp
+SERVER_SOURCES = Server/encoder.cpp Server/server.cpp Server/cdc.cpp Server/lzw.cpp Server/sha.cpp
 SERVER_OBJECTS =$(SERVER_SOURCES:.cpp=.o)
 SERVER_EXE = encoder
 
