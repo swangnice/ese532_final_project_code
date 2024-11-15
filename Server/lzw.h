@@ -1,5 +1,5 @@
-#ifndef LZW_H
-#define LZW_H
+#ifndef LZW_COMPRESS_H
+#define LZW_COMPRESS_H
 
 #include <stdio.h>
 #include <stdint.h>
@@ -45,4 +45,4 @@ void lzw_compress(unsigned char* s1, int length, uint16_t* out_code, int *out_le
 int convert_output(uint16_t in[], uint8_t out[], int input_size);
 
 
-#endif // LZW_H 
+#endif // LZW_COMPRESS_H 
