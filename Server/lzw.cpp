@@ -185,15 +185,6 @@ void lzw_compress(unsigned char* s1, int length, uint16_t* out_code, int *out_le
         my_assoc_mem.middle_key_mem[i] = 0;
         my_assoc_mem.lower_key_mem[i] = 0;
     }
-
-    // init the memories with the first 256 codes
-    // Ezra told us this can be discard
-    // for(unsigned long i = 0; i < 256; i++)
-    // {
-    //     bool collision = 0;
-    //     unsigned int key = (i << 8) + 0UL; // lower 8 bits are the next char, the upper bits are the prefix code
-    //     insert(hash_table, &my_assoc_mem, key, i, &collision);
-    // }
     int next_code = 256;
 
     int prefix_code = s1[0];
