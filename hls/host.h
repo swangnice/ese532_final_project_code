@@ -1,18 +1,18 @@
 #ifndef HOST_H
 #define HOST_H
 
-#include "../Sever/encoder.h"
-#include "../Sever/chunk.h"
-#include "../Sever/cdc.h"
-#include "../Sever/sha.h"
-#include "../Sever/lzw.h"
+#include "../Server/encoder.h"
+#include "../Server/chunk.h"
+#include "../Server/cdc.h"
+#include "../Server/sha.h"
+#include "../Server/lzw.h"
 //#include "lzw_encode.h"
 #include <stdio.h>
 #include <stdint.h>
 #include <stdlib.h>
 #include <string.h>
 #include <iostream>
-#include "../Sever/server.h"
+#include "../Server/server.h"
 #include <unistd.h>
 #include <fcntl.h>
 #include <pthread.h>
