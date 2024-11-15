@@ -60,7 +60,7 @@ XCLBIN := encoder.xclbin
 # CLIENT_SOURCES_MAC = Client/client-mac.cpp
 # CLIENT_EXE_MAC = client_mac
 
-HOST_SOURCES = hls/host.cpp hls/EventTimer.cpp hls/utils.cpp Server/cdc.cpp Server/sha.cpp Server/lzw.cpp Server/encoder.cpp Server/lzw_encode.cpp Server/server.cpp
+HOST_SOURCES = hls/host.cpp hls/EventTimer.cpp hls/utils.cpp Server/cdc.cpp Server/sha.cpp Server/lzw.cpp Server/encoder.cpp Server/server.cpp
 HOST_OBJECTS =$(HOST_SOURCES:.cpp=.o)
 HOST_EXE = host
 
