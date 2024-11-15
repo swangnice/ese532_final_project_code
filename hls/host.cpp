@@ -379,22 +379,22 @@ int main(int argc, char** argv)
 	std::cout << "Input Throughput to Encoder: " << input_throughput << " Mb/s."
 			<< " (Latency: " << ethernet_latency << "s)." << std::endl;
 
-	float cdc_latency = cdc_time.latency() / 1000.0;
+	float cdc_latency = cdc_timer.latency() / 1000.0;
 	float cdc_throughput = (bytes_written * 8 / 1000000.0) / cdc_latency; // Mb/s
 	std::cout << "cdc Throughput to Encoder: " << cdc_throughput << " Mb/s."
 			<< " (Latency: " << cdc_latency << "s)." << std::endl;
 
-	float sha_latency = sha_time.latency() / 1000.0;
+	float sha_latency = sha_timer.latency() / 1000.0;
 	float sha_throughput = (bytes_written * 8 / 1000000.0) / sha_latency; // Mb/s
 	std::cout << "sha Throughput to Encoder: " << sha_throughput << " Mb/s."
 			<< " (Latency: " << sha_latency << "s)." << std::endl;
 
-	float dedup_latency = dedup_time.latency() / 1000.0;
+	float dedup_latency = dedup_timer.latency() / 1000.0;
 	float dedup_throughput = (dedup_chars * 8 / 1000000.0) / dedup_latency; // Mb/s
 	std::cout << "dedup Throughput to Encoder: " << dedup_throughput << " Mb/s."
 			<< " (Latency: " << dedup_latency << "s)." << std::endl;
 
-	float output_latency = total_time.latency() / 1000.0;
+	float output_latency = total_timer.latency() / 1000.0;
 	float output_throughput = (total_inputBits * 8 / 1000000.0) / output_latency; // Mb/s
 	std::cout << "output Throughput to Encoder: " << output_throughput << " Mb/s."
 			<< " (Latency: " << output_latency << "s)." << std::endl;
