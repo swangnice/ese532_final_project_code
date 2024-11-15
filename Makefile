@@ -47,21 +47,24 @@ VPP_OPTS = --target hw
 #
 # OpenCL kernel files
 #
-# XO := kernel.xo
-# XCLBIN := kernel.xclbin
-# ALL_MESSAGE_FILES = $(subst .xo,.mdb,$(XO)) $(subst .xclbin,.mdb,$(XCLBIN))
+XO := encoder.xo
+XCLBIN := encoder.xclbin
+ ALL_MESSAGE_FILES = $(subst .xo,.mdb,$(XO)) $(subst .xclbin,.mdb,$(XCLBIN))
 
 #
 # host files
 #
-CLIENT_SOURCES = Client/client.cpp
-CLIENT_EXE = client
+# CLIENT_SOURCES = Client/client.cpp
+# CLIENT_EXE = client
 
-CLIENT_SOURCES_MAC = Client/client-mac.cpp
-CLIENT_EXE_MAC = client_mac
+# CLIENT_SOURCES_MAC = Client/client-mac.cpp
+# CLIENT_EXE_MAC = client_mac
 
-SERVER_SOURCES = Server/encoder.cpp Server/server.cpp Server/cdc.cpp Server/sha.cpp Server/lzw.cpp
-#Server/chunck.c
+HOST_SOURCES = hls/host.cpp hls/EventTimer.cpp hls/utils.cpp Server/cdc.cpp Server/sha.cpp Server/lzw.cpp Server/encoder.cpp Server/lzw_encode.cpp Server/server.cpp
+HOST_OBJECTS =$(HOST_SOURCES:.cpp=.o)
+HOST_EXE = host
+
+SERVER_SOURCES = Server/encoder.cpp Server/server.cpp Server/cdc.cpp Server/lzw_encode.cpp Server/sha.cpp
 SERVER_OBJECTS =$(SERVER_SOURCES:.cpp=.o)
 SERVER_EXE = encoder
 
@@ -78,13 +81,13 @@ DECODER_EXE = decoder
 
 # $(CPU_EXE): $(CPU_OBJECTS)
 # 	$(HOST_CXX) -I./fpga/hls/ -o "$@" $(+) $(LDFLAGS)
-all: $(CLIENT_EXE) $(SERVER_EXE) $(DECODER_EXE)
+all: $(SERVER_EXE) $(DECODER_EXE) $(HOST_EXE)
 
-$(CLIENT_EXE):
-	g++ -O3 $(CLIENT_SOURCES) -o "$@"
+# $(CLIENT_EXE):
+# 	g++ -O3 $(CLIENT_SOURCES) -o "$@"
 
-$(CLIENT_EXE_MAC):
-	g++ -O3 $(CLIENT_SOURCES_MAC) -o "$@"
+# $(CLIENT_EXE_MAC):
+# 	g++ -O3 $(CLIENT_SOURCES_MAC) -o "$@"
 
 $(SERVER_EXE): $(SERVER_OBJECTS)
 	$(HOST_CXX) -o "$@" $(+) $(LDFLAGS)
@@ -94,6 +97,10 @@ $(SERVER_EXE): $(SERVER_OBJECTS)
 $(DECODER_EXE): $(DECODER_OBJECTS)
 	$(HOST_CXX) -o "$@" $(+) $(LDFLAGS)
 
+$(HOST_EXE): $(HOST_OBJECTS)
+	$(HOST_CXX) -o "$@" $(+) $(LDFLAGS)
+
+
 .cpp.o:
 	$(HOST_CXX) $(CXXFLAGS) -I./server -o "$@" "$<"
 
@@ -101,40 +108,50 @@ $(DECODER_EXE): $(DECODER_OBJECTS)
 # primary build targets
 #
 
-# .PHONY: fpga clean
-# fpga: $(XCLBIN)
+.PHONY: fpga clean
+fpga: package/sd_card.img
 
 .NOTPARALLEL: clean
 
-clean:
-	-$(RM) $(SERVER_EXE) $(SERVER_OBJECTS) $(DECODER_EXE) $(DECODER_OBJECTS) $(CLIENT_EXE) 
+# clean:
+# 	-$(RM) $(HOST_EXE) $(HOST_OBJECTS) $(SERVER_EXE) $(SERVER_OBJECTS) $(DECODER_EXE) $(DECODER_OBJECTS)
 
 # clean-cpu:
 # 	-$(RM) $(CPU_EXE) $(CPU_OBJECTS) 
 
-# clean-host:
-# 	-$(RM) $(HOST_EXE) $(HOST_OBJECTS) 
+clean-host:
+	-$(RM) $(HOST_EXE) $(HOST_OBJECTS) 
 
-# clean-accelerators:
-# 	-$(RM) $(XCLBIN) $(XO) $(ALL_MESSAGE_FILES)
-# 	-$(RM) *.xclbin.sh *.xclbin.info *.xclbin.link_summary* *.compile_summary
+clean-accelerators:
+	-$(RM) $(XCLBIN) $(XO) $(ALL_MESSAGE_FILES)
+	-$(RM) *.xclbin.sh *.xclbin.info *.xclbin.link_summary* *.compile_summary
 # 	-$(RMDIR) .Xil fpga/hls/proj_mmult
 
-# clean-package:
-# 	-${RMDIR} package
-# 	-${RMDIR} package.build
+clean-package:
+	-${RMDIR} package
+	-${RMDIR} package.build
 
 # clean: clean-cpu clean-host clean-accelerators clean-package
-# 	-$(RM) *.log *.package_summary
-# 	-${RMDIR} _x .ipcache
+clean: clean-host clean-accelerators clean-package
+	-$(RM) *.log *.package_summary
+	-${RMDIR} _x .ipcache
 
 #
 # binary container: kernel.xclbin
 #
 
-# $(XO): fpga/hls/MMult.cpp
-# 	-@$(RM) $@
-# 	$(VPP) $(VPP_OPTS) -k mmult_fpga --compile -I"$(<D)" --config fpga/design.cfg -o"$@" "$<"
-# $(XCLBIN): $(XO)
-# 	$(VPP) $(VPP_OPTS) --link --config fpga/design.cfg -o"$@" $(+)
+$(XO): Server/lzw_encode.cpp
+	-@$(RM) $@
+	$(VPP) $(VPP_OPTS) -k lzw_multi_chunks --compile -I"$(<D)" --config ./design.cfg -o"$@" "$<"
 
+$(XCLBIN): $(XO)
+	$(VPP) $(VPP_OPTS) --link --config ./design.cfg -o"$@" $(+)
+
+package/sd_card.img: $(HOST_EXE) $(XCLBIN) ./xrt.ini
+	$(VPP) --package $(VPP_OPTS) --config ./package.cfg $(XCLBIN) \
+		--package.out_dir package \
+		--package.sd_file $(HOST_EXE) \
+		--package.kernel_image $(PLATFORM_REPO_PATHS)/sw/$(VITIS_PLATFORM)/PetaLinux/image/image.ub \
+		--package.rootfs $(PLATFORM_REPO_PATHS)/sw/$(VITIS_PLATFORM)/PetaLinux/rootfs/rootfs.ext4 \
+		--package.sd_file $(XCLBIN) \
+		--package.sd_file ./xrt.ini
