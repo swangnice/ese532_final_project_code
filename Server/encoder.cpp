@@ -86,7 +86,7 @@ int main(int argc, char* argv[]) {
 
 	// get packet
 	unsigned char* buffer = input[writer];
-
+	printf("buffer: %p\n", buffer);
 	// decode
 	done = buffer[1] & DONE_BIT_L;
 	length = buffer[0] | (buffer[1] << 8);
