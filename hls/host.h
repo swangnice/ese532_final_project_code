@@ -22,7 +22,7 @@
 #include <sys/stat.h>
 #include "../Server/encoder.h"
 #include "EventTimer.h"
-#include "util.h"
+#include "utils.h"
 
 
 #define CL_HPP_CL_1_2_DEFAULT_BUILD
