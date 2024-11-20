@@ -105,8 +105,8 @@ int main(int argc, char* argv[]) {
     unsigned int estimated_chunks = 15360 / WIN_SIZE + 1;
     chunks = (unsigned char **)malloc(sizeof(unsigned char *) * estimated_chunks);
     chunk_sizes = (unsigned int *)malloc(sizeof(unsigned int) * estimated_chunks);
-	cdc_timer.start();
-	cdc(&buffer[HEADER], length, &chunks, &chunk_count, &chunk_sizes);
+	
+	//cdc(&buffer[HEADER], length, &chunks, &chunk_count, &chunk_sizes);
 
 
 
@@ -136,13 +136,13 @@ int main(int argc, char* argv[]) {
 		length &= ~DONE_BIT_H;
 		//printf("length: %d offset %d\n",length,offset);
 		memcpy(&file[offset], &buffer[HEADER], length);
-		
-		cdc(&buffer[HEADER], length, &chunks, &chunk_count, &chunk_sizes);
-		
-
 		offset += length;
 		writer++;
 	}
+	cdc_timer.start();
+
+	cdc(&buffer[HEADER], length, &chunks, &chunk_count, &chunk_sizes);
+
 	cdc_timer.stop();
 
 	FILE *outfd = fopen("output_cpu.bin", "wb");
@@ -290,18 +290,10 @@ int main(int argc, char* argv[]) {
 		//printf("chunk: %u, Header: %#010x\n", i, header[i]);
 		//printf("chunk: %u, Header: %#010x\n", i, temp_header);
 	}
-	// for (unsigned int i = 0; i < chunk_count; i++) {
-	// 	//header[i] = ((header[i] << 24) & 0xff000000) | ((header[i]<<8)&0x00ff0000) | ((header[i]>>8)&0x0000ff00) | ((header[i]>>24)&0x000000ff);
-	// 	printf("chunk: %u, Header: %#010x\n", i, header[i]);
-
-	// }
-
-	// for (unsigned int i = 0; i < chunk_count; i++) {
-	// 	printf("chunk: %u, original size:%d, duplicated: %d, duplicated with %d compressed sized: %d\n", i, chunk_sizes[i], dup_flag[i], dup_index[i], compressed_data_size[dup_index[i]]);
-	// }
 
 	//overall time
 	overall_timer.stop();
+
 	//write in output bin
 	FILE* out_file = fopen("compressed_data.bin", "wb");
 	if (file == NULL) {
@@ -331,11 +323,7 @@ int main(int argc, char* argv[]) {
     }
     free(chunks);
     free(chunk_sizes);
-    //free(buffer);
-	// for (unsigned int i = 0; i < chunk_count; i++) {
-	// 	free(sha256_output[i]);
-	// }
-	// free(sha256_output);
+ 
 
 	free(file);
 	std::cout << "--------------- Key Throughputs ---------------" << std::endl;
