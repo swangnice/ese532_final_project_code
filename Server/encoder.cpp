@@ -105,9 +105,9 @@ int main(int argc, char* argv[]) {
     unsigned int estimated_chunks = 15360 / WIN_SIZE + 1;
     chunks = (unsigned char **)malloc(sizeof(unsigned char *) * estimated_chunks);
     chunk_sizes = (unsigned int *)malloc(sizeof(unsigned int) * estimated_chunks);
-	
-	//cdc(&buffer[HEADER], length, &chunks, &chunk_count, &chunk_sizes);
-
+	cdc_timer.start();
+	cdc(&buffer[HEADER], length, &chunks, &chunk_count, &chunk_sizes);
+	cdc_timer.stop();
 
 
 
@@ -136,14 +136,14 @@ int main(int argc, char* argv[]) {
 		length &= ~DONE_BIT_H;
 		//printf("length: %d offset %d\n",length,offset);
 		memcpy(&file[offset], &buffer[HEADER], length);
+		cdc_timer.start();
+		cdc(&buffer[HEADER], length, &chunks, &chunk_count, &chunk_sizes);
+		cdc_timer.stop();
+		
 		offset += length;
 		writer++;
 	}
-	cdc_timer.start();
-
-	cdc(&buffer[HEADER], length, &chunks, &chunk_count, &chunk_sizes);
-
-	cdc_timer.stop();
+	
 
 	FILE *outfd = fopen("output_cpu.bin", "wb");
 	int bytes_written = fwrite(&file[0], 1, offset, outfd);
