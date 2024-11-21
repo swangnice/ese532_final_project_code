@@ -154,4 +154,4 @@ package/sd_card.img: $(HOST_EXE) $(XCLBIN) ./hls/xrt.ini
 		--package.kernel_image $(PLATFORM_REPO_PATHS)/sw/$(VITIS_PLATFORM)/PetaLinux/image/image.ub \
 		--package.rootfs $(PLATFORM_REPO_PATHS)/sw/$(VITIS_PLATFORM)/PetaLinux/rootfs/rootfs.ext4 \
 		--package.sd_file $(XCLBIN) \
-		--package.sd_file ./xrt.ini
+		--package.sd_file ./hls/xrt.ini
