@@ -60,7 +60,7 @@ ALL_MESSAGE_FILES = $(subst .xo,.mdb,$(XO)) $(subst .xclbin,.mdb,$(XCLBIN))
 # CLIENT_SOURCES_MAC = Client/client-mac.cpp
 # CLIENT_EXE_MAC = client_mac
 
-HOST_SOURCES = hls/host.cpp hls/EventTimer.cpp hls/utils.cpp Server/cdc.cpp Server/sha.cpp Server/lzw.cpp Server/encoder.cpp Server/server.cpp
+HOST_SOURCES = hls/host.cpp hls/EventTimer.cpp hls/utils.cpp Server/cdc.cpp Server/sha.cpp Server/lzw.cpp Server/server.cpp #Server/encoder.cpp 
 HOST_OBJECTS =$(HOST_SOURCES:.cpp=.o)
 HOST_EXE = host
 
@@ -142,13 +142,13 @@ clean: clean-host clean-accelerators clean-package
 
 $(XO): Server/lzw_encode.cpp
 	-@$(RM) $@
-	$(VPP) $(VPP_OPTS) -k lzw_multi_chunks --compile -I"$(<D)" --config ./design.cfg -o"$@" "$<"
+	$(VPP) $(VPP_OPTS) -k lzw_multi_chunks --compile -I"$(<D)" --config ./hls/design.cfg -o"$@" "$<"
 
 $(XCLBIN): $(XO)
-	$(VPP) $(VPP_OPTS) --link --config ./design.cfg -o"$@" $(+)
+	$(VPP) $(VPP_OPTS) --link --config ./hls/design.cfg -o"$@" $(+)
 
-package/sd_card.img: $(HOST_EXE) $(XCLBIN) ./xrt.ini
-	$(VPP) --package $(VPP_OPTS) --config ./package.cfg $(XCLBIN) \
+package/sd_card.img: $(HOST_EXE) $(XCLBIN) ./hls/xrt.ini
+	$(VPP) --package $(VPP_OPTS) --config ./hls/package.cfg $(XCLBIN) \
 		--package.out_dir package \
 		--package.sd_file $(HOST_EXE) \
 		--package.kernel_image $(PLATFORM_REPO_PATHS)/sw/$(VITIS_PLATFORM)/PetaLinux/image/image.ub \
