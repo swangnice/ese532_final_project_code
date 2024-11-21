@@ -192,17 +192,12 @@ int main(int argc, char* argv[]) {
 		unsigned char compressed_data[SHA_BLOCKSIZE];
     	int compressed_size = rle_compress((const unsigned char*)temp_chunk_data, temp_chunk_size, compressed_data, SHA_BLOCKSIZE);
 
-		//std::cout << "Original Size: " << temp_chunk_size << " bytes\n";
-		//std::cout << "Compressed Size: " << compressed_size << " bytes\n";
-
-		// 计算压缩数据的 SHA-256 哈希
-		uint8_t temp_sha256_output[32]; // SHA-256 输出为 32 字节的 uint8_t 数组
+		uint8_t temp_sha256_output[32]; 
 		calculate_sha256(compressed_data, compressed_size, temp_sha256_output);
 
-		// 输出 SHA-256 哈希结果
 		std::cout << "SHA-256 Hash of Compressed Data: ";
 		for (int i = 0; i < 32; i++) {
-			printf("%02x", temp_sha256_output[i]);  // 打印每个字节
+			printf("%02x", temp_sha256_output[i]);
 		}
 		std::cout << std::endl;
 
@@ -211,11 +206,8 @@ int main(int argc, char* argv[]) {
 		
 	}
 	sha_timer.stop();
-	//int dict[MAX_DICT_SIZE][256];
-
-	//init_dict(dict);
 	
-	//deduplication and assign lzw header
+	//deduplication
 	dedup_timer.start();
 	uint8_t dup_flag[chunk_count];
 	int dup_index[chunk_count];
