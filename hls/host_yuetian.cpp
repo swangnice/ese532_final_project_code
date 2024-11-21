@@ -1,97 +1,64 @@
-<<<<<<< HEAD
-#define CL_HPP_CL_1_2_DEFAULT_BUILD
-#define CL_HPP_TARGET_OPENCL_VERSION 120
-#define CL_HPP_MINIMUM_OPENCL_VERSION 120
-#define CL_HPP_ENABLE_PROGRAM_CONSTRUCTION_FROM_ARRAY_COMPATIBILITY 1
-#define CL_USE_DEPRECATED_OPENCL_1_2_APIS
-
-
-#include "EventTimer.h"
-#include <CL/cl2.hpp>
-#include <cstdint>
-#include <cstdlib>
-#include <fstream>
-#include <iostream>
-#include <unistd.h>
-#include <vector>
-
-#include "../server/server.h"
-#include "../server/chunk.h"
-#include "../server/cdc.h"
-#include "../server/sha.h"
-#include "../server/lzw.h"
-//#include "host.h"
-#include "utils.h"
-
-// max number of elements we can get from ethernet
-#define NUM_ELEMENTS 16384
-#define HEADER 2
-
-#define NUM_PACKETS 8
-#define pipe_depth 4
-#define DONE_BIT_L (1 << 7)
-#define DONE_BIT_H (1 << 15)
-#define CHUNKS_IN_SINGLE_KERNEL 60
-#define MAX_CHUNK_SIZE 4096
-#define MAX_FILE_BUFFER_SIZE 4096
+#include "host.h"
 
 using namespace std;
 int offset = 0;
 unsigned char* file;
 
-void handle_input(int argc, char* argv[], int* blocksize) {
-	int x;
-	extern char *optarg;
+static void write_encoded_file_buf(uint16_t* out_code, int out_len, unsigned char* file_buffer, int &total_bytes){
+    int total_bits = out_len * 12;
+    total_bytes = static_cast<int>(std::ceil(total_bits / 8.0));
+    uint32_t header = static_cast<uint32_t>(total_bytes & 0xFFFFFFFF) << 1;
 
-	while ((x = getopt(argc, argv, ":b:")) != -1) {
-		switch (x) {
-		case 'b':
-			*blocksize = atoi(optarg);
-			printf("blocksize is set to %d optarg\n", *blocksize);
-			break;
-		case ':':
-			printf("-%c without parameter\n", optopt);
-			break;
-		}
-	}
+    int i = 0, j = 0;
+
+    file_buffer[j++] = static_cast<unsigned char>(header & 0xFF);
+    file_buffer[j++] = static_cast<unsigned char>((header >> 8) & 0xFF);
+    file_buffer[j++] = static_cast<unsigned char>((header >> 16) & 0xFF);
+    file_buffer[j++] = static_cast<unsigned char>(header >> 24);
+    for(i = 0; i + 1 < out_len; i += 2){
+        file_buffer[j++] = static_cast<unsigned char>(out_code[i] >> 4);
+        file_buffer[j++] = static_cast<unsigned char>(((out_code[i] << 4) & 0xF0) | ((out_code[i + 1] >> 8) & 0x0F));
+        file_buffer[j++] = static_cast<unsigned char>(out_code[i + 1] & 0xFF);
+    }
+    if(i != out_len){
+        file_buffer[j++] = static_cast<unsigned char>(out_code[i] >> 4);
+        file_buffer[j++] = static_cast<unsigned char>((out_code[i] << 4) & 0xF0);
+    }
+    return;
+}
+
+static void vector_to_array(vector<uint16_t> vec, uint16_t* arr, int &len){
+    len = vec.size();
+    for(int i = 0; i < len; i++){
+        arr[i] = vec[i];
+    }
+    return;
+}
+
+static void write_file(unsigned char* file_buffer, int total_bytes, char* fileName){
+    std::ofstream outfile(fileName, std::ios::app);
+    
+    if(!outfile.is_open()) {
+        std::cerr << "Could not open the file for writing.\n";
+        return;
+    }
+
+    // Write the data to the file
+    outfile.write(reinterpret_cast<const char*>(file_buffer), total_bytes + 4);
+
+    // Check for write errors
+    if (!outfile.good()) {
+        std::cerr << "Error occurred while writing to the file.\n";
+    }
+
+    // Close the file
+    outfile.close();
 }
 
 
-int convert_output(uint16_t in[], uint8_t out[], int input_size){
-    //header
-    int output_size = 0;
-
-    int adjusted_input_size = input_size - (input_size % 2);
-
-    for(int i = 0; i < adjusted_input_size; i+=2){
-        //printf("in[i]: %hu\n", in[i]);
-        //printf("in[i+1]: %hu\n", in[i+1]);
-        
-
-        out[output_size] = (in[i]>>4) & 0xff;
-        //printf("out[1]: %u\n", static_cast<unsigned int>(out[output_size]));
-        output_size++;
-        out[output_size] = ((in[i] << 4) & 0xf0) | ((in[i+1] >> 8) & 0x0f);
-        //printf("out[2]: %u\n", static_cast<unsigned int>(out[output_size]));
-        output_size++;
-        out[output_size] = (in[i+1]) & 0xff;
-        //printf("out[3]: %u\n", static_cast<unsigned int>(out[output_size]));
-        output_size++;
-    }
-
-    if (input_size % 2 != 0) {
-        out[output_size] = (in[adjusted_input_size] >> 4) & 0xFF;
-        output_size++;
-        out[output_size] = (in[adjusted_input_size] << 4) & 0xF0;
-        output_size++;
-    }
-
-    return output_size;
-}
 
 int main(int argc, char** argv)
 {
-	//pin_main_thread_to_cpu0();
 // Initialize an event timer we'll use for monitoring the application
     EventTimer timer;
 // ------------------------------------------------------------------------------------
@@ -110,35 +77,37 @@ int main(int argc, char** argv)
     cl::Program program(context, devices, bins, NULL, &err);
     cl::CommandQueue q(context, device, CL_QUEUE_PROFILING_ENABLE, &err);
 
-    //implement multi-kernels
-    cl::Kernel lzw_kernel;
-    lzw_kernel = cl::Kernel(program,"lzw_compress", &err);
+	//implement multi-kernels
+	cl::Kernel lzw_kernel;
+
+	lzw_kernel = cl::Kernel(program,"lzw_compression", &err);
 
 // ------------------------------------------------------------------------------------
 // Step 2: Create buffers and initialize test values
 // ------------------------------------------------------------------------------------
     timer.add("Allocate contiguous OpenCL buffers");
     // Create the buffers and allocate memory   
-    cl::Buffer lzw_chunks_buf(context, CL_MEM_ALLOC_HOST_PTR | CL_MEM_READ_ONLY,  sizeof(unsigned char) * MAX_CHUNK_SIZE, NULL, &err);
-    cl::Buffer lzw_chunks_length_buf(context, CL_MEM_ALLOC_HOST_PTR | CL_MEM_READ_ONLY, sizeof(int), NULL, &err);
-    cl::Buffer lzw_file_buffer_buf(context, CL_MEM_ALLOC_HOST_PTR | CL_MEM_WRITE_ONLY,  sizeof(uint16_t) * MAX_FILE_BUFFER_SIZE, NULL, &err);
-    cl::Buffer lzw_total_bytes_buf(context, CL_MEM_ALLOC_HOST_PTR | CL_MEM_WRITE_ONLY,  sizeof(int), NULL, &err);
+    cl::Buffer lzw_chunks_buf(context, CL_MEM_ALLOC_HOST_PTR | CL_MEM_READ_ONLY,  sizeof(unsigned char) * CHUNKS_IN_SINGLE_KERNEL * MAX_CHUNK_SIZE, NULL, &err);
+	cl::Buffer lzw_chunks_length_buf(context, CL_MEM_ALLOC_HOST_PTR | CL_MEM_READ_ONLY, sizeof(int) * CHUNKS_IN_SINGLE_KERNEL, NULL, &err);
+    cl::Buffer lzw_file_buffer_buf(context, CL_MEM_ALLOC_HOST_PTR | CL_MEM_WRITE_ONLY,  sizeof(unsigned char) * CHUNKS_IN_SINGLE_KERNEL * MAX_FILE_BUFFER_SIZE, NULL, &err);
+    cl::Buffer lzw_total_bytes_buf(context, CL_MEM_ALLOC_HOST_PTR | CL_MEM_WRITE_ONLY,  sizeof(int) * CHUNKS_IN_SINGLE_KERNEL, NULL, &err);
 
-    unsigned char* lzw_chunks;
-    int* lzw_chunks_length;
-    uint16_t* lzw_file_buffer;
-    int* lzw_total_bytes;
+	unsigned char* lzw_chunks;
+	int *lzw_chunks_length;
+    unsigned char* lzw_file_buffer;
+	int *lzw_total_bytes;
 
-    lzw_chunks = (unsigned char*)q.enqueueMapBuffer(lzw_chunks_buf, CL_TRUE, CL_MAP_WRITE, 0, sizeof(unsigned char) * MAX_CHUNK_SIZE);
-    lzw_chunks_length = (int*)q.enqueueMapBuffer(lzw_chunks_length_buf, CL_TRUE, CL_MAP_WRITE, 0, sizeof(int) );
-    lzw_file_buffer = (uint16_t*)q.enqueueMapBuffer(lzw_file_buffer_buf, CL_TRUE, CL_MAP_READ, 0, sizeof(uint16_t) * MAX_FILE_BUFFER_SIZE);
-    lzw_total_bytes = (int*)q.enqueueMapBuffer(lzw_total_bytes_buf, CL_TRUE, CL_MAP_READ, 0, sizeof(int));
+	lzw_chunks = (unsigned char *)q.enqueueMapBuffer(lzw_chunks_buf, CL_TRUE, CL_MAP_WRITE, 0, sizeof(unsigned char) * CHUNKS_IN_SINGLE_KERNEL * MAX_CHUNK_SIZE);
+	lzw_chunks_length = (int*)q.enqueueMapBuffer(lzw_chunks_length_buf, CL_TRUE, CL_MAP_WRITE, 0, sizeof(int) * CHUNKS_IN_SINGLE_KERNEL);
+	lzw_file_buffer = (unsigned char*)q.enqueueMapBuffer(lzw_file_buffer_buf, CL_TRUE, CL_MAP_READ, 0, sizeof(unsigned char) * CHUNKS_IN_SINGLE_KERNEL * MAX_FILE_BUFFER_SIZE);
+	lzw_total_bytes = (int*)q.enqueueMapBuffer(lzw_total_bytes_buf, CL_TRUE, CL_MAP_READ, 0, sizeof(int) * CHUNKS_IN_SINGLE_KERNEL);
 
     timer.add("Populating buffer inputs");
 
 // ------------------------------------------------------------------------------------
 // Step 3: Run the kernel
 // ------------------------------------------------------------------------------------
+	std::cout << "dec 9 0105" << std::endl;
 	std::cout << argv[1] << std::endl;
 	stopwatch ethernet_timer;
 	stopwatch cdc_timer;
@@ -242,21 +211,21 @@ int main(int argc, char** argv)
 		writer++;
 	}
 
-        cdc_timer.stop();
+    cdc_timer.stop();
 
 	FILE *outfd = fopen("output_cpu.bin", "wb");
 	int bytes_written = fwrite(&file[0], 1, offset, outfd);
 	printf("write file with %d\n", bytes_written);
 	fclose(outfd);
 
-        sha_timer.start();
+    sha_timer.start();
 	uint8_t sha256_output[chunk_count][32];
 
 	for (unsigned int i = 0; i < chunk_count; i++) {
-	unsigned char *temp_chunk_data = chunks[i];
+		unsigned char *temp_chunk_data = chunks[i];
     	unsigned int temp_chunk_size = chunk_sizes[i];
 
-	unsigned char compressed_data[SHA_BLOCKSIZE];
+		unsigned char compressed_data[SHA_BLOCKSIZE];
     	int compressed_size = rle_compress((const unsigned char*)temp_chunk_data, temp_chunk_size, compressed_data, SHA_BLOCKSIZE);
 
 		//std::cout << "Original Size: " << temp_chunk_size << " bytes\n";
@@ -317,7 +286,7 @@ int main(int argc, char** argv)
 		if (dup_flag[i] == 0) {
             //memcpy data
             memcpy(&lzw_chunks, chunks[i], chunk_sizes[i]);
-            *lzw_chunks_length = chunk_sizes[i];
+            lzw_chunks_length = chunk_sizes[i];
 
             //set arg
             lzw_kernel.setArg(0, lzw_chunks_buf);
@@ -343,7 +312,7 @@ int main(int argc, char** argv)
 			q.enqueueMigrateMemObjects({lzw_file_buffer_buf, lzw_total_bytes_buf}, CL_MIGRATE_MEM_OBJECT_HOST, &exec_events, &read_ev);
 			q.finish();
 
-			int output_index = convert_output(lzw_file_buffer, lzw_compressed_output[i], *lzw_total_bytes);
+			int output_index = convert_output(lzw_file_buf, lzw_compressed_output[i], lzw_total_bytes_buf);
 			compressed_data_size[i] = output_index;
 
 
@@ -351,7 +320,7 @@ int main(int argc, char** argv)
 	}
 
 
-        lzw_timer.stop();
+    lzw_timer.stop();
 
     	// build header
 	uint32_t header[chunk_count];
@@ -364,6 +333,8 @@ int main(int argc, char** argv)
 			header[i] = (dup_index[i]<<1) | 0x00000001;
 		}
 	}
+
+	total_time.stop();
 
 
 
@@ -415,14 +386,14 @@ int main(int argc, char** argv)
 			<< " (Latency: " << sha_latency << "s)." << std::endl;
 
 	float dedup_latency = dedup_timer.latency() / 1000.0;
-	//float dedup_throughput = (dedup_chars * 8 / 1000000.0) / dedup_latency; // Mb/s
-	//std::cout << "dedup Throughput to Encoder: " << dedup_throughput << " Mb/s."
-	//		<< " (Latency: " << dedup_latency << "s)." << std::endl;
+	float dedup_throughput = (dedup_chars * 8 / 1000000.0) / dedup_latency; // Mb/s
+	std::cout << "dedup Throughput to Encoder: " << dedup_throughput << " Mb/s."
+			<< " (Latency: " << dedup_latency << "s)." << std::endl;
 
-	float output_latency = overall_timer.latency() / 1000.0;
-	//float output_throughput = (total_inputBits * 8 / 1000000.0) / output_latency; // Mb/s
-	//std::cout << "output Throughput to Encoder: " << output_throughput << " Mb/s."
-	//		<< " (Latency: " << output_latency << "s)." << std::endl;
+	float output_latency = total_timer.latency() / 1000.0;
+	float output_throughput = (total_inputBits * 8 / 1000000.0) / output_latency; // Mb/s
+	std::cout << "output Throughput to Encoder: " << output_throughput << " Mb/s."
+			<< " (Latency: " << output_latency << "s)." << std::endl;
 
 // ------------------------------------------------------------------------------------
 // Step 4: Check Results and Release Allocated Resources
@@ -444,14 +415,3 @@ int main(int argc, char** argv)
     // return (match ? EXIT_SUCCESS : EXIT_FAILURE);
     return 0;
 }
-=======
-#include "host.h"
-
-int main(int argc, char **argv)
-{
-    EventTimer timer;
-
-    timer.add("OpenCL Initialization");
-    cl_int err;
-}
->>>>>>> ac2c9f387d193d8582b75d64ec14ced65c945bf3
