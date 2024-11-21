@@ -1,1 +1,0 @@
-ERROR: [v++ 60-633] Failed to collect compute units: Kernel "lzw_compress" specified in --nk option does not exist.

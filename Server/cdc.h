@@ -11,4 +11,4 @@
 
 uint64_t initial_hash_func(const unsigned char *input, unsigned int pos);
 uint64_t rolling_hash(uint64_t previous_hash, unsigned char old_char, unsigned char new_char);
-void cdc(const unsigned char *buff, unsigned int buff_size, unsigned char ***chunks, unsigned int *chunk_count, unsigned int **chunk_sizes);
+void cdc(const unsigned char *buff, unsigned int buff_size, unsigned char ***chunks, unsigned int *chunk_count, int **chunk_sizes);

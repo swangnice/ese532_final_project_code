@@ -164,11 +164,10 @@ int main(int argc, char** argv)
 	//printf("%.*s\n", length, &buffer[HEADER]);
 	unsigned char **chunks = NULL;
     unsigned int chunk_count = 0;
-    unsigned int *chunk_sizes = NULL;
-	chunk_count = 0;
+    int *chunk_sizes = NULL;
     unsigned int estimated_chunks = 15360 / WIN_SIZE + 1;
     chunks = (unsigned char **)malloc(sizeof(unsigned char *) * estimated_chunks);
-    chunk_sizes = (unsigned int *)malloc(sizeof(unsigned int) * estimated_chunks);
+    chunk_sizes = (int *)malloc(sizeof(unsigned int) * estimated_chunks);
 	cdc_timer.start();
 	cdc(&buffer[HEADER], length, &chunks, &chunk_count, &chunk_sizes);
 
@@ -292,11 +291,11 @@ int main(int argc, char** argv)
             lzw_kernel.setArg(3, lzw_total_bytes_buf);
 
             std::vector<cl::Event> write_events;
-			std::vector<cl::Event> exec_events;
+	    std::vector<cl::Event> exec_events;
 
             cl::Event write_ev;
-			cl::Event exec_ev;
-			cl::Event read_ev;
+	    cl::Event exec_ev;
+	    cl::Event read_ev;
 
 			q.enqueueMigrateMemObjects({lzw_chunks_buf, lzw_chunks_length_buf}, 0 /* 0 means from host*/, NULL, &write_ev);
 			write_events.push_back(write_ev); 	

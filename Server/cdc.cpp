@@ -14,7 +14,7 @@ uint64_t rolling_hash(uint64_t previous_hash, unsigned char old_char, unsigned c
 }
 
 // CDC function to split file into chunks based on hash condition
-void cdc(const unsigned char *buff, unsigned int buff_size, unsigned char ***chunks, unsigned int *chunk_count, unsigned int **chunk_sizes) {
+void cdc(const unsigned char *buff, unsigned int buff_size, unsigned char ***chunks, unsigned int *chunk_count, int **chunk_sizes) {
     if (buff_size < WIN_SIZE) return;
     // Calculate initial hash for the first window
     uint64_t current_hash = initial_hash_func(buff, 0);

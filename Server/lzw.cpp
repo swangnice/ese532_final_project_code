@@ -164,7 +164,7 @@ void lookup(unsigned long* hash_table, assoc_mem* mem, unsigned int key, bool* h
 }
 //****************************************************************************************************************
 
-void lzw_compress(unsigned char* s1, int length, uint16_t* out_code, int *out_len)
+void lzw_compress(unsigned char* s1, int* length, uint16_t* out_code, int *out_len)
 {
     unsigned long hash_table[CAPACITY];
     assoc_mem my_assoc_mem;
@@ -197,7 +197,7 @@ void lzw_compress(unsigned char* s1, int length, uint16_t* out_code, int *out_le
     char next_char = 0;
 
     int i = 0, j = 0;
-    while(i < length)
+    while(i < *length)
     {
         next_char = s1[i + 1];
 
@@ -225,7 +225,7 @@ void lzw_compress(unsigned char* s1, int length, uint16_t* out_code, int *out_le
         else
         {
             prefix_code = code;
-            if(i + 1 == length){
+            if(i + 1 == *length){
                 out_code[j++] = prefix_code;
             	std::cout << prefix_code;
             	std::cout << "\n";

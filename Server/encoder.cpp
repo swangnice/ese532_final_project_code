@@ -100,11 +100,11 @@ int main(int argc, char* argv[]) {
 	//printf("%.*s\n", length, &buffer[HEADER]);
 	unsigned char **chunks = NULL;
     unsigned int chunk_count = 0;
-    unsigned int *chunk_sizes = NULL;
+    int *chunk_sizes = NULL;
 	chunk_count = 0;
     unsigned int estimated_chunks = 15360 / WIN_SIZE + 1;
     chunks = (unsigned char **)malloc(sizeof(unsigned char *) * estimated_chunks);
-    chunk_sizes = (unsigned int *)malloc(sizeof(unsigned int) * estimated_chunks);
+    chunk_sizes = (int *)malloc(sizeof(unsigned int) * estimated_chunks);
 	cdc_timer.start();
 	cdc(&buffer[HEADER], length, &chunks, &chunk_count, &chunk_sizes);
 	cdc_timer.stop();
@@ -242,12 +242,14 @@ int main(int argc, char* argv[]) {
 			int temp_output_index = 0;
 			
 			uint16_t temp_lzw_compressed_output[chunk_sizes[i]];
+			
 
 
 
+			
 			//std::string temp_chunk = reinterpret_cast<const char*>(chunks[i]);
 			//const unsigned char* temp_data = reinterpret_cast<const unsigned char*>(temp_chunk.c_str());
-			lzw_compress(chunks[i], chunk_sizes[i], temp_lzw_compressed_output, &temp_output_index);
+			lzw_compress(chunks[i], &chunk_sizes[i], temp_lzw_compressed_output, &temp_output_index);
 
 
 			//lzw(chunks[i], chunk_sizes[i], dict, temp_lzw_compressed_output, temp_output_index);

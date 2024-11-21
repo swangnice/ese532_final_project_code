@@ -41,7 +41,7 @@ void assoc_lookup(assoc_mem* mem, unsigned int key, bool* hit, unsigned int* res
 void insert(unsigned long* hash_table, assoc_mem* mem, unsigned int key, unsigned int value, bool* collision);
 void lookup(unsigned long* hash_table, assoc_mem* mem, unsigned int key, bool* hit, unsigned int* result);
 
-void lzw_compress(unsigned char* s1, int length, uint16_t* out_code, int *out_len);
+void lzw_compress(unsigned char* s1, int* length, uint16_t* out_code, int *out_len);
 int convert_output(uint16_t in[], uint8_t out[], int input_size);
 
 
