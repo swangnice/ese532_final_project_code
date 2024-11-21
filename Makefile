@@ -47,9 +47,9 @@ VPP_OPTS = --target hw
 #
 # OpenCL kernel files
 #
-XO := encoder.xo
-XCLBIN := encoder.xclbin
- ALL_MESSAGE_FILES = $(subst .xo,.mdb,$(XO)) $(subst .xclbin,.mdb,$(XCLBIN))
+XO := lzw_compress.xo
+XCLBIN := lzw_compress.xclbin
+ALL_MESSAGE_FILES = $(subst .xo,.mdb,$(XO)) $(subst .xclbin,.mdb,$(XCLBIN))
 
 #
 # host files
