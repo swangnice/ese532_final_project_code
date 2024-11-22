@@ -261,6 +261,8 @@ int main(int argc, char** argv)
             memcpy(&lzw_s1[i], chunks[i], chunk_sizes[i]);
             lzw_length = &chunk_sizes[i];
 
+			printf("begin to write in buffer\n");
+
             lzw_kernel.setArg(0, lzw_s1_buf);
             lzw_kernel.setArg(1, lzw_length_buf);
             lzw_kernel.setArg(2, lzw_out_code_buf);
@@ -272,6 +274,8 @@ int main(int argc, char** argv)
             cl::Event write_ev;
             cl::Event exec_ev;
             cl::Event read_ev;
+
+			printf("begin queue\n");
             q.enqueueMigrateMemObjects({lzw_s1_buf, lzw_length_buf}, 0, NULL, &write_ev);
 
             
