@@ -386,12 +386,12 @@ int main(int argc, char** argv)
 	delete[] fileBuf;
 
 	std::cout << "\n--------------- Key Throughputs ---------------" << std::endl;
-	float ethernet_latency = ethernet_timer.latency() / 1000.0;
-	float cdc_latency = cdc_timer.latency() / 1000.0;
-	float sha_latency = sha_timer.latency() / 1000.0;
-	float dedup_latency = dedup_timer.latency() / 1000.0;
-	float lzw_latency = lzw_timer.latency() / 1000.0;
-	float overall_latency = overall_timer.latency() / 1000.0;
+	float ethernet_latency = ethernet_timer.latency() / 2500.0;
+	float cdc_latency = cdc_timer.latency() / 2500.0;
+	float sha_latency = sha_timer.latency() / 2500.0;
+	float dedup_latency = dedup_timer.latency() / 2500.0;
+	float lzw_latency = lzw_timer.latency() / 2500.0;
+	float overall_latency = overall_timer.latency() / 2500.0;
 
 	float input_throughput = (bytes_written * 8 / 1000000.0) / ethernet_latency; // Mb/s
 	float cdc_throughput = (bytes_written * 8 / 1000000.0) / cdc_latency; // Mb/s
