@@ -197,7 +197,7 @@ int main(int argc, char** argv)
 	//printf("%.*s\n", length, &buffer[HEADER]);
 	unsigned char **chunks = NULL;
     unsigned int chunk_count = 0;
-    unsigned int *chunk_sizes = NULL;
+    int *chunk_sizes = NULL;
 	chunk_count = 0;
     unsigned int estimated_chunks = 15360 / WIN_SIZE + 1;
     chunks = (unsigned char **)malloc(sizeof(unsigned char *) * estimated_chunks);
