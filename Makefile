@@ -140,9 +140,9 @@ clean: clean-host clean-accelerators clean-package
 # binary container: kernel.xclbin
 #
 
-$(XO): Server/lzw_encode.cpp
+$(XO): Server/lzw.cpp
 	-@$(RM) $@
-	$(VPP) $(VPP_OPTS) -k lzw_multi_chunks --compile -I"$(<D)" --config ./hls/design.cfg -o"$@" "$<"
+	$(VPP) $(VPP_OPTS) -k lzw_compress --compile -I"$(<D)" --config ./hls/design.cfg -o"$@" "$<"
 
 $(XCLBIN): $(XO)
 	$(VPP) $(VPP_OPTS) --link --config ./hls/design.cfg -o"$@" $(+)
