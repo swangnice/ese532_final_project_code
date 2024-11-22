@@ -259,6 +259,7 @@ int main(int argc, char** argv)
         if (dup_flag[i] == 0) {
             //lzw_compress(chunks[i], &chunk_sizes[i], temp_lzw_compressed_output[i], &temp_output_index[i]);
             memcpy(&lzw_s1[i], chunks[i], chunk_sizes[i]);
+			print("chunk size: %d\n", chunk_sizes[i]);
             lzw_length = &chunk_sizes[i];
 
 			printf("begin to write in buffer\n");
@@ -293,10 +294,6 @@ int main(int argc, char** argv)
 
 			memcpy(temp_lzw_compressed_output[i], lzw_out_code, sizeof(uint16_t) * 2048);
 			temp_output_index[i] = *lzw_out_len;
-
-
-
-        
         }
     }
 	//delete[] fileBuf;
