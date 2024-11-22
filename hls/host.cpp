@@ -136,7 +136,7 @@ int main(int argc, char** argv)
 	length = buffer[0] | (buffer[1] << 8);
 	length &= ~DONE_BIT_H;
 
-	overall_timer.start();
+	//overall_timer.start();
 	memcpy(&file[offset], &buffer[HEADER], length);
 
     unsigned int estimated_chunks = 15360 / WIN_SIZE + 1;
@@ -159,9 +159,9 @@ int main(int argc, char** argv)
 			writer = 0;
 		}
 
-		ethernet_timer.start();
+		//ethernet_timer.start();
 		server.get_packet(input[writer]);
-		ethernet_timer.stop();
+		//ethernet_timer.stop();
 
 		count++;
 
@@ -174,9 +174,9 @@ int main(int argc, char** argv)
 		length &= ~DONE_BIT_H;
 		//printf("length: %d offset %d\n",length,offset);
 		memcpy(&file[offset], &buffer[HEADER], length);
-		cdc_timer.start();
+		//cdc_timer.start();
 		cdc(&buffer[HEADER], length, &chunks, &chunk_count, &chunk_sizes);
-		cdc_timer.stop();
+		//cdc_timer.stop();
 		
 		offset += length;
 		writer++;
@@ -286,7 +286,7 @@ int main(int argc, char** argv)
 
     for (unsigned int i = 0; i < chunk_count; i++) {
         if (dup_flag[i] == 0) {
-            int output_index = convert_output(lzw_out_code[i], lzw_compressed_output[i], lzw_out_len[i]);
+            int output_index = convert_output(&lzw_out_code[i], lzw_compressed_output[i], lzw_out_len[i]);
             compressed_data_size[i] = output_index;
         }
     }

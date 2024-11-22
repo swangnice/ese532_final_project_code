@@ -1,3 +1,0 @@
-ERROR: [v++ 60-633] Failed to collect compute units: Kernel "lzw_compress" specified in --nk option does not exist.
-INFO: [v++ 60-1662] Stopping dispatch session having empty uuid.
-INFO: [v++ 60-1653] Closing dispatch client.
