@@ -101,7 +101,6 @@ int main(int argc, char* argv[]) {
 	unsigned char **chunks = NULL;
     unsigned int chunk_count = 0;
     int *chunk_sizes = NULL;
-	chunk_count = 0;
     unsigned int estimated_chunks = 15360 / WIN_SIZE + 1;
     chunks = (unsigned char **)malloc(sizeof(unsigned char *) * estimated_chunks);
     chunk_sizes = (int *)malloc(sizeof(unsigned int) * estimated_chunks);
@@ -162,26 +161,6 @@ int main(int argc, char* argv[]) {
 		printf("%.*s\n", chunk_sizes[i], (char *)chunks[i]);
 	}
 
-	// SHA-256 hash calculation
-	// unsigned char **sha256_output = NULL;
-	// sha256_output = (unsigned char **)malloc(sizeof(unsigned char *) * chunk_count);
-	// if (sha256_output == NULL) {
-	// 	printf("Failed to allocate memory for sha256_output.\n");
-	// 	return 1;
-	// }
-
-	// // 32byte for each chunk
-	// for (unsigned int i = 0; i < chunk_count; i++) {
-	// 	sha256_output[i] = (unsigned char *)malloc(32 * sizeof(unsigned char));
-	// 	if (sha256_output[i] == NULL) {
-	// 		printf("Failed to allocate memory for sha256_output[%u].\n", i);
-	// 		for (unsigned int j = 0; j < i; j++) {
-	// 			free(sha256_output[j]);
-	// 		}
-	// 		free(sha256_output);
-	// 		return 1;
-	// 	}
-	// }
 	sha_timer.start();
 	uint8_t sha256_output[chunk_count][32];
 
@@ -231,32 +210,50 @@ int main(int argc, char* argv[]) {
 	}
 	dedup_timer.stop();
 
-	//gunsigned char* buffer_out = (unsigned char*) malloc(sizeof(unsigned char) * 70000000);
-	//compress unduplicated chunks
+
+
+
 	lzw_timer.start();
+	// uint8_t lzw_compressed_output[undup_count][2048];
+	// int compressed_data_size[undup_count];
+
+	// for (unsigned int i = 0; i < chunk_count; i++) {
+	// 	if (dup_flag[i] == 0) {
+	// 		int temp_output_index = 0;
+	// 		uint16_t temp_lzw_compressed_output[chunk_sizes[i]];
+
+	// 		lzw_compress(chunks[i], &chunk_sizes[i], temp_lzw_compressed_output, &temp_output_index);
+	// 		int output_index = convert_output(temp_lzw_compressed_output, lzw_compressed_output[i], temp_output_index);
+	// 		compressed_data_size[i] = output_index;
+	// 	}
+	// }
+
+	// 定义存储所有临时输出的数组
+	uint16_t temp_lzw_compressed_output[chunk_count][2048]; // 假设 MAX_CHUNK_SIZE 是单个块的最大大小
+	int temp_output_index[chunk_count];
+
+	// 定义最终压缩结果存储
 	uint8_t lzw_compressed_output[undup_count][2048];
-	
 	int compressed_data_size[undup_count];
+
+	// 处理压缩
 	for (unsigned int i = 0; i < chunk_count; i++) {
 		if (dup_flag[i] == 0) {
-			int temp_output_index = 0;
-			
-			uint16_t temp_lzw_compressed_output[chunk_sizes[i]];
-			
+			// 第一次循环：调用 lzw_compress
+			lzw_compress(chunks[i], &chunk_sizes[i], temp_lzw_compressed_output[i], &temp_output_index[i]);
+		}
+	}
 
-
-
-			
-			//std::string temp_chunk = reinterpret_cast<const char*>(chunks[i]);
-			//const unsigned char* temp_data = reinterpret_cast<const unsigned char*>(temp_chunk.c_str());
-			lzw_compress(chunks[i], &chunk_sizes[i], temp_lzw_compressed_output, &temp_output_index);
-
-
-			//lzw(chunks[i], chunk_sizes[i], dict, temp_lzw_compressed_output, temp_output_index);
-			int output_index = convert_output(temp_lzw_compressed_output, lzw_compressed_output[i], temp_output_index);
+	// 转换输出
+	for (unsigned int i = 0; i < chunk_count; i++) {
+		if (dup_flag[i] == 0) {
+			// 第二次循环：调用 convert_output
+			int output_index = convert_output(temp_lzw_compressed_output[i], lzw_compressed_output[i], temp_output_index[i]);
 			compressed_data_size[i] = output_index;
 		}
 	}
+
+
 	// for (unsigned int i = 0; i < chunk_count; i++) {
 	// 	if (dup_flag[i] == 0) {
 	// 		printf("Chunk %u: ", i);
