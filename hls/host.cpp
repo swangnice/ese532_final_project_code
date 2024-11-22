@@ -201,7 +201,7 @@ int main(int argc, char** argv)
 	chunk_count = 0;
     unsigned int estimated_chunks = 15360 / WIN_SIZE + 1;
     chunks = (unsigned char **)malloc(sizeof(unsigned char *) * estimated_chunks);
-    chunk_sizes = (unsigned int *)malloc(sizeof(unsigned int) * estimated_chunks);
+    chunk_sizes = (int *)malloc(sizeof(unsigned int) * estimated_chunks);
 	cdc_timer.start();
 	cdc(&buffer[HEADER], length, &chunks, &chunk_count, &chunk_sizes);
 
@@ -253,7 +253,7 @@ int main(int argc, char** argv)
 
 	for (unsigned int i = 0; i < chunk_count; i++) {
 	unsigned char *temp_chunk_data = chunks[i];
-    	unsigned int temp_chunk_size = chunk_sizes[i];
+    	int temp_chunk_size = chunk_sizes[i];
 
 	unsigned char compressed_data[SHA_BLOCKSIZE];
     	int compressed_size = rle_compress((const unsigned char*)temp_chunk_data, temp_chunk_size, compressed_data, SHA_BLOCKSIZE);
