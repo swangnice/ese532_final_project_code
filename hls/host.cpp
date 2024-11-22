@@ -287,7 +287,7 @@ int main(int argc, char** argv)
             cl::Event read_ev;
             // Create another vector for the event dependency
             exec_events.push_back(exec_ev);
-            q.enqueueMigrateMemObjects({lzw_out_code_buf, lzw_out_len_buf}, CL_MIGRATE_MEM_OBJECT_HOST, &exec_event_vec, &read_ev);
+            q.enqueueMigrateMemObjects({lzw_out_code_buf, lzw_out_len_buf}, CL_MIGRATE_MEM_OBJECT_HOST, &exec_events, &read_ev);
 
             // 等待完成
             q.finish();
