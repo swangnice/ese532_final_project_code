@@ -261,6 +261,7 @@ int main(int argc, char** argv)
             memcpy(&lzw_s1[i], chunks[i], chunk_sizes[i]);
 			printf("chunk size: %d\n", chunk_sizes[i]);
             lzw_length = &chunk_sizes[i];
+			printf("chunk size: %d\n", *lzw_length);
 
 			printf("begin to write in buffer\n");
 
