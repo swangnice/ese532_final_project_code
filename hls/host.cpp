@@ -146,7 +146,7 @@ int main(int argc, char** argv)
     int *chunk_sizes = NULL;
     chunks = (unsigned char **)malloc(sizeof(unsigned char *) * estimated_chunks);
 	chunk_count = 0;
-    chunk_sizes = (int *)malloc(sizeof(unsigned int) * estimated_chunks);
+    chunk_sizes = (int *)malloc(sizeof(int) * estimated_chunks);
 	//cdc_timer.start();
 	cdc(&buffer[HEADER], length, &chunks, &chunk_count, &chunk_sizes);
 	//cdc_timer.stop();
@@ -249,10 +249,9 @@ int main(int argc, char** argv)
     uint8_t lzw_compressed_output[undup_count][2048];
     int compressed_data_size[undup_count];
 
-
     for (unsigned int i = 0; i < chunk_count; i++) {
         memcpy(&lzw_s1[i * MAX_CHUNK_SIZE], chunks[i], chunk_sizes[i]);
-        lzw_length[i] = *chunk_sizes[i];
+        lzw_length[i] = chunk_sizes[i];
     }
 
     for (unsigned int i = 0; i < chunk_count; i++) {
@@ -277,17 +276,14 @@ int main(int argc, char** argv)
             // q.enqueueMigrateMemObjects({lzw_out_code_buf, lzw_out_len_buf}, CL_MIGRATE_MEM_OBJECT_HOST, &exec_events, &read_ev);
             // q.finish();
 
-            // 数据传输到设备
             cl::Event write_ev;
             q.enqueueMigrateMemObjects({lzw_s1_buf, lzw_length_buf}, 0, nullptr, &write_ev);
 
-            // 执行内核
             cl::Event exec_ev;
             // Create a vector for the event dependency
             std::vector<cl::Event> write_event_vec = {write_ev};
             q.enqueueTask(lzw_kernel, &write_event_vec, &exec_ev);
 
-            // 数据从设备读取
             cl::Event read_ev;
             // Create another vector for the event dependency
             std::vector<cl::Event> exec_event_vec = {exec_ev};
