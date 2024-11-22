@@ -244,8 +244,8 @@ int main(int argc, char** argv)
 	}
 
     // LZW on HW
-    uint16_t temp_lzw_compressed_output[chunk_count][MAX_CHUNK_SIZE]; // 假设 MAX_CHUNK_SIZE 是单个块的最大大小
-    int temp_output_index[chunk_count];
+    //uint16_t temp_lzw_compressed_output[chunk_count][MAX_CHUNK_SIZE]; // 假设 MAX_CHUNK_SIZE 是单个块的最大大小
+    //int temp_output_index[chunk_count];
     uint8_t lzw_compressed_output[undup_count][2048];
     int compressed_data_size[undup_count];
 
@@ -266,9 +266,9 @@ int main(int argc, char** argv)
             std::vector<cl::Event> write_events;
             std::vector<cl::Event> exec_events;
 
-            cl::Event write_ev;
-            cl::Event exec_ev;
-            cl::Event read_ev;
+            //cl::Event write_ev;
+            //cl::Event exec_ev;
+            //cl::Event read_ev;
 
             // q.enqueueMigrateMemObjects({lzw_s1_buf, lzw_length_buf}, 0 /* 0 means from host*/, NULL, &write_ev);
 			// write_events.push_back(write_ev); 
@@ -278,19 +278,23 @@ int main(int argc, char** argv)
             // q.finish();
 
             // 数据传输到设备
-            cl::Event write_ev;
-            q.enqueueMigrateMemObjects({lzw_s1_buf, lzw_length_buf}, 0, NULL, &write_ev);
+cl::Event write_ev;
+q.enqueueMigrateMemObjects({lzw_s1_buf, lzw_length_buf}, 0, nullptr, &write_ev);
 
-            // 执行内核
-            cl::Event exec_ev;
-            q.enqueueTask(lzw_kernel, {write_ev}, &exec_ev);
+// 执行内核
+cl::Event exec_ev;
+// Create a vector for the event dependency
+std::vector<cl::Event> write_event_vec = {write_ev};
+q.enqueueTask(lzw_kernel, &write_event_vec, &exec_ev);
 
-            // 数据从设备读取
-            cl::Event read_ev;
-            q.enqueueMigrateMemObjects({lzw_out_code_buf, lzw_out_len_buf}, CL_MIGRATE_MEM_OBJECT_HOST, {exec_ev}, &read_ev);
+// 数据从设备读取
+cl::Event read_ev;
+// Create another vector for the event dependency
+std::vector<cl::Event> exec_event_vec = {exec_ev};
+q.enqueueMigrateMemObjects({lzw_out_code_buf, lzw_out_len_buf}, CL_MIGRATE_MEM_OBJECT_HOST, &exec_event_vec, &read_ev);
 
-            // 等待完成
-            q.finish();
+// 等待完成
+q.finish();
 
         
         }
