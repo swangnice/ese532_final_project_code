@@ -206,16 +206,16 @@ void lzw_compress(unsigned char* s1, int* length, uint16_t* out_code, int *out_l
         lookup(hash_table, &my_assoc_mem, (prefix_code << 8) + next_char, &hit, &code);
         if(!hit)
         {
-            std::cout << prefix_code;
+//            std::cout << prefix_code;
             out_code[j++] = prefix_code;
             // out_code[i]=prefix_code;
-            std::cout << "\n";
+//            std::cout << "\n";
 
             bool collision = 0;
             insert(hash_table, &my_assoc_mem, (prefix_code << 8) + next_char, next_code, &collision);
             if(collision)
             {
-                std::cout << "ERROR: FAILED TO INSERT! NO MORE ROOM IN ASSOC MEM!" << std::endl;
+//                std::cout << "ERROR: FAILED TO INSERT! NO MORE ROOM IN ASSOC MEM!" << std::endl;
                 return;
             }
             next_code += 1;
@@ -227,8 +227,8 @@ void lzw_compress(unsigned char* s1, int* length, uint16_t* out_code, int *out_l
             prefix_code = code;
             if(i + 1 == *length){
                 out_code[j++] = prefix_code;
-            	std::cout << prefix_code;
-            	std::cout << "\n";
+//            	std::cout << prefix_code;
+//            	std::cout << "\n";
             }
 
         }

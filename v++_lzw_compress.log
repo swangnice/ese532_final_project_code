@@ -1,54 +1,55 @@
 INFO: [v++ 60-1306] Additional information associated with this v++ link can be found at:
 	Reports: /mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/_x/reports/link
 	Log files: /mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/_x/logs/link
-INFO: [v++ 60-1548] Creating build summary session with primary output /mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/lzw_compress.xclbin.link_summary, at Thu Nov 21 17:20:12 2024
-INFO: [v++ 60-1316] Initiating connection to rulecheck server, at Thu Nov 21 17:20:12 2024
-INFO: [v++ 60-1315] Creating rulecheck session with output '/mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/_x/reports/link/v++_link_lzw_compress_guidance.html', at Thu Nov 21 17:20:13 2024
+INFO: [v++ 60-1548] Creating build summary session with primary output /mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/lzw_compress.xclbin.link_summary, at Thu Nov 21 21:29:09 2024
+INFO: [v++ 60-1316] Initiating connection to rulecheck server, at Thu Nov 21 21:29:09 2024
+INFO: [v++ 60-1315] Creating rulecheck session with output '/mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/_x/reports/link/v++_link_lzw_compress_guidance.html', at Thu Nov 21 21:29:10 2024
 INFO: [v++ 60-895]   Target platform: /home1/e/ese5320/u96v2_sbc_base/u96v2_sbc_base.xpfm
 INFO: [v++ 60-1578]   This platform contains Xilinx Shell Archive '/home1/e/ese5320/u96v2_sbc_base/hw/u96v2_sbc_base.xsa'
 INFO: [v++ 60-629] Linking for hardware target
 INFO: [v++ 60-423]   Target device: u96v2_sbc_base
 INFO: [v++ 60-1332] Run 'run_link' status: Not started
-INFO: [v++ 60-1443] [17:20:14] Run run_link: Step system_link: Started
+INFO: [v++ 60-1443] [21:29:11] Run run_link: Step system_link: Started
 INFO: [v++ 60-1453] Command Line: system_link --xo /mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/lzw_compress.xo -keep --config /mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/_x/link/int/syslinkConfig.ini --xpfm /home1/e/ese5320/u96v2_sbc_base/u96v2_sbc_base.xpfm --target hw --output_dir /mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/_x/link/int --temp_dir /mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/_x/link/sys_link
 INFO: [v++ 60-1454] Run Directory: /mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/_x/link/run_link
-INFO: [SYSTEM_LINK 60-1316] Initiating connection to rulecheck server, at Thu Nov 21 17:20:15 2024
+INFO: [SYSTEM_LINK 60-1316] Initiating connection to rulecheck server, at Thu Nov 21 21:29:12 2024
 INFO: [SYSTEM_LINK 82-70] Extracting xo v3 file /mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/lzw_compress.xo
 INFO: [SYSTEM_LINK 82-53] Creating IP database /mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/_x/link/sys_link/_sysl/.cdb/xd_ip_db.xml
-INFO: [SYSTEM_LINK 82-38] [17:20:15] build_xd_ip_db started: /mnt/pollux/software/xilinx/2020.2/Vitis/2020.2/bin/build_xd_ip_db -ip_search 0  -sds-pf /mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/_x/link/sys_link/u96v2_sbc_base.hpfm -clkid 0 -ip /mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/_x/link/sys_link/iprepo/xilinx_com_hls_lzw_compress_1_0,lzw_compress -o /mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/_x/link/sys_link/_sysl/.cdb/xd_ip_db.xml
-INFO: [SYSTEM_LINK 82-37] [17:20:18] build_xd_ip_db finished successfully
-Time (s): cpu = 00:00:03 ; elapsed = 00:00:03 . Memory (MB): peak = 1679.270 ; gain = 0.000 ; free physical = 20117 ; free virtual = 29192
+INFO: [SYSTEM_LINK 82-38] [21:29:13] build_xd_ip_db started: /mnt/pollux/software/xilinx/2020.2/Vitis/2020.2/bin/build_xd_ip_db -ip_search 0  -sds-pf /mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/_x/link/sys_link/u96v2_sbc_base.hpfm -clkid 0 -ip /mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/_x/link/sys_link/iprepo/xilinx_com_hls_lzw_compress_1_0,lzw_compress -o /mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/_x/link/sys_link/_sysl/.cdb/xd_ip_db.xml
+INFO: [SYSTEM_LINK 82-37] [21:29:16] build_xd_ip_db finished successfully
+Time (s): cpu = 00:00:03 ; elapsed = 00:00:03 . Memory (MB): peak = 1679.270 ; gain = 0.000 ; free physical = 20497 ; free virtual = 28602
 INFO: [SYSTEM_LINK 82-51] Create system connectivity graph
 INFO: [SYSTEM_LINK 82-102] Applying explicit connections to the system connectivity graph: /mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/_x/link/sys_link/cfgraph/cfgen_cfgraph.xml
-INFO: [SYSTEM_LINK 82-38] [17:20:18] cfgen started: /mnt/pollux/software/xilinx/2020.2/Vitis/2020.2/bin/cfgen  -nk lzw_compress:1:lzw_compress_1 -dmclkid 0 -r /mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/_x/link/sys_link/_sysl/.cdb/xd_ip_db.xml -o /mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/_x/link/sys_link/cfgraph/cfgen_cfgraph.xml
+INFO: [SYSTEM_LINK 82-38] [21:29:16] cfgen started: /mnt/pollux/software/xilinx/2020.2/Vitis/2020.2/bin/cfgen  -nk lzw_compress:1:lzw_compress_1 -dmclkid 0 -r /mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/_x/link/sys_link/_sysl/.cdb/xd_ip_db.xml -o /mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/_x/link/sys_link/cfgraph/cfgen_cfgraph.xml
 INFO: [CFGEN 83-0] Kernel Specs: 
 INFO: [CFGEN 83-0]   kernel: lzw_compress, num: 1  {lzw_compress_1}
 INFO: [CFGEN 83-2226] Inferring mapping for argument lzw_compress_1.s1 to HP0
+INFO: [CFGEN 83-2226] Inferring mapping for argument lzw_compress_1.length to HP0
 INFO: [CFGEN 83-2226] Inferring mapping for argument lzw_compress_1.out_code to HP0
 INFO: [CFGEN 83-2226] Inferring mapping for argument lzw_compress_1.out_len to HP0
-INFO: [SYSTEM_LINK 82-37] [17:20:19] cfgen finished successfully
-Time (s): cpu = 00:00:00.55 ; elapsed = 00:00:01 . Memory (MB): peak = 1679.270 ; gain = 0.000 ; free physical = 20117 ; free virtual = 29192
+INFO: [SYSTEM_LINK 82-37] [21:29:17] cfgen finished successfully
+Time (s): cpu = 00:00:00.80 ; elapsed = 00:00:00.84 . Memory (MB): peak = 1679.270 ; gain = 0.000 ; free physical = 20512 ; free virtual = 28618
 INFO: [SYSTEM_LINK 82-52] Create top-level block diagram
-INFO: [SYSTEM_LINK 82-38] [17:20:19] cf2bd started: /mnt/pollux/software/xilinx/2020.2/Vitis/2020.2/bin/cf2bd  --linux --trace_buffer 1024 --input_file /mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/_x/link/sys_link/cfgraph/cfgen_cfgraph.xml --ip_db /mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/_x/link/sys_link/_sysl/.cdb/xd_ip_db.xml --cf_name dr --working_dir /mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/_x/link/sys_link/_sysl/.xsd --temp_dir /mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/_x/link/sys_link --output_dir /mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/_x/link/int
+INFO: [SYSTEM_LINK 82-38] [21:29:17] cf2bd started: /mnt/pollux/software/xilinx/2020.2/Vitis/2020.2/bin/cf2bd  --linux --trace_buffer 1024 --input_file /mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/_x/link/sys_link/cfgraph/cfgen_cfgraph.xml --ip_db /mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/_x/link/sys_link/_sysl/.cdb/xd_ip_db.xml --cf_name dr --working_dir /mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/_x/link/sys_link/_sysl/.xsd --temp_dir /mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/_x/link/sys_link --output_dir /mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/_x/link/int
 INFO: [CF2BD 82-31] Launching cf2xd: cf2xd -linux -trace-buffer 1024 -i /mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/_x/link/sys_link/cfgraph/cfgen_cfgraph.xml -r /mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/_x/link/sys_link/_sysl/.cdb/xd_ip_db.xml -o dr.xml
 INFO: [CF2BD 82-28] cf2xd finished successfully
 INFO: [CF2BD 82-31] Launching cf_xsd: cf_xsd -disable-address-gen -dn dr -dp /mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/_x/link/sys_link/_sysl/.xsd
 INFO: [CF2BD 82-28] cf_xsd finished successfully
-INFO: [SYSTEM_LINK 82-37] [17:20:21] cf2bd finished successfully
-Time (s): cpu = 00:00:00.96 ; elapsed = 00:00:01 . Memory (MB): peak = 1679.270 ; gain = 0.000 ; free physical = 20110 ; free virtual = 29190
-INFO: [v++ 60-1441] [17:20:21] Run run_link: Step system_link: Completed
-Time (s): cpu = 00:00:06 ; elapsed = 00:00:07 . Memory (MB): peak = 1574.281 ; gain = 0.000 ; free physical = 20149 ; free virtual = 29229
-INFO: [v++ 60-1443] [17:20:21] Run run_link: Step cf2sw: Started
+INFO: [SYSTEM_LINK 82-37] [21:29:18] cf2bd finished successfully
+Time (s): cpu = 00:00:01 ; elapsed = 00:00:01 . Memory (MB): peak = 1679.270 ; gain = 0.000 ; free physical = 20524 ; free virtual = 28634
+INFO: [v++ 60-1441] [21:29:19] Run run_link: Step system_link: Completed
+Time (s): cpu = 00:00:07 ; elapsed = 00:00:07 . Memory (MB): peak = 1574.281 ; gain = 0.000 ; free physical = 20574 ; free virtual = 28684
+INFO: [v++ 60-1443] [21:29:19] Run run_link: Step cf2sw: Started
 INFO: [v++ 60-1453] Command Line: cf2sw -sdsl /mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/_x/link/int/sdsl.dat -rtd /mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/_x/link/int/cf2sw.rtd -nofilter /mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/_x/link/int/cf2sw_full.rtd -xclbin /mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/_x/link/int/xclbin_orig.xml -o /mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/_x/link/int/xclbin_orig.1.xml
 INFO: [v++ 60-1454] Run Directory: /mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/_x/link/run_link
-INFO: [v++ 60-1441] [17:20:22] Run run_link: Step cf2sw: Completed
-Time (s): cpu = 00:00:00.68 ; elapsed = 00:00:00.80 . Memory (MB): peak = 1574.281 ; gain = 0.000 ; free physical = 20158 ; free virtual = 29239
-INFO: [v++ 60-1443] [17:20:22] Run run_link: Step rtd2_system_diagram: Started
+INFO: [v++ 60-1441] [21:29:20] Run run_link: Step cf2sw: Completed
+Time (s): cpu = 00:00:01 ; elapsed = 00:00:01 . Memory (MB): peak = 1574.281 ; gain = 0.000 ; free physical = 20573 ; free virtual = 28684
+INFO: [v++ 60-1443] [21:29:20] Run run_link: Step rtd2_system_diagram: Started
 INFO: [v++ 60-1453] Command Line: rtd2SystemDiagram
 INFO: [v++ 60-1454] Run Directory: /mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/_x/link/run_link
-INFO: [v++ 60-1441] [17:20:23] Run run_link: Step rtd2_system_diagram: Completed
-Time (s): cpu = 00:00:00 ; elapsed = 00:00:02 . Memory (MB): peak = 1574.281 ; gain = 0.000 ; free physical = 19353 ; free virtual = 28449
-INFO: [v++ 60-1443] [17:20:23] Run run_link: Step vpl: Started
+INFO: [v++ 60-1441] [21:29:21] Run run_link: Step rtd2_system_diagram: Completed
+Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.88 . Memory (MB): peak = 1574.281 ; gain = 0.000 ; free physical = 20082 ; free virtual = 28193
+INFO: [v++ 60-1443] [21:29:21] Run run_link: Step vpl: Started
 INFO: [v++ 60-1453] Command Line: vpl -t hw -f u96v2_sbc_base -g --remote_ip_cache /mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/.ipcache -s --output_dir /mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/_x/link/int --log_dir /mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/_x/logs/link --report_dir /mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/_x/reports/link --config /mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/_x/link/int/vplConfig.ini -k /mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/_x/link/int/kernel_info.dat --webtalk_flag Vitis --temp_dir /mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/_x/link --no-info --iprepo /mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/_x/link/int/xo/ip_repo/xilinx_com_hls_lzw_compress_1_0 --messageDb /mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/_x/link/run_link/vpl.pb /mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/_x/link/int/dr.bd.tcl
 INFO: [v++ 60-1454] Run Directory: /mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/_x/link/run_link
 
@@ -59,3 +60,200 @@ INFO: [v++ 60-1454] Run Directory: /mnt/castor/seas_home/s/swang01/Documents/ese
 INFO: [VPL 60-839] Read in kernel information from file '/mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/_x/link/int/kernel_info.dat'.
 INFO: [VPL 60-423]   Target device: u96v2_sbc_base
 INFO: [VPL 60-1032] Extracting hardware platform to /mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/_x/link/vivado/vpl/.local/hw_platform
+WARNING: /mnt/pollux/software/xilinx/2020.2/Vitis/2020.2/tps/lnx64/jre9.0.4 does not exist.
+[21:29:48] Run vpl: Step create_project: Started
+Creating Vivado project.
+[21:30:23] Run vpl: Step create_project: Completed
+[21:30:23] Run vpl: Step create_bd: Started
+[21:30:43] Run vpl: Step create_bd: Completed
+[21:30:43] Run vpl: Step update_bd: Started
+[21:30:43] Run vpl: Step update_bd: Completed
+[21:30:43] Run vpl: Step generate_target: Started
+[21:31:38] Run vpl: Step generate_target: Completed
+[21:31:38] Run vpl: Step config_hw_runs: Started
+[21:31:47] Run vpl: Step config_hw_runs: Completed
+[21:31:47] Run vpl: Step synth: Started
+[21:32:19] Block-level synthesis in progress, 0 of 25 jobs complete, 4 jobs running.
+[21:32:51] Block-level synthesis in progress, 0 of 25 jobs complete, 4 jobs running.
+[21:33:23] Block-level synthesis in progress, 2 of 25 jobs complete, 2 jobs running.
+[21:33:54] Block-level synthesis in progress, 3 of 25 jobs complete, 3 jobs running.
+[21:34:25] Block-level synthesis in progress, 3 of 25 jobs complete, 4 jobs running.
+[21:34:57] Block-level synthesis in progress, 5 of 25 jobs complete, 2 jobs running.
+[21:35:27] Block-level synthesis in progress, 8 of 25 jobs complete, 2 jobs running.
+[21:35:58] Block-level synthesis in progress, 12 of 25 jobs complete, 1 job running.
+[21:36:29] Block-level synthesis in progress, 16 of 25 jobs complete, 0 jobs running.
+[21:37:00] Block-level synthesis in progress, 17 of 25 jobs complete, 3 jobs running.
+[21:37:32] Block-level synthesis in progress, 18 of 25 jobs complete, 4 jobs running.
+[21:38:04] Block-level synthesis in progress, 20 of 25 jobs complete, 3 jobs running.
+[21:38:36] Block-level synthesis in progress, 25 of 25 jobs complete, 0 jobs running.
+[21:39:07] Top-level synthesis in progress.
+[21:39:38] Top-level synthesis in progress.
+[21:40:11] Run vpl: Step synth: Completed
+[21:40:11] Run vpl: Step impl: Started
+[21:41:45] Finished 2nd of 6 tasks (FPGA linking synthesized kernels to platform). Elapsed time: 00h 12m 23s 
+
+[21:41:45] Starting logic optimization..
+[21:41:45] Phase 1 Retarget
+[21:41:45] Phase 2 Constant propagation
+[21:41:45] Phase 3 Sweep
+[21:41:45] Phase 4 BUFG optimization
+[21:41:45] Phase 5 Shift Register Optimization
+[21:41:45] Phase 6 Post Processing Netlist
+[21:42:17] Finished 3rd of 6 tasks (FPGA logic optimization). Elapsed time: 00h 00m 31s 
+
+[21:42:17] Starting logic placement..
+[21:42:17] Phase 1 Placer Initialization
+[21:42:17] Phase 1.1 Placer Initialization Netlist Sorting
+[21:42:17] Phase 1.2 IO Placement/ Clock Placement/ Build Placer Device
+[21:42:17] Phase 1.3 Build Placer Netlist Model
+[21:42:17] Phase 1.4 Constrain Clocks/Macros
+[21:42:17] Phase 2 Global Placement
+[21:42:17] Phase 2.1 Floorplanning
+[21:42:17] Phase 2.1.1 Partition Driven Placement
+[21:42:17] Phase 2.1.1.1 PBP: Partition Driven Placement
+[21:42:48] Phase 2.1.1.2 PBP: Clock Region Placement
+[21:42:48] Phase 2.1.1.3 PBP: Discrete Incremental
+[21:42:48] Phase 2.1.1.4 PBP: Compute Congestion
+[21:42:48] Phase 2.1.1.5 PBP: Macro Placement
+[21:42:48] Phase 2.1.1.6 PBP: UpdateTiming
+[21:42:48] Phase 2.1.1.7 PBP: Add part constraints
+[21:42:48] Phase 2.2 Update Timing before SLR Path Opt
+[21:42:48] Phase 2.3 Global Placement Core
+[21:42:48] Phase 2.3.1 Physical Synthesis In Placer
+[21:42:48] Phase 3 Detail Placement
+[21:42:48] Phase 3.1 Commit Multi Column Macros
+[21:42:48] Phase 3.2 Commit Most Macros & LUTRAMs
+[21:42:48] Phase 3.3 Small Shape DP
+[21:42:48] Phase 3.3.1 Small Shape Clustering
+[21:42:48] Phase 3.3.2 Flow Legalize Slice Clusters
+[21:42:48] Phase 3.3.3 Slice Area Swap
+[21:42:48] Phase 3.4 Re-assign LUT pins
+[21:42:48] Phase 3.5 Pipeline Register Optimization
+[21:42:48] Phase 4 Post Placement Optimization and Clean-Up
+[21:42:48] Phase 4.1 Post Commit Optimization
+[21:43:20] Phase 4.1.1 Post Placement Optimization
+[21:43:20] Phase 4.1.1.1 BUFG Insertion
+[21:43:20] Phase 1 Physical Synthesis Initialization
+[21:43:20] Phase 4.2 Post Placement Cleanup
+[21:43:20] Phase 4.3 Placer Reporting
+[21:43:20] Phase 4.3.1 Print Estimated Congestion
+[21:43:20] Phase 4.4 Final Placement Cleanup
+[21:43:20] Finished 4th of 6 tasks (FPGA logic placement). Elapsed time: 00h 01m 03s 
+
+[21:43:20] Starting logic routing..
+[21:43:20] Phase 1 Build RT Design
+[21:43:20] Phase 2 Router Initialization
+[21:43:20] Phase 2.1 Fix Topology Constraints
+[21:43:20] Phase 2.2 Pre Route Cleanup
+[21:43:20] Phase 2.3 Global Clock Net Routing
+[21:43:20] Phase 2.4 Update Timing
+[21:43:20] Phase 3 Initial Routing
+[21:43:20] Phase 3.1 Global Routing
+[21:43:20] Phase 4 Rip-up And Reroute
+[21:43:20] Phase 4.1 Global Iteration 0
+[21:44:23] Phase 4.2 Additional Iteration for Hold
+[21:44:23] Phase 5 Delay and Skew Optimization
+[21:44:23] Phase 5.1 Delay CleanUp
+[21:44:23] Phase 5.1.1 Update Timing
+[21:44:23] Phase 5.2 Clock Skew Optimization
+[21:44:23] Phase 6 Post Hold Fix
+[21:44:23] Phase 6.1 Hold Fix Iter
+[21:44:23] Phase 6.1.1 Update Timing
+[21:44:23] Phase 7 Route finalize
+[21:44:23] Phase 8 Verifying routed nets
+[21:44:23] Phase 9 Depositing Routes
+[21:44:23] Phase 10 Route finalize
+[21:44:23] Phase 11 Post Router Timing
+[21:44:23] Finished 5th of 6 tasks (FPGA routing). Elapsed time: 00h 01m 02s 
+
+[21:44:23] Starting bitstream generation..
+[21:44:45] Run vpl: Step impl: Completed
+[21:44:48] Creating bitmap...
+[21:44:48] Writing bitstream ./u96v2_sbc_base_wrapper.bit...
+[21:44:48] Finished 6th of 6 tasks (FPGA bitstream generation). Elapsed time: 00h 00m 24s 
+[21:44:48] Run vpl: FINISHED. Run Status: impl Complete!
+INFO: [v++ 60-1441] [21:44:50] Run run_link: Step vpl: Completed
+Time (s): cpu = 00:00:07 ; elapsed = 00:15:29 . Memory (MB): peak = 1574.281 ; gain = 0.000 ; free physical = 18612 ; free virtual = 27533
+INFO: [v++ 60-1443] [21:44:50] Run run_link: Step rtdgen: Started
+INFO: [v++ 60-1453] Command Line: rtdgen
+INFO: [v++ 60-1454] Run Directory: /mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/_x/link/run_link
+INFO: [v++ 60-1453] Command Line: cf2sw -a /mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/_x/link/int/address_map.xml -sdsl /mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/_x/link/int/sdsl.dat -xclbin /mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/_x/link/int/xclbin_orig.xml -rtd /mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/_x/link/int/lzw_compress.rtd -o /mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/_x/link/int/lzw_compress.xml
+INFO: [v++ 60-1652] Cf2sw returned exit code: 0
+INFO: [v++ 60-2311] HPISystemDiagram::writeSystemDiagramAfterRunningVivado, rtdInputFilePath: /mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/_x/link/int/lzw_compress.rtd
+INFO: [v++ 60-2312] HPISystemDiagram::writeSystemDiagramAfterRunningVivado, systemDiagramOutputFilePath: /mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/_x/link/int/systemDiagramModelSlrBaseAddress.json
+INFO: [v++ 60-1618] Launching 
+INFO: [v++ 60-1441] [21:44:51] Run run_link: Step rtdgen: Completed
+Time (s): cpu = 00:00:00.99 ; elapsed = 00:00:02 . Memory (MB): peak = 1574.281 ; gain = 0.000 ; free physical = 18632 ; free virtual = 27553
+INFO: [v++ 60-1443] [21:44:51] Run run_link: Step xclbinutil: Started
+INFO: [v++ 60-1453] Command Line: xclbinutil --add-section BITSTREAM:RAW:/mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/_x/link/int/system.bit --force --target hw --key-value SYS:dfx_enable:false --add-section :JSON:/mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/_x/link/int/lzw_compress.rtd --add-section CLOCK_FREQ_TOPOLOGY:JSON:/mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/_x/link/int/lzw_compress_xml.rtd --add-section BUILD_METADATA:JSON:/mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/_x/link/int/lzw_compress_build.rtd --add-section EMBEDDED_METADATA:RAW:/mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/_x/link/int/lzw_compress.xml --add-section SYSTEM_METADATA:RAW:/mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/_x/link/int/systemDiagramModelSlrBaseAddress.json --key-value SYS:PlatformVBNV:avnet.com_u96v2_sbc_base_u96v2_sbc_base_1_0 --output /mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/lzw_compress.xclbin
+INFO: [v++ 60-1454] Run Directory: /mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/_x/link/run_link
+XRT Build Version: 2.8.0 (Vitis)
+       Build Date: 2020-11-04 13:51:01
+          Hash ID: 70b0d7e5db97d08503f97ca713c33ecb01ddca64
+Creating a default 'in-memory' xclbin image.
+
+Section: 'BITSTREAM'(0) was successfully added.
+Size   : 5568794 bytes
+Format : RAW
+File   : '/mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/_x/link/int/system.bit'
+
+Section: 'MEM_TOPOLOGY'(6) was successfully added.
+Format : JSON
+File   : 'mem_topology'
+
+Section: 'IP_LAYOUT'(8) was successfully added.
+Format : JSON
+File   : 'ip_layout'
+
+Section: 'CONNECTIVITY'(7) was successfully added.
+Format : JSON
+File   : 'connectivity'
+WARNING: Skipping CLOCK_FREQ_TOPOLOGY section for count size is zero.
+WARNING: Section 'CLOCK_FREQ_TOPOLOGY' content is empty.  No data in the given JSON file.
+
+Section: 'CLOCK_FREQ_TOPOLOGY'(11) was empty.  No action taken.
+Format : JSON
+File   : '/mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/_x/link/int/lzw_compress_xml.rtd'
+
+Section: 'BUILD_METADATA'(14) was successfully added.
+Size   : 2248 bytes
+Format : JSON
+File   : '/mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/_x/link/int/lzw_compress_build.rtd'
+
+Section: 'EMBEDDED_METADATA'(2) was successfully added.
+Size   : 2759 bytes
+Format : RAW
+File   : '/mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/_x/link/int/lzw_compress.xml'
+
+Section: 'SYSTEM_METADATA'(22) was successfully added.
+Size   : 6902 bytes
+Format : RAW
+File   : '/mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/_x/link/int/systemDiagramModelSlrBaseAddress.json'
+Successfully wrote (5588597 bytes) to the output file: /mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/lzw_compress.xclbin
+Leaving xclbinutil.
+INFO: [v++ 60-1441] [21:44:52] Run run_link: Step xclbinutil: Completed
+Time (s): cpu = 00:00:00.71 ; elapsed = 00:00:01 . Memory (MB): peak = 1574.281 ; gain = 0.000 ; free physical = 18596 ; free virtual = 27523
+INFO: [v++ 60-1443] [21:44:52] Run run_link: Step xclbinutilinfo: Started
+INFO: [v++ 60-1453] Command Line: xclbinutil --quiet --force --info /mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/lzw_compress.xclbin.info --input /mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/lzw_compress.xclbin
+INFO: [v++ 60-1454] Run Directory: /mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/_x/link/run_link
+INFO: [v++ 60-1441] [21:44:53] Run run_link: Step xclbinutilinfo: Completed
+Time (s): cpu = 00:00:00.73 ; elapsed = 00:00:00.83 . Memory (MB): peak = 1574.281 ; gain = 0.000 ; free physical = 18599 ; free virtual = 27527
+INFO: [v++ 60-1443] [21:44:53] Run run_link: Step generate_sc_driver: Started
+INFO: [v++ 60-1453] Command Line: 
+INFO: [v++ 60-1454] Run Directory: /mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/_x/link/run_link
+INFO: [v++ 60-1441] [21:44:53] Run run_link: Step generate_sc_driver: Completed
+Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.02 . Memory (MB): peak = 1574.281 ; gain = 0.000 ; free physical = 18599 ; free virtual = 27527
+INFO: [v++ 60-244] Generating system estimate report...
+INFO: [v++ 60-1092] Generated system estimate report: /mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/_x/reports/link/system_estimate_lzw_compress.xtxt
+INFO: [v++ 60-2397] Platform default or user specified output type sd_card detected but is not a supported output for v++ --link. Use the v++ --package option instead to create SD card output.
+INFO: [v++ 60-586] Created lzw_compress.xclbin
+INFO: [v++ 60-1307] Run completed. Additional information can be found in:
+	Guidance: /mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/_x/reports/link/v++_link_lzw_compress_guidance.html
+	Timing Report: /mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/_x/reports/link/imp/impl_1_u96v2_sbc_base_wrapper_timing_summary_routed.rpt
+	Vivado Log: /mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/_x/logs/link/vivado.log
+	Steps Log File: /mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/_x/logs/link/link.steps.log
+
+INFO: [v++ 60-2343] Use the vitis_analyzer tool to visualize and navigate the relevant reports. Run the following command. 
+    vitis_analyzer /mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/lzw_compress.xclbin.link_summary 
+INFO: [v++ 60-791] Total elapsed time: 0h 15m 54s
+INFO: [v++ 60-1653] Closing dispatch client.
