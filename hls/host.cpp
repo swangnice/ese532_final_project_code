@@ -277,16 +277,16 @@ int main(int argc, char** argv)
             // q.finish();
 
             cl::Event write_ev;
-            q.enqueueMigrateMemObjects({lzw_s1_buf, lzw_length_buf}, 0, nullptr, &write_ev);
+            q.enqueueMigrateMemObjects({lzw_s1_buf, lzw_length_buf}, 0, NULL, &write_ev);
 
             cl::Event exec_ev;
             // Create a vector for the event dependency
-            std::vector<cl::Event> write_event_vec = {write_ev};
-            q.enqueueTask(lzw_kernel, &write_event_vec, &exec_ev);
+            write_events.push_back(write_ev);
+            q.enqueueTask(lzw_kernel, &write_events, &exec_ev);
 
             cl::Event read_ev;
             // Create another vector for the event dependency
-            std::vector<cl::Event> exec_event_vec = {exec_ev};
+            exec_events.push_back(exec_ev);
             q.enqueueMigrateMemObjects({lzw_out_code_buf, lzw_out_len_buf}, CL_MIGRATE_MEM_OBJECT_HOST, &exec_event_vec, &read_ev);
 
             // 等待完成
