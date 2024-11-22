@@ -55,6 +55,13 @@ void handle_input(int argc, char* argv[], int* blocksize) {
 	}
 }
 
+void checkErr(cl_int err, const char* name) {
+    if (err != CL_SUCCESS) {
+        std::cerr << "ERROR: " << name << " (" << err << ")" << std::endl;
+        exit(EXIT_FAILURE);
+    }
+}
+
 int main(int argc, char** argv)
 {
     EventTimer timer;
@@ -253,7 +260,7 @@ int main(int argc, char** argv)
     //     memcpy(&lzw_s1[i * MAX_CHUNK_SIZE], chunks[i], chunk_sizes[i]);
     //     lzw_length[i] = chunk_sizes[i];
     // }
-
+	cl_int err1;
 
     for (unsigned int i = 0; i < chunk_count; i++) {
         if (dup_flag[i] == 0) {
@@ -265,10 +272,14 @@ int main(int argc, char** argv)
 
 			//printf("begin to write in buffer\n");
 
-			lzw_kernel.setArg(0, lzw_s1_buf);
-            lzw_kernel.setArg(1, lzw_length_buf);
-            lzw_kernel.setArg(2, lzw_out_code_buf);
-            lzw_kernel.setArg(3, lzw_out_len_buf);
+			err1 = lzw_kernel.setArg(0, lzw_s1_buf);
+			checkErr(err1, "Setting kernel arg 0");
+            eer1 = lzw_kernel.setArg(1, lzw_length_buf);
+			checkErr(err1, "Setting kernel arg 1");
+            eer1 = lzw_kernel.setArg(2, lzw_out_code_buf);
+			checkErr(err1, "Setting kernel arg 2");
+            eer1 = lzw_kernel.setArg(3, lzw_out_len_buf);
+			checkErr(err1, "Setting kernel arg 3");
 
             std::vector<cl::Event> write_events;
             std::vector<cl::Event> exec_events;
