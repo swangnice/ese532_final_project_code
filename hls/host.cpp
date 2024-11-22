@@ -260,7 +260,7 @@ int main(int argc, char** argv)
             //lzw_compress(chunks[i], &chunk_sizes[i], temp_lzw_compressed_output[i], &temp_output_index[i]);
             memcpy(&lzw_s1[i], chunks[i], chunk_sizes[i]);
             lzw_length = &chunk_sizes[i];
-			printf("begin to set Arg\n");
+
             lzw_kernel.setArg(0, lzw_s1_buf);
             lzw_kernel.setArg(1, lzw_length_buf);
             lzw_kernel.setArg(2, lzw_out_code_buf);
@@ -309,6 +309,7 @@ int main(int argc, char** argv)
             compressed_data_size[i] = output_index;
         }
     }
+	printf("finish convert out\n");
 
     uint32_t header[chunk_count];
 	for (unsigned int i = 0; i < chunk_count; i++) {
@@ -328,7 +329,7 @@ int main(int argc, char** argv)
 
 
 
-
+	printf("begin to write in file\n");
     FILE* out_file = fopen("compressed_data.bin", "wb");
 	if (file == NULL) {
         perror("Failed to open file");
@@ -345,6 +346,7 @@ int main(int argc, char** argv)
 		}
 	}
 	fclose(out_file);
+	printf("begin to free\n");
 
 
     for (int i = 0; i < NUM_PACKETS; i++) {
