@@ -255,56 +255,95 @@ int main(int argc, char** argv)
         lzw_length[i] = chunk_sizes[i];
     }
 
+
+
     for (unsigned int i = 0; i < chunk_count; i++) {
         if (dup_flag[i] == 0) {
-            // 第一次循环：调用 lzw_compress
-            lzw_compress(chunks[i], &chunk_sizes[i], temp_lzw_compressed_output[i], &temp_output_index[i]);
+            //lzw_compress(chunks[i], &chunk_sizes[i], temp_lzw_compressed_output[i], &temp_output_index[i]);
+            lzw_kernel.setArg(0, lzw_s1_buf);
+            lzw_kernel.setArg(1, lzw_length_buf);
+            lzw_kernel.setArg(2, lzw_out_code_buf);
+            lzw_kernel.setArg(3, lzw_out_len_buf);
+
+            std::vector<cl::Event> write_events;
+            std::vector<cl::Event> exec_events;
+
+            cl::Event write_ev;
+            cl::Event exec_ev;
+            cl::Event read_ev;
+
+            q.enqueueMigrateMemObjects({lzw_s1_buf, lzw_length_buf}, 0 /* 0 means from host*/, NULL, &write_ev);
+			write_events.push_back(write_ev); 
+            q.enqueueTask(lzw_kernel, &write_events, &exec_ev);
+			exec_events.push_back(exec_ev);
+            q.enqueueMigrateMemObjects({lzw_out_code_buf, lzw_out_len_buf}, CL_MIGRATE_MEM_OBJECT_HOST, &exec_events, &read_ev);
+            q.finish();
+
+
+        
         }
     }
 
-// 转换输出
     for (unsigned int i = 0; i < chunk_count; i++) {
         if (dup_flag[i] == 0) {
-            // 第二次循环：调用 convert_output
-            int output_index = convert_output(temp_lzw_compressed_output[i], lzw_compressed_output[i], temp_output_index[i]);
+            int output_index = convert_output(lzw_out_code[i], lzw_compressed_output[i], lzw_out_len[i]);
             compressed_data_size[i] = output_index;
         }
     }
 
+    uint32_t header[chunk_count];
+	for (unsigned int i = 0; i < chunk_count; i++) {
+
+		header[i] = 0;
+		if (dup_flag[i] == 0) {
+			header[i] = compressed_data_size[i] << 1;
+		} else {
+			header[i] = (dup_index[i]<<1) | 0x00000001;
+		}
+		//header[i] = (temp_header << 24) & 0xff000000 | (temp_header<<8)&0x00ff0000 | (temp_header>>8)&0x0000ff00 | (temp_header>>24)&0x000000ff;
+
+		//printf("chunk: %u, Header: %#010x\n", i, header[i]);
+		//printf("chunk: %u, Header: %#010x\n", i, temp_header);
+	}
 
 
 
 
 
+    FILE* out_file = fopen("compressed_data.bin", "wb");
+	if (file == NULL) {
+        perror("Failed to open file");
+        
+    }
+	for (unsigned int i = 0; i < chunk_count; i++) {
+		fwrite(&header[i], sizeof(uint32_t), 1, out_file);
+		printf("%#010x", header[i]);
+		if (dup_flag[i] == 0) {
+			for (int j = 0; j < compressed_data_size[i]; j++) {
+				fwrite(&lzw_compressed_output[i][j], sizeof(uint8_t), 1, out_file);
+				printf("%02X ", lzw_compressed_output[i][j]);
+			}
+		}
+	}
+	fclose(out_file);
 
 
+    for (int i = 0; i < NUM_PACKETS; i++) {
+		free(input[i]);
+	}
 
+	for (unsigned int i = 0; i < chunk_count; ++i) {
+        free(chunks[i]);
+    }
+    free(chunks);
+    free(chunk_sizes);
+    delete[] fileBuf;
+    q.enqueueUnmapMemObject(lzw_s1_buf, lzw_s1);
+    q.enqueueUnmapMemObject(lzw_length_buf, lzw_length);
+    q.enqueueUnmapMemObject(lzw_out_code_buf, lzw_out_code);
+    q.enqueueUnmapMemObject(lzw_out_len_buf, lzw_out_len);
+    q.finish();
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    return 0;
 
 }
