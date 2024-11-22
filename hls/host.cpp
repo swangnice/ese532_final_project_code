@@ -324,7 +324,7 @@ int main(int argc, char** argv)
     // q.enqueueUnmapMemObject(lzw_out_code_buf, lzw_out_code);
     // q.enqueueUnmapMemObject(lzw_out_len_buf, lzw_out_len);
     // q.finish();
-
+	lzw_timer.stop();
 
     for (unsigned int i = 0; i < chunk_count; i++) {
         if (dup_flag[i] == 0) {
@@ -332,7 +332,8 @@ int main(int argc, char** argv)
             compressed_data_size[i] = output_index;
         }
     }
-	lzw_timer.stop();
+	overall_timer.stop();
+
 
     uint32_t header[chunk_count];
 	for (unsigned int i = 0; i < chunk_count; i++) {
@@ -348,7 +349,7 @@ int main(int argc, char** argv)
 		//printf("chunk: %u, Header: %#010x\n", i, header[i]);
 		//printf("chunk: %u, Header: %#010x\n", i, temp_header);
 	}
-	overall_timer.stop();
+
 
 
 
