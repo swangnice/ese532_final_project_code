@@ -255,8 +255,6 @@ int main(int argc, char** argv)
         lzw_length[i] = chunk_sizes[i];
     }
 
-
-
     for (unsigned int i = 0; i < chunk_count; i++) {
         if (dup_flag[i] == 0) {
             //lzw_compress(chunks[i], &chunk_sizes[i], temp_lzw_compressed_output[i], &temp_output_index[i]);
@@ -272,13 +270,27 @@ int main(int argc, char** argv)
             cl::Event exec_ev;
             cl::Event read_ev;
 
-            q.enqueueMigrateMemObjects({lzw_s1_buf, lzw_length_buf}, 0 /* 0 means from host*/, NULL, &write_ev);
-			write_events.push_back(write_ev); 
-            q.enqueueTask(lzw_kernel, &write_events, &exec_ev);
-			exec_events.push_back(exec_ev);
-            q.enqueueMigrateMemObjects({lzw_out_code_buf, lzw_out_len_buf}, CL_MIGRATE_MEM_OBJECT_HOST, &exec_events, &read_ev);
-            q.finish();
+            // q.enqueueMigrateMemObjects({lzw_s1_buf, lzw_length_buf}, 0 /* 0 means from host*/, NULL, &write_ev);
+			// write_events.push_back(write_ev); 
+            // q.enqueueTask(lzw_kernel, &write_events, &exec_ev);
+			// exec_events.push_back(exec_ev);
+            // q.enqueueMigrateMemObjects({lzw_out_code_buf, lzw_out_len_buf}, CL_MIGRATE_MEM_OBJECT_HOST, &exec_events, &read_ev);
+            // q.finish();
 
+            // 数据传输到设备
+            cl::Event write_ev;
+            q.enqueueMigrateMemObjects({lzw_s1_buf, lzw_length_buf}, 0, NULL, &write_ev);
+
+            // 执行内核
+            cl::Event exec_ev;
+            q.enqueueTask(lzw_kernel, {write_ev}, &exec_ev);
+
+            // 数据从设备读取
+            cl::Event read_ev;
+            q.enqueueMigrateMemObjects({lzw_out_code_buf, lzw_out_len_buf}, CL_MIGRATE_MEM_OBJECT_HOST, {exec_ev}, &read_ev);
+
+            // 等待完成
+            q.finish();
 
         
         }
