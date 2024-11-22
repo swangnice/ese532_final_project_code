@@ -300,11 +300,11 @@ int main(int argc, char** argv)
         }
     }
 	//delete[] fileBuf;
-    q.enqueueUnmapMemObject(lzw_s1_buf, lzw_s1);
-    q.enqueueUnmapMemObject(lzw_length_buf, lzw_length);
-    q.enqueueUnmapMemObject(lzw_out_code_buf, lzw_out_code);
-    q.enqueueUnmapMemObject(lzw_out_len_buf, lzw_out_len);
-    q.finish();
+    // q.enqueueUnmapMemObject(lzw_s1_buf, lzw_s1);
+    // q.enqueueUnmapMemObject(lzw_length_buf, lzw_length);
+    // q.enqueueUnmapMemObject(lzw_out_code_buf, lzw_out_code);
+    // q.enqueueUnmapMemObject(lzw_out_len_buf, lzw_out_len);
+    // q.finish();
 
 	printf("begin to Covert\n");
 
