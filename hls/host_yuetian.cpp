@@ -14,11 +14,11 @@
 #include <unistd.h>
 #include <vector>
 
-#include "../server/server.h"
-#include "../server/chunk.h"
-#include "../server/cdc.h"
-#include "../server/sha.h"
-#include "../server/lzw.h"
+#include "../Server/server.h"
+#include "../Server/chunk.h"
+#include "../Server/cdc.h"
+#include "../Server/sha.h"
+#include "../Server/lzw.h"
 //#include "host.h"
 #include "utils.h"
 
@@ -53,39 +53,6 @@ void handle_input(int argc, char* argv[], int* blocksize) {
 			break;
 		}
 	}
-}
-
-
-int convert_output(uint16_t in[], uint8_t out[], int input_size){
-    //header
-    int output_size = 0;
-
-    int adjusted_input_size = input_size - (input_size % 2);
-
-    for(int i = 0; i < adjusted_input_size; i+=2){
-        //printf("in[i]: %hu\n", in[i]);
-        //printf("in[i+1]: %hu\n", in[i+1]);
-        
-
-        out[output_size] = (in[i]>>4) & 0xff;
-        //printf("out[1]: %u\n", static_cast<unsigned int>(out[output_size]));
-        output_size++;
-        out[output_size] = ((in[i] << 4) & 0xf0) | ((in[i+1] >> 8) & 0x0f);
-        //printf("out[2]: %u\n", static_cast<unsigned int>(out[output_size]));
-        output_size++;
-        out[output_size] = (in[i+1]) & 0xff;
-        //printf("out[3]: %u\n", static_cast<unsigned int>(out[output_size]));
-        output_size++;
-    }
-
-    if (input_size % 2 != 0) {
-        out[output_size] = (in[adjusted_input_size] >> 4) & 0xFF;
-        output_size++;
-        out[output_size] = (in[adjusted_input_size] << 4) & 0xF0;
-        output_size++;
-    }
-
-    return output_size;
 }
 
 int main(int argc, char** argv)
@@ -197,11 +164,10 @@ int main(int argc, char** argv)
 	//printf("%.*s\n", length, &buffer[HEADER]);
 	unsigned char **chunks = NULL;
     unsigned int chunk_count = 0;
-    unsigned int *chunk_sizes = NULL;
-	chunk_count = 0;
+    int *chunk_sizes = NULL;
     unsigned int estimated_chunks = 15360 / WIN_SIZE + 1;
     chunks = (unsigned char **)malloc(sizeof(unsigned char *) * estimated_chunks);
-    chunk_sizes = (unsigned int *)malloc(sizeof(unsigned int) * estimated_chunks);
+    chunk_sizes = (int *)malloc(sizeof(unsigned int) * estimated_chunks);
 	cdc_timer.start();
 	cdc(&buffer[HEADER], length, &chunks, &chunk_count, &chunk_sizes);
 
@@ -290,7 +256,7 @@ int main(int argc, char** argv)
 	dup_index[0] = 0;
 	int undup_count = 1;
 	for (unsigned int i = 1; i < chunk_count; i++) {				
-		dup_flag[i] = 0;	//un duplicated
+		dup_flag[i] = 0;	//un duplicatedtotal_bytes
 		dup_index[i] = i;
 		for (unsigned int j = 0; j < i; j++) {
 			if (memcmp(sha256_output[i], sha256_output[j], 32) == 0) {
@@ -325,11 +291,11 @@ int main(int argc, char** argv)
             lzw_kernel.setArg(3, lzw_total_bytes_buf);
 
             std::vector<cl::Event> write_events;
-			std::vector<cl::Event> exec_events;
+	    std::vector<cl::Event> exec_events;
 
             cl::Event write_ev;
-			cl::Event exec_ev;
-			cl::Event read_ev;
+	    cl::Event exec_ev;
+	    cl::Event read_ev;
 
 			q.enqueueMigrateMemObjects({lzw_chunks_buf, lzw_chunks_length_buf}, 0 /* 0 means from host*/, NULL, &write_ev);
 			write_events.push_back(write_ev); 	
