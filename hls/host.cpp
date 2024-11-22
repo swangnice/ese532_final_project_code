@@ -272,18 +272,6 @@ int main(int argc, char** argv)
             cl::Event write_ev;
             cl::Event exec_ev;
             cl::Event read_ev;
-            //cl::Event write_ev;
-            //cl::Event exec_ev;
-            //cl::Event read_ev;
-
-            // q.enqueueMigrateMemObjects({lzw_s1_buf, lzw_length_buf}, 0 /* 0 means from host*/, NULL, &write_ev);
-			// write_events.push_back(write_ev); 
-            // q.enqueueTask(lzw_kernel, &write_events, &exec_ev);
-			// exec_events.push_back(exec_ev);
-            // q.enqueueMigrateMemObjects({lzw_out_code_buf, lzw_out_len_buf}, CL_MIGRATE_MEM_OBJECT_HOST, &exec_events, &read_ev);
-            // q.finish();
-
-            
             q.enqueueMigrateMemObjects({lzw_s1_buf, lzw_length_buf}, 0, NULL, &write_ev);
 
             
@@ -302,6 +290,7 @@ int main(int argc, char** argv)
         
         }
     }
+	printf("begin to Covert\n");
 
     for (unsigned int i = 0; i < chunk_count; i++) {
         if (dup_flag[i] == 0) {
