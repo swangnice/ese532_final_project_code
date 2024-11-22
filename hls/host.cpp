@@ -274,11 +274,11 @@ int main(int argc, char** argv)
 
 			err1 = lzw_kernel.setArg(0, lzw_s1_buf);
 			checkErr(err1, "Setting kernel arg 0");
-            eer1 = lzw_kernel.setArg(1, lzw_length_buf);
+            err1 = lzw_kernel.setArg(1, lzw_length_buf);
 			checkErr(err1, "Setting kernel arg 1");
-            eer1 = lzw_kernel.setArg(2, lzw_out_code_buf);
+            err1 = lzw_kernel.setArg(2, lzw_out_code_buf);
 			checkErr(err1, "Setting kernel arg 2");
-            eer1 = lzw_kernel.setArg(3, lzw_out_len_buf);
+            err1 = lzw_kernel.setArg(3, lzw_out_len_buf);
 			checkErr(err1, "Setting kernel arg 3");
 
             std::vector<cl::Event> write_events;
