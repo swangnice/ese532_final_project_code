@@ -260,26 +260,21 @@ int main(int argc, char** argv)
     //     memcpy(&lzw_s1[i * MAX_CHUNK_SIZE], chunks[i], chunk_sizes[i]);
     //     lzw_length[i] = chunk_sizes[i];
     // }
-	cl_int err1;
 
     for (unsigned int i = 0; i < chunk_count; i++) {
         if (dup_flag[i] == 0) {
             //lzw_compress(chunks[i], &chunk_sizes[i], temp_lzw_compressed_output[i], &temp_output_index[i]);
             memcpy(&lzw_s1[i], chunks[i], chunk_sizes[i]);
 			//printf("chunk size: %d\n", chunk_sizes[i]);
-            lzw_length = &chunk_sizes[i];
+            *lzw_length = chunk_sizes[i];
 			printf("chunk size: %d\n", *lzw_length);
 
 			//printf("begin to write in buffer\n");
 
-			err1 = lzw_kernel.setArg(0, lzw_s1_buf);
-			checkErr(err1, "Setting kernel arg 0");
-            err1 = lzw_kernel.setArg(1, lzw_length_buf);
-			checkErr(err1, "Setting kernel arg 1");
-            err1 = lzw_kernel.setArg(2, lzw_out_code_buf);
-			checkErr(err1, "Setting kernel arg 2");
-            err1 = lzw_kernel.setArg(3, lzw_out_len_buf);
-			checkErr(err1, "Setting kernel arg 3");
+			lzw_kernel.setArg(0, lzw_s1_buf);
+            lzw_kernel.setArg(1, lzw_length_buf);
+			lzw_kernel.setArg(2, lzw_out_code_buf);
+			lzw_kernel.setArg(3, lzw_out_len_buf);
 
             std::vector<cl::Event> write_events;
             std::vector<cl::Event> exec_events;
