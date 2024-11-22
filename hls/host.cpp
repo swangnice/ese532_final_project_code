@@ -251,7 +251,7 @@ int main(int argc, char** argv)
 
     for (unsigned int i = 0; i < chunk_count; i++) {
         memcpy(&lzw_s1[i * MAX_CHUNK_SIZE], chunks[i], chunk_sizes[i]);
-        lzw_length[i] = chunk_sizes[i];
+        lzw_length[i] = &chunk_sizes[i];
     }
 
         lzw_kernel.setArg(0, lzw_s1_buf);
@@ -266,6 +266,9 @@ int main(int argc, char** argv)
             std::vector<cl::Event> write_events;
             std::vector<cl::Event> exec_events;
 
+            cl::Event write_ev;
+            cl::Event exec_ev;
+            cl::Event read_ev;
             //cl::Event write_ev;
             //cl::Event exec_ev;
             //cl::Event read_ev;
@@ -277,15 +280,15 @@ int main(int argc, char** argv)
             // q.enqueueMigrateMemObjects({lzw_out_code_buf, lzw_out_len_buf}, CL_MIGRATE_MEM_OBJECT_HOST, &exec_events, &read_ev);
             // q.finish();
 
-            cl::Event write_ev;
+            
             q.enqueueMigrateMemObjects({lzw_s1_buf, lzw_length_buf}, 0, NULL, &write_ev);
 
-            cl::Event exec_ev;
+            
             // Create a vector for the event dependency
             write_events.push_back(write_ev);
             q.enqueueTask(lzw_kernel, &write_events, &exec_ev);
 
-            cl::Event read_ev;
+            
             // Create another vector for the event dependency
             exec_events.push_back(exec_ev);
             q.enqueueMigrateMemObjects({lzw_out_code_buf, lzw_out_len_buf}, CL_MIGRATE_MEM_OBJECT_HOST, &exec_events, &read_ev);
