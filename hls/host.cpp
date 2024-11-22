@@ -105,7 +105,14 @@ int main(int argc, char** argv)
 // ------------------------------------------------------------------------------------
 // Step 3: Run the kernel
 // ------------------------------------------------------------------------------------
-    unsigned char* input[NUM_PACKETS];
+    stopwatch ethernet_timer;
+	stopwatch cdc_timer;
+	stopwatch sha_timer;
+	stopwatch dedup_timer;
+	stopwatch lzw_timer;
+	stopwatch overall_timer;
+	
+	unsigned char* input[NUM_PACKETS];
 	int writer = 0;
 	int done = 0;
 	int length = 0;
@@ -133,7 +140,9 @@ int main(int argc, char** argv)
 	server.setup_server(blocksize);
 
 	writer = pipe_depth;
+	ethernet_timer.start();
 	server.get_packet(input[writer]);
+	ethernet_timer.stop();
 	count++;
 
 	// get packet
@@ -143,7 +152,7 @@ int main(int argc, char** argv)
 	length = buffer[0] | (buffer[1] << 8);
 	length &= ~DONE_BIT_H;
 
-	//overall_timer.start();
+	overall_timer.start();
 	memcpy(&file[offset], &buffer[HEADER], length);
 
     unsigned int estimated_chunks = 15360 / WIN_SIZE + 1;
@@ -154,9 +163,9 @@ int main(int argc, char** argv)
     chunks = (unsigned char **)malloc(sizeof(unsigned char *) * estimated_chunks);
 	chunk_count = 0;
     chunk_sizes = (int *)malloc(sizeof(int) * estimated_chunks);
-	//cdc_timer.start();
+	cdc_timer.start();
 	cdc(&buffer[HEADER], length, &chunks, &chunk_count, &chunk_sizes);
-	//cdc_timer.stop();
+	cdc_timer.stop();
 	offset += length;
 	writer++;
 //Get all UDP Packets and CDC
@@ -181,9 +190,9 @@ int main(int argc, char** argv)
 		length &= ~DONE_BIT_H;
 		//printf("length: %d offset %d\n",length,offset);
 		memcpy(&file[offset], &buffer[HEADER], length);
-		//cdc_timer.start();
+		cdc_timer.start();
 		cdc(&buffer[HEADER], length, &chunks, &chunk_count, &chunk_sizes);
-		//cdc_timer.stop();
+		cdc_timer.stop();
 		
 		offset += length;
 		writer++;
@@ -207,6 +216,7 @@ int main(int argc, char** argv)
 	}
 
     //SHA256 hash
+	sha_timer.start();
     uint8_t sha256_output[chunk_count][32];
 
 	for (unsigned int i = 0; i < chunk_count; i++) {
@@ -227,8 +237,10 @@ int main(int argc, char** argv)
 		memcpy(sha256_output[i], temp_sha256_output, 32);
 		
 	}
+	sha_timer.stop();
 
     // Deduplication
+	dedup_timer.start();
 	uint8_t dup_flag[chunk_count];
 	int dup_index[chunk_count];
 	dup_flag[0] = 0;	
@@ -249,8 +261,10 @@ int main(int argc, char** argv)
 	for (unsigned int i = 0; i < chunk_count; i++) {
 		printf("Chunk %u: %d, duplicated with %d\n", i, dup_flag[i], dup_index[i]);
 	}
+	dedup_timer.stop();
 
     // LZW on HW
+	lzw_timer.start();
     uint16_t temp_lzw_compressed_output[chunk_count][MAX_CHUNK_SIZE]; // 假设 MAX_CHUNK_SIZE 是单个块的最大大小
     int temp_output_index[chunk_count];
     uint8_t lzw_compressed_output[undup_count][2048];
@@ -311,7 +325,6 @@ int main(int argc, char** argv)
     // q.enqueueUnmapMemObject(lzw_out_len_buf, lzw_out_len);
     // q.finish();
 
-	printf("begin to Covert\n");
 
     for (unsigned int i = 0; i < chunk_count; i++) {
         if (dup_flag[i] == 0) {
@@ -319,7 +332,7 @@ int main(int argc, char** argv)
             compressed_data_size[i] = output_index;
         }
     }
-	printf("finish convert out\n");
+	lzw_timer.stop();
 
     uint32_t header[chunk_count];
 	for (unsigned int i = 0; i < chunk_count; i++) {
@@ -335,7 +348,7 @@ int main(int argc, char** argv)
 		//printf("chunk: %u, Header: %#010x\n", i, header[i]);
 		//printf("chunk: %u, Header: %#010x\n", i, temp_header);
 	}
-
+	overall_timer.stop();
 
 
 
@@ -370,6 +383,30 @@ int main(int argc, char** argv)
     free(chunk_sizes);
 
 	delete[] fileBuf;
+
+	std::cout << "\n--------------- Key Throughputs ---------------" << std::endl;
+	float ethernet_latency = ethernet_timer.latency() / 1000.0;
+	float cdc_latency = cdc_timer.latency() / 1000.0;
+	float sha_latency = sha_timer.latency() / 1000.0;
+	float dedup_latency = dedup_timer.latency() / 1000.0;
+	float lzw_latency = lzw_timer.latency() / 1000.0;
+	float overall_latency = overall_timer.latency() / 1000.0;
+
+	float input_throughput = (bytes_written * 8 / 1000000.0) / ethernet_latency; // Mb/s
+	float cdc_throughput = (bytes_written * 8 / 1000000.0) / cdc_latency; // Mb/s
+	float sha_throughput = (bytes_written * 8 / 1000000.0) / sha_latency; // Mb/s
+	float dedup_throughput = (bytes_written * 8 / 1000000.0) / dedup_latency; // Mb/s
+	float lzw_throughput = (bytes_written * 8 / 1000000.0) / lzw_latency; // Mb/s
+	float overall_throughput = (bytes_written * 8 / 1000000.0) / overall_latency; // Mb/s
+
+
+	std::cout << "Input Throughput to Encoder: " << input_throughput << " Mb/s."
+			<< " (Latency: " << ethernet_latency << "s)." << std::endl;
+	std::cout << "CDC Throughput: " << cdc_throughput << " Mb/s." << " (Latency: " << cdc_latency << "s)." << std::endl;
+	std::cout << "SHA Throughput: " << sha_throughput << " Mb/s." << " (Latency: " << sha_latency << "s)." << std::endl;
+	std::cout << "Deduplication Throughput: " << dedup_throughput << " Mb/s." << " (Latency: " << dedup_latency << "s)." << std::endl;
+	std::cout << "LZW Throughput: " << lzw_throughput << " Mb/s." << " (Latency: " << lzw_latency << "s)." << std::endl;
+	std::cout << "Overall Throughput: " << overall_throughput << " Mb/s." << " (Latency: " << overall_latency << "s)." << std::endl;
 
 
     return 0;
