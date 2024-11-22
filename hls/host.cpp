@@ -252,14 +252,14 @@ int main(int argc, char** argv)
 
     for (unsigned int i = 0; i < chunk_count; i++) {
         memcpy(&lzw_s1[i * MAX_CHUNK_SIZE], chunks[i], chunk_sizes[i]);
-        lzw_length[i] = chunk_sizes[i];
+        lzw_length[i] = *chunk_sizes[i];
     }
 
     for (unsigned int i = 0; i < chunk_count; i++) {
         if (dup_flag[i] == 0) {
             //lzw_compress(chunks[i], &chunk_sizes[i], temp_lzw_compressed_output[i], &temp_output_index[i]);
             lzw_kernel.setArg(0, lzw_s1_buf);
-            lzw_kernel.setArg(1, *lzw_length_buf);
+            lzw_kernel.setArg(1, lzw_length_buf);
             lzw_kernel.setArg(2, lzw_out_code_buf);
             lzw_kernel.setArg(3, lzw_out_len_buf);
 
