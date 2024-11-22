@@ -244,8 +244,8 @@ int main(int argc, char** argv)
 	}
 
     // LZW on HW
-    //uint16_t temp_lzw_compressed_output[chunk_count][MAX_CHUNK_SIZE]; // 假设 MAX_CHUNK_SIZE 是单个块的最大大小
-    //int temp_output_index[chunk_count];
+    uint16_t temp_lzw_compressed_output[chunk_count][MAX_CHUNK_SIZE]; // 假设 MAX_CHUNK_SIZE 是单个块的最大大小
+    int temp_output_index[chunk_count];
     uint8_t lzw_compressed_output[undup_count][2048];
     int compressed_data_size[undup_count];
 
@@ -291,6 +291,11 @@ int main(int argc, char** argv)
             // 等待完成
             q.finish();
 
+			memcpy(temp_lzw_compressed_output[i], lzw_out_code, sizeof(uint16_t) * 2048);
+			temp_output_index[i] = *lzw_out_len;
+
+
+
         
         }
     }
@@ -298,7 +303,7 @@ int main(int argc, char** argv)
 
     for (unsigned int i = 0; i < chunk_count; i++) {
         if (dup_flag[i] == 0) {
-            int output_index = convert_output(&lzw_out_code[i], lzw_compressed_output[i], lzw_out_len[i]);
+            int output_index = convert_output(temp_lzw_compressed_output[i], lzw_compressed_output[i], temp_output_index[i]);
             compressed_data_size[i] = output_index;
         }
     }
