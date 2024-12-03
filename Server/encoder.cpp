@@ -253,7 +253,6 @@ int main(int argc, char* argv[]) {
 	}
 	for (unsigned int i = 0; i < chunk_count; i++) {
 		if (dup_flag[i] == 0) {
-			// 第二次循环：调用 convert_output
 			int output_index = convert_output(temp_lzw_compressed_output[i], lzw_compressed_output[i], temp_output_index[i]);
 			compressed_data_size[i] = output_index;
 		}
