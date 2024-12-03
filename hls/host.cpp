@@ -272,7 +272,7 @@ int main(int argc, char** argv)
 
     // LZW on HW
 	lzw_timer.start();
-    uint16_t temp_lzw_compressed_output[chunk_count][MAX_CHUNK_SIZE]; // 假设 MAX_CHUNK_SIZE 是单个块的最大大小
+    uint16_t temp_lzw_compressed_output[chunk_count][2048]; // 假设 MAX_CHUNK_SIZE 是单个块的最大大小
     int temp_output_index[chunk_count];
     uint8_t lzw_compressed_output[undup_count][2048];
     int compressed_data_size[undup_count];
@@ -367,18 +367,18 @@ int main(int argc, char** argv)
 
 
 	printf("begin to write in file\n");
-    FILE* out_file = fopen("compressed_data.bin", "wb");
+	FILE* out_file = fopen("compressed_data.bin", "wb");
 	if (file == NULL) {
         perror("Failed to open file");
         
     }
 	for (unsigned int i = 0; i < chunk_count; i++) {
 		fwrite(&header[i], sizeof(uint32_t), 1, out_file);
-		printf("%#010x", header[i]);
+		printf("\n %#010x ", header[i]);
 		if (dup_flag[i] == 0) {
 			for (int j = 0; j < compressed_data_size[i]; j++) {
 				fwrite(&lzw_compressed_output[i][j], sizeof(uint8_t), 1, out_file);
-				printf("%02X ", lzw_compressed_output[i][j]);
+				printf("%02X", lzw_compressed_output[i][j]);
 			}
 		}
 	}
