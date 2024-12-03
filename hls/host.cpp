@@ -285,7 +285,7 @@ int main(int argc, char** argv)
     for (unsigned int i = 0; i < chunk_count; i++) {
         if (dup_flag[i] == 0) {
             //lzw_compress(chunks[i], &chunk_sizes[i], temp_lzw_compressed_output[i], &temp_output_index[i]);
-            memcpy(&lzw_s1[i], chunks[i], chunk_sizes[i]);
+            memcpy(lzw_s1, chunks[i], chunk_sizes[i]);
 			//printf("chunk size: %d\n", chunk_sizes[i]);
             *lzw_length = chunk_sizes[i];
 			//printf("chunk size: %d\n", *lzw_length);
