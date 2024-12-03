@@ -204,16 +204,16 @@ int main(int argc, char** argv)
 	fclose(outfd);
 
 	//print all chunks
-	printf("Chunk count: %u\n", chunk_count);
-	printf("Chunk sizes:\n");
-	for (unsigned int i = 0; i < chunk_count; i++) {
-		printf("Chunk %u size: %u bytes\n", i, chunk_sizes[i]);
-	}
-	printf("Chunk data (as string):\n");
-	for (unsigned int i = 0; i < chunk_count; i++) {
-		printf("Chunk %u: ", i);
-		printf("%.*s\n", chunk_sizes[i], (char *)chunks[i]);
-	}
+	// printf("Chunk count: %u\n", chunk_count);
+	// printf("Chunk sizes:\n");
+	// for (unsigned int i = 0; i < chunk_count; i++) {
+	// 	printf("Chunk %u size: %u bytes\n", i, chunk_sizes[i]);
+	// }
+	// printf("Chunk data (as string):\n");
+	// for (unsigned int i = 0; i < chunk_count; i++) {
+	// 	printf("Chunk %u: ", i);
+	// 	printf("%.*s\n", chunk_sizes[i], (char *)chunks[i]);
+	// }
 
     //SHA256 hash
 	sha_timer.start();
@@ -288,7 +288,12 @@ int main(int argc, char** argv)
             memcpy(&lzw_s1[i], chunks[i], chunk_sizes[i]);
 			//printf("chunk size: %d\n", chunk_sizes[i]);
             *lzw_length = chunk_sizes[i];
-			printf("chunk size: %d\n", *lzw_length);
+			//printf("chunk size: %d\n", *lzw_length);
+			printf("Chunk %u:", i);
+			for (int j = 0; j < *lzw_length; j++) { // `total_size` 是 lzw_s1 的总长度
+				printf("%c", lzw_s1[j]);
+			}
+			printf("\n");
 
 			//printf("begin to write in buffer\n");
 
@@ -304,7 +309,7 @@ int main(int argc, char** argv)
             cl::Event exec_ev;
             cl::Event read_ev;
 
-			printf("begin queue\n");
+			//printf("begin queue\n");
             q.enqueueMigrateMemObjects({lzw_s1_buf, lzw_length_buf}, 0, NULL, &write_ev);
 
             
@@ -322,7 +327,7 @@ int main(int argc, char** argv)
 
 			memcpy(temp_lzw_compressed_output[i], lzw_out_code, sizeof(uint16_t) * 2048);
 			temp_output_index[i] = *lzw_out_len;
-			printf("temp_output_index: %d\n", temp_output_index[i]);
+			//printf("temp_output_index: %d\n", temp_output_index[i]);
         }
     }
 	//delete[] fileBuf;
