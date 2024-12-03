@@ -150,16 +150,16 @@ int main(int argc, char* argv[]) {
 	fclose(outfd);
 
 	//print all chunks
-	printf("Chunk count: %u\n", chunk_count);
-	printf("Chunk sizes:\n");
-	for (unsigned int i = 0; i < chunk_count; i++) {
-		printf("Chunk %u size: %u bytes\n", i, chunk_sizes[i]);
-	}
-	printf("Chunk data (as string):\n");
-	for (unsigned int i = 0; i < chunk_count; i++) {
-		printf("Chunk %u: ", i);
-		printf("%.*s\n", chunk_sizes[i], (char *)chunks[i]);
-	}
+	// printf("Chunk count: %u\n", chunk_count);
+	// printf("Chunk sizes:\n");
+	// for (unsigned int i = 0; i < chunk_count; i++) {
+	// 	printf("Chunk %u size: %u bytes\n", i, chunk_sizes[i]);
+	// }
+	// printf("Chunk data (as string):\n");
+	// for (unsigned int i = 0; i < chunk_count; i++) {
+	// 	printf("Chunk %u: ", i);
+	// 	printf("%.*s\n", chunk_sizes[i], (char *)chunks[i]);
+	// }
 
 	sha_timer.start();
 	uint8_t sha256_output[chunk_count][32];
@@ -174,11 +174,11 @@ int main(int argc, char* argv[]) {
 		uint8_t temp_sha256_output[32]; 
 		calculate_sha256(compressed_data, compressed_size, temp_sha256_output);
 
-		std::cout << "SHA-256 Hash of Compressed Data: ";
-		for (int i = 0; i < 32; i++) {
-			printf("%02x", temp_sha256_output[i]);
-		}
-		std::cout << std::endl;
+		// std::cout << "SHA-256 Hash of Compressed Data: ";
+		// for (int i = 0; i < 32; i++) {
+		// 	printf("%02x", temp_sha256_output[i]);
+		// }
+		// std::cout << std::endl;
 
 
 		memcpy(sha256_output[i], temp_sha256_output, 32);
@@ -205,9 +205,9 @@ int main(int argc, char* argv[]) {
 		}
 		undup_count++;
 	}
-	for (unsigned int i = 0; i < chunk_count; i++) {
-		printf("Chunk %u: %d, duplicated with %d\n", i, dup_flag[i], dup_index[i]);
-	}
+	// for (unsigned int i = 0; i < chunk_count; i++) {
+	// 	printf("Chunk %u: %d, duplicated with %d\n", i, dup_flag[i], dup_index[i]);
+	// }
 	dedup_timer.stop();
 
 
@@ -245,6 +245,12 @@ int main(int argc, char* argv[]) {
 	}
 
 	// 转换输出
+	for (unsigned int i = 0; i < chunk_count; i++) {
+		if (dup_flag[i] == 0) {
+			printf("Chunk %u:", i);
+			printf("temp_output_index: %d\n", temp_output_index[i]);
+		}
+	}
 	for (unsigned int i = 0; i < chunk_count; i++) {
 		if (dup_flag[i] == 0) {
 			// 第二次循环：调用 convert_output

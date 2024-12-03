@@ -326,6 +326,12 @@ int main(int argc, char** argv)
     // q.finish();
 	lzw_timer.stop();
 
+	for (unsigned int i = 0; i < chunk_count; i++) {
+		if (dup_flag[i] == 0) {
+			printf("Chunk %u:", i);
+			printf("temp_output_index: %d\n", temp_output_index[i]);
+		}
+	}
     for (unsigned int i = 0; i < chunk_count; i++) {
         if (dup_flag[i] == 0) {
             int output_index = convert_output(temp_lzw_compressed_output[i], lzw_compressed_output[i], temp_output_index[i]);

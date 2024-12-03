@@ -11,10 +11,18 @@ scp -r /Users/oushiha/Documents/ESE5320/ese532_final_project_code/host root@169.
 ```
 For Mac, transmit LittlePrince.txt(any test file) via UDP:
 ``` bash
-./client_mac -i 169.254.128.222 -f LittlePrince.txt
+./client_mac -i 169.254.123.001 -f LittlePrince.txt
 ```
 
+For Ultra96, assign a fixed IP:
+``` bash
+ifconfig eth0 169.254.123.24 netmask 255.255.0.0
+```
 
+Build SSH connection with board:
+``` bash
+ssh root@169.254.123.24
+```
 
 
 
