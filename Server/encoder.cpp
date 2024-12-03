@@ -150,16 +150,16 @@ int main(int argc, char* argv[]) {
 	fclose(outfd);
 
 	//print all chunks
-	// printf("Chunk count: %u\n", chunk_count);
-	// printf("Chunk sizes:\n");
-	// for (unsigned int i = 0; i < chunk_count; i++) {
-	// 	printf("Chunk %u size: %u bytes\n", i, chunk_sizes[i]);
-	// }
-	// printf("Chunk data (as string):\n");
-	// for (unsigned int i = 0; i < chunk_count; i++) {
-	// 	printf("Chunk %u: ", i);
-	// 	printf("%.*s\n", chunk_sizes[i], (char *)chunks[i]);
-	// }
+	printf("Chunk count: %u\n", chunk_count);
+	printf("Chunk sizes:\n");
+	for (unsigned int i = 0; i < chunk_count; i++) {
+		printf("Chunk %u size: %u bytes\n", i, chunk_sizes[i]);
+	}
+	printf("Chunk data (as string):\n");
+	for (unsigned int i = 0; i < chunk_count; i++) {
+		printf("Chunk %u: ", i);
+		printf("%.*s\n", chunk_sizes[i], (char *)chunks[i]);
+	}
 
 	sha_timer.start();
 	uint8_t sha256_output[chunk_count][32];
@@ -228,11 +228,16 @@ int main(int argc, char* argv[]) {
 	// 	}
 	// }
 
-	// 定义存储所有临时输出的数组
+	for (unsigned int i = 0; i < chunk_count; i++) {
+		if (dup_flag[i] == 0) {
+			printf("Chunk %u:", i);
+			printf("chunk size: %d\n", chunk_sizes[i]);
+		}
+	}
+
+	//LZW Software
 	uint16_t temp_lzw_compressed_output[chunk_count][2048]; // 假设 MAX_CHUNK_SIZE 是单个块的最大大小
 	int temp_output_index[chunk_count];
-
-	// 定义最终压缩结果存储
 	uint8_t lzw_compressed_output[undup_count][2048];
 	int compressed_data_size[undup_count];
 

@@ -263,6 +263,13 @@ int main(int argc, char** argv)
 	}
 	dedup_timer.stop();
 
+	for (unsigned int i = 0; i < chunk_count; i++) {
+		if (dup_flag[i] == 0) {
+			printf("Chunk %u:", i);
+			printf("chunk size: %d\n", chunk_sizes[i]);
+		}
+	}
+
     // LZW on HW
 	lzw_timer.start();
     uint16_t temp_lzw_compressed_output[chunk_count][MAX_CHUNK_SIZE]; // 假设 MAX_CHUNK_SIZE 是单个块的最大大小
@@ -310,7 +317,7 @@ int main(int argc, char** argv)
             exec_events.push_back(exec_ev);
             q.enqueueMigrateMemObjects({lzw_out_code_buf, lzw_out_len_buf}, CL_MIGRATE_MEM_OBJECT_HOST, &exec_events, &read_ev);
 
-            // 等待完成
+            // Wait for all kernels to finish
             q.finish();
 
 			memcpy(temp_lzw_compressed_output[i], lzw_out_code, sizeof(uint16_t) * 2048);
