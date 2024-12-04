@@ -8,7 +8,7 @@
 #define PRIME 3      // Prime number for hash calculation
 #define MODULUS 512  // Modulus for chunk split condition
 #define TARGET1 256    // Target hash value for chunk splitting
-#define TARGET2 2128    // Target hash value for chunk splitting
+#define TARGET2 128    // Target hash value for chunk splitting
 
 uint64_t initial_hash_func(const unsigned char *input, unsigned int pos);
 uint64_t rolling_hash(uint64_t previous_hash, unsigned char old_char, unsigned char new_char);
