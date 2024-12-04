@@ -26,7 +26,7 @@ void cdc(const unsigned char *buff, unsigned int buff_size, unsigned char ***chu
         }
 
         // Check if the hash meets the target condition or it's the last byte
-        if ((current_hash % MODULUS == TARGET) || (i == buff_size)) {
+        if ((current_hash % MODULUS == TARGET1) || (current_hash % MODULUS == TARGET2) || (i == buff_size)) {
             unsigned int chunk_size = i - start;
             (*chunks)[*chunk_count] = (unsigned char *)malloc(chunk_size);
             memcpy((*chunks)[*chunk_count], buff + start, chunk_size);
