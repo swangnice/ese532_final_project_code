@@ -50,10 +50,6 @@ void gear_based_fastcdc(const unsigned char *buff, unsigned int buff_size, unsig
     uint64_t mask_large = FASTCDC_MASK_L; //#define FASTCDC_MASK_L 0xd9000353;  //13 1
 
     if(buff_size < FASTCDC_MIN_CHUNK) {
-        (*chunks)[*chunk_count] = (unsigned char *)malloc(buff_size);
-        memcpy((*chunks)[*chunk_count], buff, buff_size);
-        (*chunk_sizes)[*chunk_count] = buff_size;
-        (*chunk_count)++;
         return;
     }
 
