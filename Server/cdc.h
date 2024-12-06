@@ -19,8 +19,8 @@
 #define FASTCDC_MIN_CHUNK 8
 #define FASTCDC_AVG_CHUNK 128
 #define FASTCDC_MAX_CHUNK 2048
-#define FASTCDC_MASK_S 0x50300303;  //15 1
-#define FASTCDC_MASK_L 0x00000303;  //13 1
+#define FASTCDC_MASK_S 0x50360303;  //15 1
+#define FASTCDC_MASK_L 0x01000303;  //13 1
 
 
 const uint64_t gear_table[256] = {
