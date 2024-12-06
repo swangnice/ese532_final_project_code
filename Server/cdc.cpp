@@ -1,5 +1,4 @@
 #include "cdc.h"
-#include "cdc.h"
 
 uint64_t initial_hash_func(const unsigned char *input, unsigned int pos) {
     uint64_t hash = 0;

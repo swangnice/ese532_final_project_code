@@ -1,3 +1,7 @@
+#ifndef CDC_H
+#define CDC_H
+
+
 #include <stdio.h>
 #include <stdint.h>
 #include <stdlib.h>
@@ -11,6 +15,18 @@
 #define MODULUS 512  // Modulus for chunk split condition
 #define TARGET1 47    // Target hash value for chunk splitting
 #define TARGET2 67    // Target hash value for chunk splitting
+//Macro Definitions for Gear Based CDC(FastCDC)
+#define FASTCDC_MIN_CHUNK 8
+#define FASTCDC_AVG_CHUNK 128
+#define FASTCDC_MAX_CHUNK 2048
+#define FASTCDC_MASK_S 0x00001FFFULL;
+#define FASTCDC_MASK_L 0x000003FFULL;
+
+
+
+
+
+
 
 static const uint64_t gear_table[256] = {
     0x4CCA0454D70CC719ULL,
@@ -278,3 +294,4 @@ uint64_t rolling_hash(uint64_t previous_hash, unsigned char old_char, unsigned c
 void rabin_fingerprint_cdc(const unsigned char *buff, unsigned int buff_size, unsigned char ***chunks, unsigned int *chunk_count, int **chunk_sizes);
 
 
+#endif

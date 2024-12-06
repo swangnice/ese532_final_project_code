@@ -101,7 +101,7 @@ int main(int argc, char* argv[]) {
 	unsigned char **chunks = NULL;
     unsigned int chunk_count = 0;
     int *chunk_sizes = NULL;
-    unsigned int estimated_chunks = 15360 / WIN_SIZE + 1;
+    unsigned int estimated_chunks = 4096;
     chunks = (unsigned char **)malloc(sizeof(unsigned char *) * estimated_chunks);
     chunk_sizes = (int *)malloc(sizeof(unsigned int) * estimated_chunks);
 
