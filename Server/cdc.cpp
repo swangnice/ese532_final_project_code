@@ -37,7 +37,7 @@ void rabin_fingerprint_cdc(const unsigned char *buff, unsigned int buff_size, un
 }
 
 inline uint64_t gear_rolling_hash(uint64_t h, uint8_t c){
-    return (h << 1) + gear_table[c];
+    return (h << 1) ^ gear_table[c];
 }
 
 // Gear based CDC function to split file into chunks
@@ -59,7 +59,7 @@ void gear_based_fastcdc(const unsigned char *buff, unsigned int buff_size, unsig
 
     while (i < buff_size) {
         current_hash = gear_rolling_hash(current_hash, buff[i]);
-        printf("current_hash: %ld\n", current_hash);
+        printf("current_hash: %#llx\n", current_hash);
         if (i < FASTCDC_AVG_CHUNK ||((current_hash & mask_small) == 0)) {
             unsigned int chunk_size = i - start + 1;
             if (chunk_size >= FASTCDC_MIN_CHUNK) {
