@@ -64,7 +64,7 @@ void gear_based_fastcdc(const unsigned char *buff, unsigned int buff_size, unsig
                 (*chunk_sizes)[*chunk_count] = chunk_size;
                 (*chunk_count)++;
                 start = i + 1;
-                buff_size = 0;
+                chunk_size = 0;
             }
         }
         i++;
