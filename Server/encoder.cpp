@@ -107,7 +107,8 @@ int main(int argc, char* argv[]) {
 
 
 	cdc_timer.start();
-	rabin_fingerprint_cdc(&buffer[HEADER], length, &chunks, &chunk_count, &chunk_sizes);
+	//rabin_fingerprint_cdc(&buffer[HEADER], length, &chunks, &chunk_count, &chunk_sizes);
+	gear_based_fastcdc(&buffer[HEADER], length, &chunks, &chunk_count, &chunk_sizes);
 	cdc_timer.stop();
 
 
@@ -138,7 +139,8 @@ int main(int argc, char* argv[]) {
 		//printf("length: %d offset %d\n",length,offset);
 		memcpy(&file[offset], &buffer[HEADER], length);
 		cdc_timer.start();
-		rabin_fingerprint_cdc(&buffer[HEADER], length, &chunks, &chunk_count, &chunk_sizes);
+		//rabin_fingerprint_cdc(&buffer[HEADER], length, &chunks, &chunk_count, &chunk_sizes);
+		gear_based_fastcdc(&buffer[HEADER], length, &chunks, &chunk_count, &chunk_sizes);
 		cdc_timer.stop();
 		
 		offset += length;
@@ -207,9 +209,9 @@ int main(int argc, char* argv[]) {
 		}
 		undup_count++;
 	}
-	// for (unsigned int i = 0; i < chunk_count; i++) {
-	// 	printf("Chunk %u: %d, duplicated with %d\n", i, dup_flag[i], dup_index[i]);
-	// }
+	for (unsigned int i = 0; i < chunk_count; i++) {
+		printf("Chunk %u: %d, duplicated with %d\n", i, dup_flag[i], dup_index[i]);
+	}
 	dedup_timer.stop();
 
 

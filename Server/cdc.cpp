@@ -35,3 +35,65 @@ void rabin_fingerprint_cdc(const unsigned char *buff, unsigned int buff_size, un
         }
     }
 }
+
+static inline uint64_t gear_rolling_hash(uint64_t h, uint8_t c){
+    return (h << 1) + gear_table[c];
+}
+
+// Gear based CDC function to split file into chunks
+void gear_based_fastcdc(const unsigned char *buff, unsigned int buff_size, unsigned char ***chunks, unsigned int *chunk_count, int **chunk_sizes) {
+
+    unsigned int start = 0;
+    unsigned int i = 0;
+    uint64_t current_hash = 0ULL;
+    uint64_t mask_small = FASTCDC_MASK_S;
+    uint64_t mask_large = FASTCDC_MASK_L;
+
+    if(buff_size < FASTCDC_MIN_CHUNK) {
+        (*chunks)[*chunk_count] = (unsigned char *)malloc(buff_size);
+        memcpy((*chunks)[*chunk_count], buff, buff_size);
+        (*chunk_sizes)[*chunk_count] = buff_size;
+        (*chunk_count)++;
+        return;
+    }
+
+    while (i < buff_size) {
+        current_hash = gear_rolling_hash(current_hash, buff[i]);
+        if (i < FASTCDC_AVG_CHUNK ||((current_hash & mask_small) == 0)) {
+            unsigned int chunk_size = i - start + 1;
+            if (chunk_size >= FASTCDC_MIN_CHUNK) {
+                (*chunks)[*chunk_count] = (unsigned char *)malloc(chunk_size);
+                memcpy((*chunks)[*chunk_count], buff + start, chunk_size);
+                (*chunk_sizes)[*chunk_count] = chunk_size;
+                (*chunk_count)++;
+                start = i + 1;
+            }
+        }
+        if (i >= FASTCDC_AVG_CHUNK ||((current_hash & mask_large) == 0)) {
+            unsigned int chunk_size = i - start + 1;
+            if (chunk_size >= FASTCDC_MIN_CHUNK) {
+                (*chunks)[*chunk_count] = (unsigned char *)malloc(chunk_size);
+                memcpy((*chunks)[*chunk_count], buff + start, chunk_size);
+                (*chunk_sizes)[*chunk_count] = chunk_size;
+                (*chunk_count)++;
+                start = i + 1;
+            }
+        }
+        if (i == FASTCDC_MAX_CHUNK) {
+            unsigned int chunk_size = i - start + 1;
+            if (chunk_size >= FASTCDC_MIN_CHUNK) {
+                (*chunks)[*chunk_count] = (unsigned char *)malloc(chunk_size);
+                memcpy((*chunks)[*chunk_count], buff + start, chunk_size);
+                (*chunk_sizes)[*chunk_count] = chunk_size;
+                (*chunk_count)++;
+                start = i + 1;
+            }
+        }
+
+
+        i++;
+    }
+
+
+
+}
