@@ -104,8 +104,10 @@ int main(int argc, char* argv[]) {
     unsigned int estimated_chunks = 15360 / WIN_SIZE + 1;
     chunks = (unsigned char **)malloc(sizeof(unsigned char *) * estimated_chunks);
     chunk_sizes = (int *)malloc(sizeof(unsigned int) * estimated_chunks);
+
+
 	cdc_timer.start();
-	cdc(&buffer[HEADER], length, &chunks, &chunk_count, &chunk_sizes);
+	rabin_fingerprint_cdc(&buffer[HEADER], length, &chunks, &chunk_count, &chunk_sizes);
 	cdc_timer.stop();
 
 
@@ -136,7 +138,7 @@ int main(int argc, char* argv[]) {
 		//printf("length: %d offset %d\n",length,offset);
 		memcpy(&file[offset], &buffer[HEADER], length);
 		cdc_timer.start();
-		cdc(&buffer[HEADER], length, &chunks, &chunk_count, &chunk_sizes);
+		rabin_fingerprint_cdc(&buffer[HEADER], length, &chunks, &chunk_count, &chunk_sizes);
 		cdc_timer.stop();
 		
 		offset += length;
