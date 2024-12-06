@@ -23,7 +23,7 @@
 #define FASTCDC_MASK_L 0xd9000353;  //13 1
 
 
-static const uint64_t gear_table[256] = {
+const uint64_t gear_table[256] = {
     0x4CCA0454D70CC719ULL,
     0xB68D8C5F5A57C3A4ULL,
     0xCE83557D5C4C64D0ULL,
@@ -287,7 +287,7 @@ static const uint64_t gear_table[256] = {
 uint64_t initial_hash_func(const unsigned char *input, unsigned int pos);
 uint64_t rolling_hash(uint64_t previous_hash, unsigned char old_char, unsigned char new_char);
 void rabin_fingerprint_cdc(const unsigned char *buff, unsigned int buff_size, unsigned char ***chunks, unsigned int *chunk_count, int **chunk_sizes);
-static inline uint64_t gear_rolling_hash(uint64_t h, uint8_t c);
+inline uint64_t gear_rolling_hash(uint64_t h, uint8_t c);
 void gear_based_fastcdc(const unsigned char *buff, unsigned int buff_size, unsigned char ***chunks, unsigned int *chunk_count, int **chunk_sizes);
 
 #endif
