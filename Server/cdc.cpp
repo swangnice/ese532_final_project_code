@@ -37,7 +37,7 @@ void rabin_fingerprint_cdc(const unsigned char *buff, unsigned int buff_size, un
 }
 
 inline uint64_t gear_rolling_hash(uint64_t h, uint8_t c){
-    return (h << 1) | gear_table[c];
+    return (h << 1) + gear_table[c] & (0xFFFFFFFF);
 }
 
 // Gear based CDC function to split file into chunks
@@ -46,8 +46,8 @@ void gear_based_fastcdc(const unsigned char *buff, unsigned int buff_size, unsig
     unsigned int start = 0;
     unsigned int i = 0;
     uint64_t current_hash = 0;
-    uint64_t mask_small = FASTCDC_MASK_S;
-    uint64_t mask_large = FASTCDC_MASK_L;
+    uint64_t mask_small = FASTCDC_MASK_S; //#define FASTCDC_MASK_S 0x59370353;  //15 1
+    uint64_t mask_large = FASTCDC_MASK_L; //#define FASTCDC_MASK_L 0xd9000353;  //13 1
 
     if(buff_size < FASTCDC_MIN_CHUNK) {
         (*chunks)[*chunk_count] = (unsigned char *)malloc(buff_size);
