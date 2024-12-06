@@ -56,33 +56,7 @@ void gear_based_fastcdc(const unsigned char *buff, unsigned int buff_size, unsig
     unsigned int size = 0;
     while (i < buff_size) {
         current_hash = gear_rolling_hash(current_hash, buff[i]);
-        if ((size < FASTCDC_AVG_CHUNK && ((current_hash & mask_small) == 0))|| (i == buff_size)) {
-            //printf("current_hash: %#lx\n", current_hash);
-            //printf("case 1\n");
-            unsigned int chunk_size = i - start + 1;
-            if (chunk_size >= FASTCDC_MIN_CHUNK) {
-                (*chunks)[*chunk_count] = (unsigned char *)malloc(chunk_size);
-                memcpy((*chunks)[*chunk_count], buff + start, chunk_size);
-                (*chunk_sizes)[*chunk_count] = chunk_size;
-                (*chunk_count)++;
-                start = i + 1;
-                size = 0;
-            }
-        }
-        if (size >= FASTCDC_AVG_CHUNK && ((current_hash & mask_large) == 0)) {
-            //printf("case 2\n");
-            unsigned int chunk_size = i - start + 1;
-            if (chunk_size >= FASTCDC_MIN_CHUNK) {
-                (*chunks)[*chunk_count] = (unsigned char *)malloc(chunk_size);
-                memcpy((*chunks)[*chunk_count], buff + start, chunk_size);
-                (*chunk_sizes)[*chunk_count] = chunk_size;
-                (*chunk_count)++;
-                start = i + 1;
-                size = 0;
-            }
-        }
-        if (size == FASTCDC_MAX_CHUNK - 1) {
-            //printf("case 3\n");
+        if ((size < FASTCDC_AVG_CHUNK && ((current_hash & mask_small) == 0)) /*small chunk*/|| (size >= FASTCDC_AVG_CHUNK && ((current_hash & mask_large) == 0)) /*large chunk*/|| (size == FASTCDC_MAX_CHUNK - 1)/*Max Chunk */|| (i == buff_size)/*remain part*/) {
             unsigned int chunk_size = i - start + 1;
             if (chunk_size >= FASTCDC_MIN_CHUNK) {
                 (*chunks)[*chunk_count] = (unsigned char *)malloc(chunk_size);
@@ -96,7 +70,4 @@ void gear_based_fastcdc(const unsigned char *buff, unsigned int buff_size, unsig
         i++;
         size++;
     }
-
-
-
 }
