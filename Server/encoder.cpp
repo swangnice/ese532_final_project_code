@@ -108,6 +108,7 @@ int main(int argc, char* argv[]) {
 
 	cdc_timer.start();
 	//rabin_fingerprint_cdc(&buffer[HEADER], length, &chunks, &chunk_count, &chunk_sizes);
+	printf("length: %d\n", length);
 	gear_based_fastcdc(&buffer[HEADER], length, &chunks, &chunk_count, &chunk_sizes);
 	cdc_timer.stop();
 
