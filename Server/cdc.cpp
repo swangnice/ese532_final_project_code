@@ -81,7 +81,7 @@ void gear_based_fastcdc(const unsigned char *buff, unsigned int buff_size, unsig
                 size = 0;
             }
         }
-        if (size == FASTCDC_MAX_CHUNK - 1) {
+        if ((size == FASTCDC_MAX_CHUNK - 1)|| (i == buff_size)) {
             //printf("case 3\n");
             unsigned int chunk_size = i - start + 1;
             if (chunk_size >= FASTCDC_MIN_CHUNK) {
