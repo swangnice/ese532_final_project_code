@@ -60,7 +60,7 @@ void gear_based_fastcdc(const unsigned char *buff, unsigned int buff_size, unsig
     while (i < buff_size) {
         current_hash = gear_rolling_hash(current_hash, buff[i]);
         printf("current_hash: %#lx\n", current_hash);
-        if (i < FASTCDC_AVG_CHUNK ||((current_hash & mask_small) == 0)) {
+        if (i < FASTCDC_AVG_CHUNK && ((current_hash & mask_small) == 0)) {
             printf("case 1\n");
             unsigned int chunk_size = i - start + 1;
             if (chunk_size >= FASTCDC_MIN_CHUNK) {
@@ -71,7 +71,7 @@ void gear_based_fastcdc(const unsigned char *buff, unsigned int buff_size, unsig
                 start = i + 1;
             }
         }
-        if (i >= FASTCDC_AVG_CHUNK ||((current_hash & mask_large) == 0)) {
+        if (i >= FASTCDC_AVG_CHUNK && ((current_hash & mask_large) == 0)) {
             printf("case 2\n");
             unsigned int chunk_size = i - start + 1;
             if (chunk_size >= FASTCDC_MIN_CHUNK) {
