@@ -17,7 +17,7 @@
 #define TARGET2 67    // Target hash value for chunk splitting
 //Macro Definitions for Gear Based CDC(FastCDC)
 #define FASTCDC_MIN_CHUNK 8
-#define FASTCDC_AVG_CHUNK 512
+#define FASTCDC_AVG_CHUNK 256
 #define FASTCDC_MAX_CHUNK 2048
 #define FASTCDC_MASK_S 0x52361373;  //15 1
 #define FASTCDC_MASK_L 0x01000303;  //5 1
