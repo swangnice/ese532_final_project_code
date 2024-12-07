@@ -210,7 +210,7 @@ int main(int argc, char* argv[]) {
 		undup_count++;
 	}
 	for (unsigned int i = 0; i < chunk_count; i++) {
-		printf("Chunk %u: %d, duplicated with %d\n", i, dup_flag[i], dup_index[i]);
+		printf("Chunk %u: %d, duplicated with %d\n", i, *dup_flag[i], *dup_index[i]);
 	}
 	dedup_timer.stop();
 
