@@ -66,10 +66,9 @@ void gear_based_fastcdc(const unsigned char *buff, unsigned int buff_size, unsig
                 (*chunk_count)++;
                 start = i + 1;
                 chunk_size = 0;
-                printf("chunk %d, current hash:%lx", *chunk_count, current_hash);
+                printf("chunk %d, current hash:%lx\n", *chunk_count, current_hash);
             }
         }
         i++;
-        
     }
 }
