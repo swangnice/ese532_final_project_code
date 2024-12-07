@@ -81,7 +81,7 @@ int main(int argc, char** argv)
     cl::Program program(context, devices, bins, NULL, &err);
     cl::CommandQueue q(context, device, CL_QUEUE_PROFILING_ENABLE, &err);
     
-    cl::Kernel lzw_kernel = cl::Kernel(program,"lzw_compress", &err);
+    cl::Kernel lzw_kernel = cl::Kernel(program,"lzw_compress_hw", &err);
     
 // ------------------------------------------------------------------------------------
 // Step 2: Create buffers and initialize test values

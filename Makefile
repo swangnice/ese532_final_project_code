@@ -47,8 +47,8 @@ VPP_OPTS = --target hw
 #
 # OpenCL kernel files
 #
-XO := lzw_compress.xo
-XCLBIN := lzw_compress.xclbin
+XO := lzw_compress_hw.xo
+XCLBIN := lzw_compress_hw.xclbin
 ALL_MESSAGE_FILES = $(subst .xo,.mdb,$(XO)) $(subst .xclbin,.mdb,$(XCLBIN))
 
 #
@@ -142,7 +142,7 @@ clean: clean-host clean-accelerators clean-package
 
 $(XO): Server/lzw.cpp
 	-@$(RM) $@
-	$(VPP) $(VPP_OPTS) -k lzw_compress --compile -I"$(<D)" --config ./hls/design.cfg -o"$@" "$<"
+	$(VPP) $(VPP_OPTS) -k lzw_compress_hw --compile -I"$(<D)" --config ./hls/design.cfg -o"$@" "$<"
 
 $(XCLBIN): $(XO)
 	$(VPP) $(VPP_OPTS) --link --config ./hls/design.cfg -o"$@" $(+)
