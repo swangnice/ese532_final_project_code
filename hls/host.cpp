@@ -89,18 +89,24 @@ int main(int argc, char** argv)
 
     unsigned char* lzw_s1;
     int *lzw_length;
-    uint16_t* lzw_out_code;
-    int *lzw_out_len;
+    uint8_t lzw_is_dup;
+    int lzw_dup_index;
+	uint8_t *lzw_temp_out_buffer;
+	unsigned int *lzw_temp_out_buffer_size;
 
     cl::Buffer lzw_s1_buf = cl::Buffer(context, CL_MEM_ALLOC_HOST_PTR | CL_MEM_READ_ONLY,  sizeof(unsigned char) * 2048, NULL, &err);
     cl::Buffer lzw_length_buf = cl::Buffer(context, CL_MEM_ALLOC_HOST_PTR | CL_MEM_READ_ONLY, sizeof(int), NULL, &err);
-    cl::Buffer lzw_out_code_buf = cl::Buffer(context, CL_MEM_ALLOC_HOST_PTR | CL_MEM_WRITE_ONLY,  sizeof(uint16_t) * 2048, NULL, &err);
-    cl::Buffer lzw_out_len_buf = cl::Buffer(context, CL_MEM_ALLOC_HOST_PTR | CL_MEM_WRITE_ONLY,  sizeof(int) , NULL, &err);
+	cl::Buffer lzw_is_dup_buf = cl::Buffer(context, CL_MEM_ALLOC_HOST_PTR | CL_MEM_READ_ONLY, sizeof(uint8_t), NULL, &err);
+	cl::Buffer lzw_dup_index_buf = cl::Buffer(context, CL_MEM_ALLOC_HOST_PTR | CL_MEM_READ_ONLY, sizeof(int), NULL, &err);
+	cl::Buffer lzw_temp_out_buffer_buf = cl::Buffer(context, CL_MEM_ALLOC_HOST_PTR | CL_MEM_WRITE_ONLY, sizeof(uint8_t) * 2048, NULL, &err);
+	cl::Buffer lzw_temp_out_buffer_size_buf = cl::Buffer(context, CL_MEM_ALLOC_HOST_PTR | CL_MEM_WRITE_ONLY, sizeof(unsigned int), NULL, &err);
 	
     lzw_s1 = (unsigned char *)q.enqueueMapBuffer(lzw_s1_buf, CL_TRUE, CL_MAP_WRITE, 0, sizeof(unsigned char) * 2048);
     lzw_length = (int*)q.enqueueMapBuffer(lzw_length_buf, CL_TRUE, CL_MAP_WRITE, 0, sizeof(int));
-    lzw_out_code = (uint16_t*)q.enqueueMapBuffer(lzw_out_code_buf, CL_TRUE, CL_MAP_READ, 0, sizeof(uint16_t) * 2048);
-    lzw_out_len = (int*)q.enqueueMapBuffer(lzw_out_len_buf, CL_TRUE, CL_MAP_READ, 0, sizeof(int));
+	lzw_is_dup = (uint8_t)q.enqueueMapBuffer(lzw_is_dup_buf, CL_TRUE, CL_MAP_WRITE, 0, sizeof(uint8_t));
+	lzw_dup_index = (int)q.enqueueMapBuffer(lzw_dup_index_buf, CL_TRUE, CL_MAP_WRITE, 0, sizeof(int));
+	lzw_temp_out_buffer = (uint8_t*)q.enqueueMapBuffer(lzw_temp_out_buffer_buf, CL_TRUE, CL_MAP_READ, 0, sizeof(uint8_t) * 2048);
+	lzw_temp_out_buffer_size = (unsigned int*)q.enqueueMapBuffer(lzw_temp_out_buffer_size_buf, CL_TRUE, CL_MAP_READ, 0, sizeof(unsigned int));
 	
 // ------------------------------------------------------------------------------------
 // Step 3: Run the kernel
@@ -286,11 +292,14 @@ int main(int argc, char** argv)
     size_t out_offset = 0;
 
     for (unsigned int i = 0; i < chunk_count; i++) {
+        //TODO: Seperate dep and undep chunks
         if (dup_flag[i] == 0) {
             //lzw_compress(chunks[i], &chunk_sizes[i], temp_lzw_compressed_output[i], &temp_output_index[i]);
             memcpy(lzw_s1, chunks[i], chunk_sizes[i]);
 			//printf("chunk size: %d\n", chunk_sizes[i]);
             *lzw_length = chunk_sizes[i];
+            lzw_is_dup = dup_flag[i];
+            lzw_dup_index = dup_index[i];
 			//printf("chunk size: %d\n", *lzw_length);
 			// printf("Chunk %u:", i);
 			// for (int j = 0; j < *lzw_length; j++) { // `total_size` 是 lzw_s1 的总长度
@@ -302,8 +311,10 @@ int main(int argc, char** argv)
 
 			lzw_kernel.setArg(0, lzw_s1_buf);
             lzw_kernel.setArg(1, lzw_length_buf);
-			lzw_kernel.setArg(2, lzw_out_code_buf);
-			lzw_kernel.setArg(3, lzw_out_len_buf);
+            lzw_kernel.setArg(2, lzw_is_dup_buf);
+            lzw_kernel.setArg(3, lzw_dup_index_buf);
+            lzw_kernel.setArg(4, lzw_temp_out_buffer_buf);
+            lzw_kernel.setArg(5, lzw_temp_out_buffer_size_buf);
 
             std::vector<cl::Event> write_events;
             std::vector<cl::Event> exec_events;
@@ -313,7 +324,7 @@ int main(int argc, char** argv)
             cl::Event read_ev;
 
 			//printf("begin queue\n");
-            q.enqueueMigrateMemObjects({lzw_s1_buf, lzw_length_buf}, 0, NULL, &write_ev);
+            q.enqueueMigrateMemObjects({lzw_s1_buf, lzw_length_buf, lzw_is_dup, lzw_dup_index}, 0, NULL, &write_ev);
 
             
             // Create a vector for the event dependency
@@ -323,13 +334,13 @@ int main(int argc, char** argv)
             
             // Create another vector for the event dependency
             exec_events.push_back(exec_ev);
-            q.enqueueMigrateMemObjects({lzw_out_code_buf, lzw_out_len_buf}, CL_MIGRATE_MEM_OBJECT_HOST, &exec_events, &read_ev);
+            q.enqueueMigrateMemObjects({lzw_temp_out_buffer_buf, lzw_temp_out_buffer_size_buf}, CL_MIGRATE_MEM_OBJECT_HOST, &exec_events, &read_ev);
 
             // Wait for all kernels to finish
             q.finish();
 
-			memcpy(temp_lzw_compressed_output[i], lzw_out_code, sizeof(uint16_t) * 2048);
-			temp_output_index[i] = *lzw_out_len;
+        memcpy(out_buffer + out_offset, temp_out_buffer, temp_out_buffer_size);
+        out_offset += temp_out_buffer_size;
 			//printf("temp_output_index: %d\n", temp_output_index[i]);
         }
     }
@@ -339,7 +350,16 @@ int main(int argc, char** argv)
 
 
 
-
+//Store in a file
+    FILE* out_file = fopen("compressed_data.bin", "wb");
+    if (out_file == NULL) {
+        perror("Failed to open file");
+    }
+    size_t written = fwrite(out_buffer, 1, out_offset, out_file);
+    if (written != out_offset) {
+        perror("Failed to write the entire compressed data to file");
+    }
+    fclose(out_file);
 
 
 
