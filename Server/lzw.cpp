@@ -283,10 +283,6 @@ void lzw_compress_v2(unsigned char* s1, int* length, uint8_t is_dup, int dup_ind
         int output_size = 0;
         int adjusted_input_size = j - (j % 2);
         for(int i = 0; i < adjusted_input_size; i+=2){
-            //printf("in[i]: %hu\n", in[i]);
-            //printf("in[i+1]: %hu\n", in[i+1]);
-            
-
             temp_out_buffer[output_size+4] = (out_code[i]>>4) & 0xff;
             //printf("out[1]: %u\n", static_cast<unsigned int>(out[output_size]));
             output_size++;
