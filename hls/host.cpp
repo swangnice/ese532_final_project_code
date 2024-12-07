@@ -103,8 +103,8 @@ int main(int argc, char** argv)
 	
     lzw_s1 = (unsigned char *)q.enqueueMapBuffer(lzw_s1_buf, CL_TRUE, CL_MAP_WRITE, 0, sizeof(unsigned char) * 2048);
     lzw_length = (int*)q.enqueueMapBuffer(lzw_length_buf, CL_TRUE, CL_MAP_WRITE, 0, sizeof(int));
-	lzw_is_dup = (uint8_t*)q.enqueueMapBuffer(lzw_is_dup_buf, CL_TRUE, CL_MAP_WRITE, 0, sizeof(uint8_t));
-	lzw_dup_index = (int*)q.enqueueMapBuffer(lzw_dup_index_buf, CL_TRUE, CL_MAP_WRITE, 0, sizeof(int));
+	lzw_is_dup = (uint8_t)q.enqueueMapBuffer(lzw_is_dup_buf, CL_TRUE, CL_MAP_WRITE, 0, sizeof(uint8_t));
+	lzw_dup_index = (int)q.enqueueMapBuffer(lzw_dup_index_buf, CL_TRUE, CL_MAP_WRITE, 0, sizeof(int));
 	lzw_temp_out_buffer = (uint8_t*)q.enqueueMapBuffer(lzw_temp_out_buffer_buf, CL_TRUE, CL_MAP_READ, 0, sizeof(uint8_t) * 2048);
 	lzw_temp_out_buffer_size = (unsigned int*)q.enqueueMapBuffer(lzw_temp_out_buffer_size_buf, CL_TRUE, CL_MAP_READ, 0, sizeof(unsigned int));
 	
