@@ -285,7 +285,7 @@ int main(int argc, char* argv[]) {
 	for (unsigned int i = 0; i < chunk_count; i++) {
 
 		header[i] = 0;
-		if (dup_flag[i] == 0) {
+		if (dup_flag[i] == 0) { // not duplicated
 			header[i] = compressed_data_size[i] << 1;
 		} else {
 			header[i] = (dup_index[i]<<1) | 0x00000001;

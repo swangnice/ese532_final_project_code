@@ -224,7 +224,7 @@ void lzw_compress(unsigned char* s1, int* length, uint16_t* out_code, int *out_l
 void lzw_compress_v2(unsigned char* s1, int* length, uint8_t is_dup, int dup_index,  uint8_t *temp_out_buffer, unsigned int *temp_out_buffer_size)
 {
     printf("Begin lzw_compress_v2\n");
-    if (!is_dup){
+    if (is_dup == 0){
         unsigned long hash_table[CAPACITY];
         assoc_mem my_assoc_mem;
         uint16_t out_code[CAPACITY];
@@ -307,7 +307,8 @@ void lzw_compress_v2(unsigned char* s1, int* length, uint8_t is_dup, int dup_ind
         temp_out_buffer[3] = ((output_size << 1)) & 0xff;
         *temp_out_buffer_size = output_size + 4;
     printf("End build buffer\n");
-    } else {
+    } 
+    if (is_dup == 1){
         // Generate header and combine with output
         temp_out_buffer[0] = (((dup_index<<1) | 0x00000001) >> 24) & 0xff;
         temp_out_buffer[1] = (((dup_index<<1) | 0x00000001) >> 16) & 0xff;
