@@ -227,7 +227,7 @@ void lzw_compress_v2(unsigned char* s1, int* length, uint8_t is_dup, int dup_ind
     if (!is_dup){
         unsigned long hash_table[CAPACITY];
         assoc_mem my_assoc_mem;
-        uint16_t* out_code;
+        uint16_t out_code[CAPACITY];
 
         // make sure the memories are clear
         for(int i = 0; i < CAPACITY; i++)
