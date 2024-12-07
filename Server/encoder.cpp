@@ -254,7 +254,7 @@ int main(int argc, char* argv[]) {
     size_t out_offset = 0;
     for (unsigned int i = 0; i < chunk_count; i++) {
         //memset(temp_out_buffer, 0, 1024 * 2);
-        lzw_compress_v2(chunks[i], &chunk_sizes[i], dup_flag[i], dup_index[i], temp_out_buffer, temp_out_buffer_size);
+        lzw_compress_v2(chunks[i], &chunk_sizes[i], dup_flag[i], dup_index[i], temp_out_buffer, &temp_out_buffer_size);
         printf("%s\n", temp_out_buffer);
         memcpy(out_buffer + out_offset, temp_out_buffer, temp_out_buffer_size);
         out_offset += temp_out_buffer_size;

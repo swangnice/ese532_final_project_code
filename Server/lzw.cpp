@@ -221,7 +221,7 @@ void lzw_compress(unsigned char* s1, int* length, uint16_t* out_code, int *out_l
 
 } 
 
-void lzw_compress_v2(unsigned char* s1, int* length, uint8_t is_dup, int dup_index,  uint8_t *temp_out_buffer, unsigned int temp_out_buffer_size)
+void lzw_compress_v2(unsigned char* s1, int* length, uint8_t is_dup, int dup_index,  uint8_t *temp_out_buffer, unsigned int *temp_out_buffer_size)
 {
     printf("Begin lzw_compress_v2\n");
     if (!is_dup){
@@ -301,19 +301,19 @@ void lzw_compress_v2(unsigned char* s1, int* length, uint8_t is_dup, int dup_ind
         }
     printf("End convert_output\n");
         // Generate header and combine with output
-        temp_out_buffer[0] = (output_size << 1) & 0xff000000;
-        temp_out_buffer[1] = (output_size << 1) & 0x00ff0000;
-        temp_out_buffer[2] = (output_size << 1) & 0x0000ff00;
-        temp_out_buffer[3] = (output_size << 1) & 0x000000ff;
-        temp_out_buffer_size = output_size + 4;
+        temp_out_buffer[0] = ((output_size << 1) >> 24) & 0xff;
+        temp_out_buffer[1] = ((output_size << 1) >> 16) & 0xff;
+        temp_out_buffer[2] = ((output_size << 1) >> 8) & 0xff;
+        temp_out_buffer[3] = ((output_size << 1)) & 0xff;
+        *temp_out_buffer_size = output_size + 4;
     printf("End build buffer\n");
     } else {
         // Generate header and combine with output
-        temp_out_buffer[0] = ((dup_index<<1) | 0x00000001) & 0xff000000;
-        temp_out_buffer[1] = ((dup_index<<1) | 0x00000001) & 0x00ff0000;
-        temp_out_buffer[2] = ((dup_index<<1) | 0x00000001) & 0x0000ff00;
-        temp_out_buffer[3] = ((dup_index<<1) | 0x00000001) & 0x000000ff;
-        temp_out_buffer_size = 4;
+        temp_out_buffer[0] = (((dup_index<<1) | 0x00000001) >> 24) & 0xff;
+        temp_out_buffer[1] = (((dup_index<<1) | 0x00000001) >> 16) & 0xff;
+        temp_out_buffer[2] = (((dup_index<<1) | 0x00000001) >> 8) & 0xff;
+        temp_out_buffer[3] = ((dup_index<<1) | 0x00000001) & 0xff;
+        *temp_out_buffer_size = 4;
     }
 
 
