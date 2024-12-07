@@ -324,7 +324,8 @@ int main(int argc, char** argv)
             cl::Event read_ev;
 
 			//printf("begin queue\n");
-            q.enqueueMigrateMemObjects({lzw_s1_buf, lzw_length_buf, lzw_is_dup, lzw_dup_index}, 0, NULL, &write_ev);
+            std::vector<cl::Memory> buffers = {lzw_s1_buf, lzw_length_buf, lzw_is_dup, lzw_dup_index};
+            q.enqueueMigrateMemObjects(buffers, 0, NULL, &write_ev);
 
             
             // Create a vector for the event dependency
