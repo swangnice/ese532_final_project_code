@@ -339,7 +339,7 @@ int main(int argc, char** argv)
             // Wait for all kernels to finish
             q.finish();
 
-        memcpy(out_buffer + out_offset, *lzw_temp_out_buffer, *lzw_temp_out_buffer_size);
+        memcpy(out_buffer + out_offset, lzw_temp_out_buffer, *lzw_temp_out_buffer_size);
         out_offset += *lzw_temp_out_buffer_size;
 			//printf("temp_output_index: %d\n", temp_output_index[i]);
         }
