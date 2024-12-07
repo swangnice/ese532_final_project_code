@@ -1,40 +1,17 @@
-Sat Dec  7 18:21:23 2024: Server was asked to start on port: '42135'
-Sat Dec  7 18:21:23 2024: Server is using token UUID: 'a89c3b1a-ee3f-4e29-85a4-070a7db1c8f4'
-Sat Dec  7 18:21:23 2024: SESSION_MGR: creating session with session uuid: '6d04a3e9-ade5-4ab9-8d63-1f78fcd2ec76' and name 'default'
-Sat Dec  7 18:21:23 2024: Attempting to start server on port '42135'
-Sat Dec  7 18:21:23 2024: XCD main fifo: created main fifo '/tmp/xcdmaina89c3b1a-ee3f-4e29-85a4-070a7db1c8f4', fd read = 13
-Sat Dec  7 18:21:23 2024: Running Dispatch Server
-Sat Dec  7 18:21:23 2024: Version 2.1.0
-Sat Dec  7 18:21:33 2024: Dispatch Server: Accepted socket connection from client
-Sat Dec  7 18:21:33 2024: EXCHANGE_TOKEN received, server token: a89c3b1a-ee3f-4e29-85a4-070a7db1c8f4, passed token: a89c3b1a-ee3f-4e29-85a4-070a7db1c8f4
-Sat Dec  7 18:21:33 2024: SESSION_MGR: creating session with session uuid: 'ce6b09b5-4d27-40c4-9e47-4e2f73d31428' and name 'v++_link_lzw_compress_hw'
-Sat Dec  7 18:21:33 2024: GUIDANCE_SMGR: creating guidance session with uuid: 'ce6b09b5-4d27-40c4-9e47-4e2f73d31428' and name 'v++_link_lzw_compress_hw'
-Sat Dec  7 18:21:50 2024: Dispatch Server: Accepted socket connection from client
-Sat Dec  7 18:22:13 2024: Dispatch Server: Accepted socket connection from client
-Sat Dec  7 18:24:14 2024: Dispatch Server: Accepted socket connection from client
-Sat Dec  7 18:24:14 2024: Dispatch Server: Accepted socket connection from client
-Sat Dec  7 18:24:14 2024: Dispatch Server: Accepted socket connection from client
-Sat Dec  7 18:24:14 2024: Dispatch Server: Accepted socket connection from client
-Sat Dec  7 18:24:14 2024: Dispatch Server: Accepted socket connection from client
-Sat Dec  7 18:24:14 2024: Dispatch Server: Accepted socket connection from client
-Sat Dec  7 18:24:14 2024: Dispatch Server: Accepted socket connection from client
-Sat Dec  7 18:24:14 2024: Dispatch Server: Accepted socket connection from client
-Sat Dec  7 18:25:36 2024: Dispatch Server: Accepted socket connection from client
-Sat Dec  7 18:25:36 2024: Dispatch Server: Accepted socket connection from client
-Sat Dec  7 18:25:44 2024: Dispatch Server: Accepted socket connection from client
-Sat Dec  7 18:25:44 2024: Dispatch Server: Accepted socket connection from client
-Sat Dec  7 18:25:54 2024: Dispatch Server: Accepted socket connection from client
-Sat Dec  7 18:25:54 2024: Dispatch Server: Accepted socket connection from client
-Sat Dec  7 18:26:08 2024: Dispatch Server: Accepted socket connection from client
-Sat Dec  7 18:26:13 2024: Dispatch Server: Accepted socket connection from client
-Sat Dec  7 18:26:20 2024: Dispatch Server: Accepted socket connection from client
-Sat Dec  7 18:26:33 2024: Dispatch Server: Accepted socket connection from client
-Sat Dec  7 18:26:34 2024: Dispatch Server: Accepted socket connection from client
-Sat Dec  7 18:26:37 2024: Dispatch Server: Accepted socket connection from client
-Sat Dec  7 18:26:43 2024: Dispatch Server: Accepted socket connection from client
-Sat Dec  7 18:26:43 2024: Dispatch Server: Accepted socket connection from client
-Sat Dec  7 18:26:54 2024: Dispatch Server: Accepted socket connection from client
-Sat Dec  7 18:26:57 2024: Dispatch Server: Accepted socket connection from client
-Sat Dec  7 18:26:59 2024: Dispatch Server: Accepted socket connection from client
-Sat Dec  7 18:27:19 2024: Dispatch Server: Accepted socket connection from client
-Sat Dec  7 18:28:22 2024: Dispatch Server: Accepted socket connection from client
+Sat Dec  7 18:31:16 2024: Server was asked to start on port: '45957'
+Sat Dec  7 18:31:16 2024: Server is using token UUID: 'ed354b73-df09-4169-b46f-90be6523d494'
+Sat Dec  7 18:31:16 2024: SESSION_MGR: creating session with session uuid: '6d04a3e9-ade5-4ab9-8d63-1f78fcd2ec76' and name 'default'
+Sat Dec  7 18:31:16 2024: Attempting to start server on port '45957'
+Sat Dec  7 18:31:16 2024: XCD main fifo: created main fifo '/tmp/xcdmained354b73-df09-4169-b46f-90be6523d494', fd read = 13
+Sat Dec  7 18:31:16 2024: Running Dispatch Server
+Sat Dec  7 18:31:16 2024: Version 2.1.0
+Sat Dec  7 18:31:25 2024: Dispatch Server: Accepted socket connection from client
+Sat Dec  7 18:31:25 2024: EXCHANGE_TOKEN received, server token: ed354b73-df09-4169-b46f-90be6523d494, passed token: ed354b73-df09-4169-b46f-90be6523d494
+Sat Dec  7 18:31:25 2024: SESSION_MGR: creating session with session uuid: 'f2fb1f7a-56ff-4254-956d-6e4a51470709' and name 'v++_package_a'
+Sat Dec  7 18:31:25 2024: GUIDANCE_SMGR: creating guidance session with uuid: 'f2fb1f7a-56ff-4254-956d-6e4a51470709' and name 'v++_package_a'
+Sat Dec  7 18:31:27 2024: Entering handleGetXclBinGeneratedByRequest
+Sat Dec  7 18:31:27 2024: Leaving handleGetXclBinGeneratedByRequest
+Sat Dec  7 18:33:36 2024: Entering handleUpsertXclBinGeneratedByRequest
+Sat Dec  7 18:33:36 2024: Leaving handleUpsertXclBinGeneratedByRequest
+Sat Dec  7 18:33:37 2024: SESSION_MGR: closing session for UUID 'f2fb1f7a-56ff-4254-956d-6e4a51470709' with name 'v++_package_a'
+Sat Dec  7 18:33:37 2024: GUIDANCE_SMGR: closing session for UUID 'f2fb1f7a-56ff-4254-956d-6e4a51470709' with name 'v++_package_a'

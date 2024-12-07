@@ -160,3 +160,92 @@ Creating Vivado project.
 
 [18:30:50] Starting bitstream generation..
 [18:31:10] Run vpl: Step impl: Completed
+[18:31:11] Creating bitmap...
+[18:31:11] Writing bitstream ./u96v2_sbc_base_wrapper.bit...
+[18:31:11] Finished 6th of 6 tasks (FPGA bitstream generation). Elapsed time: 00h 00m 20s 
+[18:31:11] Run vpl: FINISHED. Run Status: impl Complete!
+INFO: [v++ 60-1441] [18:31:12] Run run_link: Step vpl: Completed
+Time (s): cpu = 00:00:06 ; elapsed = 00:09:23 . Memory (MB): peak = 1574.281 ; gain = 0.000 ; free physical = 20530 ; free virtual = 28085
+INFO: [v++ 60-1443] [18:31:12] Run run_link: Step rtdgen: Started
+INFO: [v++ 60-1453] Command Line: rtdgen
+INFO: [v++ 60-1454] Run Directory: /mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/_x/link/run_link
+INFO: [v++ 60-1453] Command Line: cf2sw -a /mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/_x/link/int/address_map.xml -sdsl /mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/_x/link/int/sdsl.dat -xclbin /mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/_x/link/int/xclbin_orig.xml -rtd /mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/_x/link/int/lzw_compress_hw.rtd -o /mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/_x/link/int/lzw_compress_hw.xml
+INFO: [v++ 60-1652] Cf2sw returned exit code: 0
+INFO: [v++ 60-2311] HPISystemDiagram::writeSystemDiagramAfterRunningVivado, rtdInputFilePath: /mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/_x/link/int/lzw_compress_hw.rtd
+INFO: [v++ 60-2312] HPISystemDiagram::writeSystemDiagramAfterRunningVivado, systemDiagramOutputFilePath: /mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/_x/link/int/systemDiagramModelSlrBaseAddress.json
+INFO: [v++ 60-1618] Launching 
+INFO: [v++ 60-1441] [18:31:13] Run run_link: Step rtdgen: Completed
+Time (s): cpu = 00:00:00.70 ; elapsed = 00:00:00.86 . Memory (MB): peak = 1574.281 ; gain = 0.000 ; free physical = 20536 ; free virtual = 28092
+INFO: [v++ 60-1443] [18:31:13] Run run_link: Step xclbinutil: Started
+INFO: [v++ 60-1453] Command Line: xclbinutil --add-section BITSTREAM:RAW:/mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/_x/link/int/system.bit --force --target hw --key-value SYS:dfx_enable:false --add-section :JSON:/mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/_x/link/int/lzw_compress_hw.rtd --add-section CLOCK_FREQ_TOPOLOGY:JSON:/mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/_x/link/int/lzw_compress_hw_xml.rtd --add-section BUILD_METADATA:JSON:/mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/_x/link/int/lzw_compress_hw_build.rtd --add-section EMBEDDED_METADATA:RAW:/mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/_x/link/int/lzw_compress_hw.xml --add-section SYSTEM_METADATA:RAW:/mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/_x/link/int/systemDiagramModelSlrBaseAddress.json --key-value SYS:PlatformVBNV:avnet.com_u96v2_sbc_base_u96v2_sbc_base_1_0 --output /mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/lzw_compress_hw.xclbin
+INFO: [v++ 60-1454] Run Directory: /mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/_x/link/run_link
+XRT Build Version: 2.8.0 (Vitis)
+       Build Date: 2020-11-04 13:51:01
+          Hash ID: 70b0d7e5db97d08503f97ca713c33ecb01ddca64
+Creating a default 'in-memory' xclbin image.
+
+Section: 'BITSTREAM'(0) was successfully added.
+Size   : 5568794 bytes
+Format : RAW
+File   : '/mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/_x/link/int/system.bit'
+
+Section: 'MEM_TOPOLOGY'(6) was successfully added.
+Format : JSON
+File   : 'mem_topology'
+
+Section: 'IP_LAYOUT'(8) was successfully added.
+Format : JSON
+File   : 'ip_layout'
+
+Section: 'CONNECTIVITY'(7) was successfully added.
+Format : JSON
+File   : 'connectivity'
+WARNING: Skipping CLOCK_FREQ_TOPOLOGY section for count size is zero.
+WARNING: Section 'CLOCK_FREQ_TOPOLOGY' content is empty.  No data in the given JSON file.
+
+Section: 'CLOCK_FREQ_TOPOLOGY'(11) was empty.  No action taken.
+Format : JSON
+File   : '/mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/_x/link/int/lzw_compress_hw_xml.rtd'
+
+Section: 'BUILD_METADATA'(14) was successfully added.
+Size   : 2615 bytes
+Format : JSON
+File   : '/mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/_x/link/int/lzw_compress_hw_build.rtd'
+
+Section: 'EMBEDDED_METADATA'(2) was successfully added.
+Size   : 3116 bytes
+Format : RAW
+File   : '/mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/_x/link/int/lzw_compress_hw.xml'
+
+Section: 'SYSTEM_METADATA'(22) was successfully added.
+Size   : 7596 bytes
+Format : RAW
+File   : '/mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/_x/link/int/systemDiagramModelSlrBaseAddress.json'
+Successfully wrote (5590397 bytes) to the output file: /mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/lzw_compress_hw.xclbin
+Leaving xclbinutil.
+INFO: [v++ 60-1441] [18:31:14] Run run_link: Step xclbinutil: Completed
+Time (s): cpu = 00:00:00.48 ; elapsed = 00:00:00.77 . Memory (MB): peak = 1574.281 ; gain = 0.000 ; free physical = 20524 ; free virtual = 28091
+INFO: [v++ 60-1443] [18:31:14] Run run_link: Step xclbinutilinfo: Started
+INFO: [v++ 60-1453] Command Line: xclbinutil --quiet --force --info /mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/lzw_compress_hw.xclbin.info --input /mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/lzw_compress_hw.xclbin
+INFO: [v++ 60-1454] Run Directory: /mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/_x/link/run_link
+INFO: [v++ 60-1441] [18:31:14] Run run_link: Step xclbinutilinfo: Completed
+Time (s): cpu = 00:00:00.53 ; elapsed = 00:00:00.58 . Memory (MB): peak = 1574.281 ; gain = 0.000 ; free physical = 20512 ; free virtual = 28080
+INFO: [v++ 60-1443] [18:31:14] Run run_link: Step generate_sc_driver: Started
+INFO: [v++ 60-1453] Command Line: 
+INFO: [v++ 60-1454] Run Directory: /mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/_x/link/run_link
+INFO: [v++ 60-1441] [18:31:14] Run run_link: Step generate_sc_driver: Completed
+Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.01 . Memory (MB): peak = 1574.281 ; gain = 0.000 ; free physical = 20514 ; free virtual = 28082
+INFO: [v++ 60-244] Generating system estimate report...
+INFO: [v++ 60-1092] Generated system estimate report: /mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/_x/reports/link/system_estimate_lzw_compress_hw.xtxt
+INFO: [v++ 60-2397] Platform default or user specified output type sd_card detected but is not a supported output for v++ --link. Use the v++ --package option instead to create SD card output.
+INFO: [v++ 60-586] Created lzw_compress_hw.xclbin
+INFO: [v++ 60-1307] Run completed. Additional information can be found in:
+	Guidance: /mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/_x/reports/link/v++_link_lzw_compress_hw_guidance.html
+	Timing Report: /mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/_x/reports/link/imp/impl_1_u96v2_sbc_base_wrapper_timing_summary_routed.rpt
+	Vivado Log: /mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/_x/logs/link/vivado.log
+	Steps Log File: /mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/_x/logs/link/link.steps.log
+
+INFO: [v++ 60-2343] Use the vitis_analyzer tool to visualize and navigate the relevant reports. Run the following command. 
+    vitis_analyzer /mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/lzw_compress_hw.xclbin.link_summary 
+INFO: [v++ 60-791] Total elapsed time: 0h 9m 51s
+INFO: [v++ 60-1653] Closing dispatch client.
