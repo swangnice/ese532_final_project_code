@@ -246,8 +246,10 @@ int main(int argc, char* argv[]) {
 	// int compressed_data_size[undup_count];
     uint8_t *out_buffer;
     out_buffer = (uint8_t *)malloc(sizeof(uint8_t) * 1024 * 512); //    512KB Here, we assume that the maximum size of the whole compressed data is 512KB
+    printf("Initial out_buffer size: %d\n", sizeof(out_buffer));
     uint8_t *temp_out_buffer;
     temp_out_buffer = (uint8_t *)malloc(sizeof(uint8_t) * 1024 * 2); //   2KB Here, we assume that the maximum size of the compressed data of one chunk is 2KB
+    printf("Initial temp_out_buffer size: %d\n", sizeof(temp_out_buffer));
     unsigned int temp_out_buffer_size = 0;
     size_t out_offset = 0;
     for (unsigned int i = 0; i < chunk_count; i++) {
@@ -256,6 +258,7 @@ int main(int argc, char* argv[]) {
         memcpy(out_buffer + out_offset, temp_out_buffer, temp_out_buffer_size);
         out_offset += temp_out_buffer_size;
     }
+    printf("Final out_buffer size: %d\n", sizeof(out_buffer));
 
     FILE* out_file = fopen("compressed_data.bin", "wb");
     if (out_file == NULL) {
