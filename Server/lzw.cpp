@@ -236,7 +236,7 @@ Output:
 
 */
 
-void lzw_compress_v2(unsigned char* s1, int* length, uint8_t *is_dup, int *dup_index,  uint8_t *temp_out_buffer, unsigned int *temp_out_buffer_size)
+void lzw_compress_v2(unsigned char* s1, int* length, int *is_dup, int *dup_index,  uint8_t *temp_out_buffer, unsigned int *temp_out_buffer_size)
 {
     //printf("Begin lzw_compress_v2\n");
     if (is_dup == 0){
@@ -336,7 +336,7 @@ void lzw_compress_v2(unsigned char* s1, int* length, uint8_t *is_dup, int *dup_i
 } 
 //out_code -> in
 
-void lzw_compress_hw2(unsigned char* s1, int* length, uint8_t *is_dup, int *dup_index,  uint8_t *temp_out_buffer, unsigned int *temp_out_buffer_size)
+void lzw_compress_hw(unsigned char* s1, int* length, int *is_dup, int *dup_index,  uint8_t *temp_out_buffer, unsigned int *temp_out_buffer_size)
 {
     //printf("Begin lzw_compress_v2\n");
     if (is_dup == 0){
