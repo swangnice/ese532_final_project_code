@@ -261,6 +261,7 @@ int main(int argc, char* argv[]) {
     }
     printf("Final out_buffer size: %d\n", sizeof(out_buffer));
 
+//Store in a file
     FILE* out_file = fopen("compressed_data.bin", "wb");
     if (out_file == NULL) {
         perror("Failed to open file");
