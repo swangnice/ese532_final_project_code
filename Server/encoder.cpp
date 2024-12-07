@@ -192,18 +192,18 @@ int main(int argc, char* argv[]) {
 	
 	//deduplication
 	dedup_timer.start();
-	uint8_t dup_flag[chunk_count];
-	int dup_index[chunk_count];
+	uint8_t *dup_flag[chunk_count];
+	int *dup_index[chunk_count];
 	dup_flag[0] = 0;	
 	dup_index[0] = 0;
 	int undup_count = 1;
 	for (unsigned int i = 1; i < chunk_count; i++) {				
 		dup_flag[i] = 0;	//un duplicated
-		dup_index[i] = i;
+		*dup_index[i] = i;
 		for (unsigned int j = 0; j < i; j++) {
 			if (memcmp(sha256_output[i], sha256_output[j], 32) == 0) {
-				dup_flag[i] = 1;
-				dup_index[i] = j;
+				*dup_flag[i] = 1;
+				*dup_index[i] = j;
 				break;
 			}
 		}
@@ -252,7 +252,7 @@ int main(int argc, char* argv[]) {
     unsigned int temp_out_buffer_size = 0;
     size_t out_offset = 0;
     for (unsigned int i = 0; i < chunk_count; i++) {
-		lzw_compress_v2(chunks[i], &chunk_sizes[i], &dup_flag[i], &dup_index[i], temp_out_buffer, &temp_out_buffer_size);
+		lzw_compress_v2(chunks[i], &chunk_sizes[i], dup_flag[i], dup_index[i], temp_out_buffer, &temp_out_buffer_size);
         memcpy(out_buffer + out_offset, temp_out_buffer, temp_out_buffer_size);
         out_offset += temp_out_buffer_size;
     }
