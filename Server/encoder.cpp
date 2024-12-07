@@ -198,7 +198,7 @@ int main(int argc, char* argv[]) {
 	dup_index[0] = 0;
 	int undup_count = 1;
 	for (unsigned int i = 1; i < chunk_count; i++) {				
-		dup_flag[i] = 0;	//un duplicated
+		*dup_flag[i] = 0;	//un duplicated
 		*dup_index[i] = i;
 		for (unsigned int j = 0; j < i; j++) {
 			if (memcmp(sha256_output[i], sha256_output[j], 32) == 0) {
