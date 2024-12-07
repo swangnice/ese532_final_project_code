@@ -164,6 +164,9 @@ void lookup(unsigned long* hash_table, assoc_mem* mem, unsigned int key, bool* h
 }
 //****************************************************************************************************************
 
+/*
+
+*/
 void lzw_compress(unsigned char* s1, int* length, uint16_t* out_code, int *out_len)
 {
     unsigned long hash_table[CAPACITY];
@@ -220,6 +223,18 @@ void lzw_compress(unsigned char* s1, int* length, uint16_t* out_code, int *out_l
     *out_len = j;
 
 } 
+
+/*
+Input:
+    unsigned char* s1: input data
+    int* length: length of input data
+    uint8_t is_dup: flag to indicate if the input data is duplicated 0: not duplicated, 1: duplicated
+    int dup_index
+Output:
+    uint8_t *temp_out_buffer: output buffer, Allocated 2KB
+    unsigned int *temp_out_buffer_size: size of output buffer
+
+*/
 
 void lzw_compress_v2(unsigned char* s1, int* length, uint8_t is_dup, int dup_index,  uint8_t *temp_out_buffer, unsigned int *temp_out_buffer_size)
 {
@@ -320,6 +335,105 @@ void lzw_compress_v2(unsigned char* s1, int* length, uint8_t is_dup, int dup_ind
 
 } 
 //out_code -> in
+
+void lzw_compress_hw(unsigned char* s1, int* length, uint8_t is_dup, int dup_index,  uint8_t *temp_out_buffer, unsigned int *temp_out_buffer_size)
+{
+    //printf("Begin lzw_compress_v2\n");
+    if (is_dup == 0){
+        unsigned long hash_table[CAPACITY];
+        assoc_mem my_assoc_mem;
+        uint16_t out_code[CAPACITY];
+
+        // make sure the memories are clear
+        for(int i = 0; i < CAPACITY; i++)
+        {
+            hash_table[i] = 0;
+        }
+        my_assoc_mem.fill = 0;
+        for(int i = 0; i < 512; i++)
+        {
+            my_assoc_mem.upper_key_mem[i] = 0;
+            my_assoc_mem.middle_key_mem[i] = 0;
+            my_assoc_mem.lower_key_mem[i] = 0;
+        }
+
+        int next_code = 256;
+
+        int prefix_code = s1[0];
+        unsigned int code = 0;
+        char next_char = 0;
+
+        int i = 0, j = 0;
+        while(i < *length)
+        {
+            next_char = s1[i + 1];
+
+            bool hit = 0;
+            lookup(hash_table, &my_assoc_mem, (prefix_code << 8) + next_char, &hit, &code);
+            if(!hit)
+            {
+                out_code[j++] = prefix_code;
+                bool collision = 0;
+                insert(hash_table, &my_assoc_mem, (prefix_code << 8) + next_char, next_code, &collision);
+                if(collision)
+                {
+                    return;
+                }
+                next_code += 1;
+
+                prefix_code = next_char;
+            }
+            else
+            {
+                prefix_code = code;
+                if(i + 1 == *length){
+                    out_code[j++] = prefix_code;
+                }
+            }
+            i += 1;
+        }
+        //printf("End lzw_compress\n");
+        //*out_len = j;
+        // Convert Output
+        int output_size = 0;
+        int adjusted_input_size = j - (j % 2);
+        for(int i = 0; i < adjusted_input_size; i+=2){
+            temp_out_buffer[output_size+4] = (out_code[i]>>4) & 0xff;
+            //printf("temp_out_buffer[1]: %u\n", static_cast<unsigned int>(temp_out_buffer[output_size]));
+            output_size++;
+            temp_out_buffer[output_size+4] = ((out_code[i] << 4) & 0xf0) | ((out_code[i+1] >> 8) & 0x0f);
+            //printf("temp_out_buffer[2]: %u\n", static_cast<unsigned int>(temp_out_buffer[output_size]));
+            output_size++;
+            temp_out_buffer[output_size+4] = (out_code[i+1]) & 0xff;
+            //printf("temp_out_buffer[3]: %u\n", static_cast<unsigned int>(temp_out_buffer[output_size]));
+            output_size++;
+        }
+        if (j % 2 != 0) {
+            temp_out_buffer[output_size+4] = (out_code[adjusted_input_size] >> 4) & 0xFF;
+            output_size++;
+            temp_out_buffer[output_size+4] = (out_code[adjusted_input_size] << 4) & 0xF0;
+            output_size++;
+        }
+    //printf("End convert_output\n");
+        // Generate header and combine with output
+        temp_out_buffer[0] = ((output_size << 1)) & 0xff;
+        temp_out_buffer[1] = ((output_size << 1) >> 8) & 0xff;
+        temp_out_buffer[2] = ((output_size << 1) >> 16) & 0xff;
+        temp_out_buffer[3] = ((output_size << 1) >> 24) & 0xff;
+        *temp_out_buffer_size = output_size + 4;
+    //printf("End build buffer\n");
+    } 
+    if (is_dup == 1){
+        // Generate header and combine with output
+        temp_out_buffer[0] = ((dup_index<<1) | 0x00000001) & 0xff;
+        temp_out_buffer[1] = (((dup_index<<1) | 0x00000001) >> 8) & 0xff;
+        temp_out_buffer[2] = (((dup_index<<1) | 0x00000001) >> 16) & 0xff;
+        temp_out_buffer[3] = (((dup_index<<1) | 0x00000001) >> 24) & 0xff;
+        *temp_out_buffer_size = 4;
+    }
+
+
+} 
 
 int convert_output(uint16_t in[], uint8_t out[], int input_size){
     //header

@@ -246,16 +246,16 @@ int main(int argc, char* argv[]) {
 	// int compressed_data_size[undup_count];
     uint8_t *out_buffer;
     out_buffer = (uint8_t *)malloc(sizeof(uint8_t) * 1024 * 512); //    512KB Here, we assume that the maximum size of the whole compressed data is 512KB
-    printf("Initial out_buffer size: %d\n", sizeof(out_buffer));
+    //printf("Initial out_buffer size: %d\n", sizeof(out_buffer));
     uint8_t *temp_out_buffer;
     temp_out_buffer = (uint8_t *)malloc(sizeof(uint8_t) * 1024 * 2); //   2KB Here, we assume that the maximum size of the compressed data of one chunk is 2KB
-    printf("Initial temp_out_buffer size: %d\n", sizeof(temp_out_buffer));
+    //printf("Initial temp_out_buffer size: %d\n", sizeof(temp_out_buffer));
     unsigned int temp_out_buffer_size = 0;
     size_t out_offset = 0;
     for (unsigned int i = 0; i < chunk_count; i++) {
         //memset(temp_out_buffer, 0, 1024 * 2);
         lzw_compress_v2(chunks[i], &chunk_sizes[i], dup_flag[i], dup_index[i], temp_out_buffer, &temp_out_buffer_size);
-        printf("%s\n", temp_out_buffer);
+        //printf("%s\n", temp_out_buffer);
         memcpy(out_buffer + out_offset, temp_out_buffer, temp_out_buffer_size);
         out_offset += temp_out_buffer_size;
     }

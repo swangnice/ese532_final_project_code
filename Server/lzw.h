@@ -45,6 +45,7 @@ void lzw_compress(unsigned char* s1, int* length, uint16_t* out_code, int *out_l
 int convert_output(uint16_t in[], uint8_t out[], int input_size);
 
 void lzw_compress_v2(unsigned char* s1, int* length, uint8_t is_dup, int dup_index,  uint8_t *temp_out_buffer, unsigned int *temp_out_buffer_size);
+void lzw_compress_hw(unsigned char* s1, int* length, uint8_t is_dup, int dup_index,  uint8_t *temp_out_buffer, unsigned int *temp_out_buffer_size);
 
 
 #endif // LZW_COMPRESS_H 

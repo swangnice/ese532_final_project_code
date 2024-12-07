@@ -273,17 +273,16 @@ int main(int argc, char** argv)
 	}
 
     // LZW on HW
-    // uint16_t temp_lzw_compressed_output[chunk_count][2048]; // 假设 MAX_CHUNK_SIZE 是单个块的最大大小
-    // int temp_output_index[chunk_count];
-    // uint8_t lzw_compressed_output[undup_count][2048];
-    // int compressed_data_size[undup_count];
-    lzw_timer.start();
-    uint8_t *out_buffer;
-    out_buffer = (uint8_t *)malloc(sizeof(uint8_t) * 1024 * 512); //    512KB Here, we assume that the maximum size of the whole compressed data is 512KB
-    uint8_t *temp_out_buffer;
-    temp_out_buffer = (uint8_t *)malloc(sizeof(uint8_t) * 1024 * 2); //   2KB Here, we assume that the maximum size of the compressed data of one chunk is 2KB
-    unsigned int temp_out_buffer_size = 0;
-    size_t out_offset = 0;
+	lzw_timer.start();
+    uint16_t temp_lzw_compressed_output[chunk_count][2048]; // 假设 MAX_CHUNK_SIZE 是单个块的最大大小
+    int temp_output_index[chunk_count];
+    uint8_t lzw_compressed_output[undup_count][2048];
+    int compressed_data_size[undup_count];
+
+    // for (unsigned int i = 0; i < chunk_count; i++) {
+    //     memcpy(&lzw_s1[i * MAX_CHUNK_SIZE], chunks[i], chunk_sizes[i]);
+    //     lzw_length[i] = chunk_sizes[i];
+    // }
 
     for (unsigned int i = 0; i < chunk_count; i++) {
         if (dup_flag[i] == 0) {
@@ -333,16 +332,65 @@ int main(int argc, char** argv)
 			//printf("temp_output_index: %d\n", temp_output_index[i]);
         }
     }
+	//delete[] fileBuf;
+    // q.enqueueUnmapMemObject(lzw_s1_buf, lzw_s1);
+    // q.enqueueUnmapMemObject(lzw_length_buf, lzw_length);
+    // q.enqueueUnmapMemObject(lzw_out_code_buf, lzw_out_code);
+    // q.enqueueUnmapMemObject(lzw_out_len_buf, lzw_out_len);
+    // q.finish();
 	lzw_timer.stop();
 
+	for (unsigned int i = 0; i < chunk_count; i++) {
+		if (dup_flag[i] == 0) {
+			printf("Chunk %u:", i);
+			printf("temp_output_index: %d\n", temp_output_index[i]);
+		}
+	}
+    for (unsigned int i = 0; i < chunk_count; i++) {
+        if (dup_flag[i] == 0) {
+            int output_index = convert_output(temp_lzw_compressed_output[i], lzw_compressed_output[i], temp_output_index[i]);
+            compressed_data_size[i] = output_index;
+        }
+    }
 	overall_timer.stop();
 
 
+    uint32_t header[chunk_count];
+	for (unsigned int i = 0; i < chunk_count; i++) {
+
+		header[i] = 0;
+		if (dup_flag[i] == 0) {
+			header[i] = compressed_data_size[i] << 1;
+		} else {
+			header[i] = (dup_index[i]<<1) | 0x00000001;
+		}
+		//header[i] = (temp_header << 24) & 0xff000000 | (temp_header<<8)&0x00ff0000 | (temp_header>>8)&0x0000ff00 | (temp_header>>24)&0x000000ff;
+
+		//printf("chunk: %u, Header: %#010x\n", i, header[i]);
+		//printf("chunk: %u, Header: %#010x\n", i, temp_header);
+	}
 
 
 
 
-
+	printf("begin to write in file\n");
+	FILE* out_file = fopen("compressed_data.bin", "wb");
+	if (file == NULL) {
+        perror("Failed to open file");
+        
+    }
+	for (unsigned int i = 0; i < chunk_count; i++) {
+		fwrite(&header[i], sizeof(uint32_t), 1, out_file);
+		printf("\n %#010x ", header[i]);
+		if (dup_flag[i] == 0) {
+			for (int j = 0; j < compressed_data_size[i]; j++) {
+				fwrite(&lzw_compressed_output[i][j], sizeof(uint8_t), 1, out_file);
+				printf("%02X", lzw_compressed_output[i][j]);
+			}
+		}
+	}
+	fclose(out_file);
+	printf("begin to free\n");
 
 
     for (int i = 0; i < NUM_PACKETS; i++) {
