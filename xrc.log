@@ -1,0 +1,12 @@
+Sat Dec  7 18:21:33 2024: Server was asked to start on port: '33005'
+Sat Dec  7 18:21:33 2024: Server is using token UUID: '5d743276-b2c2-470b-b3ea-d227dbe65c48'
+Sat Dec  7 18:21:33 2024: Attempting to start server on port '33005'
+Sat Dec  7 18:21:33 2024: XRC main fifo: created main fifo '/tmp/xrcmain5d743276-b2c2-470b-b3ea-d227dbe65c48', fd read = 13
+Sat Dec  7 18:21:33 2024: Running Rule Check Server
+Sat Dec  7 18:21:33 2024: Version 1.6.1
+Sat Dec  7 18:21:33 2024: Rule Check Server: Accepted socket connection from client
+Sat Dec  7 18:21:33 2024: EXCHANGE_TOKEN received, server token: 5d743276-b2c2-470b-b3ea-d227dbe65c48, passed token: 5d743276-b2c2-470b-b3ea-d227dbe65c48
+Sat Dec  7 18:21:33 2024: SESSION_MGR: creating session with session uuid: '3f69b37a-445e-494a-b640-56b8ea73853a' and name 'v++_link_lzw_compress_hw'
+Sat Dec  7 18:21:36 2024: Rule Check Server: Accepted socket connection from client
+Sat Dec  7 18:22:14 2024: Rule Check Server: Accepted socket connection from client
+Sat Dec  7 18:28:22 2024: Rule Check Server: Accepted socket connection from client

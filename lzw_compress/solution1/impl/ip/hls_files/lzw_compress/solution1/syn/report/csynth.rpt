@@ -1,0 +1,28 @@
+
+
+================================================================
+== Synthesis Summary Report of 'lzw_compress_hw'
+================================================================
++ General Information: 
+    * Date:           Sat Dec  7 17:56:24 2024
+    * Version:        2020.2 (Build 3064766 on Wed Nov 18 09:12:47 MST 2020)
+    * Project:        lzw_compress
+    * Solution:       solution1 (Vitis Kernel Flow Target)
+    * Product family: zynquplus
+    * Target device:  xczu3eg-sbva484-1-i
+    
+
++ Performance & Resource Estimates: 
+    
+    PS: '+' for module; 'o' for loop; '*' for dataflow
+    +---------------------+--------+-------+---------+-----------+----------+---------+-------+----------+----------+----+-----------+-------------+-----+
+    |       Modules       |  Issue |       | Latency |  Latency  | Iteration|         |  Trip |          |          |    |           |             |     |
+    |       & Loops       |  Type  | Slack | (cycles)|    (ns)   |  Latency | Interval| Count | Pipelined|   BRAM   | DSP|     FF    |     LUT     | URAM|
+    +---------------------+--------+-------+---------+-----------+----------+---------+-------+----------+----------+----+-----------+-------------+-----+
+    |+ lzw_compress_hw    |  Timing|   0.00|        -|          -|         -|        -|      -|        no|  90 (20%)|   -|  3904 (2%)|  13101 (18%)|    -|
+    | o VITIS_LOOP_348_1  |       -|  -4.87|    32768|  2.185e+05|         1|        1|  32768|       yes|         -|   -|          -|            -|    -|
+    | o VITIS_LOOP_353_2  |       -|  -4.87|      512|  3.414e+03|         1|        1|    512|       yes|         -|   -|          -|            -|    -|
+    | o VITIS_LOOP_367_3  |      II|  -4.87|        -|          -|        86|       85|      -|       yes|         -|   -|          -|            -|    -|
+    | o VITIS_LOOP_400_4  |      II|  -4.87|        -|          -|        73|        3|      -|       yes|         -|   -|          -|            -|    -|
+    +---------------------+--------+-------+---------+-----------+----------+---------+-------+----------+----------+----+-----------+-------------+-----+
+

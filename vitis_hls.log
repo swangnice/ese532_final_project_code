@@ -1,0 +1,45 @@
+INFO: Applying HLS Y2K22 patch v1.2 for IP revision
+INFO: [HLS 200-10] Running '/mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/bin/unwrapped/lnx64.o/vitis_hls'
+INFO: [HLS 200-10] For user 'swang01' on host 'klick.seas.upenn.edu' (Linux_x86_64 version 6.4.0-150600.23.25-default) on Sat Dec 07 17:57:10 EST 2024
+INFO: [HLS 200-10] On os "openSUSE Leap 15.6"
+INFO: [HLS 200-10] In directory '/mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code'
+Sourcing Tcl script '/mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/lzw_compress/solution1/export.tcl'
+INFO: [HLS 200-1510] Running: open_project lzw_compress 
+INFO: [HLS 200-10] Opening project '/mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/lzw_compress'.
+INFO: [HLS 200-1510] Running: set_top lzw_compress_hw 
+INFO: [HLS 200-1510] Running: add_files Server/lzw.cpp 
+INFO: [HLS 200-10] Adding design file 'Server/lzw.cpp' to the project
+INFO: [HLS 200-1510] Running: add_files Server/lzw.h 
+INFO: [HLS 200-10] Adding design file 'Server/lzw.h' to the project
+INFO: [HLS 200-1510] Running: add_files -tb test.cpp 
+INFO: [HLS 200-10] Adding test bench file 'test.cpp' to the project
+INFO: [HLS 200-1510] Running: open_solution solution1 -flow_target vitis 
+INFO: [HLS 200-10] Opening solution '/mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/lzw_compress/solution1'.
+INFO: [SYN 201-201] Setting up clock 'default' with a period of 6.667ns.
+INFO: [HLS 200-10] Setting target device to 'xczu3eg-sbva484-1-i'
+INFO: [HLS 200-1505] Using flow_target 'vitis'
+Resolution: For help on HLS 200-1505 see www.xilinx.com/cgi-bin/docs/rdoc?v=2020.2;t=hls+guidance;d=200-1505.html
+INFO: [HLS 200-435] Setting 'open_solution -flow_target vitis' configuration: config_interface -m_axi_latency=64
+INFO: [HLS 200-435] Setting 'open_solution -flow_target vitis' configuration: config_interface -m_axi_alignment_byte_size=64
+INFO: [HLS 200-435] Setting 'open_solution -flow_target vitis' configuration: config_interface -m_axi_max_widen_bitwidth=512
+INFO: [HLS 200-435] Setting 'open_solution -flow_target vitis' configuration: config_interface -m_axi_offset=slave
+INFO: [HLS 200-435] Setting 'open_solution -flow_target vitis' configuration: config_rtl -register_reset_num=3
+INFO: [HLS 200-1510] Running: set_part xczu3eg-sbva484-1-i 
+INFO: [HLS 200-1510] Running: create_clock -period 150MHz -name default 
+INFO: [SYN 201-201] Setting up clock 'default' with a period of 6.667ns.
+INFO: [HLS 200-1510] Running: export_design -rtl verilog -format xo -output /home1/s/swang01/Documents/lzw_compress_hw.xo 
+INFO: [IMPL 213-8] Exporting RTL as a Vivado IP.
+
+****** Vivado v2020.2 (64-bit)
+  **** SW Build 3064766 on Wed Nov 18 09:12:47 MST 2020
+  **** IP Build 3064653 on Wed Nov 18 14:17:31 MST 2020
+    ** Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
+
+source run_ippack.tcl -notrace
+INFO: [IP_Flow 19-234] Refreshing IP repositories
+INFO: [IP_Flow 19-1704] No user IP repositories specified
+INFO: [IP_Flow 19-2313] Loaded Vivado IP repository '/mnt/pollux/software/xilinx/2020.2/Vivado/2020.2/data/ip'.
+Running package_xo -xo_path /mnt/castor/seas_home/s/swang01/Documents/lzw_compress_hw.xo -kernel_name lzw_compress_hw -kernel_xml /mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/lzw_compress/solution1/impl/ip/../kernel/kernel.xml -kernel_files /mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/Server/lzw.cpp -ip_directory /mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/lzw_compress/solution1/impl/ip/ip_unzip_dir -design_xml /mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/lzw_compress/solution1/.autopilot/db/lzw_compress_hw.design.xml -debug_directory /mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/lzw_compress/solution1/.debug -hls_directory /mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/lzw_compress/solution1/impl/ip/hls_files
+INFO: [Common 17-206] Exiting Vivado at Sat Dec  7 17:58:03 2024...
+INFO: [HLS 200-802] Generated output file /mnt/castor/seas_home/s/swang01/Documents/lzw_compress_hw.xo
+INFO: [HLS 200-111] Finished Command export_design CPU user time: 12.15 seconds. CPU system time: 1.84 seconds. Elapsed time: 58.89 seconds; current allocated memory: 217.146 MB.

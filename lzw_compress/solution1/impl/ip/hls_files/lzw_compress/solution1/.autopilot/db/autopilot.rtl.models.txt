@@ -1,0 +1,7 @@
+lzw_compress_hw_hash_table
+lzw_compress_hw_my_assoc_mem_upper_key_mem
+lzw_compress_hw_my_assoc_mem_value
+lzw_compress_hw_out_code
+lzw_compress_hw_control_s_axi
+lzw_compress_hw_gmem_m_axi
+lzw_compress_hw

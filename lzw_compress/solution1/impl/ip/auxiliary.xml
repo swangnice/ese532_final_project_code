@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xd:acceleratorMap xmlns:xd="http://www.xilinx.com/xidane" xd:functionName="lzw_compress_hw" xd:componentRef="lzw_compress_hw" xd:initiationInterval="x" xd:clockPeriod="6.667" xd:sequential="true" xd:hostMachine="64" xd:reset="control">
+  <xd:controlReg xd:name="control" xd:interfaceRef="s_axi_control" xd:busTypeRef="axilite" xd:type="generic_axi_lite" xd:offset="0x0"/>
+  <xd:arg xd:name="*(s1)" xd:originalName="s1" xd:direction="inout" xd:interfaceRef="m_axi_gmem" xd:busTypeRef="aximm" xd:dataPack="true" xd:bitMapping="0:0" xd:dataWidth="1" xd:bufferDirection="in"/>
+  <xd:arg xd:name="*(length)" xd:originalName="length" xd:direction="inout" xd:interfaceRef="m_axi_gmem" xd:busTypeRef="aximm" xd:dataPack="true" xd:bitMapping="0:0" xd:dataWidth="1" xd:bufferDirection="in"/>
+  <xd:arg xd:name="*(temp_out_buffer)" xd:originalName="temp_out_buffer" xd:direction="inout" xd:interfaceRef="m_axi_gmem" xd:busTypeRef="aximm" xd:dataPack="true" xd:bitMapping="0:0" xd:dataWidth="1" xd:bufferDirection="out"/>
+  <xd:arg xd:name="*(temp_out_buffer_size)" xd:originalName="temp_out_buffer_size" xd:direction="inout" xd:interfaceRef="m_axi_gmem" xd:busTypeRef="aximm" xd:dataPack="true" xd:bitMapping="0:0" xd:dataWidth="1" xd:bufferDirection="out"/>
+  <xd:arg xd:name="s1" xd:originalName="s1" xd:direction="in" xd:interfaceRef="s_axi_control" xd:busTypeRef="axilite" xd:aximmInterfaceRef="m_axi_gmem" xd:dataWidth="64" xd:offset="0x10" xd:handshakeRef="ap_none"/>
+  <xd:arg xd:name="length_r" xd:originalName="length_r" xd:direction="in" xd:interfaceRef="s_axi_control" xd:busTypeRef="axilite" xd:aximmInterfaceRef="m_axi_gmem" xd:dataWidth="64" xd:offset="0x1C" xd:handshakeRef="ap_none"/>
+  <xd:arg xd:name="is_dup" xd:originalName="is_dup" xd:direction="in" xd:interfaceRef="s_axi_control" xd:busTypeRef="axilite" xd:dataWidth="1" xd:offset="0x28" xd:handshakeRef="ap_none"/>
+  <xd:arg xd:name="dup_index" xd:originalName="dup_index" xd:direction="in" xd:interfaceRef="s_axi_control" xd:busTypeRef="axilite" xd:dataWidth="1" xd:offset="0x30" xd:handshakeRef="ap_none"/>
+  <xd:arg xd:name="temp_out_buffer" xd:originalName="temp_out_buffer" xd:direction="in" xd:interfaceRef="s_axi_control" xd:busTypeRef="axilite" xd:aximmInterfaceRef="m_axi_gmem" xd:dataWidth="64" xd:offset="0x38" xd:handshakeRef="ap_none"/>
+  <xd:arg xd:name="temp_out_buffer_size" xd:originalName="temp_out_buffer_size" xd:direction="in" xd:interfaceRef="s_axi_control" xd:busTypeRef="axilite" xd:aximmInterfaceRef="m_axi_gmem" xd:dataWidth="64" xd:offset="0x44" xd:handshakeRef="ap_none"/>
+  <xd:latencyEstimates xd:best-case="undef" xd:worst-case="undef" xd:average-case="undef"/>
+  <xd:resourceEstimates xd:LUT="13101" xd:FF="3904" xd:BRAM="90" xd:DSP="0"/>
+</xd:acceleratorMap>
