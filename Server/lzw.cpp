@@ -223,7 +223,7 @@ void lzw_compress(unsigned char* s1, int* length, uint16_t* out_code, int *out_l
 
 void lzw_compress_v2(unsigned char* s1, int* length, uint8_t is_dup, int dup_index,  uint8_t *temp_out_buffer, unsigned int *temp_out_buffer_size)
 {
-    printf("Begin lzw_compress_v2\n");
+    //printf("Begin lzw_compress_v2\n");
     if (is_dup == 0){
         unsigned long hash_table[CAPACITY];
         assoc_mem my_assoc_mem;
@@ -277,20 +277,20 @@ void lzw_compress_v2(unsigned char* s1, int* length, uint8_t is_dup, int dup_ind
             }
             i += 1;
         }
-        printf("End lzw_compress\n");
+        //printf("End lzw_compress\n");
         //*out_len = j;
         // Convert Output
         int output_size = 0;
         int adjusted_input_size = j - (j % 2);
         for(int i = 0; i < adjusted_input_size; i+=2){
             temp_out_buffer[output_size+4] = (out_code[i]>>4) & 0xff;
-            printf("temp_out_buffer[1]: %u\n", static_cast<unsigned int>(temp_out_buffer[output_size]));
+            //printf("temp_out_buffer[1]: %u\n", static_cast<unsigned int>(temp_out_buffer[output_size]));
             output_size++;
             temp_out_buffer[output_size+4] = ((out_code[i] << 4) & 0xf0) | ((out_code[i+1] >> 8) & 0x0f);
-            printf("temp_out_buffer[2]: %u\n", static_cast<unsigned int>(temp_out_buffer[output_size]));
+            //printf("temp_out_buffer[2]: %u\n", static_cast<unsigned int>(temp_out_buffer[output_size]));
             output_size++;
             temp_out_buffer[output_size+4] = (out_code[i+1]) & 0xff;
-            printf("temp_out_buffer[3]: %u\n", static_cast<unsigned int>(temp_out_buffer[output_size]));
+            //printf("temp_out_buffer[3]: %u\n", static_cast<unsigned int>(temp_out_buffer[output_size]));
             output_size++;
         }
         if (j % 2 != 0) {
@@ -299,14 +299,14 @@ void lzw_compress_v2(unsigned char* s1, int* length, uint8_t is_dup, int dup_ind
             temp_out_buffer[output_size+4] = (out_code[adjusted_input_size] << 4) & 0xF0;
             output_size++;
         }
-    printf("End convert_output\n");
+    //printf("End convert_output\n");
         // Generate header and combine with output
         temp_out_buffer[0] = ((output_size << 1)) & 0xff;
         temp_out_buffer[1] = ((output_size << 1) >> 8) & 0xff;
         temp_out_buffer[2] = ((output_size << 1) >> 16) & 0xff;
         temp_out_buffer[3] = ((output_size << 1) >> 24) & 0xff;
         *temp_out_buffer_size = output_size + 4;
-    printf("End build buffer\n");
+    //printf("End build buffer\n");
     } 
     if (is_dup == 1){
         // Generate header and combine with output

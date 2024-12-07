@@ -244,6 +244,7 @@ int main(int argc, char* argv[]) {
 	// int temp_output_index[chunk_count];
 	// uint8_t lzw_compressed_output[undup_count][2048];
 	// int compressed_data_size[undup_count];
+    lzw_timer.start();
     uint8_t *out_buffer;
     out_buffer = (uint8_t *)malloc(sizeof(uint8_t) * 1024 * 512); //    512KB Here, we assume that the maximum size of the whole compressed data is 512KB
     printf("Initial out_buffer size: %d\n", sizeof(out_buffer));
@@ -259,7 +260,8 @@ int main(int argc, char* argv[]) {
         memcpy(out_buffer + out_offset, temp_out_buffer, temp_out_buffer_size);
         out_offset += temp_out_buffer_size;
     }
-    printf("Final out_buffer size: %d\n", sizeof(out_buffer));
+    lzw_timer.stop();
+    //printf("Final out_buffer size: %d\n", sizeof(out_buffer));
 
 //Store in a file
     FILE* out_file = fopen("compressed_data.bin", "wb");
