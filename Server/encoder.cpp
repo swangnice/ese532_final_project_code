@@ -194,8 +194,8 @@ int main(int argc, char* argv[]) {
 	dedup_timer.start();
 	uint8_t *dup_flag[chunk_count];
 	int *dup_index[chunk_count];
-	dup_flag[0] = 0;	
-	dup_index[0] = 0;
+	*dup_flag[0] = 0;	
+	*dup_index[0] = 0;
 	int undup_count = 1;
 	for (unsigned int i = 1; i < chunk_count; i++) {				
 		*dup_flag[i] = 0;	//un duplicated
@@ -233,7 +233,7 @@ int main(int argc, char* argv[]) {
 	// }
 
 	for (unsigned int i = 0; i < chunk_count; i++) {
-		if (dup_flag[i] == 0) {
+		if (*dup_flag[i] == 0) {
 			printf("Chunk %u:", i);
 			printf("chunk size: %d\n", chunk_sizes[i]);
 		}
