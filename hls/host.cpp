@@ -89,8 +89,8 @@ int main(int argc, char** argv)
 
     unsigned char* lzw_s1;
     int *lzw_length;
-    uint8_t lzw_is_dup;
-    int lzw_dup_index;
+    uint8_t *lzw_is_dup;
+    int *lzw_dup_index;
 	uint8_t *lzw_temp_out_buffer;
 	unsigned int *lzw_temp_out_buffer_size;
 
@@ -103,8 +103,8 @@ int main(int argc, char** argv)
 	
     lzw_s1 = (unsigned char *)q.enqueueMapBuffer(lzw_s1_buf, CL_TRUE, CL_MAP_WRITE, 0, sizeof(unsigned char) * 2048);
     lzw_length = (int*)q.enqueueMapBuffer(lzw_length_buf, CL_TRUE, CL_MAP_WRITE, 0, sizeof(int));
-	lzw_is_dup = (uint8_t)q.enqueueMapBuffer(lzw_is_dup_buf, CL_TRUE, CL_MAP_WRITE, 0, sizeof(uint8_t));
-	lzw_dup_index = (int)q.enqueueMapBuffer(lzw_dup_index_buf, CL_TRUE, CL_MAP_WRITE, 0, sizeof(int));
+	lzw_is_dup = (uint8_t*)q.enqueueMapBuffer(lzw_is_dup_buf, CL_TRUE, CL_MAP_WRITE, 0, sizeof(uint8_t));
+	lzw_dup_index = (int*)q.enqueueMapBuffer(lzw_dup_index_buf, CL_TRUE, CL_MAP_WRITE, 0, sizeof(int));
 	lzw_temp_out_buffer = (uint8_t*)q.enqueueMapBuffer(lzw_temp_out_buffer_buf, CL_TRUE, CL_MAP_READ, 0, sizeof(uint8_t) * 2048);
 	lzw_temp_out_buffer_size = (unsigned int*)q.enqueueMapBuffer(lzw_temp_out_buffer_size_buf, CL_TRUE, CL_MAP_READ, 0, sizeof(unsigned int));
 	
@@ -298,8 +298,8 @@ int main(int argc, char** argv)
             memcpy(lzw_s1, chunks[i], chunk_sizes[i]);
 			//printf("chunk size: %d\n", chunk_sizes[i]);
             *lzw_length = chunk_sizes[i];
-            lzw_is_dup = dup_flag[i];
-            lzw_dup_index = dup_index[i];
+            *lzw_is_dup = dup_flag[i];
+            *lzw_dup_index = dup_index[i];
 			//printf("chunk size: %d\n", *lzw_length);
 			// printf("Chunk %u:", i);
 			// for (int j = 0; j < *lzw_length; j++) { // `total_size` 是 lzw_s1 的总长度
