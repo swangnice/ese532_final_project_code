@@ -29,28 +29,28 @@
             <Interval-max>undef</Interval-max>
         </SummaryOfOverallLatency>
         <SummaryOfLoopLatency>
-            <VITIS_LOOP_348_1>
+            <VITIS_LOOP_350_1>
                 <TripCount>32768</TripCount>
                 <Latency>32768</Latency>
                 <AbsoluteTimeLatency>218464</AbsoluteTimeLatency>
                 <PipelineII>1</PipelineII>
                 <PipelineDepth>1</PipelineDepth>
-            </VITIS_LOOP_348_1>
-            <VITIS_LOOP_353_2>
+            </VITIS_LOOP_350_1>
+            <VITIS_LOOP_355_2>
                 <TripCount>512</TripCount>
                 <Latency>512</Latency>
                 <AbsoluteTimeLatency>3413</AbsoluteTimeLatency>
                 <PipelineII>1</PipelineII>
                 <PipelineDepth>1</PipelineDepth>
-            </VITIS_LOOP_353_2>
-            <VITIS_LOOP_367_3>
+            </VITIS_LOOP_355_2>
+            <VITIS_LOOP_369_3>
                 <TripCount>undef</TripCount>
                 <Latency>undef</Latency>
                 <AbsoluteTimeLatency>undef</AbsoluteTimeLatency>
                 <PipelineII>85</PipelineII>
                 <PipelineDepth>86</PipelineDepth>
-            </VITIS_LOOP_367_3>
-            <VITIS_LOOP_400_4>
+            </VITIS_LOOP_369_3>
+            <VITIS_LOOP_402_4>
                 <TripCount>undef</TripCount>
                 <Latency>
                     <range>
@@ -66,14 +66,14 @@
                 </AbsoluteTimeLatency>
                 <PipelineII>3</PipelineII>
                 <PipelineDepth>73</PipelineDepth>
-            </VITIS_LOOP_400_4>
+            </VITIS_LOOP_402_4>
         </SummaryOfLoopLatency>
     </PerformanceEstimates>
     <AreaEstimates>
         <Resources>
             <BRAM_18K>90</BRAM_18K>
-            <FF>3904</FF>
-            <LUT>13101</LUT>
+            <FF>4294</FF>
+            <LUT>13959</LUT>
             <DSP>0</DSP>
             <URAM>0</URAM>
         </Resources>
@@ -906,38 +906,38 @@
                     <PipelineType>none</PipelineType>
                 </SummaryOfOverallLatency>
                 <SummaryOfLoopLatency>
-                    <VITIS_LOOP_348_1>
-                        <Name>VITIS_LOOP_348_1</Name>
+                    <VITIS_LOOP_350_1>
+                        <Name>VITIS_LOOP_350_1</Name>
                         <TripCount>32768</TripCount>
                         <Latency>32768</Latency>
                         <AbsoluteTimeLatency>0.218 ms</AbsoluteTimeLatency>
                         <PipelineII>1</PipelineII>
                         <PipelineDepth>1</PipelineDepth>
-                    </VITIS_LOOP_348_1>
-                    <VITIS_LOOP_353_2>
-                        <Name>VITIS_LOOP_353_2</Name>
+                    </VITIS_LOOP_350_1>
+                    <VITIS_LOOP_355_2>
+                        <Name>VITIS_LOOP_355_2</Name>
                         <TripCount>512</TripCount>
                         <Latency>512</Latency>
                         <AbsoluteTimeLatency>3.414 us</AbsoluteTimeLatency>
                         <PipelineII>1</PipelineII>
                         <PipelineDepth>1</PipelineDepth>
-                    </VITIS_LOOP_353_2>
-                    <VITIS_LOOP_367_3>
-                        <Name>VITIS_LOOP_367_3</Name>
+                    </VITIS_LOOP_355_2>
+                    <VITIS_LOOP_369_3>
+                        <Name>VITIS_LOOP_369_3</Name>
                         <TripCount>undef</TripCount>
                         <Latency>undef</Latency>
                         <AbsoluteTimeLatency>undef</AbsoluteTimeLatency>
                         <PipelineII>85</PipelineII>
                         <PipelineDepth>86</PipelineDepth>
-                    </VITIS_LOOP_367_3>
-                    <VITIS_LOOP_400_4>
-                        <Name>VITIS_LOOP_400_4</Name>
+                    </VITIS_LOOP_369_3>
+                    <VITIS_LOOP_402_4>
+                        <Name>VITIS_LOOP_402_4</Name>
                         <TripCount>undef</TripCount>
                         <Latency>72 ~ ?</Latency>
                         <AbsoluteTimeLatency>0.480 us ~ ?</AbsoluteTimeLatency>
                         <PipelineII>3</PipelineII>
                         <PipelineDepth>73</PipelineDepth>
-                    </VITIS_LOOP_400_4>
+                    </VITIS_LOOP_402_4>
                 </SummaryOfLoopLatency>
             </PerformanceEstimates>
             <AreaEstimates>
@@ -945,12 +945,12 @@
                     <BRAM_18K>90</BRAM_18K>
                     <AVAIL_BRAM>432</AVAIL_BRAM>
                     <UTIL_BRAM>20</UTIL_BRAM>
-                    <FF>3904</FF>
+                    <FF>4294</FF>
                     <AVAIL_FF>141120</AVAIL_FF>
-                    <UTIL_FF>2</UTIL_FF>
-                    <LUT>13101</LUT>
+                    <UTIL_FF>3</UTIL_FF>
+                    <LUT>13959</LUT>
                     <AVAIL_LUT>70560</AVAIL_LUT>
-                    <UTIL_LUT>18</UTIL_LUT>
+                    <UTIL_LUT>19</UTIL_LUT>
                     <DSP>0</DSP>
                     <AVAIL_DSP>360</AVAIL_DSP>
                     <UTIL_DSP>0</UTIL_DSP>
@@ -1773,14 +1773,18 @@
                 <hwRef type="register" interface="s_axi_control" name="length_r_2" usage="address" direction="in"/>
             </hwRefs>
         </Arg>
-        <Arg ArgName="is_dup" index="2" direction="in" srcType="unsigned char" srcSize="8">
+        <Arg ArgName="is_dup" index="2" direction="inout" srcType="int*" srcSize="32">
             <hwRefs>
-                <hwRef type="register" interface="s_axi_control" name="is_dup" usage="data" direction="in"/>
+                <hwRef type="interface" interface="m_axi_gmem" name="" usage="data" direction="out"/>
+                <hwRef type="register" interface="s_axi_control" name="is_dup_1" usage="address" direction="in"/>
+                <hwRef type="register" interface="s_axi_control" name="is_dup_2" usage="address" direction="in"/>
             </hwRefs>
         </Arg>
-        <Arg ArgName="dup_index" index="3" direction="in" srcType="int" srcSize="32">
+        <Arg ArgName="dup_index" index="3" direction="inout" srcType="int*" srcSize="32">
             <hwRefs>
-                <hwRef type="register" interface="s_axi_control" name="dup_index" usage="data" direction="in"/>
+                <hwRef type="interface" interface="m_axi_gmem" name="" usage="data" direction="out"/>
+                <hwRef type="register" interface="s_axi_control" name="dup_index_1" usage="address" direction="in"/>
+                <hwRef type="register" interface="s_axi_control" name="dup_index_2" usage="address" direction="in"/>
             </hwRefs>
         </Arg>
         <Arg ArgName="temp_out_buffer" index="4" direction="inout" srcType="unsigned char*" srcSize="8">
@@ -1970,33 +1974,42 @@
                         <field offset="0" width="32" name="length_r" access="W" resetValue="0" description="Bit 63 to 32 of length_r"/>
                     </fields>
                 </register>
-                <register offset="0x28" name="is_dup" access="W" resetValue="0x0" description="Data signal of is_dup" range="32">
+                <register offset="0x28" name="is_dup_1" access="W" resetValue="0x0" description="Data signal of is_dup" range="32">
                     <fields>
-                        <field offset="0" width="8" name="is_dup" access="W" resetValue="0" description="Bit 7 to 0 of is_dup"/>
-                        <field offset="8" width="24" name="RESERVED" access="R" resetValue="0" description="Reserved.  0s on read."/>
+                        <field offset="0" width="32" name="is_dup" access="W" resetValue="0" description="Bit 31 to 0 of is_dup"/>
                     </fields>
                 </register>
-                <register offset="0x30" name="dup_index" access="W" resetValue="0x0" description="Data signal of dup_index" range="32">
+                <register offset="0x2c" name="is_dup_2" access="W" resetValue="0x0" description="Data signal of is_dup" range="32">
+                    <fields>
+                        <field offset="0" width="32" name="is_dup" access="W" resetValue="0" description="Bit 63 to 32 of is_dup"/>
+                    </fields>
+                </register>
+                <register offset="0x34" name="dup_index_1" access="W" resetValue="0x0" description="Data signal of dup_index" range="32">
                     <fields>
                         <field offset="0" width="32" name="dup_index" access="W" resetValue="0" description="Bit 31 to 0 of dup_index"/>
                     </fields>
                 </register>
-                <register offset="0x38" name="temp_out_buffer_1" access="W" resetValue="0x0" description="Data signal of temp_out_buffer" range="32">
+                <register offset="0x38" name="dup_index_2" access="W" resetValue="0x0" description="Data signal of dup_index" range="32">
+                    <fields>
+                        <field offset="0" width="32" name="dup_index" access="W" resetValue="0" description="Bit 63 to 32 of dup_index"/>
+                    </fields>
+                </register>
+                <register offset="0x40" name="temp_out_buffer_1" access="W" resetValue="0x0" description="Data signal of temp_out_buffer" range="32">
                     <fields>
                         <field offset="0" width="32" name="temp_out_buffer" access="W" resetValue="0" description="Bit 31 to 0 of temp_out_buffer"/>
                     </fields>
                 </register>
-                <register offset="0x3c" name="temp_out_buffer_2" access="W" resetValue="0x0" description="Data signal of temp_out_buffer" range="32">
+                <register offset="0x44" name="temp_out_buffer_2" access="W" resetValue="0x0" description="Data signal of temp_out_buffer" range="32">
                     <fields>
                         <field offset="0" width="32" name="temp_out_buffer" access="W" resetValue="0" description="Bit 63 to 32 of temp_out_buffer"/>
                     </fields>
                 </register>
-                <register offset="0x44" name="temp_out_buffer_size_1" access="W" resetValue="0x0" description="Data signal of temp_out_buffer_size" range="32">
+                <register offset="0x4c" name="temp_out_buffer_size_1" access="W" resetValue="0x0" description="Data signal of temp_out_buffer_size" range="32">
                     <fields>
                         <field offset="0" width="32" name="temp_out_buffer_size" access="W" resetValue="0" description="Bit 31 to 0 of temp_out_buffer_size"/>
                     </fields>
                 </register>
-                <register offset="0x48" name="temp_out_buffer_size_2" access="W" resetValue="0x0" description="Data signal of temp_out_buffer_size" range="32">
+                <register offset="0x50" name="temp_out_buffer_size_2" access="W" resetValue="0x0" description="Data signal of temp_out_buffer_size" range="32">
                     <fields>
                         <field offset="0" width="32" name="temp_out_buffer_size" access="W" resetValue="0" description="Bit 63 to 32 of temp_out_buffer_size"/>
                     </fields>
@@ -2039,8 +2052,8 @@
                     <keys size="3">Argument, Direction, Datatype</keys>
                     <column name="s1">inout, unsigned char*</column>
                     <column name="length">inout, int*</column>
-                    <column name="is_dup">in, unsigned char</column>
-                    <column name="dup_index">in, int</column>
+                    <column name="is_dup">inout, int*</column>
+                    <column name="dup_index">inout, int*</column>
                     <column name="temp_out_buffer">inout, unsigned char*</column>
                     <column name="temp_out_buffer_size">inout, unsigned int*</column>
                 </table>
@@ -2054,14 +2067,18 @@
                     <column name="length">m_axi_gmem, interface, , </column>
                     <column name="length">s_axi_control length_r_1, register, offset, offset=0x1c range=32</column>
                     <column name="length">s_axi_control length_r_2, register, offset, offset=0x20 range=32</column>
-                    <column name="is_dup">s_axi_control is_dup, register, , offset=0x28 range=32</column>
-                    <column name="dup_index">s_axi_control dup_index, register, , offset=0x30 range=32</column>
+                    <column name="is_dup">m_axi_gmem, interface, , </column>
+                    <column name="is_dup">s_axi_control is_dup_1, register, offset, offset=0x28 range=32</column>
+                    <column name="is_dup">s_axi_control is_dup_2, register, offset, offset=0x2c range=32</column>
+                    <column name="dup_index">m_axi_gmem, interface, , </column>
+                    <column name="dup_index">s_axi_control dup_index_1, register, offset, offset=0x34 range=32</column>
+                    <column name="dup_index">s_axi_control dup_index_2, register, offset, offset=0x38 range=32</column>
                     <column name="temp_out_buffer">m_axi_gmem, interface, , </column>
-                    <column name="temp_out_buffer">s_axi_control temp_out_buffer_1, register, offset, offset=0x38 range=32</column>
-                    <column name="temp_out_buffer">s_axi_control temp_out_buffer_2, register, offset, offset=0x3c range=32</column>
+                    <column name="temp_out_buffer">s_axi_control temp_out_buffer_1, register, offset, offset=0x40 range=32</column>
+                    <column name="temp_out_buffer">s_axi_control temp_out_buffer_2, register, offset, offset=0x44 range=32</column>
                     <column name="temp_out_buffer_size">m_axi_gmem, interface, , </column>
-                    <column name="temp_out_buffer_size">s_axi_control temp_out_buffer_size_1, register, offset, offset=0x44 range=32</column>
-                    <column name="temp_out_buffer_size">s_axi_control temp_out_buffer_size_2, register, offset, offset=0x48 range=32</column>
+                    <column name="temp_out_buffer_size">s_axi_control temp_out_buffer_size_1, register, offset, offset=0x4c range=32</column>
+                    <column name="temp_out_buffer_size">s_axi_control temp_out_buffer_size_2, register, offset, offset=0x50 range=32</column>
                 </table>
             </item>
         </section>
@@ -2071,8 +2088,8 @@
             <item name="Burst Missed">
                 <table>
                     <keys size="5">HW Interface, Variable, Problem, Resolution, Location</keys>
-                    <column name="m_axi_gmem">temp_out_buffer, Could not widen since Type i8 size is greater than or equal to alignment 1(bytes), , Server/lzw.cpp:415:24</column>
-                    <column name="m_axi_gmem">temp_out_buffer, Sequential access length is not divisible by 2, 214-234, Server/lzw.cpp:400:27</column>
+                    <column name="m_axi_gmem">temp_out_buffer, Could not widen since Type i8 size is greater than or equal to alignment 1(bytes), , Server/lzw.cpp:417:24</column>
+                    <column name="m_axi_gmem">temp_out_buffer, Sequential access length is not divisible by 2, 214-234, Server/lzw.cpp:402:27</column>
                 </table>
             </item>
         </section>

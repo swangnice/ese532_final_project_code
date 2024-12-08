@@ -26,38 +26,38 @@
 <PipelineType>none</PipelineType>
 </SummaryOfOverallLatency>
 <SummaryOfLoopLatency>
-<VITIS_LOOP_348_1>
-<Name>VITIS_LOOP_348_1</Name>
+<VITIS_LOOP_350_1>
+<Name>VITIS_LOOP_350_1</Name>
 <TripCount>32768</TripCount>
 <Latency>32768</Latency>
 <AbsoluteTimeLatency>0.218 ms</AbsoluteTimeLatency>
 <PipelineII>1</PipelineII>
 <PipelineDepth>1</PipelineDepth>
-</VITIS_LOOP_348_1>
-<VITIS_LOOP_353_2>
-<Name>VITIS_LOOP_353_2</Name>
+</VITIS_LOOP_350_1>
+<VITIS_LOOP_355_2>
+<Name>VITIS_LOOP_355_2</Name>
 <TripCount>512</TripCount>
 <Latency>512</Latency>
 <AbsoluteTimeLatency>3.414 us</AbsoluteTimeLatency>
 <PipelineII>1</PipelineII>
 <PipelineDepth>1</PipelineDepth>
-</VITIS_LOOP_353_2>
-<VITIS_LOOP_367_3>
-<Name>VITIS_LOOP_367_3</Name>
+</VITIS_LOOP_355_2>
+<VITIS_LOOP_369_3>
+<Name>VITIS_LOOP_369_3</Name>
 <TripCount>undef</TripCount>
 <Latency>undef</Latency>
 <AbsoluteTimeLatency>undef</AbsoluteTimeLatency>
 <PipelineII>85</PipelineII>
 <PipelineDepth>86</PipelineDepth>
-</VITIS_LOOP_367_3>
-<VITIS_LOOP_400_4>
-<Name>VITIS_LOOP_400_4</Name>
+</VITIS_LOOP_369_3>
+<VITIS_LOOP_402_4>
+<Name>VITIS_LOOP_402_4</Name>
 <TripCount>undef</TripCount>
 <Latency>72 ~ ?</Latency>
 <AbsoluteTimeLatency>0.480 us ~ ?</AbsoluteTimeLatency>
 <PipelineII>3</PipelineII>
 <PipelineDepth>73</PipelineDepth>
-</VITIS_LOOP_400_4>
+</VITIS_LOOP_402_4>
 </SummaryOfLoopLatency>
 </PerformanceEstimates>
 <AreaEstimates>
@@ -65,12 +65,12 @@
 <BRAM_18K>90</BRAM_18K>
 <AVAIL_BRAM>432</AVAIL_BRAM>
 <UTIL_BRAM>20</UTIL_BRAM>
-<FF>3904</FF>
+<FF>4294</FF>
 <AVAIL_FF>141120</AVAIL_FF>
-<UTIL_FF>2</UTIL_FF>
-<LUT>13101</LUT>
+<UTIL_FF>3</UTIL_FF>
+<LUT>13959</LUT>
 <AVAIL_LUT>70560</AVAIL_LUT>
-<UTIL_LUT>18</UTIL_LUT>
+<UTIL_LUT>19</UTIL_LUT>
 <DSP>0</DSP>
 <AVAIL_DSP>360</AVAIL_DSP>
 <UTIL_DSP>0</UTIL_DSP>

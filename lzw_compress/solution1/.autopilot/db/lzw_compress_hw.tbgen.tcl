@@ -15,19 +15,19 @@ set C_modelArgList {
 	{ gmem int 32 regular {axi_master 2}  }
 	{ s1 int 64 regular {axi_slave 0}  }
 	{ length_r int 64 regular {axi_slave 0}  }
-	{ is_dup uint 8 regular {axi_slave 0}  }
-	{ dup_index int 32 regular {axi_slave 0}  }
+	{ is_dup int 64 regular {axi_slave 0}  }
+	{ dup_index int 64 regular {axi_slave 0}  }
 	{ temp_out_buffer int 64 regular {axi_slave 0}  }
 	{ temp_out_buffer_size int 64 regular {axi_slave 0}  }
 }
 set C_modelArgMapList {[ 
-	{ "Name" : "gmem", "interface" : "axi_master", "bitwidth" : 32, "direction" : "READWRITE", "bitSlice":[{"low":0,"up":0,"cElement": [{"cName": "s1","cData": "int","bit_use": { "low": 0,"up": 0},"offset": { "type": "dynamic","port_name": "s1","bundle": "control"},"direction": "READONLY","cArray": [{"low" : 0,"up" : 0,"step" : 0}]},{"cName": "length","cData": "int","bit_use": { "low": 0,"up": 0},"offset": { "type": "dynamic","port_name": "length_r","bundle": "control"},"direction": "READONLY","cArray": [{"low" : 0,"up" : 0,"step" : 0}]},{"cName": "temp_out_buffer","cData": "int","bit_use": { "low": 0,"up": 0},"offset": { "type": "dynamic","port_name": "temp_out_buffer","bundle": "control"},"direction": "WRITEONLY","cArray": [{"low" : 0,"up" : 0,"step" : 0}]},{"cName": "temp_out_buffer_size","cData": "int","bit_use": { "low": 0,"up": 0},"offset": { "type": "dynamic","port_name": "temp_out_buffer_size","bundle": "control"},"direction": "WRITEONLY","cArray": [{"low" : 0,"up" : 0,"step" : 0}]}]}]} , 
+	{ "Name" : "gmem", "interface" : "axi_master", "bitwidth" : 32, "direction" : "READWRITE", "bitSlice":[{"low":0,"up":0,"cElement": [{"cName": "s1","cData": "int","bit_use": { "low": 0,"up": 0},"offset": { "type": "dynamic","port_name": "s1","bundle": "control"},"direction": "READONLY","cArray": [{"low" : 0,"up" : 0,"step" : 0}]},{"cName": "length","cData": "int","bit_use": { "low": 0,"up": 0},"offset": { "type": "dynamic","port_name": "length_r","bundle": "control"},"direction": "READONLY","cArray": [{"low" : 0,"up" : 0,"step" : 0}]},{"cName": "is_dup","cData": "int","bit_use": { "low": 0,"up": 0},"offset": { "type": "dynamic","port_name": "is_dup","bundle": "control"},"direction": "READONLY","cArray": [{"low" : 0,"up" : 0,"step" : 0}]},{"cName": "dup_index","cData": "int","bit_use": { "low": 0,"up": 0},"offset": { "type": "dynamic","port_name": "dup_index","bundle": "control"},"direction": "READONLY","cArray": [{"low" : 0,"up" : 0,"step" : 0}]},{"cName": "temp_out_buffer","cData": "int","bit_use": { "low": 0,"up": 0},"offset": { "type": "dynamic","port_name": "temp_out_buffer","bundle": "control"},"direction": "WRITEONLY","cArray": [{"low" : 0,"up" : 0,"step" : 0}]},{"cName": "temp_out_buffer_size","cData": "int","bit_use": { "low": 0,"up": 0},"offset": { "type": "dynamic","port_name": "temp_out_buffer_size","bundle": "control"},"direction": "WRITEONLY","cArray": [{"low" : 0,"up" : 0,"step" : 0}]}]}]} , 
  	{ "Name" : "s1", "interface" : "axi_slave", "bundle":"control","type":"ap_none","bitwidth" : 64, "direction" : "READONLY", "offset" : {"in":16}, "offset_end" : {"in":27}} , 
  	{ "Name" : "length_r", "interface" : "axi_slave", "bundle":"control","type":"ap_none","bitwidth" : 64, "direction" : "READONLY", "offset" : {"in":28}, "offset_end" : {"in":39}} , 
- 	{ "Name" : "is_dup", "interface" : "axi_slave", "bundle":"control","type":"ap_none","bitwidth" : 8, "direction" : "READONLY", "bitSlice":[{"low":0,"up":0,"cElement": [{"cName": "is_dup","cData": "char","bit_use": { "low": 0,"up": 0},"cArray": [{"low" : 0,"up" : 0,"step" : 0}]}]}], "offset" : {"in":40}, "offset_end" : {"in":47}} , 
- 	{ "Name" : "dup_index", "interface" : "axi_slave", "bundle":"control","type":"ap_none","bitwidth" : 32, "direction" : "READONLY", "bitSlice":[{"low":0,"up":0,"cElement": [{"cName": "dup_index","cData": "int","bit_use": { "low": 0,"up": 0},"cArray": [{"low" : 0,"up" : 0,"step" : 0}]}]}], "offset" : {"in":48}, "offset_end" : {"in":55}} , 
- 	{ "Name" : "temp_out_buffer", "interface" : "axi_slave", "bundle":"control","type":"ap_none","bitwidth" : 64, "direction" : "READONLY", "offset" : {"in":56}, "offset_end" : {"in":67}} , 
- 	{ "Name" : "temp_out_buffer_size", "interface" : "axi_slave", "bundle":"control","type":"ap_none","bitwidth" : 64, "direction" : "READONLY", "offset" : {"in":68}, "offset_end" : {"in":79}} ]}
+ 	{ "Name" : "is_dup", "interface" : "axi_slave", "bundle":"control","type":"ap_none","bitwidth" : 64, "direction" : "READONLY", "offset" : {"in":40}, "offset_end" : {"in":51}} , 
+ 	{ "Name" : "dup_index", "interface" : "axi_slave", "bundle":"control","type":"ap_none","bitwidth" : 64, "direction" : "READONLY", "offset" : {"in":52}, "offset_end" : {"in":63}} , 
+ 	{ "Name" : "temp_out_buffer", "interface" : "axi_slave", "bundle":"control","type":"ap_none","bitwidth" : 64, "direction" : "READONLY", "offset" : {"in":64}, "offset_end" : {"in":75}} , 
+ 	{ "Name" : "temp_out_buffer_size", "interface" : "axi_slave", "bundle":"control","type":"ap_none","bitwidth" : 64, "direction" : "READONLY", "offset" : {"in":76}, "offset_end" : {"in":87}} ]}
 # RTL Port declarations: 
 set portNum 65
 set portList { 
@@ -98,7 +98,7 @@ set portList {
 	{ interrupt sc_out sc_logic 1 signal -1 } 
 }
 set NewPortList {[ 
-	{ "name": "s_axi_control_AWADDR", "direction": "in", "datatype": "sc_lv", "bitwidth":7, "type": "signal", "bundle":{"name": "control", "role": "AWADDR" },"address":[{"name":"lzw_compress_hw","role":"start","value":"0","valid_bit":"0"},{"name":"lzw_compress_hw","role":"continue","value":"0","valid_bit":"4"},{"name":"lzw_compress_hw","role":"auto_start","value":"0","valid_bit":"7"},{"name":"s1","role":"data","value":"16"},{"name":"length_r","role":"data","value":"28"},{"name":"is_dup","role":"data","value":"40"},{"name":"dup_index","role":"data","value":"48"},{"name":"temp_out_buffer","role":"data","value":"56"},{"name":"temp_out_buffer_size","role":"data","value":"68"}] },
+	{ "name": "s_axi_control_AWADDR", "direction": "in", "datatype": "sc_lv", "bitwidth":7, "type": "signal", "bundle":{"name": "control", "role": "AWADDR" },"address":[{"name":"lzw_compress_hw","role":"start","value":"0","valid_bit":"0"},{"name":"lzw_compress_hw","role":"continue","value":"0","valid_bit":"4"},{"name":"lzw_compress_hw","role":"auto_start","value":"0","valid_bit":"7"},{"name":"s1","role":"data","value":"16"},{"name":"length_r","role":"data","value":"28"},{"name":"is_dup","role":"data","value":"40"},{"name":"dup_index","role":"data","value":"52"},{"name":"temp_out_buffer","role":"data","value":"64"},{"name":"temp_out_buffer_size","role":"data","value":"76"}] },
 	{ "name": "s_axi_control_AWVALID", "direction": "in", "datatype": "sc_logic", "bitwidth":1, "type": "signal", "bundle":{"name": "control", "role": "AWVALID" } },
 	{ "name": "s_axi_control_AWREADY", "direction": "out", "datatype": "sc_logic", "bitwidth":1, "type": "signal", "bundle":{"name": "control", "role": "AWREADY" } },
 	{ "name": "s_axi_control_WVALID", "direction": "in", "datatype": "sc_logic", "bitwidth":1, "type": "signal", "bundle":{"name": "control", "role": "WVALID" } },
@@ -204,13 +204,13 @@ set RtlHierarchyInfo {[
 
 set ArgLastReadFirstWriteLatency {
 	lzw_compress_hw {
-		gmem {Type IO LastRead 156 FirstWrite 2}
-		s1 {Type I LastRead 0 FirstWrite -1}
-		length_r {Type I LastRead 0 FirstWrite -1}
+		gmem {Type IO LastRead 228 FirstWrite 144}
+		s1 {Type I LastRead 72 FirstWrite -1}
+		length_r {Type I LastRead 72 FirstWrite -1}
 		is_dup {Type I LastRead 0 FirstWrite -1}
-		dup_index {Type I LastRead 0 FirstWrite -1}
-		temp_out_buffer {Type I LastRead 0 FirstWrite -1}
-		temp_out_buffer_size {Type I LastRead 0 FirstWrite -1}}}
+		dup_index {Type I LastRead 72 FirstWrite -1}
+		temp_out_buffer {Type I LastRead 72 FirstWrite -1}
+		temp_out_buffer_size {Type I LastRead 72 FirstWrite -1}}}
 
 set hasDtUnsupportedChannel 0
 

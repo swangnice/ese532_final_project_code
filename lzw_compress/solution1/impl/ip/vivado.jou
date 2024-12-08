@@ -2,8 +2,8 @@
 # Vivado v2020.2 (64-bit)
 # SW Build 3064766 on Wed Nov 18 09:12:47 MST 2020
 # IP Build 3064653 on Wed Nov 18 14:17:31 MST 2020
-# Start of session at: Sat Dec  7 17:57:22 2024
-# Process ID: 22206
+# Start of session at: Sat Dec  7 19:01:01 2024
+# Process ID: 15479
 # Current directory: /mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/lzw_compress/solution1/impl/ip
 # Command line: vivado -notrace -mode batch -source run_ippack.tcl
 # Log file: /mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/lzw_compress/solution1/impl/ip/vivado.log

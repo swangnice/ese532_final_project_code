@@ -4,25 +4,29 @@ target datalayout = "e-m:e-i64:64-i128:128-i256:256-i512:512-i1024:1024-i2048:20
 target triple = "fpga64-xilinx-none"
 
 ; Function Attrs: argmemonly noinline
-define void @apatb_lzw_compress_hw_ir(i8* %s1, i32* %length, i8 %is_dup, i32 %dup_index, i8* %temp_out_buffer, i32* %temp_out_buffer_size) local_unnamed_addr #0 {
+define void @apatb_lzw_compress_hw_ir(i8* %s1, i32* %length, i32* %is_dup, i32* %dup_index, i8* %temp_out_buffer, i32* %temp_out_buffer_size) local_unnamed_addr #0 {
 entry:
   %s1_copy = alloca i8, align 512
   %length_copy = alloca i32, align 512
+  %is_dup_copy = alloca i32, align 512
+  %dup_index_copy = alloca i32, align 512
   %temp_out_buffer_copy = alloca i8, align 512
   %temp_out_buffer_size_copy = alloca i32, align 512
-  call fastcc void @copy_in(i8* %s1, i8* nonnull align 512 %s1_copy, i32* %length, i32* nonnull align 512 %length_copy, i8* %temp_out_buffer, i8* nonnull align 512 %temp_out_buffer_copy, i32* %temp_out_buffer_size, i32* nonnull align 512 %temp_out_buffer_size_copy)
-  call void @apatb_lzw_compress_hw_hw(i8* %s1_copy, i32* %length_copy, i8 %is_dup, i32 %dup_index, i8* %temp_out_buffer_copy, i32* %temp_out_buffer_size_copy)
-  call fastcc void @copy_out(i8* %s1, i8* nonnull align 512 %s1_copy, i32* %length, i32* nonnull align 512 %length_copy, i8* %temp_out_buffer, i8* nonnull align 512 %temp_out_buffer_copy, i32* %temp_out_buffer_size, i32* nonnull align 512 %temp_out_buffer_size_copy)
+  call fastcc void @copy_in(i8* %s1, i8* nonnull align 512 %s1_copy, i32* %length, i32* nonnull align 512 %length_copy, i32* %is_dup, i32* nonnull align 512 %is_dup_copy, i32* %dup_index, i32* nonnull align 512 %dup_index_copy, i8* %temp_out_buffer, i8* nonnull align 512 %temp_out_buffer_copy, i32* %temp_out_buffer_size, i32* nonnull align 512 %temp_out_buffer_size_copy)
+  call void @apatb_lzw_compress_hw_hw(i8* %s1_copy, i32* %length_copy, i32* %is_dup_copy, i32* %dup_index_copy, i8* %temp_out_buffer_copy, i32* %temp_out_buffer_size_copy)
+  call fastcc void @copy_out(i8* %s1, i8* nonnull align 512 %s1_copy, i32* %length, i32* nonnull align 512 %length_copy, i32* %is_dup, i32* nonnull align 512 %is_dup_copy, i32* %dup_index, i32* nonnull align 512 %dup_index_copy, i8* %temp_out_buffer, i8* nonnull align 512 %temp_out_buffer_copy, i32* %temp_out_buffer_size, i32* nonnull align 512 %temp_out_buffer_size_copy)
   ret void
 }
 
 ; Function Attrs: argmemonly noinline
-define internal fastcc void @copy_in(i8* readonly, i8* noalias align 512, i32* readonly, i32* noalias align 512, i8* readonly, i8* noalias align 512, i32* readonly, i32* noalias align 512) unnamed_addr #1 {
+define internal fastcc void @copy_in(i8* readonly, i8* noalias align 512, i32* readonly, i32* noalias align 512, i32* readonly, i32* noalias align 512, i32* readonly, i32* noalias align 512, i8* readonly, i8* noalias align 512, i32* readonly, i32* noalias align 512) unnamed_addr #1 {
 entry:
   call fastcc void @onebyonecpy_hls.p0i8(i8* align 512 %1, i8* %0)
   call fastcc void @onebyonecpy_hls.p0i32(i32* align 512 %3, i32* %2)
-  call fastcc void @onebyonecpy_hls.p0i8(i8* align 512 %5, i8* %4)
+  call fastcc void @onebyonecpy_hls.p0i32(i32* align 512 %5, i32* %4)
   call fastcc void @onebyonecpy_hls.p0i32(i32* align 512 %7, i32* %6)
+  call fastcc void @onebyonecpy_hls.p0i8(i8* align 512 %9, i8* %8)
+  call fastcc void @onebyonecpy_hls.p0i32(i32* align 512 %11, i32* %10)
   ret void
 }
 
@@ -64,26 +68,28 @@ ret:                                              ; preds = %copy, %entry
 }
 
 ; Function Attrs: argmemonly noinline
-define internal fastcc void @copy_out(i8*, i8* noalias readonly align 512, i32*, i32* noalias readonly align 512, i8*, i8* noalias readonly align 512, i32*, i32* noalias readonly align 512) unnamed_addr #4 {
+define internal fastcc void @copy_out(i8*, i8* noalias readonly align 512, i32*, i32* noalias readonly align 512, i32*, i32* noalias readonly align 512, i32*, i32* noalias readonly align 512, i8*, i8* noalias readonly align 512, i32*, i32* noalias readonly align 512) unnamed_addr #4 {
 entry:
   call fastcc void @onebyonecpy_hls.p0i8(i8* %0, i8* align 512 %1)
   call fastcc void @onebyonecpy_hls.p0i32(i32* %2, i32* align 512 %3)
-  call fastcc void @onebyonecpy_hls.p0i8(i8* %4, i8* align 512 %5)
+  call fastcc void @onebyonecpy_hls.p0i32(i32* %4, i32* align 512 %5)
   call fastcc void @onebyonecpy_hls.p0i32(i32* %6, i32* align 512 %7)
+  call fastcc void @onebyonecpy_hls.p0i8(i8* %8, i8* align 512 %9)
+  call fastcc void @onebyonecpy_hls.p0i32(i32* %10, i32* align 512 %11)
   ret void
 }
 
-declare void @apatb_lzw_compress_hw_hw(i8*, i32*, i8, i32, i8*, i32*)
+declare void @apatb_lzw_compress_hw_hw(i8*, i32*, i32*, i32*, i8*, i32*)
 
-define void @lzw_compress_hw_hw_stub_wrapper(i8*, i32*, i8, i32, i8*, i32*) #5 {
+define void @lzw_compress_hw_hw_stub_wrapper(i8*, i32*, i32*, i32*, i8*, i32*) #5 {
 entry:
-  call void @copy_out(i8* null, i8* %0, i32* null, i32* %1, i8* null, i8* %4, i32* null, i32* %5)
-  call void @lzw_compress_hw_hw_stub(i8* %0, i32* %1, i8 %2, i32 %3, i8* %4, i32* %5)
-  call void @copy_in(i8* null, i8* %0, i32* null, i32* %1, i8* null, i8* %4, i32* null, i32* %5)
+  call void @copy_out(i8* null, i8* %0, i32* null, i32* %1, i32* null, i32* %2, i32* null, i32* %3, i8* null, i8* %4, i32* null, i32* %5)
+  call void @lzw_compress_hw_hw_stub(i8* %0, i32* %1, i32* %2, i32* %3, i8* %4, i32* %5)
+  call void @copy_in(i8* null, i8* %0, i32* null, i32* %1, i32* null, i32* %2, i32* null, i32* %3, i8* null, i8* %4, i32* null, i32* %5)
   ret void
 }
 
-declare void @lzw_compress_hw_hw_stub(i8*, i32*, i8, i32, i8*, i32*)
+declare void @lzw_compress_hw_hw_stub(i8*, i32*, i32*, i32*, i8*, i32*)
 
 attributes #0 = { argmemonly noinline "fpga.wrapper.func"="wrapper" }
 attributes #1 = { argmemonly noinline "fpga.wrapper.func"="copyin" }

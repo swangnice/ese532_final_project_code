@@ -34,8 +34,8 @@ port (
     interrupt             :out  STD_LOGIC;
     s1                    :out  STD_LOGIC_VECTOR(63 downto 0);
     length_r              :out  STD_LOGIC_VECTOR(63 downto 0);
-    is_dup                :out  STD_LOGIC_VECTOR(7 downto 0);
-    dup_index             :out  STD_LOGIC_VECTOR(31 downto 0);
+    is_dup                :out  STD_LOGIC_VECTOR(63 downto 0);
+    dup_index             :out  STD_LOGIC_VECTOR(63 downto 0);
     temp_out_buffer       :out  STD_LOGIC_VECTOR(63 downto 0);
     temp_out_buffer_size  :out  STD_LOGIC_VECTOR(63 downto 0);
     ap_start              :out  STD_LOGIC;
@@ -77,22 +77,25 @@ end entity lzw_compress_hw_control_s_axi;
 --        bit 31~0 - length_r[63:32] (Read/Write)
 -- 0x24 : reserved
 -- 0x28 : Data signal of is_dup
---        bit 7~0 - is_dup[7:0] (Read/Write)
---        others  - reserved
--- 0x2c : reserved
--- 0x30 : Data signal of dup_index
+--        bit 31~0 - is_dup[31:0] (Read/Write)
+-- 0x2c : Data signal of is_dup
+--        bit 31~0 - is_dup[63:32] (Read/Write)
+-- 0x30 : reserved
+-- 0x34 : Data signal of dup_index
 --        bit 31~0 - dup_index[31:0] (Read/Write)
--- 0x34 : reserved
--- 0x38 : Data signal of temp_out_buffer
+-- 0x38 : Data signal of dup_index
+--        bit 31~0 - dup_index[63:32] (Read/Write)
+-- 0x3c : reserved
+-- 0x40 : Data signal of temp_out_buffer
 --        bit 31~0 - temp_out_buffer[31:0] (Read/Write)
--- 0x3c : Data signal of temp_out_buffer
+-- 0x44 : Data signal of temp_out_buffer
 --        bit 31~0 - temp_out_buffer[63:32] (Read/Write)
--- 0x40 : reserved
--- 0x44 : Data signal of temp_out_buffer_size
+-- 0x48 : reserved
+-- 0x4c : Data signal of temp_out_buffer_size
 --        bit 31~0 - temp_out_buffer_size[31:0] (Read/Write)
--- 0x48 : Data signal of temp_out_buffer_size
+-- 0x50 : Data signal of temp_out_buffer_size
 --        bit 31~0 - temp_out_buffer_size[63:32] (Read/Write)
--- 0x4c : reserved
+-- 0x54 : reserved
 -- (SC = Self Clear, COR = Clear on Read, TOW = Toggle on Write, COH = Clear on Handshake)
 
 architecture behave of lzw_compress_hw_control_s_axi is
@@ -111,15 +114,17 @@ architecture behave of lzw_compress_hw_control_s_axi is
     constant ADDR_LENGTH_R_DATA_1             : INTEGER := 16#20#;
     constant ADDR_LENGTH_R_CTRL               : INTEGER := 16#24#;
     constant ADDR_IS_DUP_DATA_0               : INTEGER := 16#28#;
-    constant ADDR_IS_DUP_CTRL                 : INTEGER := 16#2c#;
-    constant ADDR_DUP_INDEX_DATA_0            : INTEGER := 16#30#;
-    constant ADDR_DUP_INDEX_CTRL              : INTEGER := 16#34#;
-    constant ADDR_TEMP_OUT_BUFFER_DATA_0      : INTEGER := 16#38#;
-    constant ADDR_TEMP_OUT_BUFFER_DATA_1      : INTEGER := 16#3c#;
-    constant ADDR_TEMP_OUT_BUFFER_CTRL        : INTEGER := 16#40#;
-    constant ADDR_TEMP_OUT_BUFFER_SIZE_DATA_0 : INTEGER := 16#44#;
-    constant ADDR_TEMP_OUT_BUFFER_SIZE_DATA_1 : INTEGER := 16#48#;
-    constant ADDR_TEMP_OUT_BUFFER_SIZE_CTRL   : INTEGER := 16#4c#;
+    constant ADDR_IS_DUP_DATA_1               : INTEGER := 16#2c#;
+    constant ADDR_IS_DUP_CTRL                 : INTEGER := 16#30#;
+    constant ADDR_DUP_INDEX_DATA_0            : INTEGER := 16#34#;
+    constant ADDR_DUP_INDEX_DATA_1            : INTEGER := 16#38#;
+    constant ADDR_DUP_INDEX_CTRL              : INTEGER := 16#3c#;
+    constant ADDR_TEMP_OUT_BUFFER_DATA_0      : INTEGER := 16#40#;
+    constant ADDR_TEMP_OUT_BUFFER_DATA_1      : INTEGER := 16#44#;
+    constant ADDR_TEMP_OUT_BUFFER_CTRL        : INTEGER := 16#48#;
+    constant ADDR_TEMP_OUT_BUFFER_SIZE_DATA_0 : INTEGER := 16#4c#;
+    constant ADDR_TEMP_OUT_BUFFER_SIZE_DATA_1 : INTEGER := 16#50#;
+    constant ADDR_TEMP_OUT_BUFFER_SIZE_CTRL   : INTEGER := 16#54#;
     constant ADDR_BITS         : INTEGER := 7;
 
     signal waddr               : UNSIGNED(ADDR_BITS-1 downto 0);
@@ -145,8 +150,8 @@ architecture behave of lzw_compress_hw_control_s_axi is
     signal int_isr             : UNSIGNED(1 downto 0) := (others => '0');
     signal int_s1              : UNSIGNED(63 downto 0) := (others => '0');
     signal int_length_r        : UNSIGNED(63 downto 0) := (others => '0');
-    signal int_is_dup          : UNSIGNED(7 downto 0) := (others => '0');
-    signal int_dup_index       : UNSIGNED(31 downto 0) := (others => '0');
+    signal int_is_dup          : UNSIGNED(63 downto 0) := (others => '0');
+    signal int_dup_index       : UNSIGNED(63 downto 0) := (others => '0');
     signal int_temp_out_buffer : UNSIGNED(63 downto 0) := (others => '0');
     signal int_temp_out_buffer_size : UNSIGNED(63 downto 0) := (others => '0');
 
@@ -286,9 +291,13 @@ begin
                     when ADDR_LENGTH_R_DATA_1 =>
                         rdata_data <= RESIZE(int_length_r(63 downto 32), 32);
                     when ADDR_IS_DUP_DATA_0 =>
-                        rdata_data <= RESIZE(int_is_dup(7 downto 0), 32);
+                        rdata_data <= RESIZE(int_is_dup(31 downto 0), 32);
+                    when ADDR_IS_DUP_DATA_1 =>
+                        rdata_data <= RESIZE(int_is_dup(63 downto 32), 32);
                     when ADDR_DUP_INDEX_DATA_0 =>
                         rdata_data <= RESIZE(int_dup_index(31 downto 0), 32);
+                    when ADDR_DUP_INDEX_DATA_1 =>
+                        rdata_data <= RESIZE(int_dup_index(63 downto 32), 32);
                     when ADDR_TEMP_OUT_BUFFER_DATA_0 =>
                         rdata_data <= RESIZE(int_temp_out_buffer(31 downto 0), 32);
                     when ADDR_TEMP_OUT_BUFFER_DATA_1 =>
@@ -493,7 +502,18 @@ begin
         if (ACLK'event and ACLK = '1') then
             if (ACLK_EN = '1') then
                 if (w_hs = '1' and waddr = ADDR_IS_DUP_DATA_0) then
-                    int_is_dup(7 downto 0) <= (UNSIGNED(WDATA(7 downto 0)) and wmask(7 downto 0)) or ((not wmask(7 downto 0)) and int_is_dup(7 downto 0));
+                    int_is_dup(31 downto 0) <= (UNSIGNED(WDATA(31 downto 0)) and wmask(31 downto 0)) or ((not wmask(31 downto 0)) and int_is_dup(31 downto 0));
+                end if;
+            end if;
+        end if;
+    end process;
+
+    process (ACLK)
+    begin
+        if (ACLK'event and ACLK = '1') then
+            if (ACLK_EN = '1') then
+                if (w_hs = '1' and waddr = ADDR_IS_DUP_DATA_1) then
+                    int_is_dup(63 downto 32) <= (UNSIGNED(WDATA(31 downto 0)) and wmask(31 downto 0)) or ((not wmask(31 downto 0)) and int_is_dup(63 downto 32));
                 end if;
             end if;
         end if;
@@ -505,6 +525,17 @@ begin
             if (ACLK_EN = '1') then
                 if (w_hs = '1' and waddr = ADDR_DUP_INDEX_DATA_0) then
                     int_dup_index(31 downto 0) <= (UNSIGNED(WDATA(31 downto 0)) and wmask(31 downto 0)) or ((not wmask(31 downto 0)) and int_dup_index(31 downto 0));
+                end if;
+            end if;
+        end if;
+    end process;
+
+    process (ACLK)
+    begin
+        if (ACLK'event and ACLK = '1') then
+            if (ACLK_EN = '1') then
+                if (w_hs = '1' and waddr = ADDR_DUP_INDEX_DATA_1) then
+                    int_dup_index(63 downto 32) <= (UNSIGNED(WDATA(31 downto 0)) and wmask(31 downto 0)) or ((not wmask(31 downto 0)) and int_dup_index(63 downto 32));
                 end if;
             end if;
         end if;

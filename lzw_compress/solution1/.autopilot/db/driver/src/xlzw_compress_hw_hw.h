@@ -33,22 +33,25 @@
 //        bit 31~0 - length_r[63:32] (Read/Write)
 // 0x24 : reserved
 // 0x28 : Data signal of is_dup
-//        bit 7~0 - is_dup[7:0] (Read/Write)
-//        others  - reserved
-// 0x2c : reserved
-// 0x30 : Data signal of dup_index
+//        bit 31~0 - is_dup[31:0] (Read/Write)
+// 0x2c : Data signal of is_dup
+//        bit 31~0 - is_dup[63:32] (Read/Write)
+// 0x30 : reserved
+// 0x34 : Data signal of dup_index
 //        bit 31~0 - dup_index[31:0] (Read/Write)
-// 0x34 : reserved
-// 0x38 : Data signal of temp_out_buffer
+// 0x38 : Data signal of dup_index
+//        bit 31~0 - dup_index[63:32] (Read/Write)
+// 0x3c : reserved
+// 0x40 : Data signal of temp_out_buffer
 //        bit 31~0 - temp_out_buffer[31:0] (Read/Write)
-// 0x3c : Data signal of temp_out_buffer
+// 0x44 : Data signal of temp_out_buffer
 //        bit 31~0 - temp_out_buffer[63:32] (Read/Write)
-// 0x40 : reserved
-// 0x44 : Data signal of temp_out_buffer_size
+// 0x48 : reserved
+// 0x4c : Data signal of temp_out_buffer_size
 //        bit 31~0 - temp_out_buffer_size[31:0] (Read/Write)
-// 0x48 : Data signal of temp_out_buffer_size
+// 0x50 : Data signal of temp_out_buffer_size
 //        bit 31~0 - temp_out_buffer_size[63:32] (Read/Write)
-// 0x4c : reserved
+// 0x54 : reserved
 // (SC = Self Clear, COR = Clear on Read, TOW = Toggle on Write, COH = Clear on Handshake)
 
 #define XLZW_COMPRESS_HW_CONTROL_ADDR_AP_CTRL                   0x00
@@ -60,11 +63,11 @@
 #define XLZW_COMPRESS_HW_CONTROL_ADDR_LENGTH_R_DATA             0x1c
 #define XLZW_COMPRESS_HW_CONTROL_BITS_LENGTH_R_DATA             64
 #define XLZW_COMPRESS_HW_CONTROL_ADDR_IS_DUP_DATA               0x28
-#define XLZW_COMPRESS_HW_CONTROL_BITS_IS_DUP_DATA               8
-#define XLZW_COMPRESS_HW_CONTROL_ADDR_DUP_INDEX_DATA            0x30
-#define XLZW_COMPRESS_HW_CONTROL_BITS_DUP_INDEX_DATA            32
-#define XLZW_COMPRESS_HW_CONTROL_ADDR_TEMP_OUT_BUFFER_DATA      0x38
+#define XLZW_COMPRESS_HW_CONTROL_BITS_IS_DUP_DATA               64
+#define XLZW_COMPRESS_HW_CONTROL_ADDR_DUP_INDEX_DATA            0x34
+#define XLZW_COMPRESS_HW_CONTROL_BITS_DUP_INDEX_DATA            64
+#define XLZW_COMPRESS_HW_CONTROL_ADDR_TEMP_OUT_BUFFER_DATA      0x40
 #define XLZW_COMPRESS_HW_CONTROL_BITS_TEMP_OUT_BUFFER_DATA      64
-#define XLZW_COMPRESS_HW_CONTROL_ADDR_TEMP_OUT_BUFFER_SIZE_DATA 0x44
+#define XLZW_COMPRESS_HW_CONTROL_ADDR_TEMP_OUT_BUFFER_SIZE_DATA 0x4c
 #define XLZW_COMPRESS_HW_CONTROL_BITS_TEMP_OUT_BUFFER_SIZE_DATA 64
 

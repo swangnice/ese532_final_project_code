@@ -75,29 +75,61 @@
     },
     "is_dup": {
       "index": "2",
-      "direction": "in",
-      "srcType": "unsigned char",
-      "srcSize": "8",
-      "hwRefs": [{
+      "direction": "inout",
+      "srcType": "int*",
+      "srcSize": "32",
+      "hwRefs": [
+        {
+          "type": "interface",
+          "interface": "m_axi_gmem",
+          "name": "",
+          "usage": "data",
+          "direction": "out"
+        },
+        {
           "type": "register",
           "interface": "s_axi_control",
-          "name": "is_dup",
-          "usage": "data",
+          "name": "is_dup_1",
+          "usage": "address",
           "direction": "in"
-        }]
+        },
+        {
+          "type": "register",
+          "interface": "s_axi_control",
+          "name": "is_dup_2",
+          "usage": "address",
+          "direction": "in"
+        }
+      ]
     },
     "dup_index": {
       "index": "3",
-      "direction": "in",
-      "srcType": "int",
+      "direction": "inout",
+      "srcType": "int*",
       "srcSize": "32",
-      "hwRefs": [{
+      "hwRefs": [
+        {
+          "type": "interface",
+          "interface": "m_axi_gmem",
+          "name": "",
+          "usage": "data",
+          "direction": "out"
+        },
+        {
           "type": "register",
           "interface": "s_axi_control",
-          "name": "dup_index",
-          "usage": "data",
+          "name": "dup_index_1",
+          "usage": "address",
           "direction": "in"
-        }]
+        },
+        {
+          "type": "register",
+          "interface": "s_axi_control",
+          "name": "dup_index_2",
+          "usage": "address",
+          "direction": "in"
+        }
+      ]
     },
     "temp_out_buffer": {
       "index": "4",
@@ -161,6 +193,9 @@
   "HlsSolution": {
     "FlowTarget": "vitis",
     "ConfigTcl": [
+      "config_export -format=xo",
+      "config_export -output=\/home1\/s\/swang01\/Documents\/lzw_compress_hw.xo",
+      "config_export -rtl=verilog",
       "config_interface -m_axi_latency=64",
       "config_interface -m_axi_alignment_byte_size=64",
       "config_interface -m_axi_max_widen_bitwidth=512",
@@ -168,7 +203,10 @@
       "config_interface -m_axi_offset=slave",
       "config_rtl -register_reset_num=3"
     ],
-    "DirectiveTcl": ["set_directive_top lzw_compress_hw -name lzw_compress_hw"],
+    "DirectiveTcl": [
+      "set_directive_top lzw_compress_hw -name lzw_compress_hw",
+      "set_directive_top lzw_compress_hw -name lzw_compress_hw"
+    ],
     "ProfileOption": "0",
     "ProfileType": "none",
     "KernelName": "lzw_compress_hw"
@@ -616,33 +654,39 @@
         },
         {
           "offset": "0x28",
-          "name": "is_dup",
+          "name": "is_dup_1",
           "access": "W",
           "resetValue": "0x0",
           "description": "Data signal of is_dup",
           "range": "32",
-          "fields": [
-            {
+          "fields": [{
               "offset": "0",
-              "width": "8",
+              "width": "32",
               "name": "is_dup",
               "access": "W",
               "resetValue": "0",
-              "description": "Bit 7 to 0 of is_dup"
-            },
-            {
-              "offset": "8",
-              "width": "24",
-              "name": "RESERVED",
-              "access": "R",
-              "resetValue": "0",
-              "description": "Reserved.  0s on read."
-            }
-          ]
+              "description": "Bit 31 to 0 of is_dup"
+            }]
         },
         {
-          "offset": "0x30",
-          "name": "dup_index",
+          "offset": "0x2c",
+          "name": "is_dup_2",
+          "access": "W",
+          "resetValue": "0x0",
+          "description": "Data signal of is_dup",
+          "range": "32",
+          "fields": [{
+              "offset": "0",
+              "width": "32",
+              "name": "is_dup",
+              "access": "W",
+              "resetValue": "0",
+              "description": "Bit 63 to 32 of is_dup"
+            }]
+        },
+        {
+          "offset": "0x34",
+          "name": "dup_index_1",
           "access": "W",
           "resetValue": "0x0",
           "description": "Data signal of dup_index",
@@ -658,6 +702,22 @@
         },
         {
           "offset": "0x38",
+          "name": "dup_index_2",
+          "access": "W",
+          "resetValue": "0x0",
+          "description": "Data signal of dup_index",
+          "range": "32",
+          "fields": [{
+              "offset": "0",
+              "width": "32",
+              "name": "dup_index",
+              "access": "W",
+              "resetValue": "0",
+              "description": "Bit 63 to 32 of dup_index"
+            }]
+        },
+        {
+          "offset": "0x40",
           "name": "temp_out_buffer_1",
           "access": "W",
           "resetValue": "0x0",
@@ -673,7 +733,7 @@
             }]
         },
         {
-          "offset": "0x3c",
+          "offset": "0x44",
           "name": "temp_out_buffer_2",
           "access": "W",
           "resetValue": "0x0",
@@ -689,7 +749,7 @@
             }]
         },
         {
-          "offset": "0x44",
+          "offset": "0x4c",
           "name": "temp_out_buffer_size_1",
           "access": "W",
           "resetValue": "0x0",
@@ -705,7 +765,7 @@
             }]
         },
         {
-          "offset": "0x48",
+          "offset": "0x50",
           "name": "temp_out_buffer_size_2",
           "access": "W",
           "resetValue": "0x0",
@@ -1027,28 +1087,28 @@
         },
         "Loops": [
           {
-            "Name": "VITIS_LOOP_348_1",
+            "Name": "VITIS_LOOP_350_1",
             "TripCount": "32768",
             "Latency": "32768",
             "PipelineII": "1",
             "PipelineDepth": "1"
           },
           {
-            "Name": "VITIS_LOOP_353_2",
+            "Name": "VITIS_LOOP_355_2",
             "TripCount": "512",
             "Latency": "512",
             "PipelineII": "1",
             "PipelineDepth": "1"
           },
           {
-            "Name": "VITIS_LOOP_367_3",
+            "Name": "VITIS_LOOP_369_3",
             "TripCount": "",
             "Latency": "",
             "PipelineII": "85",
             "PipelineDepth": "86"
           },
           {
-            "Name": "VITIS_LOOP_400_4",
+            "Name": "VITIS_LOOP_402_4",
             "TripCount": "",
             "LatencyMin": "72",
             "LatencyMax": "?",
@@ -1061,12 +1121,12 @@
           "BRAM_18K": "90",
           "AVAIL_BRAM": "432",
           "UTIL_BRAM": "20",
-          "FF": "3904",
+          "FF": "4294",
           "AVAIL_FF": "141120",
-          "UTIL_FF": "2",
-          "LUT": "13101",
+          "UTIL_FF": "3",
+          "LUT": "13959",
           "AVAIL_LUT": "70560",
-          "UTIL_LUT": "18",
+          "UTIL_LUT": "19",
           "DSP": "0",
           "AVAIL_DSP": "360",
           "UTIL_DSP": "0",
@@ -1079,7 +1139,7 @@
   "GenerateBdFiles": "0",
   "GenData": {
     "DataVersion": "0.2",
-    "Time": "2024-12-07 17:56:28 EST",
+    "Time": "2024-12-07 19:00:20 EST",
     "ToolName": "vivado_hls",
     "ToolVersion": "2020.2"
   }

@@ -16,4 +16,4 @@ source "./lzw_compress/solution1/directives.tcl"
 csim_design
 csynth_design
 cosim_design
-export_design -rtl verilog -format xo -output /home1/s/swang01/Documents/lzw_compress_hw.xo
+export_design -rtl verilog -format xo -output /mnt/castor/seas_home/s/swang01/Documents/lzw_compress_hw.xo

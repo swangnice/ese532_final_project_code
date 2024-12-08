@@ -33839,8 +33839,8 @@ void lookup(unsigned long* hash_table, assoc_mem* mem, unsigned int key, bool* h
 void lzw_compress(unsigned char* s1, int* length, uint16_t* out_code, int *out_len);
 int convert_output(uint16_t in[], uint8_t out[], int input_size);
 
-void lzw_compress_v2(unsigned char* s1, int* length, uint8_t is_dup, int dup_index, uint8_t *temp_out_buffer, unsigned int *temp_out_buffer_size);
-__attribute__((sdx_kernel("lzw_compress_hw", 0))) void lzw_compress_hw(unsigned char* s1, int* length, uint8_t is_dup, int dup_index, uint8_t *temp_out_buffer, unsigned int *temp_out_buffer_size);
+void lzw_compress_v2(unsigned char* s1, int* length, int *is_dup, int *dup_index, uint8_t *temp_out_buffer, unsigned int *temp_out_buffer_size);
+__attribute__((sdx_kernel("lzw_compress_hw", 0))) void lzw_compress_hw(unsigned char* s1, int* length, int *is_dup, int *dup_index, uint8_t *temp_out_buffer, unsigned int *temp_out_buffer_size);
 # 2 "Server/lzw.cpp" 2
 
 
@@ -34051,21 +34051,23 @@ void lzw_compress(unsigned char* s1, int* length, uint16_t* out_code, int *out_l
 
 }
 # 239 "Server/lzw.cpp"
-void lzw_compress_v2(unsigned char* s1, int* length, uint8_t is_dup, int dup_index, uint8_t *temp_out_buffer, unsigned int *temp_out_buffer_size)
+void lzw_compress_v2(unsigned char* s1, int* length, int *is_dup, int *dup_index, uint8_t *temp_out_buffer, unsigned int *temp_out_buffer_size)
 {
 
-    if (is_dup == 0){
+    printf("is_dup: %d\n", *is_dup);
+    printf("dup_index: %d\n", *dup_index);
+    if (*is_dup == 0){
         unsigned long hash_table[32768];
         assoc_mem my_assoc_mem;
         uint16_t out_code[32768];
 
 
-        VITIS_LOOP_248_1: for(int i = 0; i < 32768; i++)
+        VITIS_LOOP_250_1: for(int i = 0; i < 32768; i++)
         {
             hash_table[i] = 0;
         }
         my_assoc_mem.fill = 0;
-        VITIS_LOOP_253_2: for(int i = 0; i < 512; i++)
+        VITIS_LOOP_255_2: for(int i = 0; i < 512; i++)
         {
             my_assoc_mem.upper_key_mem[i] = 0;
             my_assoc_mem.middle_key_mem[i] = 0;
@@ -34079,7 +34081,7 @@ void lzw_compress_v2(unsigned char* s1, int* length, uint8_t is_dup, int dup_ind
         char next_char = 0;
 
         int i = 0, j = 0;
-        VITIS_LOOP_267_3: while(i < *length)
+        VITIS_LOOP_269_3: while(i < *length)
         {
             next_char = s1[i + 1];
 
@@ -34112,7 +34114,7 @@ void lzw_compress_v2(unsigned char* s1, int* length, uint8_t is_dup, int dup_ind
 
         int output_size = 0;
         int adjusted_input_size = j - (j % 2);
-        VITIS_LOOP_300_4: for(int i = 0; i < adjusted_input_size; i+=2){
+        VITIS_LOOP_302_4: for(int i = 0; i < adjusted_input_size; i+=2){
             temp_out_buffer[output_size+4] = (out_code[i]>>4) & 0xff;
 
             output_size++;
@@ -34138,12 +34140,12 @@ void lzw_compress_v2(unsigned char* s1, int* length, uint8_t is_dup, int dup_ind
         *temp_out_buffer_size = output_size + 4;
 
     }
-    if (is_dup == 1){
+    if (*is_dup == 1){
 
-        temp_out_buffer[0] = ((dup_index<<1) | 0x00000001) & 0xff;
-        temp_out_buffer[1] = (((dup_index<<1) | 0x00000001) >> 8) & 0xff;
-        temp_out_buffer[2] = (((dup_index<<1) | 0x00000001) >> 16) & 0xff;
-        temp_out_buffer[3] = (((dup_index<<1) | 0x00000001) >> 24) & 0xff;
+        temp_out_buffer[0] = ((*dup_index<<1) | 0x00000001) & 0xff;
+        temp_out_buffer[1] = (((*dup_index<<1) | 0x00000001) >> 8) & 0xff;
+        temp_out_buffer[2] = (((*dup_index<<1) | 0x00000001) >> 16) & 0xff;
+        temp_out_buffer[3] = (((*dup_index<<1) | 0x00000001) >> 24) & 0xff;
         *temp_out_buffer_size = 4;
     }
 
@@ -34151,24 +34153,24 @@ void lzw_compress_v2(unsigned char* s1, int* length, uint8_t is_dup, int dup_ind
 }
 
 
-__attribute__((sdx_kernel("lzw_compress_hw", 0))) void lzw_compress_hw(unsigned char* s1, int* length, uint8_t is_dup, int dup_index, uint8_t *temp_out_buffer, unsigned int *temp_out_buffer_size)
+__attribute__((sdx_kernel("lzw_compress_hw", 0))) void lzw_compress_hw(unsigned char* s1, int* length, int *is_dup, int *dup_index, uint8_t *temp_out_buffer, unsigned int *temp_out_buffer_size)
 {
 #pragma HLS TOP name=lzw_compress_hw
-# 340 "Server/lzw.cpp"
+# 342 "Server/lzw.cpp"
 
 
-    if (is_dup == 0){
+    if (*is_dup == 0){
         unsigned long hash_table[32768];
         assoc_mem my_assoc_mem;
         uint16_t out_code[32768];
 
 
-        VITIS_LOOP_348_1: for(int i = 0; i < 32768; i++)
+        VITIS_LOOP_350_1: for(int i = 0; i < 32768; i++)
         {
             hash_table[i] = 0;
         }
         my_assoc_mem.fill = 0;
-        VITIS_LOOP_353_2: for(int i = 0; i < 512; i++)
+        VITIS_LOOP_355_2: for(int i = 0; i < 512; i++)
         {
             my_assoc_mem.upper_key_mem[i] = 0;
             my_assoc_mem.middle_key_mem[i] = 0;
@@ -34182,7 +34184,7 @@ __attribute__((sdx_kernel("lzw_compress_hw", 0))) void lzw_compress_hw(unsigned 
         char next_char = 0;
 
         int i = 0, j = 0;
-        VITIS_LOOP_367_3: while(i < *length)
+        VITIS_LOOP_369_3: while(i < *length)
         {
             next_char = s1[i + 1];
 
@@ -34215,7 +34217,7 @@ __attribute__((sdx_kernel("lzw_compress_hw", 0))) void lzw_compress_hw(unsigned 
 
         int output_size = 0;
         int adjusted_input_size = j - (j % 2);
-        VITIS_LOOP_400_4: for(int i = 0; i < adjusted_input_size; i+=2){
+        VITIS_LOOP_402_4: for(int i = 0; i < adjusted_input_size; i+=2){
             temp_out_buffer[output_size+4] = (out_code[i]>>4) & 0xff;
 
             output_size++;
@@ -34241,12 +34243,12 @@ __attribute__((sdx_kernel("lzw_compress_hw", 0))) void lzw_compress_hw(unsigned 
         *temp_out_buffer_size = output_size + 4;
 
     }
-    if (is_dup == 1){
+    if (*is_dup == 1){
 
-        temp_out_buffer[0] = ((dup_index<<1) | 0x00000001) & 0xff;
-        temp_out_buffer[1] = (((dup_index<<1) | 0x00000001) >> 8) & 0xff;
-        temp_out_buffer[2] = (((dup_index<<1) | 0x00000001) >> 16) & 0xff;
-        temp_out_buffer[3] = (((dup_index<<1) | 0x00000001) >> 24) & 0xff;
+        temp_out_buffer[0] = ((*dup_index<<1) | 0x00000001) & 0xff;
+        temp_out_buffer[1] = (((*dup_index<<1) | 0x00000001) >> 8) & 0xff;
+        temp_out_buffer[2] = (((*dup_index<<1) | 0x00000001) >> 16) & 0xff;
+        temp_out_buffer[3] = (((*dup_index<<1) | 0x00000001) >> 24) & 0xff;
         *temp_out_buffer_size = 4;
     }
 
@@ -34259,7 +34261,7 @@ int convert_output(uint16_t in[], uint8_t out[], int input_size){
 
     int adjusted_input_size = input_size - (input_size % 2);
 
-    VITIS_LOOP_444_1: for(int i = 0; i < adjusted_input_size; i+=2){
+    VITIS_LOOP_446_1: for(int i = 0; i < adjusted_input_size; i+=2){
 
 
 

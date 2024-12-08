@@ -6,9 +6,9 @@
         <DownStreamTool name="vivado"/>
     </downStreamTool>
     <config>
+        <config_export format="xo" output="/mnt/castor/seas_home/s/swang01/Documents/lzw_compress_hw.xo" rtl="verilog"/>
         <config_interface m_axi_latency="64" m_axi_alignment_byte_size="64" m_axi_max_widen_bitwidth="512" default_interface="kernel" m_axi_offset="slave"/>
         <config_rtl register_reset_num="3"/>
-        <config_export format="xo" output="/home1/s/swang01/Documents/lzw_compress_hw.xo" rtl="verilog"/>
     </config>
     <UIConfigurations>
         <UIAutosynConf hideTrivialOp="true" isBasedOnBoard="false" isSolutionDirty="false" isStopAskAgain="false" showDetailDesignViewer="false">
@@ -42,7 +42,7 @@
             </RTLs>
         </UIAutoSimConf>
     </UIConfigurations>
-    <ExportDesign askAgain="true" evaluate="false" flow="false" flowChoice="syn" formatName="xo" output="/home1/s/swang01/Documents/lzw_compress_hw.xo" rtl="verilog" rtlButton="true" rtlCombo="verilog">
+    <ExportDesign askAgain="true" evaluate="false" flow="false" flowChoice="syn" formatName="xo" output="/mnt/castor/seas_home/s/swang01/Documents/lzw_compress_hw.xo" rtl="verilog" rtlButton="true" rtlCombo="verilog">
         <Format formatName="ip_catalog"/>
         <Format formatName="sysgen"/>
         <Format formatName="sysgen_ise"/>

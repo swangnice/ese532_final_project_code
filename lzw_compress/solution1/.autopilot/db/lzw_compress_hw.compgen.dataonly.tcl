@@ -20,35 +20,35 @@ length_r {
 }
 is_dup { 
 	dir I
-	width 8
+	width 64
 	depth 1
 	mode ap_none
 	offset 40
-	offset_end 47
+	offset_end 51
 }
 dup_index { 
 	dir I
-	width 32
+	width 64
 	depth 1
 	mode ap_none
-	offset 48
-	offset_end 55
+	offset 52
+	offset_end 63
 }
 temp_out_buffer { 
 	dir I
 	width 64
 	depth 1
 	mode ap_none
-	offset 56
-	offset_end 67
+	offset 64
+	offset_end 75
 }
 temp_out_buffer_size { 
 	dir I
 	width 64
 	depth 1
 	mode ap_none
-	offset 68
-	offset_end 79
+	offset 76
+	offset_end 87
 }
 ap_start { }
 ap_done { }

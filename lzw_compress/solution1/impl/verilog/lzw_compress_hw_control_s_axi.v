@@ -31,8 +31,8 @@ module lzw_compress_hw_control_s_axi
     output wire                          interrupt,
     output wire [63:0]                   s1,
     output wire [63:0]                   length_r,
-    output wire [7:0]                    is_dup,
-    output wire [31:0]                   dup_index,
+    output wire [63:0]                   is_dup,
+    output wire [63:0]                   dup_index,
     output wire [63:0]                   temp_out_buffer,
     output wire [63:0]                   temp_out_buffer_size,
     output wire                          ap_start,
@@ -72,22 +72,25 @@ module lzw_compress_hw_control_s_axi
 //        bit 31~0 - length_r[63:32] (Read/Write)
 // 0x24 : reserved
 // 0x28 : Data signal of is_dup
-//        bit 7~0 - is_dup[7:0] (Read/Write)
-//        others  - reserved
-// 0x2c : reserved
-// 0x30 : Data signal of dup_index
+//        bit 31~0 - is_dup[31:0] (Read/Write)
+// 0x2c : Data signal of is_dup
+//        bit 31~0 - is_dup[63:32] (Read/Write)
+// 0x30 : reserved
+// 0x34 : Data signal of dup_index
 //        bit 31~0 - dup_index[31:0] (Read/Write)
-// 0x34 : reserved
-// 0x38 : Data signal of temp_out_buffer
+// 0x38 : Data signal of dup_index
+//        bit 31~0 - dup_index[63:32] (Read/Write)
+// 0x3c : reserved
+// 0x40 : Data signal of temp_out_buffer
 //        bit 31~0 - temp_out_buffer[31:0] (Read/Write)
-// 0x3c : Data signal of temp_out_buffer
+// 0x44 : Data signal of temp_out_buffer
 //        bit 31~0 - temp_out_buffer[63:32] (Read/Write)
-// 0x40 : reserved
-// 0x44 : Data signal of temp_out_buffer_size
+// 0x48 : reserved
+// 0x4c : Data signal of temp_out_buffer_size
 //        bit 31~0 - temp_out_buffer_size[31:0] (Read/Write)
-// 0x48 : Data signal of temp_out_buffer_size
+// 0x50 : Data signal of temp_out_buffer_size
 //        bit 31~0 - temp_out_buffer_size[63:32] (Read/Write)
-// 0x4c : reserved
+// 0x54 : reserved
 // (SC = Self Clear, COR = Clear on Read, TOW = Toggle on Write, COH = Clear on Handshake)
 
 //------------------------Parameter----------------------
@@ -103,15 +106,17 @@ localparam
     ADDR_LENGTH_R_DATA_1             = 7'h20,
     ADDR_LENGTH_R_CTRL               = 7'h24,
     ADDR_IS_DUP_DATA_0               = 7'h28,
-    ADDR_IS_DUP_CTRL                 = 7'h2c,
-    ADDR_DUP_INDEX_DATA_0            = 7'h30,
-    ADDR_DUP_INDEX_CTRL              = 7'h34,
-    ADDR_TEMP_OUT_BUFFER_DATA_0      = 7'h38,
-    ADDR_TEMP_OUT_BUFFER_DATA_1      = 7'h3c,
-    ADDR_TEMP_OUT_BUFFER_CTRL        = 7'h40,
-    ADDR_TEMP_OUT_BUFFER_SIZE_DATA_0 = 7'h44,
-    ADDR_TEMP_OUT_BUFFER_SIZE_DATA_1 = 7'h48,
-    ADDR_TEMP_OUT_BUFFER_SIZE_CTRL   = 7'h4c,
+    ADDR_IS_DUP_DATA_1               = 7'h2c,
+    ADDR_IS_DUP_CTRL                 = 7'h30,
+    ADDR_DUP_INDEX_DATA_0            = 7'h34,
+    ADDR_DUP_INDEX_DATA_1            = 7'h38,
+    ADDR_DUP_INDEX_CTRL              = 7'h3c,
+    ADDR_TEMP_OUT_BUFFER_DATA_0      = 7'h40,
+    ADDR_TEMP_OUT_BUFFER_DATA_1      = 7'h44,
+    ADDR_TEMP_OUT_BUFFER_CTRL        = 7'h48,
+    ADDR_TEMP_OUT_BUFFER_SIZE_DATA_0 = 7'h4c,
+    ADDR_TEMP_OUT_BUFFER_SIZE_DATA_1 = 7'h50,
+    ADDR_TEMP_OUT_BUFFER_SIZE_CTRL   = 7'h54,
     WRIDLE                           = 2'd0,
     WRDATA                           = 2'd1,
     WRRESP                           = 2'd2,
@@ -145,8 +150,8 @@ localparam
     reg  [1:0]                    int_isr = 2'b0;
     reg  [63:0]                   int_s1 = 'b0;
     reg  [63:0]                   int_length_r = 'b0;
-    reg  [7:0]                    int_is_dup = 'b0;
-    reg  [31:0]                   int_dup_index = 'b0;
+    reg  [63:0]                   int_is_dup = 'b0;
+    reg  [63:0]                   int_dup_index = 'b0;
     reg  [63:0]                   int_temp_out_buffer = 'b0;
     reg  [63:0]                   int_temp_out_buffer_size = 'b0;
 
@@ -271,10 +276,16 @@ always @(posedge ACLK) begin
                     rdata <= int_length_r[63:32];
                 end
                 ADDR_IS_DUP_DATA_0: begin
-                    rdata <= int_is_dup[7:0];
+                    rdata <= int_is_dup[31:0];
+                end
+                ADDR_IS_DUP_DATA_1: begin
+                    rdata <= int_is_dup[63:32];
                 end
                 ADDR_DUP_INDEX_DATA_0: begin
                     rdata <= int_dup_index[31:0];
+                end
+                ADDR_DUP_INDEX_DATA_1: begin
+                    rdata <= int_dup_index[63:32];
                 end
                 ADDR_TEMP_OUT_BUFFER_DATA_0: begin
                     rdata <= int_temp_out_buffer[31:0];
@@ -443,13 +454,23 @@ always @(posedge ACLK) begin
     end
 end
 
-// int_is_dup[7:0]
+// int_is_dup[31:0]
 always @(posedge ACLK) begin
     if (ARESET)
-        int_is_dup[7:0] <= 0;
+        int_is_dup[31:0] <= 0;
     else if (ACLK_EN) begin
         if (w_hs && waddr == ADDR_IS_DUP_DATA_0)
-            int_is_dup[7:0] <= (WDATA[31:0] & wmask) | (int_is_dup[7:0] & ~wmask);
+            int_is_dup[31:0] <= (WDATA[31:0] & wmask) | (int_is_dup[31:0] & ~wmask);
+    end
+end
+
+// int_is_dup[63:32]
+always @(posedge ACLK) begin
+    if (ARESET)
+        int_is_dup[63:32] <= 0;
+    else if (ACLK_EN) begin
+        if (w_hs && waddr == ADDR_IS_DUP_DATA_1)
+            int_is_dup[63:32] <= (WDATA[31:0] & wmask) | (int_is_dup[63:32] & ~wmask);
     end
 end
 
@@ -460,6 +481,16 @@ always @(posedge ACLK) begin
     else if (ACLK_EN) begin
         if (w_hs && waddr == ADDR_DUP_INDEX_DATA_0)
             int_dup_index[31:0] <= (WDATA[31:0] & wmask) | (int_dup_index[31:0] & ~wmask);
+    end
+end
+
+// int_dup_index[63:32]
+always @(posedge ACLK) begin
+    if (ARESET)
+        int_dup_index[63:32] <= 0;
+    else if (ACLK_EN) begin
+        if (w_hs && waddr == ADDR_DUP_INDEX_DATA_1)
+            int_dup_index[63:32] <= (WDATA[31:0] & wmask) | (int_dup_index[63:32] & ~wmask);
     end
 end
 

@@ -1036,8 +1036,8 @@
           </spirit:field>
         </spirit:register>
         <spirit:register>
-          <spirit:name>is_dup</spirit:name>
-          <spirit:displayName>is_dup</spirit:displayName>
+          <spirit:name>is_dup_1</spirit:name>
+          <spirit:displayName>is_dup_1</spirit:displayName>
           <spirit:description>Data signal of is_dup</spirit:description>
           <spirit:addressOffset>40</spirit:addressOffset>
           <spirit:size spirit:format="long">32</spirit:size>
@@ -1047,9 +1047,9 @@
           </spirit:reset>
           <spirit:field>
             <spirit:name>is_dup</spirit:name>
-            <spirit:description>Bit 7 to 0 of is_dup</spirit:description>
+            <spirit:description>Bit 31 to 0 of is_dup</spirit:description>
             <spirit:bitOffset>0</spirit:bitOffset>
-            <spirit:bitWidth spirit:format="long">8</spirit:bitWidth>
+            <spirit:bitWidth spirit:format="long">32</spirit:bitWidth>
             <spirit:access>write-only</spirit:access>
             <spirit:writeValueConstraint>
               <spirit:minimum>0</spirit:minimum>
@@ -1057,25 +1057,35 @@
             </spirit:writeValueConstraint>
             <spirit:testable spirit:testConstraint="unconstrained">false</spirit:testable>
           </spirit:field>
+        </spirit:register>
+        <spirit:register>
+          <spirit:name>is_dup_2</spirit:name>
+          <spirit:displayName>is_dup_2</spirit:displayName>
+          <spirit:description>Data signal of is_dup</spirit:description>
+          <spirit:addressOffset>44</spirit:addressOffset>
+          <spirit:size spirit:format="long">32</spirit:size>
+          <spirit:access>write-only</spirit:access>
+          <spirit:reset>
+            <spirit:value spirit:format="long">0</spirit:value>
+          </spirit:reset>
           <spirit:field>
-            <spirit:name>RESERVED</spirit:name>
-            <spirit:description>Reserved.  0s on read.</spirit:description>
-            <spirit:bitOffset>8</spirit:bitOffset>
-            <spirit:bitWidth spirit:format="long">24</spirit:bitWidth>
-            <spirit:access>read-only</spirit:access>
+            <spirit:name>is_dup</spirit:name>
+            <spirit:description>Bit 63 to 32 of is_dup</spirit:description>
+            <spirit:bitOffset>0</spirit:bitOffset>
+            <spirit:bitWidth spirit:format="long">32</spirit:bitWidth>
+            <spirit:access>write-only</spirit:access>
             <spirit:writeValueConstraint>
               <spirit:minimum>0</spirit:minimum>
               <spirit:maximum>0</spirit:maximum>
             </spirit:writeValueConstraint>
-            <spirit:readAction>modify</spirit:readAction>
             <spirit:testable spirit:testConstraint="unconstrained">false</spirit:testable>
           </spirit:field>
         </spirit:register>
         <spirit:register>
-          <spirit:name>dup_index</spirit:name>
-          <spirit:displayName>dup_index</spirit:displayName>
+          <spirit:name>dup_index_1</spirit:name>
+          <spirit:displayName>dup_index_1</spirit:displayName>
           <spirit:description>Data signal of dup_index</spirit:description>
-          <spirit:addressOffset>48</spirit:addressOffset>
+          <spirit:addressOffset>52</spirit:addressOffset>
           <spirit:size spirit:format="long">32</spirit:size>
           <spirit:access>write-only</spirit:access>
           <spirit:reset>
@@ -1095,10 +1105,33 @@
           </spirit:field>
         </spirit:register>
         <spirit:register>
+          <spirit:name>dup_index_2</spirit:name>
+          <spirit:displayName>dup_index_2</spirit:displayName>
+          <spirit:description>Data signal of dup_index</spirit:description>
+          <spirit:addressOffset>56</spirit:addressOffset>
+          <spirit:size spirit:format="long">32</spirit:size>
+          <spirit:access>write-only</spirit:access>
+          <spirit:reset>
+            <spirit:value spirit:format="long">0</spirit:value>
+          </spirit:reset>
+          <spirit:field>
+            <spirit:name>dup_index</spirit:name>
+            <spirit:description>Bit 63 to 32 of dup_index</spirit:description>
+            <spirit:bitOffset>0</spirit:bitOffset>
+            <spirit:bitWidth spirit:format="long">32</spirit:bitWidth>
+            <spirit:access>write-only</spirit:access>
+            <spirit:writeValueConstraint>
+              <spirit:minimum>0</spirit:minimum>
+              <spirit:maximum>0</spirit:maximum>
+            </spirit:writeValueConstraint>
+            <spirit:testable spirit:testConstraint="unconstrained">false</spirit:testable>
+          </spirit:field>
+        </spirit:register>
+        <spirit:register>
           <spirit:name>temp_out_buffer_1</spirit:name>
           <spirit:displayName>temp_out_buffer_1</spirit:displayName>
           <spirit:description>Data signal of temp_out_buffer</spirit:description>
-          <spirit:addressOffset>56</spirit:addressOffset>
+          <spirit:addressOffset>64</spirit:addressOffset>
           <spirit:size spirit:format="long">32</spirit:size>
           <spirit:access>write-only</spirit:access>
           <spirit:reset>
@@ -1121,7 +1154,7 @@
           <spirit:name>temp_out_buffer_2</spirit:name>
           <spirit:displayName>temp_out_buffer_2</spirit:displayName>
           <spirit:description>Data signal of temp_out_buffer</spirit:description>
-          <spirit:addressOffset>60</spirit:addressOffset>
+          <spirit:addressOffset>68</spirit:addressOffset>
           <spirit:size spirit:format="long">32</spirit:size>
           <spirit:access>write-only</spirit:access>
           <spirit:reset>
@@ -1144,7 +1177,7 @@
           <spirit:name>temp_out_buffer_size_1</spirit:name>
           <spirit:displayName>temp_out_buffer_size_1</spirit:displayName>
           <spirit:description>Data signal of temp_out_buffer_size</spirit:description>
-          <spirit:addressOffset>68</spirit:addressOffset>
+          <spirit:addressOffset>76</spirit:addressOffset>
           <spirit:size spirit:format="long">32</spirit:size>
           <spirit:access>write-only</spirit:access>
           <spirit:reset>
@@ -1167,7 +1200,7 @@
           <spirit:name>temp_out_buffer_size_2</spirit:name>
           <spirit:displayName>temp_out_buffer_size_2</spirit:displayName>
           <spirit:description>Data signal of temp_out_buffer_size</spirit:description>
-          <spirit:addressOffset>72</spirit:addressOffset>
+          <spirit:addressOffset>80</spirit:addressOffset>
           <spirit:size spirit:format="long">32</spirit:size>
           <spirit:access>write-only</spirit:access>
           <spirit:reset>
@@ -1203,7 +1236,7 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>viewChecksum</spirit:name>
-            <spirit:value>92fb01fa</spirit:value>
+            <spirit:value>f710124d</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -1219,7 +1252,7 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>viewChecksum</spirit:name>
-            <spirit:value>7a194438</spirit:value>
+            <spirit:value>d620109a</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -1235,7 +1268,7 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>viewChecksum</spirit:name>
-            <spirit:value>706599b8</spirit:value>
+            <spirit:value>f1dd0058</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -1251,7 +1284,7 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>viewChecksum</spirit:name>
-            <spirit:value>1dd2ac4e</spirit:value>
+            <spirit:value>7cffa6c8</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -1265,7 +1298,7 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>viewChecksum</spirit:name>
-            <spirit:value>7daf605e</spirit:value>
+            <spirit:value>5f43914f</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -2627,7 +2660,7 @@
       <spirit:file>
         <spirit:name>hdl/vhdl/lzw_compress_hw.vhd</spirit:name>
         <spirit:fileType>vhdlSource</spirit:fileType>
-        <spirit:userFileType>CHECKSUM_22e14b7d</spirit:userFileType>
+        <spirit:userFileType>CHECKSUM_75876fda</spirit:userFileType>
       </spirit:file>
     </spirit:fileSet>
     <spirit:fileSet>
@@ -2881,8 +2914,8 @@
       </xilinx:taxonomies>
       <xilinx:displayName>Lzw_compress_hw</xilinx:displayName>
       <xilinx:definitionSource>HLS</xilinx:definitionSource>
-      <xilinx:coreRevision>2113855677</xilinx:coreRevision>
-      <xilinx:coreCreationDateTime>2024-12-07T22:58:02Z</xilinx:coreCreationDateTime>
+      <xilinx:coreRevision>2113855740</xilinx:coreRevision>
+      <xilinx:coreCreationDateTime>2024-12-08T00:01:16Z</xilinx:coreCreationDateTime>
       <xilinx:sdxKernelAttributes>
         <xilinx:sdx_kernel>true</xilinx:sdx_kernel>
         <xilinx:sdx_kernel_type>hls</xilinx:sdx_kernel_type>
@@ -2892,8 +2925,8 @@
       <xilinx:xilinxVersion>2020.2</xilinx:xilinxVersion>
       <xilinx:checksum xilinx:scope="busInterfaces" xilinx:value="35d5713e"/>
       <xilinx:checksum xilinx:scope="addressSpaces" xilinx:value="2c1df7e3"/>
-      <xilinx:checksum xilinx:scope="memoryMaps" xilinx:value="7fdf6860"/>
-      <xilinx:checksum xilinx:scope="fileGroups" xilinx:value="bc2d6f37"/>
+      <xilinx:checksum xilinx:scope="memoryMaps" xilinx:value="ec15cc2e"/>
+      <xilinx:checksum xilinx:scope="fileGroups" xilinx:value="01e38c4c"/>
       <xilinx:checksum xilinx:scope="ports" xilinx:value="07a9111f"/>
       <xilinx:checksum xilinx:scope="hdlParameters" xilinx:value="2e845cac"/>
       <xilinx:checksum xilinx:scope="parameters" xilinx:value="1fdf20f8"/>

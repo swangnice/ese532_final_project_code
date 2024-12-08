@@ -32,44 +32,56 @@ class AESL_RUNTIME_BC {
     fstream file_token;
     string mName;
 };
-extern "C" void lzw_compress_hw(int*, int, int, char, int, int, int);
-extern "C" void apatb_lzw_compress_hw_hw(volatile void * __xlx_apatb_param_s1, volatile void * __xlx_apatb_param_length, char __xlx_apatb_param_is_dup, int __xlx_apatb_param_dup_index, volatile void * __xlx_apatb_param_temp_out_buffer, volatile void * __xlx_apatb_param_temp_out_buffer_size) {
-  // Collect __xlx_s1_length_temp_out_buffer_temp_out_buffer_size__tmp_vec
-  vector<sc_bv<32> >__xlx_s1_length_temp_out_buffer_temp_out_buffer_size__tmp_vec;
+extern "C" void lzw_compress_hw(int*, int, int, int, int, int, int);
+extern "C" void apatb_lzw_compress_hw_hw(volatile void * __xlx_apatb_param_s1, volatile void * __xlx_apatb_param_length, volatile void * __xlx_apatb_param_is_dup, volatile void * __xlx_apatb_param_dup_index, volatile void * __xlx_apatb_param_temp_out_buffer, volatile void * __xlx_apatb_param_temp_out_buffer_size) {
+  // Collect __xlx_s1_length_is_dup_dup_index_temp_out_buffer_temp_out_buffer_size__tmp_vec
+  vector<sc_bv<32> >__xlx_s1_length_is_dup_dup_index_temp_out_buffer_temp_out_buffer_size__tmp_vec;
   for (int j = 0, e = 1; j != e; ++j) {
-    __xlx_s1_length_temp_out_buffer_temp_out_buffer_size__tmp_vec.push_back(((int*)__xlx_apatb_param_s1)[j]);
+    __xlx_s1_length_is_dup_dup_index_temp_out_buffer_temp_out_buffer_size__tmp_vec.push_back(((int*)__xlx_apatb_param_s1)[j]);
   }
   int __xlx_size_param_s1 = 1;
   int __xlx_offset_param_s1 = 0;
   int __xlx_offset_byte_param_s1 = 0*4;
   for (int j = 0, e = 1; j != e; ++j) {
-    __xlx_s1_length_temp_out_buffer_temp_out_buffer_size__tmp_vec.push_back(((int*)__xlx_apatb_param_length)[j]);
+    __xlx_s1_length_is_dup_dup_index_temp_out_buffer_temp_out_buffer_size__tmp_vec.push_back(((int*)__xlx_apatb_param_length)[j]);
   }
   int __xlx_size_param_length = 1;
   int __xlx_offset_param_length = 1;
   int __xlx_offset_byte_param_length = 1*4;
   for (int j = 0, e = 1; j != e; ++j) {
-    __xlx_s1_length_temp_out_buffer_temp_out_buffer_size__tmp_vec.push_back(((int*)__xlx_apatb_param_temp_out_buffer)[j]);
+    __xlx_s1_length_is_dup_dup_index_temp_out_buffer_temp_out_buffer_size__tmp_vec.push_back(((int*)__xlx_apatb_param_is_dup)[j]);
+  }
+  int __xlx_size_param_is_dup = 1;
+  int __xlx_offset_param_is_dup = 2;
+  int __xlx_offset_byte_param_is_dup = 2*4;
+  for (int j = 0, e = 1; j != e; ++j) {
+    __xlx_s1_length_is_dup_dup_index_temp_out_buffer_temp_out_buffer_size__tmp_vec.push_back(((int*)__xlx_apatb_param_dup_index)[j]);
+  }
+  int __xlx_size_param_dup_index = 1;
+  int __xlx_offset_param_dup_index = 3;
+  int __xlx_offset_byte_param_dup_index = 3*4;
+  for (int j = 0, e = 1; j != e; ++j) {
+    __xlx_s1_length_is_dup_dup_index_temp_out_buffer_temp_out_buffer_size__tmp_vec.push_back(((int*)__xlx_apatb_param_temp_out_buffer)[j]);
   }
   int __xlx_size_param_temp_out_buffer = 1;
-  int __xlx_offset_param_temp_out_buffer = 2;
-  int __xlx_offset_byte_param_temp_out_buffer = 2*4;
+  int __xlx_offset_param_temp_out_buffer = 4;
+  int __xlx_offset_byte_param_temp_out_buffer = 4*4;
   for (int j = 0, e = 1; j != e; ++j) {
-    __xlx_s1_length_temp_out_buffer_temp_out_buffer_size__tmp_vec.push_back(((int*)__xlx_apatb_param_temp_out_buffer_size)[j]);
+    __xlx_s1_length_is_dup_dup_index_temp_out_buffer_temp_out_buffer_size__tmp_vec.push_back(((int*)__xlx_apatb_param_temp_out_buffer_size)[j]);
   }
   int __xlx_size_param_temp_out_buffer_size = 1;
-  int __xlx_offset_param_temp_out_buffer_size = 3;
-  int __xlx_offset_byte_param_temp_out_buffer_size = 3*4;
-  int* __xlx_s1_length_temp_out_buffer_temp_out_buffer_size__input_buffer= new int[__xlx_s1_length_temp_out_buffer_temp_out_buffer_size__tmp_vec.size()];
-  for (int i = 0; i < __xlx_s1_length_temp_out_buffer_temp_out_buffer_size__tmp_vec.size(); ++i) {
-    __xlx_s1_length_temp_out_buffer_temp_out_buffer_size__input_buffer[i] = __xlx_s1_length_temp_out_buffer_temp_out_buffer_size__tmp_vec[i].range(31, 0).to_uint64();
+  int __xlx_offset_param_temp_out_buffer_size = 5;
+  int __xlx_offset_byte_param_temp_out_buffer_size = 5*4;
+  int* __xlx_s1_length_is_dup_dup_index_temp_out_buffer_temp_out_buffer_size__input_buffer= new int[__xlx_s1_length_is_dup_dup_index_temp_out_buffer_temp_out_buffer_size__tmp_vec.size()];
+  for (int i = 0; i < __xlx_s1_length_is_dup_dup_index_temp_out_buffer_temp_out_buffer_size__tmp_vec.size(); ++i) {
+    __xlx_s1_length_is_dup_dup_index_temp_out_buffer_temp_out_buffer_size__input_buffer[i] = __xlx_s1_length_is_dup_dup_index_temp_out_buffer_temp_out_buffer_size__tmp_vec[i].range(31, 0).to_uint64();
   }
   // DUT call
-  lzw_compress_hw(__xlx_s1_length_temp_out_buffer_temp_out_buffer_size__input_buffer, __xlx_offset_byte_param_s1, __xlx_offset_byte_param_length, __xlx_apatb_param_is_dup, __xlx_apatb_param_dup_index, __xlx_offset_byte_param_temp_out_buffer, __xlx_offset_byte_param_temp_out_buffer_size);
+  lzw_compress_hw(__xlx_s1_length_is_dup_dup_index_temp_out_buffer_temp_out_buffer_size__input_buffer, __xlx_offset_byte_param_s1, __xlx_offset_byte_param_length, __xlx_offset_byte_param_is_dup, __xlx_offset_byte_param_dup_index, __xlx_offset_byte_param_temp_out_buffer, __xlx_offset_byte_param_temp_out_buffer_size);
 // print __xlx_apatb_param_s1
   sc_bv<32>*__xlx_s1_output_buffer = new sc_bv<32>[__xlx_size_param_s1];
   for (int i = 0; i < __xlx_size_param_s1; ++i) {
-    __xlx_s1_output_buffer[i] = __xlx_s1_length_temp_out_buffer_temp_out_buffer_size__input_buffer[i+__xlx_offset_param_s1];
+    __xlx_s1_output_buffer[i] = __xlx_s1_length_is_dup_dup_index_temp_out_buffer_temp_out_buffer_size__input_buffer[i+__xlx_offset_param_s1];
   }
   for (int i = 0; i < __xlx_size_param_s1; ++i) {
     ((int*)__xlx_apatb_param_s1)[i] = __xlx_s1_output_buffer[i].to_uint64();
@@ -77,15 +89,31 @@ extern "C" void apatb_lzw_compress_hw_hw(volatile void * __xlx_apatb_param_s1, v
 // print __xlx_apatb_param_length
   sc_bv<32>*__xlx_length_output_buffer = new sc_bv<32>[__xlx_size_param_length];
   for (int i = 0; i < __xlx_size_param_length; ++i) {
-    __xlx_length_output_buffer[i] = __xlx_s1_length_temp_out_buffer_temp_out_buffer_size__input_buffer[i+__xlx_offset_param_length];
+    __xlx_length_output_buffer[i] = __xlx_s1_length_is_dup_dup_index_temp_out_buffer_temp_out_buffer_size__input_buffer[i+__xlx_offset_param_length];
   }
   for (int i = 0; i < __xlx_size_param_length; ++i) {
     ((int*)__xlx_apatb_param_length)[i] = __xlx_length_output_buffer[i].to_uint64();
   }
+// print __xlx_apatb_param_is_dup
+  sc_bv<32>*__xlx_is_dup_output_buffer = new sc_bv<32>[__xlx_size_param_is_dup];
+  for (int i = 0; i < __xlx_size_param_is_dup; ++i) {
+    __xlx_is_dup_output_buffer[i] = __xlx_s1_length_is_dup_dup_index_temp_out_buffer_temp_out_buffer_size__input_buffer[i+__xlx_offset_param_is_dup];
+  }
+  for (int i = 0; i < __xlx_size_param_is_dup; ++i) {
+    ((int*)__xlx_apatb_param_is_dup)[i] = __xlx_is_dup_output_buffer[i].to_uint64();
+  }
+// print __xlx_apatb_param_dup_index
+  sc_bv<32>*__xlx_dup_index_output_buffer = new sc_bv<32>[__xlx_size_param_dup_index];
+  for (int i = 0; i < __xlx_size_param_dup_index; ++i) {
+    __xlx_dup_index_output_buffer[i] = __xlx_s1_length_is_dup_dup_index_temp_out_buffer_temp_out_buffer_size__input_buffer[i+__xlx_offset_param_dup_index];
+  }
+  for (int i = 0; i < __xlx_size_param_dup_index; ++i) {
+    ((int*)__xlx_apatb_param_dup_index)[i] = __xlx_dup_index_output_buffer[i].to_uint64();
+  }
 // print __xlx_apatb_param_temp_out_buffer
   sc_bv<32>*__xlx_temp_out_buffer_output_buffer = new sc_bv<32>[__xlx_size_param_temp_out_buffer];
   for (int i = 0; i < __xlx_size_param_temp_out_buffer; ++i) {
-    __xlx_temp_out_buffer_output_buffer[i] = __xlx_s1_length_temp_out_buffer_temp_out_buffer_size__input_buffer[i+__xlx_offset_param_temp_out_buffer];
+    __xlx_temp_out_buffer_output_buffer[i] = __xlx_s1_length_is_dup_dup_index_temp_out_buffer_temp_out_buffer_size__input_buffer[i+__xlx_offset_param_temp_out_buffer];
   }
   for (int i = 0; i < __xlx_size_param_temp_out_buffer; ++i) {
     ((int*)__xlx_apatb_param_temp_out_buffer)[i] = __xlx_temp_out_buffer_output_buffer[i].to_uint64();
@@ -93,7 +121,7 @@ extern "C" void apatb_lzw_compress_hw_hw(volatile void * __xlx_apatb_param_s1, v
 // print __xlx_apatb_param_temp_out_buffer_size
   sc_bv<32>*__xlx_temp_out_buffer_size_output_buffer = new sc_bv<32>[__xlx_size_param_temp_out_buffer_size];
   for (int i = 0; i < __xlx_size_param_temp_out_buffer_size; ++i) {
-    __xlx_temp_out_buffer_size_output_buffer[i] = __xlx_s1_length_temp_out_buffer_temp_out_buffer_size__input_buffer[i+__xlx_offset_param_temp_out_buffer_size];
+    __xlx_temp_out_buffer_size_output_buffer[i] = __xlx_s1_length_is_dup_dup_index_temp_out_buffer_temp_out_buffer_size__input_buffer[i+__xlx_offset_param_temp_out_buffer_size];
   }
   for (int i = 0; i < __xlx_size_param_temp_out_buffer_size; ++i) {
     ((int*)__xlx_apatb_param_temp_out_buffer_size)[i] = __xlx_temp_out_buffer_size_output_buffer[i].to_uint64();

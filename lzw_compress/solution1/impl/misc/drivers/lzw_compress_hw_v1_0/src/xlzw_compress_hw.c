@@ -121,37 +121,41 @@ u64 XLzw_compress_hw_Get_length_r(XLzw_compress_hw *InstancePtr) {
     return Data;
 }
 
-void XLzw_compress_hw_Set_is_dup(XLzw_compress_hw *InstancePtr, u32 Data) {
+void XLzw_compress_hw_Set_is_dup(XLzw_compress_hw *InstancePtr, u64 Data) {
     Xil_AssertVoid(InstancePtr != NULL);
     Xil_AssertVoid(InstancePtr->IsReady == XIL_COMPONENT_IS_READY);
 
-    XLzw_compress_hw_WriteReg(InstancePtr->Control_BaseAddress, XLZW_COMPRESS_HW_CONTROL_ADDR_IS_DUP_DATA, Data);
+    XLzw_compress_hw_WriteReg(InstancePtr->Control_BaseAddress, XLZW_COMPRESS_HW_CONTROL_ADDR_IS_DUP_DATA, (u32)(Data));
+    XLzw_compress_hw_WriteReg(InstancePtr->Control_BaseAddress, XLZW_COMPRESS_HW_CONTROL_ADDR_IS_DUP_DATA + 4, (u32)(Data >> 32));
 }
 
-u32 XLzw_compress_hw_Get_is_dup(XLzw_compress_hw *InstancePtr) {
-    u32 Data;
+u64 XLzw_compress_hw_Get_is_dup(XLzw_compress_hw *InstancePtr) {
+    u64 Data;
 
     Xil_AssertNonvoid(InstancePtr != NULL);
     Xil_AssertNonvoid(InstancePtr->IsReady == XIL_COMPONENT_IS_READY);
 
     Data = XLzw_compress_hw_ReadReg(InstancePtr->Control_BaseAddress, XLZW_COMPRESS_HW_CONTROL_ADDR_IS_DUP_DATA);
+    Data += (u64)XLzw_compress_hw_ReadReg(InstancePtr->Control_BaseAddress, XLZW_COMPRESS_HW_CONTROL_ADDR_IS_DUP_DATA + 4) << 32;
     return Data;
 }
 
-void XLzw_compress_hw_Set_dup_index(XLzw_compress_hw *InstancePtr, u32 Data) {
+void XLzw_compress_hw_Set_dup_index(XLzw_compress_hw *InstancePtr, u64 Data) {
     Xil_AssertVoid(InstancePtr != NULL);
     Xil_AssertVoid(InstancePtr->IsReady == XIL_COMPONENT_IS_READY);
 
-    XLzw_compress_hw_WriteReg(InstancePtr->Control_BaseAddress, XLZW_COMPRESS_HW_CONTROL_ADDR_DUP_INDEX_DATA, Data);
+    XLzw_compress_hw_WriteReg(InstancePtr->Control_BaseAddress, XLZW_COMPRESS_HW_CONTROL_ADDR_DUP_INDEX_DATA, (u32)(Data));
+    XLzw_compress_hw_WriteReg(InstancePtr->Control_BaseAddress, XLZW_COMPRESS_HW_CONTROL_ADDR_DUP_INDEX_DATA + 4, (u32)(Data >> 32));
 }
 
-u32 XLzw_compress_hw_Get_dup_index(XLzw_compress_hw *InstancePtr) {
-    u32 Data;
+u64 XLzw_compress_hw_Get_dup_index(XLzw_compress_hw *InstancePtr) {
+    u64 Data;
 
     Xil_AssertNonvoid(InstancePtr != NULL);
     Xil_AssertNonvoid(InstancePtr->IsReady == XIL_COMPONENT_IS_READY);
 
     Data = XLzw_compress_hw_ReadReg(InstancePtr->Control_BaseAddress, XLZW_COMPRESS_HW_CONTROL_ADDR_DUP_INDEX_DATA);
+    Data += (u64)XLzw_compress_hw_ReadReg(InstancePtr->Control_BaseAddress, XLZW_COMPRESS_HW_CONTROL_ADDR_DUP_INDEX_DATA + 4) << 32;
     return Data;
 }
 
