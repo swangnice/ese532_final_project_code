@@ -298,8 +298,12 @@ int main(int argc, char** argv)
             memcpy(lzw_s1, chunks[i], chunk_sizes[i]);
 			//printf("chunk size: %d\n", chunk_sizes[i]);
             *lzw_length = chunk_sizes[i];
+            printf("chunk size: %d\n", *lzw_length);
             *lzw_is_dup = dup_flag[i];
+            printf("dup_flag: %d\n", *lzw_is_dup);
             *lzw_dup_index = dup_index[i];
+            printf("dup_index: %d\n", *lzw_dup_index);
+
             printf("passed in lzw_compress\n");
 			//printf("chunk size: %d\n", *lzw_length);
 			// printf("Chunk %u:", i);
