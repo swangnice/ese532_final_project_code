@@ -331,7 +331,9 @@ int main(int argc, char** argv)
             cl::Event read_ev;
 
 			//printf("begin queue\n");
-            q.enqueueMigrateMemObjects({lzw_s1_buf, lzw_length_buf, lzw_is_dup_buf, lzw_dup_index_buf}, 0, NULL, &write_ev);
+            //q.enqueueMigrateMemObjects({lzw_s1_buf, lzw_length_buf, lzw_is_dup_buf, lzw_dup_index_buf}, 0, NULL, &write_ev);
+            q.enqueueMigrateMemObjects({lzw_s1_buf, lzw_length_buf}, 0, NULL, NULL);
+            q.enqueueMigrateMemObjects({lzw_is_dup_buf, lzw_dup_index_buf}, 0, NULL, &write_ev);
             printf("test 1");
             
             // Create a vector for the event dependency
