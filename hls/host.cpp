@@ -89,21 +89,21 @@ int main(int argc, char** argv)
 
     unsigned char* lzw_s1;
     int *lzw_length;
-    uint8_t *lzw_is_dup;
+    int *lzw_is_dup;
     int *lzw_dup_index;
 	uint8_t *lzw_temp_out_buffer;
 	unsigned int *lzw_temp_out_buffer_size;
 
     cl::Buffer lzw_s1_buf = cl::Buffer(context, CL_MEM_ALLOC_HOST_PTR | CL_MEM_READ_ONLY,  sizeof(unsigned char) * 2048, NULL, &err);
     cl::Buffer lzw_length_buf = cl::Buffer(context, CL_MEM_ALLOC_HOST_PTR | CL_MEM_READ_ONLY, sizeof(int), NULL, &err);
-	cl::Buffer lzw_is_dup_buf = cl::Buffer(context, CL_MEM_ALLOC_HOST_PTR | CL_MEM_READ_ONLY, sizeof(uint8_t), NULL, &err);
+	cl::Buffer lzw_is_dup_buf = cl::Buffer(context, CL_MEM_ALLOC_HOST_PTR | CL_MEM_READ_ONLY, sizeof(int), NULL, &err);
 	cl::Buffer lzw_dup_index_buf = cl::Buffer(context, CL_MEM_ALLOC_HOST_PTR | CL_MEM_READ_ONLY, sizeof(int), NULL, &err);
 	cl::Buffer lzw_temp_out_buffer_buf = cl::Buffer(context, CL_MEM_ALLOC_HOST_PTR | CL_MEM_WRITE_ONLY, sizeof(uint8_t) * 2048, NULL, &err);
 	cl::Buffer lzw_temp_out_buffer_size_buf = cl::Buffer(context, CL_MEM_ALLOC_HOST_PTR | CL_MEM_WRITE_ONLY, sizeof(unsigned int), NULL, &err);
 	
     lzw_s1 = (unsigned char *)q.enqueueMapBuffer(lzw_s1_buf, CL_TRUE, CL_MAP_WRITE, 0, sizeof(unsigned char) * 2048);
     lzw_length = (int *)q.enqueueMapBuffer(lzw_length_buf, CL_TRUE, CL_MAP_WRITE, 0, sizeof(int));
-	lzw_is_dup = (uint8_t *)q.enqueueMapBuffer(lzw_is_dup_buf, CL_TRUE, CL_MAP_WRITE, 0, sizeof(uint8_t));
+	lzw_is_dup = (int *)q.enqueueMapBuffer(lzw_is_dup_buf, CL_TRUE, CL_MAP_WRITE, 0, sizeof(int));
 	lzw_dup_index = (int *)q.enqueueMapBuffer(lzw_dup_index_buf, CL_TRUE, CL_MAP_WRITE, 0, sizeof(int));
 	lzw_temp_out_buffer = (uint8_t *)q.enqueueMapBuffer(lzw_temp_out_buffer_buf, CL_TRUE, CL_MAP_READ, 0, sizeof(uint8_t) * 2048);
 	lzw_temp_out_buffer_size = (unsigned int *)q.enqueueMapBuffer(lzw_temp_out_buffer_size_buf, CL_TRUE, CL_MAP_READ, 0, sizeof(unsigned int));
