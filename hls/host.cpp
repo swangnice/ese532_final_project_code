@@ -91,7 +91,7 @@ int main(int argc, char** argv)
     int *lzw_length;
     int *lzw_is_dup;
     int *lzw_dup_index;
-	uint8_t *lzw_temp_out_buffer;
+	uint8_t* lzw_temp_out_buffer;
 	unsigned int *lzw_temp_out_buffer_size;
 
     cl::Buffer lzw_s1_buf = cl::Buffer(context, CL_MEM_ALLOC_HOST_PTR | CL_MEM_READ_ONLY,  sizeof(unsigned char) * 2048, NULL, &err);
@@ -298,13 +298,13 @@ int main(int argc, char** argv)
             memcpy(lzw_s1, chunks[i], chunk_sizes[i]);
 			//printf("chunk size: %d\n", chunk_sizes[i]);
             *lzw_length = chunk_sizes[i];
-            printf("chunk size: %d\n", *lzw_length);
+            //printf("chunk size: %d\n", *lzw_length);
             *lzw_is_dup = dup_flag[i];
-            printf("dup_flag: %d\n", *lzw_is_dup);
+            //printf("dup_flag: %d\n", *lzw_is_dup);
             *lzw_dup_index = dup_index[i];
-            printf("dup_index: %d\n", *lzw_dup_index);
+            //printf("dup_index: %d\n", *lzw_dup_index);
 
-            printf("passed in lzw_compress\n");
+            //printf("passed in lzw_compress\n");
 			//printf("chunk size: %d\n", *lzw_length);
 			// printf("Chunk %u:", i);
 			// for (int j = 0; j < *lzw_length; j++) { // `total_size` 是 lzw_s1 的总长度
@@ -333,17 +333,8 @@ int main(int argc, char** argv)
 
 			//printf("begin queue\n");
             q.enqueueMigrateMemObjects({lzw_s1_buf, lzw_length_buf, lzw_is_dup_buf, lzw_dup_index_buf}, 0, NULL, &write_ev);
-            // printf("test 1");
+            printf("test 1");
 
-            // cl_int e = CL_SUCCESS;
-            // try
-            // {
-            //     e = q.enqueueMigrateMemObjects({lzw_s1_buf, lzw_length_buf, lzw_is_dup_buf, lzw_dup_index_buf}, 0, NULL, &write_ev);
-            // }
-            // catch(const std::exception& e)
-            // {
-            //     std::cerr << e.what() << '\n';
-            // }
             
             
             
