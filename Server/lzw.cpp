@@ -239,8 +239,8 @@ Output:
 void lzw_compress_v2(unsigned char* s1, int* length, int *is_dup, int *dup_index,  uint8_t *temp_out_buffer, unsigned int *temp_out_buffer_size)
 {
     //printf("Begin lzw_compress_v2\n");
-    printf("is_dup: %d\n", *is_dup);
-    printf("dup_index: %d\n", *dup_index);
+    // printf("is_dup: %d\n", *is_dup);
+    // printf("dup_index: %d\n", *dup_index);
     if (*is_dup == 0){
         unsigned long hash_table[CAPACITY];
         assoc_mem my_assoc_mem;
@@ -333,8 +333,6 @@ void lzw_compress_v2(unsigned char* s1, int* length, int *is_dup, int *dup_index
         temp_out_buffer[3] = (((*dup_index<<1) | 0x00000001) >> 24) & 0xff;
         *temp_out_buffer_size = 4;
     }
-
-
 } 
 //out_code -> in
 
