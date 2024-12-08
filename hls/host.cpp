@@ -102,11 +102,11 @@ int main(int argc, char** argv)
 	cl::Buffer lzw_temp_out_buffer_size_buf = cl::Buffer(context, CL_MEM_ALLOC_HOST_PTR | CL_MEM_WRITE_ONLY, sizeof(unsigned int), NULL, &err);
 	
     lzw_s1 = (unsigned char *)q.enqueueMapBuffer(lzw_s1_buf, CL_TRUE, CL_MAP_WRITE, 0, sizeof(unsigned char) * 2048);
-    lzw_length = (int*)q.enqueueMapBuffer(lzw_length_buf, CL_TRUE, CL_MAP_WRITE, 0, sizeof(int));
-	lzw_is_dup = (uint8_t*)q.enqueueMapBuffer(lzw_is_dup_buf, CL_TRUE, CL_MAP_WRITE, 0, sizeof(uint8_t));
-	lzw_dup_index = (int*)q.enqueueMapBuffer(lzw_dup_index_buf, CL_TRUE, CL_MAP_WRITE, 0, sizeof(int));
-	lzw_temp_out_buffer = (uint8_t*)q.enqueueMapBuffer(lzw_temp_out_buffer_buf, CL_TRUE, CL_MAP_READ, 0, sizeof(uint8_t) * 2048);
-	lzw_temp_out_buffer_size = (unsigned int*)q.enqueueMapBuffer(lzw_temp_out_buffer_size_buf, CL_TRUE, CL_MAP_READ, 0, sizeof(unsigned int));
+    lzw_length = (int *)q.enqueueMapBuffer(lzw_length_buf, CL_TRUE, CL_MAP_WRITE, 0, sizeof(int));
+	lzw_is_dup = (uint8_t *)q.enqueueMapBuffer(lzw_is_dup_buf, CL_TRUE, CL_MAP_WRITE, 0, sizeof(uint8_t));
+	lzw_dup_index = (int *)q.enqueueMapBuffer(lzw_dup_index_buf, CL_TRUE, CL_MAP_WRITE, 0, sizeof(int));
+	lzw_temp_out_buffer = (uint8_t *)q.enqueueMapBuffer(lzw_temp_out_buffer_buf, CL_TRUE, CL_MAP_READ, 0, sizeof(uint8_t) * 2048);
+	lzw_temp_out_buffer_size = (unsigned int *)q.enqueueMapBuffer(lzw_temp_out_buffer_size_buf, CL_TRUE, CL_MAP_READ, 0, sizeof(unsigned int));
 	
 // ------------------------------------------------------------------------------------
 // Step 3: Run the kernel
@@ -332,8 +332,14 @@ int main(int argc, char** argv)
 
 			//printf("begin queue\n");
             //q.enqueueMigrateMemObjects({lzw_s1_buf, lzw_length_buf, lzw_is_dup_buf, lzw_dup_index_buf}, 0, NULL, &write_ev);
-            q.enqueueMigrateMemObjects({lzw_s1_buf, lzw_length_buf}, 0, NULL, NULL);
-            q.enqueueMigrateMemObjects({lzw_is_dup_buf, lzw_dup_index_buf}, 0, NULL, &write_ev);
+            try {
+                q.enqueueMigrateMemObjects({lzw_s1_buf, lzw_length_buf, lzw_is_dup_buf, lzw_dup_index_buf}, 0, NULL, &write_ev);
+                //q.finish();  // 确保操作完成
+            } catch (cl::Error &e) {
+                std::cerr << "OpenCL Error: " << e.what() << " : " << e.err() << std::endl;
+            }
+
+
             printf("test 1");
             
             // Create a vector for the event dependency
