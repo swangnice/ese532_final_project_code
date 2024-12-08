@@ -329,17 +329,23 @@ int main(int argc, char** argv)
             cl::Event write_ev;
             cl::Event exec_ev;
             cl::Event read_ev;
+            printf("begin queue\n");
 
 			//printf("begin queue\n");
             // q.enqueueMigrateMemObjects({lzw_s1_buf, lzw_length_buf, lzw_is_dup_buf, lzw_dup_index_buf}, 0, NULL, &write_ev);
             // printf("test 1");
 
             cl_int e = CL_SUCCESS;
-            e = q.enqueueMigrateMemObjects({lzw_s1_buf, lzw_length_buf, lzw_is_dup_buf, lzw_dup_index_buf}, 0, NULL, &write_ev);
-            if (err != CL_SUCCESS) {
-                std::cerr << "OpenCL Error: " << e << std::endl;
+            try
+            {
+                e = q.enqueueMigrateMemObjects({lzw_s1_buf, lzw_length_buf, lzw_is_dup_buf, lzw_dup_index_buf}, 0, NULL, &write_ev);
             }
-            q.finish();
+            catch(const std::exception& e)
+            {
+                std::cerr << e.what() << '\n';
+            }
+            
+            
             
             // Create a vector for the event dependency
             write_events.push_back(write_ev);
