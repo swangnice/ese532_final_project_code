@@ -9,27 +9,31 @@ int main() {
 
 	unsigned char s[] = {'W', 'Y', 'S', '*', 'W', 'Y', 'G', 'W', 'Y', 'S', '*', 'W', 'Y', 'S', 'W', 'Y', 'S', 'G'};
 	int length_value = 18;
-	int* length = &length_value;
-	uint8_t temp_out_buffer[60];
-	unsigned int temp_out_buffer_size_value = 0;
-	unsigned int* temp_out_buffer_size = &temp_out_buffer_size_value;
-	uint16_t out_code[60];
-	int out_len_value = 0;
-	int* out_len = &out_len_value;
 
-	lzw_compress(s, length, out_code, out_len);
-	lzw_compress_v2(s, length, 0, 0,  temp_out_buffer, temp_out_buffer_size);
+	int is_dup = 0;
+	int dup_index = 0;
 
-	int j = *out_len;
-	int adjusted_input_size = j - (j % 2);
-	uint8_t out[60];
-	convert_output(out_code, out, j);
 
-	for(int i = 0; i < *temp_out_buffer_size - 4; i++) {
-		if(out[i] != temp_out_buffer[i+4]) {
-			return 1;
+	uint8_t *temp_out_buffer_hw = (uint8_t*)malloc(sizeof(uint8_t) * 2048);
+	uint8_t *temp_out_buffer_v2 = (uint8_t*)malloc(sizeof(uint8_t) * 2048);
+	unsigned int *temp_out_buffer_size_v2 = (unsigned int*)malloc(sizeof(unsigned int));
+	unsigned int *temp_out_buffer_size_hw = (unsigned int*)malloc(sizeof(unsigned int));
+
+	lzw_compress_hw(s, &length_value, &is_dup, &dup_index, temp_out_buffer_hw, temp_out_buffer_size_hw);
+	lzw_compress_v2(s, &length_value, &is_dup, &dup_index, temp_out_buffer_v2, temp_out_buffer_size_v2);
+
+// 确保两个缓冲区大小一致
+	if (*temp_out_buffer_size_hw != *temp_out_buffer_size_v2) {
+		return 1; // 大小不一致，返回错误
+	}
+
+	// 比较缓冲区内容
+	for (int i = 0; i < *temp_out_buffer_size_hw; i++) {
+		if (temp_out_buffer_hw[i] != temp_out_buffer_v2[i]) {
+			return 1; // 内容不匹配，返回错误
 		}
 	}
+
 
 	return 0;
 
