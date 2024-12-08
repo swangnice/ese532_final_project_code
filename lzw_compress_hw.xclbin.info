@@ -11,7 +11,7 @@ xclbin Information
    Kernels:                lzw_compress_hw
    Signature:              
    Content:                Bitstream
-   UUID (xclbin):          54f73e89-7096-43e6-b7ef-0c816fcf478f
+   UUID (xclbin):          0843319d-a535-48b7-9eb5-e0bb5af488fc
    Sections:               BITSTREAM, MEM_TOPOLOGY, IP_LAYOUT, CONNECTIVITY, 
                            BUILD_METADATA, EMBEDDED_METADATA, SYSTEM_METADATA, 
                            GROUP_CONNECTIVITY, GROUP_TOPOLOGY
@@ -91,7 +91,7 @@ Ports
    Port:          M_AXI_GMEM
    Mode:          master
    Range (bytes): 0xFFFFFFFF
-   Data Width:    32 bits
+   Data Width:    512 bits
    Port Type:     addressable
 
    Port:          S_AXI_CONTROL

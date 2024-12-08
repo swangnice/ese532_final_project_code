@@ -9,10 +9,10 @@
 <ENTRY>
 {
  "type": "ET_CmdStep",
- "dateTimestamp": "Sat Dec  7 21:28:13 2024",
- "timestampMillis": "1733624893104",
+ "dateTimestamp": "Sun Dec  8 18:15:51 2024",
+ "timestampMillis": "1733699751526",
  "buildStep": {
-  "cmdId": "be5b67d5-ac10-44e9-acac-e7241f4a95ca",
+  "cmdId": "836f04ec-95e7-4c67-8514-6b2cf698facf",
   "name": "v++",
   "logFile": "/mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/package.build/package/package.steps.log",
   "commandLine": "/mnt/pollux/software/xilinx/2020.2/Vitis/2020.2/bin/unwrapped/lnx64.o/v++  --xp \"vivado_prop:run.__KERNEL__.{STEPS.SYNTH_DESIGN.ARGS.MORE OPTIONS}={-directive sdx_optimization_effort_high}\" --xp \"misc:report=type report_timing_summary name impl_report_timing_summary_route_design_summary steps {route_design} runs {impl_1} options {-max_paths 10}\" --xp \"misc:report=type report_timing_summary name impl_report_timing_summary_post_route_phys_opt_design_summary steps {post_route_phys_opt_design} runs {impl_1} options {-max_paths 10}\" --package --target hw --config ./hls/package.cfg lzw_compress_hw.xclbin --package.out_dir package --package.sd_file host --package.kernel_image /home1/e/ese5320/u96v2_sbc_base/sw/u96v2_sbc_base/PetaLinux/image/image.ub --package.rootfs /home1/e/ese5320/u96v2_sbc_base/sw/u96v2_sbc_base/PetaLinux/rootfs/rootfs.ext4 --package.sd_file lzw_compress_hw.xclbin --package.sd_file ./hls/xrt.ini ",
@@ -49,10 +49,10 @@
 <ENTRY>
 {
  "type": "ET_Status",
- "dateTimestamp": "Sat Dec  7 21:28:13 2024",
- "timestampMillis": "1733624893113",
+ "dateTimestamp": "Sun Dec  8 18:15:51 2024",
+ "timestampMillis": "1733699751528",
  "status": {
-  "cmdId": "be5b67d5-ac10-44e9-acac-e7241f4a95ca",
+  "cmdId": "836f04ec-95e7-4c67-8514-6b2cf698facf",
   "state": "CS_RUNNING"
  }
 }
@@ -60,8 +60,8 @@
 <ENTRY>
 {
  "type": "ET_FlowMetaData",
- "dateTimestamp": "Sat Dec  7 21:28:16 2024",
- "timestampMillis": "1733624896031",
+ "dateTimestamp": "Sun Dec  8 18:15:55 2024",
+ "timestampMillis": "1733699755127",
  "buildSummary": {
   "hardwarePlatform": "u96v2_sbc_base.xpfm",
   "hardwareDsa": "u96v2_sbc_base.xsa",
@@ -88,7 +88,7 @@
     "name": "lzw_compress_hw",
     "file": "/mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/lzw_compress_hw.xclbin",
     "reports": [],
-    "uuid": "67b6ebbf-3906-4095-811e-71ca33603500"
+    "uuid": "ae6c0ffa-f416-40f6-bf18-c58ed5724682"
    },
    "kernels": []
   }
@@ -98,8 +98,8 @@
 <ENTRY>
 {
  "type": "ET_Report",
- "dateTimestamp": "Sat Dec  7 21:29:51 2024",
- "timestampMillis": "1733624991750",
+ "dateTimestamp": "Sun Dec  8 18:18:26 2024",
+ "timestampMillis": "1733699906003",
  "report": {
   "path": "/mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/package.build/reports/package/v++_package_a_guidance.html",
   "name": "",
@@ -111,8 +111,8 @@
 <ENTRY>
 {
  "type": "ET_Report",
- "dateTimestamp": "Sat Dec  7 21:29:51 2024",
- "timestampMillis": "1733624991751",
+ "dateTimestamp": "Sun Dec  8 18:18:26 2024",
+ "timestampMillis": "1733699906004",
  "report": {
   "path": "/mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/package.build/v++_package_a_guidance.pb",
   "name": "",
@@ -124,10 +124,10 @@
 <ENTRY>
 {
  "type": "ET_Status",
- "dateTimestamp": "Sat Dec  7 21:29:51 2024",
- "timestampMillis": "1733624991768",
+ "dateTimestamp": "Sun Dec  8 18:18:26 2024",
+ "timestampMillis": "1733699906036",
  "status": {
-  "cmdId": "be5b67d5-ac10-44e9-acac-e7241f4a95ca",
+  "cmdId": "836f04ec-95e7-4c67-8514-6b2cf698facf",
   "state": "CS_PASSED"
  }
 }

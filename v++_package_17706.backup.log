@@ -1,9 +1,9 @@
 INFO: [v++ 60-1306] Additional information associated with this v++ package can be found at:
 	Reports: /mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/package.build/reports/package
 	Log files: /mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/package.build/logs/package
-INFO: [v++ 60-1548] Creating build summary session with primary output ./v++.package_summary, at Sun Dec  8 18:15:51 2024
-INFO: [v++ 60-1316] Initiating connection to rulecheck server, at Sun Dec  8 18:15:51 2024
-INFO: [v++ 60-1315] Creating rulecheck session with output '/mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/package.build/reports/package/v++_package_a_guidance.html', at Sun Dec  8 18:15:52 2024
+INFO: [v++ 60-1548] Creating build summary session with primary output ./v++.package_summary, at Sat Dec  7 21:28:13 2024
+INFO: [v++ 60-1316] Initiating connection to rulecheck server, at Sat Dec  7 21:28:13 2024
+INFO: [v++ 60-1315] Creating rulecheck session with output '/mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/package.build/reports/package/v++_package_a_guidance.html', at Sat Dec  7 21:28:13 2024
 INFO: [v++ 60-895]   Target platform: /home1/e/ese5320/u96v2_sbc_base/u96v2_sbc_base.xpfm
 INFO: [v++ 60-1578]   This platform contains Xilinx Shell Archive '/home1/e/ese5320/u96v2_sbc_base/hw/u96v2_sbc_base.xsa'
 INFO: [v++ 60-2256] Packaging for hardware
@@ -16,19 +16,17 @@ Section: 'BITSTREAM'(0) was successfully written.
 Format: RAW
 File  : '/mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/package.build/package/system.bit'
 INFO: [v++ 82-1025] generating bootimage
-INFO: [v++ 82-1018] deleting existing sd_card directory
 INFO: [v++ 82-1140] Deleting existing - /mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/package/sd_card/image.ub
 INFO: [v++ 82-1011] creating sd_card directory
-INFO: [v++ 82-1083] Deleting existing sd_card.img
 INFO: [v++ 82-3558] mkfsimage command run: /mnt/pollux/software/xilinx/2020.2/Vitis/2020.2/scripts/vitis/util/mkfsImage.sh -s /mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/package/sd_card/ -o /mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/package/sd_card.img -e /mnt/castor/seas_home/e/ese5320/u96v2_sbc_base/sw/u96v2_sbc_base/PetaLinux/rootfs/rootfs.ext4
 
 Section: 'SYSTEM_METADATA'(22) was successfully added.
-Size   : 8323 bytes
+Size   : 8321 bytes
 Format : RAW
 File   : '/mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/package.build/package/packagedSystemDiagram.json'
-Successfully wrote (5591525 bytes) to the output file: /mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/package.build/package/upsert.xclbin
+Successfully wrote (5591516 bytes) to the output file: /mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/package.build/package/upsert.xclbin
 INFO: [v++ 60-2460] Successfully copied a temporary xclbin to the output xclbin: /mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/a.xclbin
 INFO: [v++ 60-2343] Use the vitis_analyzer tool to visualize and navigate the relevant reports. Run the following command. 
     vitis_analyzer ./v++.package_summary 
-INFO: [v++ 60-791] Total elapsed time: 0h 2m 44s
+INFO: [v++ 60-791] Total elapsed time: 0h 1m 48s
 INFO: [v++ 60-1653] Closing dispatch client.
