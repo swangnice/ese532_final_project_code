@@ -11,7 +11,7 @@ add_files -tb test.cpp -cflags "-Wno-unknown-pragmas" -csimflags "-Wno-unknown-p
 open_solution "solution1" -flow_target vitis
 set_part {xczu3eg-sbva484-1-i}
 create_clock -period 150MHz -name default
-config_export -format xo -output /home1/s/swang01/Documents/lzw_compress_hw.xo -rtl verilog
+config_export -format xo -output /mnt/castor/seas_home/s/swang01/Documents/lzw_compress_hw.xo -rtl verilog
 source "./lzw_compress/solution1/directives.tcl"
 csim_design
 csynth_design

@@ -1124,3 +1124,261 @@ Command   export_design done; 32.96 sec.
 INFO: [HLS 200-111] Finished Command export_design CPU user time: 11.66 seconds. CPU system time: 1.46 seconds. Elapsed time: 32.96 seconds; current allocated memory: 217.378 MB.
 Command ap_source done; 36.06 sec.
 Execute cleanup_all 
+INFO-FLOW: Workspace /mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/lzw_compress/solution1 opened at Sat Dec 07 21:42:15 EST 2024
+Execute     ap_set_clock -name default -period 6.667 -unit ns -default=false 
+INFO: [SYN 201-201] Setting up clock 'default' with a period of 6.667ns.
+Execute     import_lib /mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/common/technology/xilinx/zynquplus/zynquplus 
+Execute       source /mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/common/technology/xilinx/interface/xilinx_interface.hlp 
+Execute         source /mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/common/technology/xilinx/interface/maxi.hlp 
+Execute         source /mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/common/technology/xilinx/interface/saxilite.hlp 
+Execute       source /mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/common/technology/xilinx/DSP48/dsp48.hlp 
+Execute     source /mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/common/technology/xilinx/common/xilinx.gen 
+Execute       source /mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/common/technology/xilinx/interface/plb46.gen 
+Execute       source /mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/common/technology/xilinx/interface/axi4.gen 
+Execute       source /mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/common/technology/xilinx/interface/nativeAXI4.gen 
+Execute         source /mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/common/technology/xilinx/interface/saxilite.gen 
+Execute         source /mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/common/technology/xilinx/interface/maxi.gen 
+Execute       source /mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/common/technology/xilinx/scripts/xilinxcoregen.gen 
+Execute       source /mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/common/technology/xilinx/interface/XilEDKCoreGen.gen 
+Execute       source /mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/common/technology/xilinx/ip/dds_compiler.gen 
+Execute       source /mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/common/technology/xilinx/ip/util.gen 
+Execute       source /mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/common/technology/xilinx/ip/xfft.gen 
+Execute       source /mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/common/technology/xilinx/ip/xfir.gen 
+Execute       source /mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/common/technology/xilinx/DSP48/dsp48.gen 
+Command     ap_source done; 0.15 sec.
+Execute     import_lib /mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/common/technology/xilinx/zynquplus/zynquplus_fpv7 
+Execute       source /mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/common/technology/xilinx/interface/xilinx_interface.hlp 
+Execute         source /mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/common/technology/xilinx/interface/maxi.hlp 
+Execute         source /mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/common/technology/xilinx/interface/saxilite.hlp 
+Execute       source /mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/common/technology/xilinx/DSP48/dsp48.hlp 
+Execute     source /mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/common/technology/xilinx/common/xilinx.gen 
+Execute       source /mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/common/technology/xilinx/interface/plb46.gen 
+Execute       source /mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/common/technology/xilinx/interface/axi4.gen 
+Execute       source /mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/common/technology/xilinx/interface/nativeAXI4.gen 
+Execute         source /mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/common/technology/xilinx/interface/saxilite.gen 
+Execute         source /mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/common/technology/xilinx/interface/maxi.gen 
+Execute       source /mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/common/technology/xilinx/scripts/xilinxcoregen.gen 
+Execute       source /mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/common/technology/xilinx/interface/XilEDKCoreGen.gen 
+Execute       source /mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/common/technology/xilinx/ip/dds_compiler.gen 
+Execute       source /mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/common/technology/xilinx/ip/util.gen 
+Execute       source /mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/common/technology/xilinx/ip/xfft.gen 
+Execute       source /mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/common/technology/xilinx/ip/xfir.gen 
+Execute       source /mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/common/technology/xilinx/DSP48/dsp48.gen 
+Execute     set_part xczu3eg-sbva484-1-i 
+INFO-FLOW: DBG:set_part: XILINX_VIVADO=/mnt/pollux/software/xilinx/2020.2/Vivado/2020.2
+INFO-FLOW: DBG:set_part: RDI_DATADIR=/mnt/pollux/software/xilinx/2020.2/Vivado/2020.2/data:/mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/data
+Execute       ap_part_info -name xczu3eg-sbva484-1-i -data single -quiet 
+DBG:HLSDevice: Trying to load device library: /mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/lib/lnx64.o/librdi_hlsvwrap.so
+DBG:HLSDevice: first parts/arch.xml in RDI_DATADIR: /mnt/pollux/software/xilinx/2020.2/Vivado/2020.2/data/parts/arch.xml
+Command       ap_part_info done; 2.35 sec.
+Execute       ap_part_info -name xczu3eg-sbva484-1-i -data info 
+Execute       add_library xilinx/zynquplus/zynquplus:xczu3eg:-sbva484:-1-i 
+Execute         get_default_platform 
+Execute         open_platform DefaultPlatform 
+Execute         ap_part_info -data single -name xczu3eg-sbva484-1-i 
+Execute         ap_part_info -name xczu3eg-sbva484-1-i -data resources 
+Execute         config_chip_info -resource {SLICE 8820} {LUT 70560} {FF 141120} {DSP 360} {BRAM 432} {URAM 0} 
+Execute         ap_part_info -name xczu3eg-sbva484-1-i -data info 
+Execute         config_chip_info -speed slow 
+Execute         ap_part_info -name xczu3eg-sbva484-1-i -data info 
+Execute         config_library_info -library zynquplus_slow 
+Execute         config_library_info -family zynquplus 
+Execute         config_library_info -part xczu3eg:-sbva484:-1-i 
+Execute         import_lib /mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/common/technology/xilinx/zynquplus/zynquplus 
+Execute           source /mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/common/technology/xilinx/interface/xilinx_interface.hlp 
+Execute             source /mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/common/technology/xilinx/interface/maxi.hlp 
+Execute             source /mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/common/technology/xilinx/interface/saxilite.hlp 
+Execute           source /mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/common/technology/xilinx/DSP48/dsp48.hlp 
+Execute           source /mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/common/technology/xilinx/DSP48/zynquplus_dsp48e2.hlp 
+Command         import_lib done; 0.16 sec.
+Execute         source /mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/common/technology/xilinx/common/xilinx.gen 
+Execute           source /mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/common/technology/xilinx/interface/plb46.gen 
+Execute           source /mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/common/technology/xilinx/interface/axi4.gen 
+Execute           source /mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/common/technology/xilinx/interface/nativeAXI4.gen 
+Execute             source /mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/common/technology/xilinx/interface/saxilite.gen 
+Execute             source /mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/common/technology/xilinx/interface/maxi.gen 
+Execute           source /mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/common/technology/xilinx/scripts/xilinxcoregen.gen 
+Execute           source /mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/common/technology/xilinx/interface/XilEDKCoreGen.gen 
+Execute           source /mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/common/technology/xilinx/ip/dds_compiler.gen 
+Execute           source /mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/common/technology/xilinx/ip/util.gen 
+Execute           source /mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/common/technology/xilinx/ip/xfft.gen 
+Execute           source /mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/common/technology/xilinx/ip/xfir.gen 
+Execute           source /mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/common/technology/xilinx/DSP48/dsp48.gen 
+Command       add_library done; 0.29 sec.
+INFO: [HLS 200-10] Setting target device to 'xczu3eg-sbva484-1-i'
+Execute       ap_part_info -name xczu3eg-sbva484-1-i -data info 
+Execute       config_compile -quiet -complex-mul-dsp=0 
+Command     set_part done; 2.68 sec.
+Execute     ap_part_info -data single -name xczu3eg-sbva484-1-i 
+Execute     ap_part_info -name xczu3eg-sbva484-1-i -data resources 
+Execute     config_chip_info -resource {SLICE 8820} {LUT 70560} {FF 141120} {DSP 360} {BRAM 432} {URAM 0} 
+Execute     ap_part_info -name xczu3eg-sbva484-1-i -data info 
+Execute     config_chip_info -speed slow 
+Execute     send_msg_by_id INFO @200-1505@%s%s  vitis 
+INFO: [HLS 200-1505] Using flow_target 'vitis'
+Execute     get_config_interface -m_axi_latency 
+Execute     send_msg_by_id INFO @200-435@%s%s 'open_solution -flow_target vitis' config_interface -m_axi_latency=64 
+INFO: [HLS 200-435] Setting 'open_solution -flow_target vitis' configuration: config_interface -m_axi_latency=64
+Execute     config_interface -m_axi_latency=64 
+Execute     get_config_interface -m_axi_alignment_byte_size 
+Execute     send_msg_by_id INFO @200-435@%s%s 'open_solution -flow_target vitis' config_interface -m_axi_alignment_byte_size=64 
+INFO: [HLS 200-435] Setting 'open_solution -flow_target vitis' configuration: config_interface -m_axi_alignment_byte_size=64
+Execute     config_interface -m_axi_alignment_byte_size=64 
+Execute     get_config_interface -m_axi_max_widen_bitwidth 
+Execute     send_msg_by_id INFO @200-435@%s%s 'open_solution -flow_target vitis' config_interface -m_axi_max_widen_bitwidth=512 
+INFO: [HLS 200-435] Setting 'open_solution -flow_target vitis' configuration: config_interface -m_axi_max_widen_bitwidth=512
+Execute     config_interface -m_axi_max_widen_bitwidth=512 
+Execute     get_config_interface -default_interface 
+INFO-FLOW: Setting macro_cmd open_solution -flow_target vitis configuration: config_interface -default_interface=kernel
+Execute     config_interface -default_interface=kernel 
+Execute     get_config_interface -m_axi_offset 
+Execute     send_msg_by_id INFO @200-435@%s%s 'open_solution -flow_target vitis' config_interface -m_axi_offset=slave 
+INFO: [HLS 200-435] Setting 'open_solution -flow_target vitis' configuration: config_interface -m_axi_offset=slave
+Execute     config_interface -m_axi_offset=slave 
+Execute     get_config_rtl -register_reset_num 
+Execute     send_msg_by_id INFO @200-435@%s%s 'open_solution -flow_target vitis' config_rtl -register_reset_num=3 
+INFO: [HLS 200-435] Setting 'open_solution -flow_target vitis' configuration: config_rtl -register_reset_num=3
+Execute     config_rtl -register_reset_num=3 
+Execute     send_msg_by_id INFO @200-1464@%s config_export -format=xo 
+INFO: [HLS 200-1464] Running solution command: config_export -format=xo
+Execute     config_export -format=xo 
+Execute     send_msg_by_id INFO @200-1464@%s config_export -output=/mnt/castor/seas_home/s/swang01/Documents/lzw_compress_hw.xo 
+INFO: [HLS 200-1464] Running solution command: config_export -output=/mnt/castor/seas_home/s/swang01/Documents/lzw_compress_hw.xo
+Execute     config_export -output=/mnt/castor/seas_home/s/swang01/Documents/lzw_compress_hw.xo 
+Execute     send_msg_by_id INFO @200-1464@%s config_export -rtl=verilog 
+INFO: [HLS 200-1464] Running solution command: config_export -rtl=verilog
+Execute     config_export -rtl=verilog 
+Command   open_solution done; 3.06 sec.
+Execute   set_part xczu3eg-sbva484-1-i 
+INFO: [HLS 200-1510] Running: set_part xczu3eg-sbva484-1-i 
+INFO-FLOW: DBG:set_part: XILINX_VIVADO=/mnt/pollux/software/xilinx/2020.2/Vivado/2020.2
+INFO-FLOW: DBG:set_part: RDI_DATADIR=/mnt/pollux/software/xilinx/2020.2/Vivado/2020.2/data:/mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/data
+Execute     ap_part_info -name xczu3eg-sbva484-1-i -data single -quiet 
+Execute     ap_part_info -name xczu3eg-sbva484-1-i -data info 
+Execute     add_library xilinx/zynquplus/zynquplus:xczu3eg:-sbva484:-1-i 
+Execute       get_default_platform 
+Execute       open_platform DefaultPlatform 
+Execute       ap_part_info -data single -name xczu3eg-sbva484-1-i 
+Execute       ap_part_info -name xczu3eg-sbva484-1-i -data resources 
+Execute       config_chip_info -resource {SLICE 8820} {LUT 70560} {FF 141120} {DSP 360} {BRAM 432} {URAM 0} 
+Execute       ap_part_info -name xczu3eg-sbva484-1-i -data info 
+Execute       config_chip_info -speed slow 
+Execute       ap_part_info -name xczu3eg-sbva484-1-i -data info 
+Execute       config_library_info -library zynquplus_slow 
+Execute       config_library_info -family zynquplus 
+Execute       config_library_info -part xczu3eg:-sbva484:-1-i 
+Execute       import_lib /mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/common/technology/xilinx/zynquplus/zynquplus 
+Execute         source /mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/common/technology/xilinx/interface/xilinx_interface.hlp 
+Execute           source /mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/common/technology/xilinx/interface/maxi.hlp 
+Execute           source /mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/common/technology/xilinx/interface/saxilite.hlp 
+Execute         source /mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/common/technology/xilinx/DSP48/dsp48.hlp 
+Execute         source /mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/common/technology/xilinx/DSP48/zynquplus_dsp48e2.hlp 
+Execute       source /mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/common/technology/xilinx/common/xilinx.gen 
+Execute         source /mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/common/technology/xilinx/interface/plb46.gen 
+Execute         source /mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/common/technology/xilinx/interface/axi4.gen 
+Execute         source /mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/common/technology/xilinx/interface/nativeAXI4.gen 
+Execute           source /mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/common/technology/xilinx/interface/saxilite.gen 
+Execute           source /mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/common/technology/xilinx/interface/maxi.gen 
+Execute         source /mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/common/technology/xilinx/scripts/xilinxcoregen.gen 
+Execute         source /mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/common/technology/xilinx/interface/XilEDKCoreGen.gen 
+Execute         source /mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/common/technology/xilinx/ip/dds_compiler.gen 
+Execute         source /mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/common/technology/xilinx/ip/util.gen 
+Execute         source /mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/common/technology/xilinx/ip/xfft.gen 
+Execute         source /mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/common/technology/xilinx/ip/xfir.gen 
+Execute         source /mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/common/technology/xilinx/DSP48/dsp48.gen 
+Command     add_library done; 0.13 sec.
+Execute     ap_part_info -name xczu3eg-sbva484-1-i -data info 
+Execute     config_compile -quiet -complex-mul-dsp=0 
+Command   set_part done; 0.17 sec.
+Execute   create_clock -period 150MHz -name default 
+INFO: [HLS 200-1510] Running: create_clock -period 150MHz -name default 
+Execute     ap_set_clock -name default -period 6.667 -unit ns -default=false 
+INFO: [SYN 201-201] Setting up clock 'default' with a period of 6.667ns.
+Execute   config_export -format xo -output /mnt/castor/seas_home/s/swang01/Documents/lzw_compress_hw.xo -rtl verilog 
+INFO: [HLS 200-1510] Running: config_export -format xo -output /mnt/castor/seas_home/s/swang01/Documents/lzw_compress_hw.xo -rtl verilog 
+Execute   source ./lzw_compress/solution1/directives.tcl 
+Execute     set_directive_top -name lzw_compress_hw lzw_compress_hw 
+INFO: [HLS 200-1510] Running: set_directive_top -name lzw_compress_hw lzw_compress_hw 
+INFO-FLOW: Setting directive 'TOP' name=lzw_compress_hw 
+Execute   cosim_design 
+INFO: [HLS 200-1510] Running: cosim_design 
+Execute     source /mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/lzw_compress/solution1/.autopilot/db/global.setting.tcl 
+Execute     source /mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/lzw_compress/solution1/.autopilot/db/global.setting.tcl 
+Execute     source /mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/lzw_compress/solution1/.autopilot/db/global.setting.tcl 
+INFO-FLOW: DBG:CMD: read_platform_lib /mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/lzw_compress/solution1/.autopilot/db/global.setting.tcl
+Execute     source /mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/common/technology/generic/autopilot/common.gen 
+Execute       source /mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/common/technology/generic/autopilot/APCoreGen.gen 
+Execute     source /mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/common/technology/generic/autopilot/op.gen 
+Execute     source /mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/common/technology/generic/autopilot/op_simcore.gen 
+Execute     source /mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/common/technology/generic/autopilot/interface.gen 
+Execute     source /mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/lzw_compress/solution1/.autopilot/db/global.setting.tcl 
+Execute     source /mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/common/technology/xilinx/common/xilinx.gen 
+Execute       source /mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/common/technology/xilinx/interface/plb46.gen 
+Execute       source /mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/common/technology/xilinx/interface/axi4.gen 
+Execute       source /mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/common/technology/xilinx/interface/nativeAXI4.gen 
+Execute         source /mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/common/technology/xilinx/interface/saxilite.gen 
+Execute         source /mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/common/technology/xilinx/interface/maxi.gen 
+Execute       source /mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/common/technology/xilinx/scripts/xilinxcoregen.gen 
+Execute       source /mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/common/technology/xilinx/interface/XilEDKCoreGen.gen 
+Execute       source /mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/common/technology/xilinx/ip/dds_compiler.gen 
+Execute       source /mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/common/technology/xilinx/ip/util.gen 
+Execute       source /mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/common/technology/xilinx/ip/xfft.gen 
+Execute       source /mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/common/technology/xilinx/ip/xfir.gen 
+Execute       source /mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/common/technology/xilinx/DSP48/dsp48.gen 
+Execute     source /mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/common/technology/xilinx/common/xilinx.gen 
+Execute       source /mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/common/technology/xilinx/interface/plb46.gen 
+Execute       source /mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/common/technology/xilinx/interface/axi4.gen 
+Execute       source /mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/common/technology/xilinx/interface/nativeAXI4.gen 
+Execute         source /mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/common/technology/xilinx/interface/saxilite.gen 
+Execute         source /mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/common/technology/xilinx/interface/maxi.gen 
+Execute       source /mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/common/technology/xilinx/scripts/xilinxcoregen.gen 
+Execute       source /mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/common/technology/xilinx/interface/XilEDKCoreGen.gen 
+Execute       source /mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/common/technology/xilinx/ip/dds_compiler.gen 
+Execute       source /mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/common/technology/xilinx/ip/util.gen 
+Execute       source /mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/common/technology/xilinx/ip/xfft.gen 
+Execute       source /mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/common/technology/xilinx/ip/xfir.gen 
+Execute       source /mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/common/technology/xilinx/DSP48/dsp48.gen 
+INFO-FLOW: DBG:CMD:   using AESL_AUTOCG::g_clock_period=6.667 (was NA)
+Execute     ap_part_info -name xczu3eg-sbva484-1-i -data names -quiet 
+Execute     ap_part_info -name xczu3eg-sbva484-1-i -data info -quiet 
+Execute     source /mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/lzw_compress/solution1/.autopilot/db/global.setting.tcl 
+Execute     source /mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/lzw_compress/solution1/.autopilot/db/lzw_compress_hw.rtl_wrap.cfg.tcl 
+Execute     source /mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/lzw_compress/solution1/.autopilot/db/lzw_compress_hw.tbgen.tcl 
+Execute     source /mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/lzw_compress/solution1/.autopilot/db/lzw_compress_hw.tbgen.tcl 
+Execute     source /mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/lzw_compress/solution1/.autopilot/db/lzw_compress_hw.tbgen.tcl 
+INFO: [COSIM 212-47] Using XSIM for RTL simulation.
+INFO: [COSIM 212-14] Instrumenting C test bench ...
+Execute     ap_part_info -name xczu3eg-sbva484-1-i -data info 
+INFO-FLOW: TB processing: /mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/test.cpp /mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/lzw_compress/solution1/./sim/autowrap/testbench/test.cpp_pre.cpp
+Execute     clang_tidy xilinx-tb-process /mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/lzw_compress/solution1/./sim/autowrap/testbench/test.cpp_pre.cpp.tb.cpp std=c++11 
+INFO-FLOW: exec /mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/lnx64/tools/clang-3.9-csynth/bin/clang-tidy -header-filter=.* --checks=-*,xilinx-tb-process -fix-errors /mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/lzw_compress/solution1/./sim/autowrap/testbench/test.cpp_pre.cpp.tb.cpp -- -std=c++11 -fhls -ferror-limit=0
+Command     clang_tidy done; 1.09 sec.
+Execute     ap_part_info -name xczu3eg-sbva484-1-i -data info 
+INFO-FLOW: TB processing: /mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/Server/lzw.cpp /mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/lzw_compress/solution1/./sim/autowrap/testbench/lzw.cpp_pre.cpp
+Execute     clang_tidy xilinx-tb-process /mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/lzw_compress/solution1/./sim/autowrap/testbench/lzw.cpp_pre.cpp.tb.cpp std=c++11 
+INFO-FLOW: exec /mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/lnx64/tools/clang-3.9-csynth/bin/clang-tidy -header-filter=.* --checks=-*,xilinx-tb-process -fix-errors /mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/lzw_compress/solution1/./sim/autowrap/testbench/lzw.cpp_pre.cpp.tb.cpp -- -std=c++11 -fhls -ferror-limit=0
+Command     clang_tidy done; 0.33 sec.
+Execute     source /mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/lzw_compress/solution1/./sim/autowrap/testbench/tb.status.tcl 
+Execute     source /mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/lzw_compress/solution1/.autopilot/db/global.setting.tcl 
+Execute     source /mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/lzw_compress/solution1/.autopilot/db/lzw_compress_hw.rtl_wrap.cfg.tcl 
+Execute     source /mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/lzw_compress/solution1/.autopilot/db/lzw_compress_hw.rtl_wrap.cfg.tcl 
+Execute     source /mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/lzw_compress/solution1/.autopilot/db/lzw_compress_hw.rtl_wrap.cfg.tcl 
+Execute     source /mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/lzw_compress/solution1/.autopilot/db/lzw_compress_hw.tbgen.tcl 
+Execute     source /mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/lzw_compress/solution1/.autopilot/db/lzw_compress_hw.tbgen.tcl 
+WARNING: [COSIM 212-369] AXI_master port 's1' has a depth of '0'. Insufficient depth may result in simulation mismatch or freeze.
+WARNING: [COSIM 212-369] AXI_master port 'length' has a depth of '0'. Insufficient depth may result in simulation mismatch or freeze.
+WARNING: [COSIM 212-369] AXI_master port 'is_dup' has a depth of '0'. Insufficient depth may result in simulation mismatch or freeze.
+WARNING: [COSIM 212-369] AXI_master port 'dup_index' has a depth of '0'. Insufficient depth may result in simulation mismatch or freeze.
+WARNING: [COSIM 212-369] AXI_master port 'temp_out_buffer' has a depth of '0'. Insufficient depth may result in simulation mismatch or freeze.
+WARNING: [COSIM 212-369] AXI_master port 'temp_out_buffer_size' has a depth of '0'. Insufficient depth may result in simulation mismatch or freeze.
+Execute     ap_part_info -name xczu3eg-sbva484-1-i -data info 
+ERROR: [COSIM 212-317] C++ compile error.
+ERROR: [COSIM 212-321] EXE file generate failed.
+ERROR: [COSIM 212-321] EXE file generate failed.
+ERROR: [COSIM 212-331] Aborting co-simulation: C simulation failed, compilation errors.
+ERROR: [COSIM 212-5] *** C/RTL co-simulation file generation failed. ***
+ERROR: [COSIM 212-4] *** C/RTL co-simulation finished: FAIL ***
+Command   cosim_design done; error code: 2; 6.19 sec.
+INFO: [HLS 200-111] Finished Command cosim_design CPU user time: 1.1 seconds. CPU system time: 0.35 seconds. Elapsed time: 6.19 seconds; current allocated memory: 211.485 MB.
+Command ap_source done; error code: 1; 9.49 sec.
+Execute cleanup_all 
