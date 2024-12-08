@@ -329,11 +329,11 @@ int main(int argc, char** argv)
             cl::Event write_ev;
             cl::Event exec_ev;
             cl::Event read_ev;
-            printf("begin queue\n");
+            //printf("begin queue\n");
 
 			//printf("begin queue\n");
             q.enqueueMigrateMemObjects({lzw_s1_buf, lzw_length_buf, lzw_is_dup_buf, lzw_dup_index_buf}, 0, NULL, &write_ev);
-            printf("test 1");
+            //printf("test 1");
 
             
             
@@ -341,15 +341,15 @@ int main(int argc, char** argv)
             // Create a vector for the event dependency
             write_events.push_back(write_ev);
             q.enqueueTask(lzw_kernel, &write_events, &exec_ev);
-            printf("test 2");
+            //printf("test 2");
             
             // Create another vector for the event dependency
             exec_events.push_back(exec_ev);
             q.enqueueMigrateMemObjects({lzw_temp_out_buffer_buf, lzw_temp_out_buffer_size_buf}, CL_MIGRATE_MEM_OBJECT_HOST, &exec_events, &read_ev);
-            printf("test 3");
+            //printf("test 3");
             // Wait for all kernels to finish
             q.finish();
-            printf("finished queue\n");
+            //printf("finished queue\n");
 
         memcpy(out_buffer + out_offset, lzw_temp_out_buffer, *lzw_temp_out_buffer_size);
         out_offset += *lzw_temp_out_buffer_size;
