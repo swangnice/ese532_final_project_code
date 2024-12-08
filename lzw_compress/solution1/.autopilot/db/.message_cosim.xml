@@ -8,11 +8,10 @@
 	<Message severity="WARNING" prefix="[COSIM 212-369]" key="COSIM_TCL_369_1240" tag="COSIM" content="AXI_master port &apos;dup_index&apos; has a depth of &apos;0&apos;. Insufficient depth may result in simulation mismatch or freeze." resolution=""/>
 	<Message severity="WARNING" prefix="[COSIM 212-369]" key="COSIM_TCL_369_1240" tag="COSIM" content="AXI_master port &apos;temp_out_buffer&apos; has a depth of &apos;0&apos;. Insufficient depth may result in simulation mismatch or freeze." resolution=""/>
 	<Message severity="WARNING" prefix="[COSIM 212-369]" key="COSIM_TCL_369_1240" tag="COSIM" content="AXI_master port &apos;temp_out_buffer_size&apos; has a depth of &apos;0&apos;. Insufficient depth may result in simulation mismatch or freeze." resolution=""/>
-	<Message severity="ERROR" prefix="[COSIM 212-317]" key="COSIM_TCL_317_1189" tag="" content="C++ compile error." resolution=""/>
-	<Message severity="ERROR" prefix="[COSIM 212-321]" key="COSIM_TCL_321_1193" tag="" content="EXE file generate failed." resolution=""/>
-	<Message severity="ERROR" prefix="[COSIM 212-321]" key="COSIM_TCL_321_1193" tag="" content="EXE file generate failed." resolution=""/>
-	<Message severity="ERROR" prefix="[COSIM 212-331]" key="COSIM_TCL_331_1203" tag="" content="Aborting co-simulation: C simulation failed, compilation errors." resolution=""/>
+	<Message severity="INFO" prefix="[COSIM 212-302]" key="COSIM_TCL_302_1177" tag="" content="Starting C TB testing ..." resolution=""/>
+	<Message severity="ERROR" prefix="[COSIM 212-360]" key="COSIM_TCL_360_1231" tag="" content="Aborting co-simulation: C TB simulation failed." resolution=""/>
+	<Message severity="ERROR" prefix="[COSIM 212-320]" key="COSIM_TCL_320_1192" tag="" content="C TB testing failed, stop generating test vectors. Please check C TB or re-run cosim." resolution=""/>
 	<Message severity="ERROR" prefix="[COSIM 212-5]" key="COSIM_TCL_5_1075" tag="" content="*** C/RTL co-simulation file generation failed. ***" resolution=""/>
 	<Message severity="ERROR" prefix="[COSIM 212-4]" key="COSIM_TCL_4_1074" tag="" content="*** C/RTL co-simulation finished: FAIL ***" resolution=""/>
-	<Message severity="INFO" prefix="[HLS 200-111]" key="HLS_111_966" tag="RUNTIME" content="Finished Command cosim_design CPU user time: 1.1 seconds. CPU system time: 0.35 seconds. Elapsed time: 6.19 seconds; current allocated memory: 211.485 MB." resolution=""/>
+	<Message severity="INFO" prefix="[HLS 200-111]" key="HLS_111_966" tag="RUNTIME" content="Finished Command cosim_design CPU user time: 3.72 seconds. CPU system time: 0.65 seconds. Elapsed time: 6.5 seconds; current allocated memory: 211.632 MB." resolution=""/>
 </Messages>

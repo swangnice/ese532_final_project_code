@@ -12,6 +12,8 @@ open_solution "solution1" -flow_target vitis
 set_part {xczu3eg-sbva484-1-i}
 create_clock -period 150MHz -name default
 config_export -format xo -output /mnt/castor/seas_home/s/swang01/Documents/lzw_compress_hw.xo -rtl verilog
+config_interface -m_axi_alignment_byte_size 64 -m_axi_latency 64 -m_axi_max_widen_bitwidth 512 -m_axi_offset slave
+config_rtl -register_reset_num 3
 source "./lzw_compress/solution1/directives.tcl"
 csim_design
 csynth_design

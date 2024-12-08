@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<autopilotfilemapping:AutoPilotFileMapping xmlns:autopilotfilemapping="www.autoesl.com/autopilotfilemapping">
+  <source>
+    <originFiles name="lzw.h" path="/mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/Server/lzw.h"/>
+    <originFiles name="lzw.cpp" path="/mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/Server/lzw.cpp"/>
+  </source>
+  <testbench>
+    <originFiles name="test.cpp" path="/mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/test.cpp"/>
+  </testbench>
+</autopilotfilemapping:AutoPilotFileMapping>

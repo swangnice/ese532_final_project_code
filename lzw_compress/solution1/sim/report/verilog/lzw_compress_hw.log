@@ -8,9 +8,12 @@ WARNING: [COSIM-369] AXI_master port 'temp_out_buffer' has a depth of '0'. Insuf
 WARNING: [COSIM-369] AXI_master port 'temp_out_buffer_size' has a depth of '0'. Insufficient depth may result in simulation mismatch or freeze.
    Build using "/mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/tps/lnx64/gcc-6.2.0/bin/g++"
    Compiling test.cpp_pre.cpp.tb.cpp
-ERROR: [COSIM-317] C++ compile error.
-ERROR: [COSIM-321] EXE file generate failed.
-ERROR: [COSIM-321] EXE file generate failed.
-ERROR: [COSIM-331] Aborting co-simulation: C simulation failed, compilation errors.
+   Compiling lzw.cpp_pre.cpp.tb.cpp
+   Compiling apatb_lzw_compress_hw.cpp
+   Compiling apatb_lzw_compress_hw_ir.ll
+   Generating cosim.tv.exe
+INFO: [COSIM-302] Starting C TB testing ... 
+ERROR: [COSIM-360] Aborting co-simulation: C TB simulation failed.
+ERROR: [COSIM-320] C TB testing failed, stop generating test vectors. Please check C TB or re-run cosim.
 ERROR: [COSIM-5] *** C/RTL co-simulation file generation failed. ***
 ERROR: [COSIM-4] *** C/RTL co-simulation finished: FAIL ***

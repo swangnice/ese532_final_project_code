@@ -34245,7 +34245,13 @@ void lzw_compress(unsigned char* s1, int* length, uint16_t* out_code, int *out_l
 int convert_output(uint16_t in[], uint8_t out[], int input_size);
 
 void lzw_compress_v2(unsigned char* s1, int* length, int *is_dup, int *dup_index, uint8_t *temp_out_buffer, unsigned int *temp_out_buffer_size);
+
+extern "C" {
+
 void lzw_compress_hw(unsigned char* s1, int* length, int *is_dup, int *dup_index, uint8_t *temp_out_buffer, unsigned int *temp_out_buffer_size);
+
+
+}
 # 2 "/mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/Server/lzw.cpp" 2
 
 
@@ -34459,109 +34465,129 @@ void lzw_compress(unsigned char* s1, int* length, uint16_t* out_code, int *out_l
 void lzw_compress_v2(unsigned char* s1, int* length, int *is_dup, int *dup_index, uint8_t *temp_out_buffer, unsigned int *temp_out_buffer_size)
 {
 
-    printf("is_dup: %d\n", *is_dup);
-    printf("dup_index: %d\n", *dup_index);
-    if (*is_dup == 0){
-        unsigned long hash_table[32768];
-        assoc_mem my_assoc_mem;
-        uint16_t out_code[32768];
 
 
-        for(int i = 0; i < 32768; i++)
-        {
-            hash_table[i] = 0;
-        }
-        my_assoc_mem.fill = 0;
-        for(int i = 0; i < 512; i++)
-        {
-            my_assoc_mem.upper_key_mem[i] = 0;
-            my_assoc_mem.middle_key_mem[i] = 0;
-            my_assoc_mem.lower_key_mem[i] = 0;
-        }
-
-        int next_code = 256;
-
-        int prefix_code = s1[0];
-        unsigned int code = 0;
-        char next_char = 0;
-
-        int i = 0, j = 0;
-        while(i < *length)
-        {
-            next_char = s1[i + 1];
-
-            bool hit = 0;
-            lookup(hash_table, &my_assoc_mem, (prefix_code << 8) + next_char, &hit, &code);
-            if(!hit)
-            {
-                out_code[j++] = prefix_code;
-                bool collision = 0;
-                insert(hash_table, &my_assoc_mem, (prefix_code << 8) + next_char, next_code, &collision);
-                if(collision)
-                {
-                    return;
-                }
-                next_code += 1;
-
-                prefix_code = next_char;
-            }
-            else
-            {
-                prefix_code = code;
-                if(i + 1 == *length){
-                    out_code[j++] = prefix_code;
-                }
-            }
-            i += 1;
-        }
+ if (*is_dup == 0){
+         unsigned long hash_table[32768];
+         assoc_mem my_assoc_mem;
+         uint16_t out_code[32768];
 
 
+         for(int i = 0; i < 32768; i++)
+         {
+             hash_table[i] = 0;
+         }
+         my_assoc_mem.fill = 0;
+         for(int i = 0; i < 512; i++)
+         {
+             my_assoc_mem.upper_key_mem[i] = 0;
+             my_assoc_mem.middle_key_mem[i] = 0;
+             my_assoc_mem.lower_key_mem[i] = 0;
+         }
 
-        int output_size = 0;
-        int adjusted_input_size = j - (j % 2);
-        for(int i = 0; i < adjusted_input_size; i+=2){
-            temp_out_buffer[output_size+4] = (out_code[i]>>4) & 0xff;
+         int next_code = 256;
 
-            output_size++;
-            temp_out_buffer[output_size+4] = ((out_code[i] << 4) & 0xf0) | ((out_code[i+1] >> 8) & 0x0f);
+         int prefix_code = s1[0];
+         unsigned int code = 0;
+         char next_char = 0;
 
-            output_size++;
-            temp_out_buffer[output_size+4] = (out_code[i+1]) & 0xff;
+         int i = 0, j = 0;
+         while(i < *length)
+         {
+             next_char = s1[i + 1];
 
-            output_size++;
-        }
-        if (j % 2 != 0) {
-            temp_out_buffer[output_size+4] = (out_code[adjusted_input_size] >> 4) & 0xFF;
-            output_size++;
-            temp_out_buffer[output_size+4] = (out_code[adjusted_input_size] << 4) & 0xF0;
-            output_size++;
-        }
+             bool hit = 0;
+             lookup(hash_table, &my_assoc_mem, (prefix_code << 8) + next_char, &hit, &code);
+             if(!hit)
+             {
+                 out_code[j++] = prefix_code;
+                 bool collision = 0;
+                 insert(hash_table, &my_assoc_mem, (prefix_code << 8) + next_char, next_code, &collision);
+                 if(collision)
+                 {
+                     return;
+                 }
+                 next_code += 1;
+
+                 prefix_code = next_char;
+             }
+             else
+             {
+                 prefix_code = code;
+                 if(i + 1 == *length){
+                     out_code[j++] = prefix_code;
+                 }
+             }
+             i += 1;
+         }
 
 
-        temp_out_buffer[0] = ((output_size << 1)) & 0xff;
-        temp_out_buffer[1] = ((output_size << 1) >> 8) & 0xff;
-        temp_out_buffer[2] = ((output_size << 1) >> 16) & 0xff;
-        temp_out_buffer[3] = ((output_size << 1) >> 24) & 0xff;
-        *temp_out_buffer_size = output_size + 4;
 
-    }
-    if (*is_dup == 1){
+         int output_size = 0;
+         int adjusted_input_size = j - (j % 2);
+         for(int i = 0; i < adjusted_input_size; i+=2){
+             temp_out_buffer[output_size+4] = (out_code[i]>>4) & 0xff;
 
-        temp_out_buffer[0] = ((*dup_index<<1) | 0x00000001) & 0xff;
-        temp_out_buffer[1] = (((*dup_index<<1) | 0x00000001) >> 8) & 0xff;
-        temp_out_buffer[2] = (((*dup_index<<1) | 0x00000001) >> 16) & 0xff;
-        temp_out_buffer[3] = (((*dup_index<<1) | 0x00000001) >> 24) & 0xff;
-        *temp_out_buffer_size = 4;
-    }
+             output_size++;
+             temp_out_buffer[output_size+4] = ((out_code[i] << 4) & 0xf0) | ((out_code[i+1] >> 8) & 0x0f);
+
+             output_size++;
+             temp_out_buffer[output_size+4] = (out_code[i+1]) & 0xff;
+
+             output_size++;
+         }
+         if (j % 2 != 0) {
+             temp_out_buffer[output_size+4] = (out_code[adjusted_input_size] >> 4) & 0xFF;
+             output_size++;
+             temp_out_buffer[output_size+4] = (out_code[adjusted_input_size] << 4) & 0xF0;
+             output_size++;
+         }
 
 
+         temp_out_buffer[0] = ((output_size << 1)) & 0xff;
+         temp_out_buffer[1] = ((output_size << 1) >> 8) & 0xff;
+         temp_out_buffer[2] = ((output_size << 1) >> 16) & 0xff;
+         temp_out_buffer[3] = ((output_size << 1) >> 24) & 0xff;
+         *temp_out_buffer_size = output_size + 4;
+
+     }
+     if (*is_dup == 1){
+
+         temp_out_buffer[0] = ((*dup_index<<1) | 0x00000001) & 0xff;
+         temp_out_buffer[1] = (((*dup_index<<1) | 0x00000001) >> 8) & 0xff;
+         temp_out_buffer[2] = (((*dup_index<<1) | 0x00000001) >> 16) & 0xff;
+         temp_out_buffer[3] = (((*dup_index<<1) | 0x00000001) >> 24) & 0xff;
+         *temp_out_buffer_size = 4;
+     }
 }
 
 
 void lzw_compress_hw(unsigned char* s1, int* length, int *is_dup, int *dup_index, uint8_t *temp_out_buffer, unsigned int *temp_out_buffer_size)
 {
+# 358 "/mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/Server/lzw.cpp"
+ unsigned char s1_local[2048];
+ uint8_t temp_out_buffer_local[2048];
 
-    if (*is_dup == 0){
+
+
+
+
+
+
+#pragma HLS INTERFACE s_axilite port=s1 bundle=control
+#pragma HLS INTERFACE s_axilite port=temp_out_buffer bundle=control
+#pragma HLS INTERFACE s_axilite port=length bundle=control
+#pragma HLS INTERFACE s_axilite port=is_dup bundle=control
+#pragma HLS INTERFACE s_axilite port=dup_index bundle=control
+#pragma HLS INTERFACE s_axilite port=temp_out_buffer_size bundle=control
+#pragma HLS INTERFACE s_axilite port=return bundle=control
+
+  loop_copy_in: for (int i=0; i<2048; i++){
+#pragma HLS PIPELINE
+   s1_local[i] = s1[i];
+  }
+
+ if (*is_dup == 0){
         unsigned long hash_table[32768];
         assoc_mem my_assoc_mem;
         uint16_t out_code[32768];
@@ -34581,14 +34607,14 @@ void lzw_compress_hw(unsigned char* s1, int* length, int *is_dup, int *dup_index
 
         int next_code = 256;
 
-        int prefix_code = s1[0];
+        int prefix_code = s1_local[0];
         unsigned int code = 0;
         char next_char = 0;
 
         int i = 0, j = 0;
         while(i < *length)
         {
-            next_char = s1[i + 1];
+            next_char = s1_local[i + 1];
 
             bool hit = 0;
             lookup(hash_table, &my_assoc_mem, (prefix_code << 8) + next_char, &hit, &code);
@@ -34620,39 +34646,45 @@ void lzw_compress_hw(unsigned char* s1, int* length, int *is_dup, int *dup_index
         int output_size = 0;
         int adjusted_input_size = j - (j % 2);
         for(int i = 0; i < adjusted_input_size; i+=2){
-            temp_out_buffer[output_size+4] = (out_code[i]>>4) & 0xff;
+         temp_out_buffer_local[output_size+4] = (out_code[i]>>4) & 0xff;
 
             output_size++;
-            temp_out_buffer[output_size+4] = ((out_code[i] << 4) & 0xf0) | ((out_code[i+1] >> 8) & 0x0f);
+            temp_out_buffer_local[output_size+4] = ((out_code[i] << 4) & 0xf0) | ((out_code[i+1] >> 8) & 0x0f);
 
             output_size++;
-            temp_out_buffer[output_size+4] = (out_code[i+1]) & 0xff;
+            temp_out_buffer_local[output_size+4] = (out_code[i+1]) & 0xff;
 
             output_size++;
         }
         if (j % 2 != 0) {
-            temp_out_buffer[output_size+4] = (out_code[adjusted_input_size] >> 4) & 0xFF;
+         temp_out_buffer_local[output_size+4] = (out_code[adjusted_input_size] >> 4) & 0xFF;
             output_size++;
-            temp_out_buffer[output_size+4] = (out_code[adjusted_input_size] << 4) & 0xF0;
+            temp_out_buffer_local[output_size+4] = (out_code[adjusted_input_size] << 4) & 0xF0;
             output_size++;
         }
 
 
-        temp_out_buffer[0] = ((output_size << 1)) & 0xff;
-        temp_out_buffer[1] = ((output_size << 1) >> 8) & 0xff;
-        temp_out_buffer[2] = ((output_size << 1) >> 16) & 0xff;
-        temp_out_buffer[3] = ((output_size << 1) >> 24) & 0xff;
+        temp_out_buffer_local[0] = ((output_size << 1)) & 0xff;
+        temp_out_buffer_local[1] = ((output_size << 1) >> 8) & 0xff;
+        temp_out_buffer_local[2] = ((output_size << 1) >> 16) & 0xff;
+        temp_out_buffer_local[3] = ((output_size << 1) >> 24) & 0xff;
         *temp_out_buffer_size = output_size + 4;
 
     }
     if (*is_dup == 1){
 
-        temp_out_buffer[0] = ((*dup_index<<1) | 0x00000001) & 0xff;
-        temp_out_buffer[1] = (((*dup_index<<1) | 0x00000001) >> 8) & 0xff;
-        temp_out_buffer[2] = (((*dup_index<<1) | 0x00000001) >> 16) & 0xff;
-        temp_out_buffer[3] = (((*dup_index<<1) | 0x00000001) >> 24) & 0xff;
+     temp_out_buffer_local[0] = ((*dup_index<<1) | 0x00000001) & 0xff;
+        temp_out_buffer_local[1] = (((*dup_index<<1) | 0x00000001) >> 8) & 0xff;
+        temp_out_buffer_local[2] = (((*dup_index<<1) | 0x00000001) >> 16) & 0xff;
+        temp_out_buffer_local[3] = (((*dup_index<<1) | 0x00000001) >> 24) & 0xff;
         *temp_out_buffer_size = 4;
     }
+
+ loop_copy_out: for (int i=0; i<2048; i++){
+#pragma HLS PIPELINE
+  temp_out_buffer[i] = temp_out_buffer_local[i];
+ }
+
 
 
 }
@@ -34668,7 +34700,7 @@ int convert_output(uint16_t in[], uint8_t out[], int input_size){
 
 
 
-        out[output_size] = (in[i]>>4) & 0xff;
+        out[output_size] = (in[i] >> 4) & 0xff;
 
         output_size++;
         out[output_size] = ((in[i] << 4) & 0xf0) | ((in[i+1] >> 8) & 0x0f);

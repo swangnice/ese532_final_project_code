@@ -148,6 +148,7 @@ static void RTLOutputCheckAndReplacement(std::string &AESL_token, std::string Po
       no_x = true;
   }
 }
+struct __cosim_s40__ { char data[64]; };
 extern "C" void lzw_compress_hw_hw_stub_wrapper(volatile void *, volatile void *, volatile void *, volatile void *, volatile void *, volatile void *);
 
 extern "C" void apatb_lzw_compress_hw_hw(volatile void * __xlx_apatb_param_s1, volatile void * __xlx_apatb_param_length, volatile void * __xlx_apatb_param_is_dup, volatile void * __xlx_apatb_param_dup_index, volatile void * __xlx_apatb_param_temp_out_buffer, volatile void * __xlx_apatb_param_temp_out_buffer_size) {
@@ -180,7 +181,7 @@ extern "C" void apatb_lzw_compress_hw_hw(volatile void * __xlx_apatb_param_s1, v
           exit(1);
         }
         if (atoi(AESL_num.c_str()) == AESL_transaction_pc) {
-          std::vector<sc_bv<32> > gmem_pc_buffer(6);
+          std::vector<sc_bv<512> > gmem_pc_buffer(6);
           int i = 0;
 
           rtl_tv_out_file >> AESL_token; //data
@@ -200,24 +201,60 @@ extern "C" void apatb_lzw_compress_hw_hw(volatile void * __xlx_apatb_param_s1, v
           }
           if (i > 0) {{
             int i = 0;
-            for (int j = 0, e = 1; j < e; j += 1, ++i) {
-            ((int*)__xlx_apatb_param_s1)[j] = gmem_pc_buffer[i].to_int64();
-          }
-            for (int j = 0, e = 1; j < e; j += 1, ++i) {
-            ((int*)__xlx_apatb_param_length)[j] = gmem_pc_buffer[i].to_int64();
-          }
-            for (int j = 0, e = 1; j < e; j += 1, ++i) {
-            ((int*)__xlx_apatb_param_is_dup)[j] = gmem_pc_buffer[i].to_int64();
-          }
-            for (int j = 0, e = 1; j < e; j += 1, ++i) {
-            ((int*)__xlx_apatb_param_dup_index)[j] = gmem_pc_buffer[i].to_int64();
-          }
-            for (int j = 0, e = 1; j < e; j += 1, ++i) {
-            ((int*)__xlx_apatb_param_temp_out_buffer)[j] = gmem_pc_buffer[i].to_int64();
-          }
-            for (int j = 0, e = 1; j < e; j += 1, ++i) {
-            ((int*)__xlx_apatb_param_temp_out_buffer_size)[j] = gmem_pc_buffer[i].to_int64();
-          }}}
+            for (int j = 0, e = 1; j < e; j += 1, ++i) {((long long*)__xlx_apatb_param_s1)[j*8+0] = gmem_pc_buffer[i].range(63,0).to_int64();
+((long long*)__xlx_apatb_param_s1)[j*8+1] = gmem_pc_buffer[i].range(127,64).to_int64();
+((long long*)__xlx_apatb_param_s1)[j*8+2] = gmem_pc_buffer[i].range(191,128).to_int64();
+((long long*)__xlx_apatb_param_s1)[j*8+3] = gmem_pc_buffer[i].range(255,192).to_int64();
+((long long*)__xlx_apatb_param_s1)[j*8+4] = gmem_pc_buffer[i].range(319,256).to_int64();
+((long long*)__xlx_apatb_param_s1)[j*8+5] = gmem_pc_buffer[i].range(383,320).to_int64();
+((long long*)__xlx_apatb_param_s1)[j*8+6] = gmem_pc_buffer[i].range(447,384).to_int64();
+((long long*)__xlx_apatb_param_s1)[j*8+7] = gmem_pc_buffer[i].range(511,448).to_int64();
+}
+            for (int j = 0, e = 1; j < e; j += 1, ++i) {((long long*)__xlx_apatb_param_length)[j*8+0] = gmem_pc_buffer[i].range(63,0).to_int64();
+((long long*)__xlx_apatb_param_length)[j*8+1] = gmem_pc_buffer[i].range(127,64).to_int64();
+((long long*)__xlx_apatb_param_length)[j*8+2] = gmem_pc_buffer[i].range(191,128).to_int64();
+((long long*)__xlx_apatb_param_length)[j*8+3] = gmem_pc_buffer[i].range(255,192).to_int64();
+((long long*)__xlx_apatb_param_length)[j*8+4] = gmem_pc_buffer[i].range(319,256).to_int64();
+((long long*)__xlx_apatb_param_length)[j*8+5] = gmem_pc_buffer[i].range(383,320).to_int64();
+((long long*)__xlx_apatb_param_length)[j*8+6] = gmem_pc_buffer[i].range(447,384).to_int64();
+((long long*)__xlx_apatb_param_length)[j*8+7] = gmem_pc_buffer[i].range(511,448).to_int64();
+}
+            for (int j = 0, e = 1; j < e; j += 1, ++i) {((long long*)__xlx_apatb_param_is_dup)[j*8+0] = gmem_pc_buffer[i].range(63,0).to_int64();
+((long long*)__xlx_apatb_param_is_dup)[j*8+1] = gmem_pc_buffer[i].range(127,64).to_int64();
+((long long*)__xlx_apatb_param_is_dup)[j*8+2] = gmem_pc_buffer[i].range(191,128).to_int64();
+((long long*)__xlx_apatb_param_is_dup)[j*8+3] = gmem_pc_buffer[i].range(255,192).to_int64();
+((long long*)__xlx_apatb_param_is_dup)[j*8+4] = gmem_pc_buffer[i].range(319,256).to_int64();
+((long long*)__xlx_apatb_param_is_dup)[j*8+5] = gmem_pc_buffer[i].range(383,320).to_int64();
+((long long*)__xlx_apatb_param_is_dup)[j*8+6] = gmem_pc_buffer[i].range(447,384).to_int64();
+((long long*)__xlx_apatb_param_is_dup)[j*8+7] = gmem_pc_buffer[i].range(511,448).to_int64();
+}
+            for (int j = 0, e = 1; j < e; j += 1, ++i) {((long long*)__xlx_apatb_param_dup_index)[j*8+0] = gmem_pc_buffer[i].range(63,0).to_int64();
+((long long*)__xlx_apatb_param_dup_index)[j*8+1] = gmem_pc_buffer[i].range(127,64).to_int64();
+((long long*)__xlx_apatb_param_dup_index)[j*8+2] = gmem_pc_buffer[i].range(191,128).to_int64();
+((long long*)__xlx_apatb_param_dup_index)[j*8+3] = gmem_pc_buffer[i].range(255,192).to_int64();
+((long long*)__xlx_apatb_param_dup_index)[j*8+4] = gmem_pc_buffer[i].range(319,256).to_int64();
+((long long*)__xlx_apatb_param_dup_index)[j*8+5] = gmem_pc_buffer[i].range(383,320).to_int64();
+((long long*)__xlx_apatb_param_dup_index)[j*8+6] = gmem_pc_buffer[i].range(447,384).to_int64();
+((long long*)__xlx_apatb_param_dup_index)[j*8+7] = gmem_pc_buffer[i].range(511,448).to_int64();
+}
+            for (int j = 0, e = 1; j < e; j += 1, ++i) {((long long*)__xlx_apatb_param_temp_out_buffer)[j*8+0] = gmem_pc_buffer[i].range(63,0).to_int64();
+((long long*)__xlx_apatb_param_temp_out_buffer)[j*8+1] = gmem_pc_buffer[i].range(127,64).to_int64();
+((long long*)__xlx_apatb_param_temp_out_buffer)[j*8+2] = gmem_pc_buffer[i].range(191,128).to_int64();
+((long long*)__xlx_apatb_param_temp_out_buffer)[j*8+3] = gmem_pc_buffer[i].range(255,192).to_int64();
+((long long*)__xlx_apatb_param_temp_out_buffer)[j*8+4] = gmem_pc_buffer[i].range(319,256).to_int64();
+((long long*)__xlx_apatb_param_temp_out_buffer)[j*8+5] = gmem_pc_buffer[i].range(383,320).to_int64();
+((long long*)__xlx_apatb_param_temp_out_buffer)[j*8+6] = gmem_pc_buffer[i].range(447,384).to_int64();
+((long long*)__xlx_apatb_param_temp_out_buffer)[j*8+7] = gmem_pc_buffer[i].range(511,448).to_int64();
+}
+            for (int j = 0, e = 1; j < e; j += 1, ++i) {((long long*)__xlx_apatb_param_temp_out_buffer_size)[j*8+0] = gmem_pc_buffer[i].range(63,0).to_int64();
+((long long*)__xlx_apatb_param_temp_out_buffer_size)[j*8+1] = gmem_pc_buffer[i].range(127,64).to_int64();
+((long long*)__xlx_apatb_param_temp_out_buffer_size)[j*8+2] = gmem_pc_buffer[i].range(191,128).to_int64();
+((long long*)__xlx_apatb_param_temp_out_buffer_size)[j*8+3] = gmem_pc_buffer[i].range(255,192).to_int64();
+((long long*)__xlx_apatb_param_temp_out_buffer_size)[j*8+4] = gmem_pc_buffer[i].range(319,256).to_int64();
+((long long*)__xlx_apatb_param_temp_out_buffer_size)[j*8+5] = gmem_pc_buffer[i].range(383,320).to_int64();
+((long long*)__xlx_apatb_param_temp_out_buffer_size)[j*8+6] = gmem_pc_buffer[i].range(447,384).to_int64();
+((long long*)__xlx_apatb_param_temp_out_buffer_size)[j*8+7] = gmem_pc_buffer[i].range(511,448).to_int64();
+}}}
         } // end transaction
       } // end file is good
     } // end post check logic bolck
@@ -262,55 +299,103 @@ unsigned __xlx_offset_byte_param_temp_out_buffer_size = 0;
 {
   sprintf(__xlx_sprintf_buffer.data(), "[[transaction]] %d\n", AESL_transaction);
   aesl_fh.write(AUTOTB_TVIN_gmem, __xlx_sprintf_buffer.data());
-  {  __xlx_offset_byte_param_s1 = 0*4;
+  {  __xlx_offset_byte_param_s1 = 0*64;
   if (__xlx_apatb_param_s1) {
     for (int j = 0  - 0, e = 1 - 0; j != e; ++j) {
-sc_bv<32> __xlx_tmp_lv = ((int*)__xlx_apatb_param_s1)[j];
+sc_bv<512> __xlx_tmp_lv;
+__xlx_tmp_lv.range(63,0) = ((long long*)__xlx_apatb_param_s1)[j*8+0];
+__xlx_tmp_lv.range(127,64) = ((long long*)__xlx_apatb_param_s1)[j*8+1];
+__xlx_tmp_lv.range(191,128) = ((long long*)__xlx_apatb_param_s1)[j*8+2];
+__xlx_tmp_lv.range(255,192) = ((long long*)__xlx_apatb_param_s1)[j*8+3];
+__xlx_tmp_lv.range(319,256) = ((long long*)__xlx_apatb_param_s1)[j*8+4];
+__xlx_tmp_lv.range(383,320) = ((long long*)__xlx_apatb_param_s1)[j*8+5];
+__xlx_tmp_lv.range(447,384) = ((long long*)__xlx_apatb_param_s1)[j*8+6];
+__xlx_tmp_lv.range(511,448) = ((long long*)__xlx_apatb_param_s1)[j*8+7];
 
     sprintf(__xlx_sprintf_buffer.data(), "%s\n", __xlx_tmp_lv.to_string(SC_HEX).c_str());
     aesl_fh.write(AUTOTB_TVIN_gmem, __xlx_sprintf_buffer.data()); 
       }
   }
-  __xlx_offset_byte_param_length = 1*4;
+  __xlx_offset_byte_param_length = 1*64;
   if (__xlx_apatb_param_length) {
     for (int j = 0  - 0, e = 1 - 0; j != e; ++j) {
-sc_bv<32> __xlx_tmp_lv = ((int*)__xlx_apatb_param_length)[j];
+sc_bv<512> __xlx_tmp_lv;
+__xlx_tmp_lv.range(63,0) = ((long long*)__xlx_apatb_param_length)[j*8+0];
+__xlx_tmp_lv.range(127,64) = ((long long*)__xlx_apatb_param_length)[j*8+1];
+__xlx_tmp_lv.range(191,128) = ((long long*)__xlx_apatb_param_length)[j*8+2];
+__xlx_tmp_lv.range(255,192) = ((long long*)__xlx_apatb_param_length)[j*8+3];
+__xlx_tmp_lv.range(319,256) = ((long long*)__xlx_apatb_param_length)[j*8+4];
+__xlx_tmp_lv.range(383,320) = ((long long*)__xlx_apatb_param_length)[j*8+5];
+__xlx_tmp_lv.range(447,384) = ((long long*)__xlx_apatb_param_length)[j*8+6];
+__xlx_tmp_lv.range(511,448) = ((long long*)__xlx_apatb_param_length)[j*8+7];
 
     sprintf(__xlx_sprintf_buffer.data(), "%s\n", __xlx_tmp_lv.to_string(SC_HEX).c_str());
     aesl_fh.write(AUTOTB_TVIN_gmem, __xlx_sprintf_buffer.data()); 
       }
   }
-  __xlx_offset_byte_param_is_dup = 2*4;
+  __xlx_offset_byte_param_is_dup = 2*64;
   if (__xlx_apatb_param_is_dup) {
     for (int j = 0  - 0, e = 1 - 0; j != e; ++j) {
-sc_bv<32> __xlx_tmp_lv = ((int*)__xlx_apatb_param_is_dup)[j];
+sc_bv<512> __xlx_tmp_lv;
+__xlx_tmp_lv.range(63,0) = ((long long*)__xlx_apatb_param_is_dup)[j*8+0];
+__xlx_tmp_lv.range(127,64) = ((long long*)__xlx_apatb_param_is_dup)[j*8+1];
+__xlx_tmp_lv.range(191,128) = ((long long*)__xlx_apatb_param_is_dup)[j*8+2];
+__xlx_tmp_lv.range(255,192) = ((long long*)__xlx_apatb_param_is_dup)[j*8+3];
+__xlx_tmp_lv.range(319,256) = ((long long*)__xlx_apatb_param_is_dup)[j*8+4];
+__xlx_tmp_lv.range(383,320) = ((long long*)__xlx_apatb_param_is_dup)[j*8+5];
+__xlx_tmp_lv.range(447,384) = ((long long*)__xlx_apatb_param_is_dup)[j*8+6];
+__xlx_tmp_lv.range(511,448) = ((long long*)__xlx_apatb_param_is_dup)[j*8+7];
 
     sprintf(__xlx_sprintf_buffer.data(), "%s\n", __xlx_tmp_lv.to_string(SC_HEX).c_str());
     aesl_fh.write(AUTOTB_TVIN_gmem, __xlx_sprintf_buffer.data()); 
       }
   }
-  __xlx_offset_byte_param_dup_index = 3*4;
+  __xlx_offset_byte_param_dup_index = 3*64;
   if (__xlx_apatb_param_dup_index) {
     for (int j = 0  - 0, e = 1 - 0; j != e; ++j) {
-sc_bv<32> __xlx_tmp_lv = ((int*)__xlx_apatb_param_dup_index)[j];
+sc_bv<512> __xlx_tmp_lv;
+__xlx_tmp_lv.range(63,0) = ((long long*)__xlx_apatb_param_dup_index)[j*8+0];
+__xlx_tmp_lv.range(127,64) = ((long long*)__xlx_apatb_param_dup_index)[j*8+1];
+__xlx_tmp_lv.range(191,128) = ((long long*)__xlx_apatb_param_dup_index)[j*8+2];
+__xlx_tmp_lv.range(255,192) = ((long long*)__xlx_apatb_param_dup_index)[j*8+3];
+__xlx_tmp_lv.range(319,256) = ((long long*)__xlx_apatb_param_dup_index)[j*8+4];
+__xlx_tmp_lv.range(383,320) = ((long long*)__xlx_apatb_param_dup_index)[j*8+5];
+__xlx_tmp_lv.range(447,384) = ((long long*)__xlx_apatb_param_dup_index)[j*8+6];
+__xlx_tmp_lv.range(511,448) = ((long long*)__xlx_apatb_param_dup_index)[j*8+7];
 
     sprintf(__xlx_sprintf_buffer.data(), "%s\n", __xlx_tmp_lv.to_string(SC_HEX).c_str());
     aesl_fh.write(AUTOTB_TVIN_gmem, __xlx_sprintf_buffer.data()); 
       }
   }
-  __xlx_offset_byte_param_temp_out_buffer = 4*4;
+  __xlx_offset_byte_param_temp_out_buffer = 4*64;
   if (__xlx_apatb_param_temp_out_buffer) {
     for (int j = 0  - 0, e = 1 - 0; j != e; ++j) {
-sc_bv<32> __xlx_tmp_lv = ((int*)__xlx_apatb_param_temp_out_buffer)[j];
+sc_bv<512> __xlx_tmp_lv;
+__xlx_tmp_lv.range(63,0) = ((long long*)__xlx_apatb_param_temp_out_buffer)[j*8+0];
+__xlx_tmp_lv.range(127,64) = ((long long*)__xlx_apatb_param_temp_out_buffer)[j*8+1];
+__xlx_tmp_lv.range(191,128) = ((long long*)__xlx_apatb_param_temp_out_buffer)[j*8+2];
+__xlx_tmp_lv.range(255,192) = ((long long*)__xlx_apatb_param_temp_out_buffer)[j*8+3];
+__xlx_tmp_lv.range(319,256) = ((long long*)__xlx_apatb_param_temp_out_buffer)[j*8+4];
+__xlx_tmp_lv.range(383,320) = ((long long*)__xlx_apatb_param_temp_out_buffer)[j*8+5];
+__xlx_tmp_lv.range(447,384) = ((long long*)__xlx_apatb_param_temp_out_buffer)[j*8+6];
+__xlx_tmp_lv.range(511,448) = ((long long*)__xlx_apatb_param_temp_out_buffer)[j*8+7];
 
     sprintf(__xlx_sprintf_buffer.data(), "%s\n", __xlx_tmp_lv.to_string(SC_HEX).c_str());
     aesl_fh.write(AUTOTB_TVIN_gmem, __xlx_sprintf_buffer.data()); 
       }
   }
-  __xlx_offset_byte_param_temp_out_buffer_size = 5*4;
+  __xlx_offset_byte_param_temp_out_buffer_size = 5*64;
   if (__xlx_apatb_param_temp_out_buffer_size) {
     for (int j = 0  - 0, e = 1 - 0; j != e; ++j) {
-sc_bv<32> __xlx_tmp_lv = ((int*)__xlx_apatb_param_temp_out_buffer_size)[j];
+sc_bv<512> __xlx_tmp_lv;
+__xlx_tmp_lv.range(63,0) = ((long long*)__xlx_apatb_param_temp_out_buffer_size)[j*8+0];
+__xlx_tmp_lv.range(127,64) = ((long long*)__xlx_apatb_param_temp_out_buffer_size)[j*8+1];
+__xlx_tmp_lv.range(191,128) = ((long long*)__xlx_apatb_param_temp_out_buffer_size)[j*8+2];
+__xlx_tmp_lv.range(255,192) = ((long long*)__xlx_apatb_param_temp_out_buffer_size)[j*8+3];
+__xlx_tmp_lv.range(319,256) = ((long long*)__xlx_apatb_param_temp_out_buffer_size)[j*8+4];
+__xlx_tmp_lv.range(383,320) = ((long long*)__xlx_apatb_param_temp_out_buffer_size)[j*8+5];
+__xlx_tmp_lv.range(447,384) = ((long long*)__xlx_apatb_param_temp_out_buffer_size)[j*8+6];
+__xlx_tmp_lv.range(511,448) = ((long long*)__xlx_apatb_param_temp_out_buffer_size)[j*8+7];
 
     sprintf(__xlx_sprintf_buffer.data(), "%s\n", __xlx_tmp_lv.to_string(SC_HEX).c_str());
     aesl_fh.write(AUTOTB_TVIN_gmem, __xlx_sprintf_buffer.data()); 
@@ -412,55 +497,103 @@ CodeState = DUMP_OUTPUTS;
 {
   sprintf(__xlx_sprintf_buffer.data(), "[[transaction]] %d\n", AESL_transaction);
   aesl_fh.write(AUTOTB_TVOUT_gmem, __xlx_sprintf_buffer.data());
-  {  __xlx_offset_byte_param_s1 = 0*4;
+  {  __xlx_offset_byte_param_s1 = 0*64;
   if (__xlx_apatb_param_s1) {
     for (int j = 0  - 0, e = 1 - 0; j != e; ++j) {
-sc_bv<32> __xlx_tmp_lv = ((int*)__xlx_apatb_param_s1)[j];
+sc_bv<512> __xlx_tmp_lv;
+__xlx_tmp_lv.range(63,0) = ((long long*)__xlx_apatb_param_s1)[j*8+0];
+__xlx_tmp_lv.range(127,64) = ((long long*)__xlx_apatb_param_s1)[j*8+1];
+__xlx_tmp_lv.range(191,128) = ((long long*)__xlx_apatb_param_s1)[j*8+2];
+__xlx_tmp_lv.range(255,192) = ((long long*)__xlx_apatb_param_s1)[j*8+3];
+__xlx_tmp_lv.range(319,256) = ((long long*)__xlx_apatb_param_s1)[j*8+4];
+__xlx_tmp_lv.range(383,320) = ((long long*)__xlx_apatb_param_s1)[j*8+5];
+__xlx_tmp_lv.range(447,384) = ((long long*)__xlx_apatb_param_s1)[j*8+6];
+__xlx_tmp_lv.range(511,448) = ((long long*)__xlx_apatb_param_s1)[j*8+7];
 
     sprintf(__xlx_sprintf_buffer.data(), "%s\n", __xlx_tmp_lv.to_string(SC_HEX).c_str());
     aesl_fh.write(AUTOTB_TVOUT_gmem, __xlx_sprintf_buffer.data()); 
       }
   }
-  __xlx_offset_byte_param_length = 1*4;
+  __xlx_offset_byte_param_length = 1*64;
   if (__xlx_apatb_param_length) {
     for (int j = 0  - 0, e = 1 - 0; j != e; ++j) {
-sc_bv<32> __xlx_tmp_lv = ((int*)__xlx_apatb_param_length)[j];
+sc_bv<512> __xlx_tmp_lv;
+__xlx_tmp_lv.range(63,0) = ((long long*)__xlx_apatb_param_length)[j*8+0];
+__xlx_tmp_lv.range(127,64) = ((long long*)__xlx_apatb_param_length)[j*8+1];
+__xlx_tmp_lv.range(191,128) = ((long long*)__xlx_apatb_param_length)[j*8+2];
+__xlx_tmp_lv.range(255,192) = ((long long*)__xlx_apatb_param_length)[j*8+3];
+__xlx_tmp_lv.range(319,256) = ((long long*)__xlx_apatb_param_length)[j*8+4];
+__xlx_tmp_lv.range(383,320) = ((long long*)__xlx_apatb_param_length)[j*8+5];
+__xlx_tmp_lv.range(447,384) = ((long long*)__xlx_apatb_param_length)[j*8+6];
+__xlx_tmp_lv.range(511,448) = ((long long*)__xlx_apatb_param_length)[j*8+7];
 
     sprintf(__xlx_sprintf_buffer.data(), "%s\n", __xlx_tmp_lv.to_string(SC_HEX).c_str());
     aesl_fh.write(AUTOTB_TVOUT_gmem, __xlx_sprintf_buffer.data()); 
       }
   }
-  __xlx_offset_byte_param_is_dup = 2*4;
+  __xlx_offset_byte_param_is_dup = 2*64;
   if (__xlx_apatb_param_is_dup) {
     for (int j = 0  - 0, e = 1 - 0; j != e; ++j) {
-sc_bv<32> __xlx_tmp_lv = ((int*)__xlx_apatb_param_is_dup)[j];
+sc_bv<512> __xlx_tmp_lv;
+__xlx_tmp_lv.range(63,0) = ((long long*)__xlx_apatb_param_is_dup)[j*8+0];
+__xlx_tmp_lv.range(127,64) = ((long long*)__xlx_apatb_param_is_dup)[j*8+1];
+__xlx_tmp_lv.range(191,128) = ((long long*)__xlx_apatb_param_is_dup)[j*8+2];
+__xlx_tmp_lv.range(255,192) = ((long long*)__xlx_apatb_param_is_dup)[j*8+3];
+__xlx_tmp_lv.range(319,256) = ((long long*)__xlx_apatb_param_is_dup)[j*8+4];
+__xlx_tmp_lv.range(383,320) = ((long long*)__xlx_apatb_param_is_dup)[j*8+5];
+__xlx_tmp_lv.range(447,384) = ((long long*)__xlx_apatb_param_is_dup)[j*8+6];
+__xlx_tmp_lv.range(511,448) = ((long long*)__xlx_apatb_param_is_dup)[j*8+7];
 
     sprintf(__xlx_sprintf_buffer.data(), "%s\n", __xlx_tmp_lv.to_string(SC_HEX).c_str());
     aesl_fh.write(AUTOTB_TVOUT_gmem, __xlx_sprintf_buffer.data()); 
       }
   }
-  __xlx_offset_byte_param_dup_index = 3*4;
+  __xlx_offset_byte_param_dup_index = 3*64;
   if (__xlx_apatb_param_dup_index) {
     for (int j = 0  - 0, e = 1 - 0; j != e; ++j) {
-sc_bv<32> __xlx_tmp_lv = ((int*)__xlx_apatb_param_dup_index)[j];
+sc_bv<512> __xlx_tmp_lv;
+__xlx_tmp_lv.range(63,0) = ((long long*)__xlx_apatb_param_dup_index)[j*8+0];
+__xlx_tmp_lv.range(127,64) = ((long long*)__xlx_apatb_param_dup_index)[j*8+1];
+__xlx_tmp_lv.range(191,128) = ((long long*)__xlx_apatb_param_dup_index)[j*8+2];
+__xlx_tmp_lv.range(255,192) = ((long long*)__xlx_apatb_param_dup_index)[j*8+3];
+__xlx_tmp_lv.range(319,256) = ((long long*)__xlx_apatb_param_dup_index)[j*8+4];
+__xlx_tmp_lv.range(383,320) = ((long long*)__xlx_apatb_param_dup_index)[j*8+5];
+__xlx_tmp_lv.range(447,384) = ((long long*)__xlx_apatb_param_dup_index)[j*8+6];
+__xlx_tmp_lv.range(511,448) = ((long long*)__xlx_apatb_param_dup_index)[j*8+7];
 
     sprintf(__xlx_sprintf_buffer.data(), "%s\n", __xlx_tmp_lv.to_string(SC_HEX).c_str());
     aesl_fh.write(AUTOTB_TVOUT_gmem, __xlx_sprintf_buffer.data()); 
       }
   }
-  __xlx_offset_byte_param_temp_out_buffer = 4*4;
+  __xlx_offset_byte_param_temp_out_buffer = 4*64;
   if (__xlx_apatb_param_temp_out_buffer) {
     for (int j = 0  - 0, e = 1 - 0; j != e; ++j) {
-sc_bv<32> __xlx_tmp_lv = ((int*)__xlx_apatb_param_temp_out_buffer)[j];
+sc_bv<512> __xlx_tmp_lv;
+__xlx_tmp_lv.range(63,0) = ((long long*)__xlx_apatb_param_temp_out_buffer)[j*8+0];
+__xlx_tmp_lv.range(127,64) = ((long long*)__xlx_apatb_param_temp_out_buffer)[j*8+1];
+__xlx_tmp_lv.range(191,128) = ((long long*)__xlx_apatb_param_temp_out_buffer)[j*8+2];
+__xlx_tmp_lv.range(255,192) = ((long long*)__xlx_apatb_param_temp_out_buffer)[j*8+3];
+__xlx_tmp_lv.range(319,256) = ((long long*)__xlx_apatb_param_temp_out_buffer)[j*8+4];
+__xlx_tmp_lv.range(383,320) = ((long long*)__xlx_apatb_param_temp_out_buffer)[j*8+5];
+__xlx_tmp_lv.range(447,384) = ((long long*)__xlx_apatb_param_temp_out_buffer)[j*8+6];
+__xlx_tmp_lv.range(511,448) = ((long long*)__xlx_apatb_param_temp_out_buffer)[j*8+7];
 
     sprintf(__xlx_sprintf_buffer.data(), "%s\n", __xlx_tmp_lv.to_string(SC_HEX).c_str());
     aesl_fh.write(AUTOTB_TVOUT_gmem, __xlx_sprintf_buffer.data()); 
       }
   }
-  __xlx_offset_byte_param_temp_out_buffer_size = 5*4;
+  __xlx_offset_byte_param_temp_out_buffer_size = 5*64;
   if (__xlx_apatb_param_temp_out_buffer_size) {
     for (int j = 0  - 0, e = 1 - 0; j != e; ++j) {
-sc_bv<32> __xlx_tmp_lv = ((int*)__xlx_apatb_param_temp_out_buffer_size)[j];
+sc_bv<512> __xlx_tmp_lv;
+__xlx_tmp_lv.range(63,0) = ((long long*)__xlx_apatb_param_temp_out_buffer_size)[j*8+0];
+__xlx_tmp_lv.range(127,64) = ((long long*)__xlx_apatb_param_temp_out_buffer_size)[j*8+1];
+__xlx_tmp_lv.range(191,128) = ((long long*)__xlx_apatb_param_temp_out_buffer_size)[j*8+2];
+__xlx_tmp_lv.range(255,192) = ((long long*)__xlx_apatb_param_temp_out_buffer_size)[j*8+3];
+__xlx_tmp_lv.range(319,256) = ((long long*)__xlx_apatb_param_temp_out_buffer_size)[j*8+4];
+__xlx_tmp_lv.range(383,320) = ((long long*)__xlx_apatb_param_temp_out_buffer_size)[j*8+5];
+__xlx_tmp_lv.range(447,384) = ((long long*)__xlx_apatb_param_temp_out_buffer_size)[j*8+6];
+__xlx_tmp_lv.range(511,448) = ((long long*)__xlx_apatb_param_temp_out_buffer_size)[j*8+7];
 
     sprintf(__xlx_sprintf_buffer.data(), "%s\n", __xlx_tmp_lv.to_string(SC_HEX).c_str());
     aesl_fh.write(AUTOTB_TVOUT_gmem, __xlx_sprintf_buffer.data()); 

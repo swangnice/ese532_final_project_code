@@ -194,12 +194,12 @@
     "FlowTarget": "vitis",
     "ConfigTcl": [
       "config_export -format=xo",
-      "config_export -output=\/home1\/s\/swang01\/Documents\/lzw_compress_hw.xo",
+      "config_export -output=\/mnt\/castor\/seas_home\/s\/swang01\/Documents\/lzw_compress_hw.xo",
       "config_export -rtl=verilog",
-      "config_interface -m_axi_latency=64",
-      "config_interface -m_axi_alignment_byte_size=64",
-      "config_interface -m_axi_max_widen_bitwidth=512",
       "config_interface -default_interface=kernel",
+      "config_interface -m_axi_alignment_byte_size=64",
+      "config_interface -m_axi_latency=64",
+      "config_interface -m_axi_max_widen_bitwidth=512",
       "config_interface -m_axi_offset=slave",
       "config_rtl -register_reset_num=3"
     ],
@@ -241,6 +241,8 @@
       "impl\/vhdl\/lzw_compress_hw_my_assoc_mem_upper_key_mem.vhd",
       "impl\/vhdl\/lzw_compress_hw_my_assoc_mem_value.vhd",
       "impl\/vhdl\/lzw_compress_hw_out_code.vhd",
+      "impl\/vhdl\/lzw_compress_hw_s1_local.vhd",
+      "impl\/vhdl\/lzw_compress_hw_temp_out_buffer_local.vhd",
       "impl\/vhdl\/lzw_compress_hw.vhd"
     ],
     "Verilog": [
@@ -250,6 +252,8 @@
       "impl\/verilog\/lzw_compress_hw_my_assoc_mem_upper_key_mem.v",
       "impl\/verilog\/lzw_compress_hw_my_assoc_mem_value.v",
       "impl\/verilog\/lzw_compress_hw_out_code.v",
+      "impl\/verilog\/lzw_compress_hw_s1_local.v",
+      "impl\/verilog\/lzw_compress_hw_temp_out_buffer_local.v",
       "impl\/verilog\/lzw_compress_hw.v"
     ],
     "SwDriver": [
@@ -305,7 +309,7 @@
       "type": "axi4full",
       "busTypeName": "aximm",
       "mode": "master",
-      "dataWidth": "32",
+      "dataWidth": "512",
       "addrWidth": "64",
       "portPrefix": "m_axi_gmem_",
       "paramPrefix": "C_M_AXI_GMEM_",
@@ -386,7 +390,7 @@
         {
           "constraint_type": "bitwidth",
           "orig_bitwidth": "8",
-          "final_bitwidth": "32",
+          "final_bitwidth": "512",
           "argName": "s1"
         }
       ]
@@ -935,11 +939,11 @@
     },
     "m_axi_gmem_WDATA": {
       "dir": "out",
-      "width": "32"
+      "width": "512"
     },
     "m_axi_gmem_WSTRB": {
       "dir": "out",
-      "width": "4"
+      "width": "64"
     },
     "m_axi_gmem_WLAST": {
       "dir": "out",
@@ -1019,7 +1023,7 @@
     },
     "m_axi_gmem_RDATA": {
       "dir": "in",
-      "width": "32"
+      "width": "512"
     },
     "m_axi_gmem_RLAST": {
       "dir": "in",
@@ -1087,46 +1091,58 @@
         },
         "Loops": [
           {
-            "Name": "VITIS_LOOP_350_1",
+            "Name": "loop_copy_in",
+            "TripCount": "2048",
+            "Latency": "2049",
+            "PipelineII": "1",
+            "PipelineDepth": "3"
+          },
+          {
+            "Name": "VITIS_LOOP_386_1",
             "TripCount": "32768",
             "Latency": "32768",
             "PipelineII": "1",
             "PipelineDepth": "1"
           },
           {
-            "Name": "VITIS_LOOP_355_2",
+            "Name": "VITIS_LOOP_391_2",
             "TripCount": "512",
             "Latency": "512",
             "PipelineII": "1",
             "PipelineDepth": "1"
           },
           {
-            "Name": "VITIS_LOOP_369_3",
+            "Name": "VITIS_LOOP_405_3",
             "TripCount": "",
             "Latency": "",
-            "PipelineII": "85",
-            "PipelineDepth": "86"
+            "PipelineII": "14",
+            "PipelineDepth": "15"
           },
           {
-            "Name": "VITIS_LOOP_402_4",
+            "Name": "VITIS_LOOP_438_4",
             "TripCount": "",
-            "LatencyMin": "72",
-            "LatencyMax": "?",
-            "Latency": "72 ~ ?",
-            "PipelineII": "3",
-            "PipelineDepth": "73"
+            "Latency": "",
+            "PipelineII": "2",
+            "PipelineDepth": "3"
+          },
+          {
+            "Name": "loop_copy_out",
+            "TripCount": "2048",
+            "Latency": "2049",
+            "PipelineII": "1",
+            "PipelineDepth": "3"
           }
         ],
         "Area": {
-          "BRAM_18K": "90",
+          "BRAM_18K": "120",
           "AVAIL_BRAM": "432",
-          "UTIL_BRAM": "20",
-          "FF": "4294",
+          "UTIL_BRAM": "27",
+          "FF": "6019",
           "AVAIL_FF": "141120",
-          "UTIL_FF": "3",
-          "LUT": "13959",
+          "UTIL_FF": "4",
+          "LUT": "14369",
           "AVAIL_LUT": "70560",
-          "UTIL_LUT": "19",
+          "UTIL_LUT": "20",
           "DSP": "0",
           "AVAIL_DSP": "360",
           "UTIL_DSP": "0",
@@ -1139,7 +1155,7 @@
   "GenerateBdFiles": "0",
   "GenData": {
     "DataVersion": "0.2",
-    "Time": "2024-12-07 19:00:20 EST",
+    "Time": "2024-12-08 17:57:46 EST",
     "ToolName": "vivado_hls",
     "ToolVersion": "2020.2"
   }

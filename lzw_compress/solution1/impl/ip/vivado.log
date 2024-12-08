@@ -2,8 +2,8 @@
 # Vivado v2020.2 (64-bit)
 # SW Build 3064766 on Wed Nov 18 09:12:47 MST 2020
 # IP Build 3064653 on Wed Nov 18 14:17:31 MST 2020
-# Start of session at: Sat Dec  7 19:01:01 2024
-# Process ID: 15479
+# Start of session at: Sun Dec  8 17:59:59 2024
+# Process ID: 26145
 # Current directory: /mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/lzw_compress/solution1/impl/ip
 # Command line: vivado -notrace -mode batch -source run_ippack.tcl
 # Log file: /mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/lzw_compress/solution1/impl/ip/vivado.log
@@ -14,4 +14,4 @@ INFO: [IP_Flow 19-234] Refreshing IP repositories
 INFO: [IP_Flow 19-1704] No user IP repositories specified
 INFO: [IP_Flow 19-2313] Loaded Vivado IP repository '/mnt/pollux/software/xilinx/2020.2/Vivado/2020.2/data/ip'.
 Running package_xo -xo_path /mnt/castor/seas_home/s/swang01/Documents/lzw_compress_hw.xo -kernel_name lzw_compress_hw -kernel_xml /mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/lzw_compress/solution1/impl/ip/../kernel/kernel.xml -kernel_files /mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/Server/lzw.cpp -ip_directory /mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/lzw_compress/solution1/impl/ip/ip_unzip_dir -design_xml /mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/lzw_compress/solution1/.autopilot/db/lzw_compress_hw.design.xml -debug_directory /mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/lzw_compress/solution1/.debug -hls_directory /mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/lzw_compress/solution1/impl/ip/hls_files
-INFO: [Common 17-206] Exiting Vivado at Sat Dec  7 19:01:19 2024...
+INFO: [Common 17-206] Exiting Vivado at Sun Dec  8 18:00:14 2024...

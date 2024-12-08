@@ -1,3 +1,5 @@
+lzw_compress_hw_s1_local
+lzw_compress_hw_temp_out_buffer_local
 lzw_compress_hw_hash_table
 lzw_compress_hw_my_assoc_mem_upper_key_mem
 lzw_compress_hw_my_assoc_mem_value
