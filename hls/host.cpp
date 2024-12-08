@@ -249,8 +249,8 @@ int main(int argc, char** argv)
 
     // Deduplication
 	dedup_timer.start();
-	uint8_t dup_flag[chunk_count];
-	int dup_index[chunk_count];
+	int *dup_flag = (int *)malloc(sizeof(int) * chunk_count);
+	int *dup_index = (int *)malloc(sizeof(int) * chunk_count);
 	dup_flag[0] = 0;	
 	dup_index[0] = 0;
 	int undup_count = 1;
