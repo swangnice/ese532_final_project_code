@@ -317,6 +317,8 @@ int main(int argc, char** argv)
             lzw_kernel.setArg(4, lzw_temp_out_buffer_buf);
             lzw_kernel.setArg(5, lzw_temp_out_buffer_size_buf);
 
+            printf("set kernel args end\n");
+
             std::vector<cl::Event> write_events;
             std::vector<cl::Event> exec_events;
 
@@ -326,17 +328,17 @@ int main(int argc, char** argv)
 
 			//printf("begin queue\n");
             q.enqueueMigrateMemObjects({lzw_s1_buf, lzw_length_buf, lzw_is_dup_buf, lzw_dup_index_buf}, 0, NULL, &write_ev);
-
+            printf("test 1");
             
             // Create a vector for the event dependency
             write_events.push_back(write_ev);
             q.enqueueTask(lzw_kernel, &write_events, &exec_ev);
-
+            printf("test 2");
             
             // Create another vector for the event dependency
             exec_events.push_back(exec_ev);
             q.enqueueMigrateMemObjects({lzw_temp_out_buffer_buf, lzw_temp_out_buffer_size_buf}, CL_MIGRATE_MEM_OBJECT_HOST, &exec_events, &read_ev);
-
+            printf("test 3");
             // Wait for all kernels to finish
             q.finish();
             printf("finished queue\n");
