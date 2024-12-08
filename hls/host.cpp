@@ -293,13 +293,14 @@ int main(int argc, char** argv)
 
     for (unsigned int i = 0; i < chunk_count; i++) {
         //TODO: Seperate dep and undep chunks
-        if (dup_flag[i] == 0) {
+        //if (dup_flag[i] == 0) {
             //lzw_compress(chunks[i], &chunk_sizes[i], temp_lzw_compressed_output[i], &temp_output_index[i]);
             memcpy(lzw_s1, chunks[i], chunk_sizes[i]);
 			//printf("chunk size: %d\n", chunk_sizes[i]);
             *lzw_length = chunk_sizes[i];
             *lzw_is_dup = dup_flag[i];
             *lzw_dup_index = dup_index[i];
+            printf("passed in lzw_compress\n");
 			//printf("chunk size: %d\n", *lzw_length);
 			// printf("Chunk %u:", i);
 			// for (int j = 0; j < *lzw_length; j++) { // `total_size` 是 lzw_s1 的总长度
@@ -338,11 +339,12 @@ int main(int argc, char** argv)
 
             // Wait for all kernels to finish
             q.finish();
+            printf("finished queue\n");
 
         memcpy(out_buffer + out_offset, lzw_temp_out_buffer, *lzw_temp_out_buffer_size);
         out_offset += *lzw_temp_out_buffer_size;
 			//printf("temp_output_index: %d\n", temp_output_index[i]);
-        }
+        //}
     }
 	lzw_timer.stop();
 
