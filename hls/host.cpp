@@ -340,10 +340,10 @@ int main(int argc, char** argv)
             //printf("finished queue\n");
         }   else {
             //printf("Chunk %u is duplicated with %d\n", i, dup_index[i]);
-			temp_out_buffer[0] = ((*dup_index[i]<<1) | 0x00000001) & 0xff;
-	        temp_out_buffer[1] = (((*dup_index[i]<<1) | 0x00000001) >> 8) & 0xff;
-	        temp_out_buffer[2] = (((*dup_index[i]<<1) | 0x00000001) >> 16) & 0xff;
-	        temp_out_buffer[3] = (((*dup_index[i]<<1) | 0x00000001) >> 24) & 0xff;
+			temp_out_buffer[0] = ((dup_index[i]<<1) | 0x00000001) & 0xff;
+	        temp_out_buffer[1] = (((dup_index[i]<<1) | 0x00000001) >> 8) & 0xff;
+	        temp_out_buffer[2] = (((dup_index[i]<<1) | 0x00000001) >> 16) & 0xff;
+	        temp_out_buffer[3] = (((dup_index[i]<<1) | 0x00000001) >> 24) & 0xff;
 	        temp_out_buffer_size = 4;
         }
 
