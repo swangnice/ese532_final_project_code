@@ -1,9 +1,9 @@
 INFO: [v++ 60-1306] Additional information associated with this v++ compile can be found at:
 	Reports: /mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/_x/reports/lzw_compress
 	Log files: /mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/_x/logs/lzw_compress
-INFO: [v++ 60-1548] Creating build summary session with primary output /mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/lzw_compress.xo.compile_summary, at Mon Dec  9 08:12:02 2024
-INFO: [v++ 60-1316] Initiating connection to rulecheck server, at Mon Dec  9 08:12:02 2024
-INFO: [v++ 60-1315] Creating rulecheck session with output '/mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/_x/reports/lzw_compress/v++_compile_lzw_compress_guidance.html', at Mon Dec  9 08:12:03 2024
+INFO: [v++ 60-1548] Creating build summary session with primary output /mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/lzw_compress.xo.compile_summary, at Mon Dec  9 08:46:47 2024
+INFO: [v++ 60-1316] Initiating connection to rulecheck server, at Mon Dec  9 08:46:47 2024
+INFO: [v++ 60-1315] Creating rulecheck session with output '/mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/_x/reports/lzw_compress/v++_compile_lzw_compress_guidance.html', at Mon Dec  9 08:46:48 2024
 INFO: [v++ 60-895]   Target platform: /home1/e/ese5320/u96v2_sbc_crypto_base/u96v2_sbc_base.xpfm
 INFO: [v++ 60-1578]   This platform contains Xilinx Shell Archive '/home1/e/ese5320/u96v2_sbc_crypto_base/hw/u96v2_sbc_base.xsa'
 INFO: [v++ 60-585] Compiling for hardware target
@@ -11,12 +11,12 @@ INFO: [v++ 60-423]   Target device: u96v2_sbc_base
 INFO: [v++ 60-242] Creating kernel: 'lzw_compress'
 
 ===>The following messages were generated while  performing high-level synthesis for kernel: lzw_compress Log file: /mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/_x/lzw_compress/lzw_compress/vitis_hls.log :
-INFO: [v++ 204-61] Pipelining loop 'VITIS_LOOP_176_1'.
-INFO: [v++ 200-1470] Pipelining result : Target II = 1, Final II = 1, Depth = 1, loop 'VITIS_LOOP_176_1'
-INFO: [v++ 204-61] Pipelining loop 'VITIS_LOOP_181_2'.
-INFO: [v++ 200-1470] Pipelining result : Target II = 1, Final II = 1, Depth = 1, loop 'VITIS_LOOP_181_2'
-INFO: [v++ 204-61] Pipelining loop 'VITIS_LOOP_195_3'.
-INFO: [v++ 200-1470] Pipelining result : Target II = 1, Final II = 85, Depth = 155, loop 'VITIS_LOOP_195_3'
+INFO: [v++ 204-61] Pipelining loop 'VITIS_LOOP_173_1'.
+INFO: [v++ 200-1470] Pipelining result : Target II = 1, Final II = 1, Depth = 1, loop 'VITIS_LOOP_173_1'
+INFO: [v++ 204-61] Pipelining loop 'VITIS_LOOP_178_2'.
+INFO: [v++ 200-1470] Pipelining result : Target II = 1, Final II = 1, Depth = 1, loop 'VITIS_LOOP_178_2'
+INFO: [v++ 204-61] Pipelining loop 'VITIS_LOOP_200_3'.
+INFO: [v++ 200-1470] Pipelining result : Target II = 1, Final II = 85, Depth = 155, loop 'VITIS_LOOP_200_3'
 INFO: [v++ 200-790] **** Loop Constraint Status: All loop constraints were NOT satisfied.
 INFO: [v++ 200-789] **** Estimated Fmax: 205.47 MHz
 INFO: [v++ 60-594] Finished kernel compilation
@@ -25,5 +25,5 @@ INFO: [v++ 60-1092] Generated system estimate report: /mnt/castor/seas_home/s/sw
 INFO: [v++ 60-586] Created lzw_compress.xo
 INFO: [v++ 60-2343] Use the vitis_analyzer tool to visualize and navigate the relevant reports. Run the following command. 
     vitis_analyzer /mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/lzw_compress.xo.compile_summary 
-INFO: [v++ 60-791] Total elapsed time: 0h 1m 18s
+INFO: [v++ 60-791] Total elapsed time: 0h 1m 4s
 INFO: [v++ 60-1653] Closing dispatch client.

@@ -1,7 +1,7 @@
 <profile>
 
 <section name = "Vitis HLS Report for 'lzw_compress'" level="0">
-<item name = "Date">Mon Dec  9 07:13:30 2024
+<item name = "Date">Mon Dec  9 08:44:38 2024
 </item>
 <item name = "Version">2020.2 (Build 3064766 on Wed Nov 18 09:12:47 MST 2020)</item>
 <item name = "Project">final</item>
@@ -35,9 +35,9 @@
 </item>
 <item name = "Loop"><table name="" hasTotal="0">
 <keys size="8">Loop Name, min, max, Latency, achieved, target, Count, Pipelined</keys>
-<column name="- VITIS_LOOP_176_1">32768, 32768, 1, 1, 1, 32768, yes</column>
-<column name="- VITIS_LOOP_181_2">512, 512, 1, 1, 1, 512, yes</column>
-<column name="- VITIS_LOOP_195_3">?, ?, 155, 85, 1, ?, yes</column>
+<column name="- VITIS_LOOP_173_1">32768, 32768, 1, 1, 1, 32768, yes</column>
+<column name="- VITIS_LOOP_178_2">512, 512, 1, 1, 1, 512, yes</column>
+<column name="- VITIS_LOOP_200_3">?, ?, 155, 85, 1, ?, yes</column>
 </table>
 </item>
 </section>
@@ -206,16 +206,16 @@
 <column name="add_ln16_8_fu_1653_p2">+, 0, 0, 16, 26, 26</column>
 <column name="add_ln16_9_fu_1726_p2">+, 0, 0, 16, 15, 15</column>
 <column name="add_ln16_fu_1198_p2">+, 0, 0, 33, 26, 26</column>
-<column name="add_ln176_fu_808_p2">+, 0, 0, 23, 16, 1</column>
-<column name="add_ln181_fu_825_p2">+, 0, 0, 17, 10, 1</column>
-<column name="add_ln197_1_fu_945_p2">+, 0, 0, 71, 64, 64</column>
-<column name="add_ln197_2_fu_901_p2">+, 0, 0, 9, 2, 1</column>
-<column name="add_ln197_3_fu_970_p2">+, 0, 0, 9, 2, 2</column>
-<column name="add_ln197_fu_931_p2">+, 0, 0, 38, 31, 1</column>
-<column name="add_ln203_1_fu_4689_p2">+, 0, 0, 9, 2, 2</column>
-<column name="add_ln203_fu_4684_p2">+, 0, 0, 71, 64, 64</column>
-<column name="add_ln218_2_fu_4820_p2">+, 0, 0, 9, 2, 2</column>
-<column name="add_ln218_fu_4815_p2">+, 0, 0, 71, 64, 64</column>
+<column name="add_ln173_fu_808_p2">+, 0, 0, 23, 16, 1</column>
+<column name="add_ln178_fu_825_p2">+, 0, 0, 17, 10, 1</column>
+<column name="add_ln202_1_fu_945_p2">+, 0, 0, 71, 64, 64</column>
+<column name="add_ln202_2_fu_901_p2">+, 0, 0, 9, 2, 1</column>
+<column name="add_ln202_3_fu_970_p2">+, 0, 0, 9, 2, 2</column>
+<column name="add_ln202_fu_931_p2">+, 0, 0, 38, 31, 1</column>
+<column name="add_ln210_1_fu_4689_p2">+, 0, 0, 9, 2, 2</column>
+<column name="add_ln210_fu_4684_p2">+, 0, 0, 71, 64, 64</column>
+<column name="add_ln229_2_fu_4820_p2">+, 0, 0, 9, 2, 2</column>
+<column name="add_ln229_fu_4815_p2">+, 0, 0, 71, 64, 64</column>
 <column name="grp_fu_798_p2">+, 0, 0, 39, 32, 1</column>
 <column name="hashed_fu_3539_p2">+, 0, 0, 33, 26, 26</column>
 <column name="key_fu_3174_p2">+, 0, 0, 27, 20, 20</column>
@@ -327,14 +327,14 @@
 <column name="ap_predicate_tran232to233_state162">and, 0, 0, 2, 1, 1</column>
 <column name="hit_fu_3599_p2">and, 0, 0, 2, 1, 1</column>
 <column name="match_fu_4222_p2">and, 0, 0, 32, 32, 32</column>
-<column name="icmp_ln176_fu_814_p2">icmp, 0, 0, 13, 16, 17</column>
-<column name="icmp_ln181_fu_831_p2">icmp, 0, 0, 11, 10, 11</column>
-<column name="icmp_ln195_1_fu_926_p2">icmp, 0, 0, 20, 32, 32</column>
-<column name="icmp_ln195_fu_890_p2">icmp, 0, 0, 20, 32, 1</column>
-<column name="icmp_ln217_fu_4788_p2">icmp, 0, 0, 20, 32, 32</column>
+<column name="icmp_ln173_fu_814_p2">icmp, 0, 0, 13, 16, 17</column>
+<column name="icmp_ln178_fu_831_p2">icmp, 0, 0, 11, 10, 11</column>
+<column name="icmp_ln200_1_fu_926_p2">icmp, 0, 0, 20, 32, 32</column>
+<column name="icmp_ln200_fu_890_p2">icmp, 0, 0, 20, 32, 1</column>
+<column name="icmp_ln228_fu_4788_p2">icmp, 0, 0, 20, 32, 32</column>
 <column name="icmp_ln37_fu_3594_p2">icmp, 0, 0, 14, 20, 20</column>
 <column name="icmp_ln97_fu_4747_p2">icmp, 0, 0, 17, 26, 1</column>
-<column name="lshr_ln197_fu_986_p2">lshr, 0, 0, 100, 32, 32</column>
+<column name="lshr_ln202_fu_986_p2">lshr, 0, 0, 100, 32, 32</column>
 <column name="ap_block_pp2_stage1_11001">or, 0, 0, 2, 1, 1</column>
 <column name="ap_block_state1">or, 0, 0, 2, 1, 1</column>
 <column name="ap_block_state163_io">or, 0, 0, 2, 1, 1</column>
@@ -348,10 +348,10 @@
 <column name="or_ln101_fu_4926_p2">or, 0, 0, 64, 64, 64</column>
 <column name="or_ln99_fu_4914_p2">or, 0, 0, 64, 64, 64</column>
 <column name="code_fu_3605_p3">select, 0, 0, 12, 1, 12</column>
-<column name="shl_ln203_1_fu_4874_p2">shl, 0, 0, 100, 32, 32</column>
-<column name="shl_ln203_fu_4698_p2">shl, 0, 0, 9, 2, 4</column>
-<column name="shl_ln218_1_fu_4899_p2">shl, 0, 0, 100, 32, 32</column>
-<column name="shl_ln218_fu_4829_p2">shl, 0, 0, 9, 2, 4</column>
+<column name="shl_ln210_1_fu_4874_p2">shl, 0, 0, 100, 32, 32</column>
+<column name="shl_ln210_fu_4698_p2">shl, 0, 0, 9, 2, 4</column>
+<column name="shl_ln229_1_fu_4899_p2">shl, 0, 0, 100, 32, 32</column>
+<column name="shl_ln229_fu_4829_p2">shl, 0, 0, 9, 2, 4</column>
 <column name="shl_ln99_fu_4905_p2">shl, 0, 0, 100, 1, 32</column>
 <column name="ap_enable_pp2">xor, 0, 0, 2, 1, 2</column>
 <column name="hashed_1_fu_3561_p2">xor, 0, 0, 15, 15, 15</column>
@@ -463,11 +463,11 @@
 <column name="add_ln14_8_reg_5249">32, 0, 32, 0</column>
 <column name="add_ln157_9_reg_5228">9, 0, 9, 0</column>
 <column name="add_ln16_10_reg_5218">26, 0, 26, 0</column>
-<column name="add_ln197_2_reg_5053">2, 0, 2, 0</column>
-<column name="add_ln197_3_reg_5074">2, 0, 2, 0</column>
-<column name="add_ln197_reg_5062">31, 0, 31, 0</column>
-<column name="add_ln203_1_reg_5629">2, 0, 2, 0</column>
-<column name="add_ln218_2_reg_5663">2, 0, 2, 0</column>
+<column name="add_ln202_2_reg_5053">2, 0, 2, 0</column>
+<column name="add_ln202_3_reg_5074">2, 0, 2, 0</column>
+<column name="add_ln202_reg_5062">31, 0, 31, 0</column>
+<column name="add_ln210_1_reg_5629">2, 0, 2, 0</column>
+<column name="add_ln229_2_reg_5663">2, 0, 2, 0</column>
 <column name="and_ln124_63_reg_5501">1, 0, 1, 0</column>
 <column name="ap_CS_fsm">233, 0, 233, 0</column>
 <column name="ap_done_reg">1, 0, 1, 0</column>
@@ -491,10 +491,10 @@
 <column name="i_1_reg_630">10, 0, 10, 0</column>
 <column name="i_2_reg_641">31, 0, 31, 0</column>
 <column name="i_reg_619">16, 0, 16, 0</column>
-<column name="icmp_ln195_1_reg_5058">1, 0, 1, 0</column>
-<column name="icmp_ln195_1_reg_5058_pp2_iter1_reg">1, 0, 1, 0</column>
-<column name="icmp_ln195_reg_5021">1, 0, 1, 0</column>
-<column name="icmp_ln217_reg_5659">1, 0, 1, 0</column>
+<column name="icmp_ln200_1_reg_5058">1, 0, 1, 0</column>
+<column name="icmp_ln200_1_reg_5058_pp2_iter1_reg">1, 0, 1, 0</column>
+<column name="icmp_ln200_reg_5021">1, 0, 1, 0</column>
+<column name="icmp_ln228_reg_5659">1, 0, 1, 0</column>
 <column name="icmp_ln97_reg_5650">1, 0, 1, 0</column>
 <column name="j_0_lcssa_reg_786">32, 0, 32, 0</column>
 <column name="j_1_reg_5443">32, 0, 32, 0</column>
@@ -512,11 +512,11 @@
 <column name="prefix_code_1_reg_773">13, 0, 13, 0</column>
 <column name="prefix_code_2_reg_652">13, 0, 13, 0</column>
 <column name="prefix_code_reg_5004">8, 0, 8, 0</column>
-<column name="sext_ln200_reg_5309">13, 0, 13, 0</column>
-<column name="shl_ln203_1_reg_5679">32, 0, 32, 0</column>
-<column name="shl_ln203_reg_5634">4, 0, 4, 0</column>
-<column name="shl_ln218_1_reg_5690">32, 0, 32, 0</column>
-<column name="shl_ln218_reg_5668">4, 0, 4, 0</column>
+<column name="sext_ln206_reg_5309">13, 0, 13, 0</column>
+<column name="shl_ln210_1_reg_5679">32, 0, 32, 0</column>
+<column name="shl_ln210_reg_5634">4, 0, 4, 0</column>
+<column name="shl_ln229_1_reg_5690">32, 0, 32, 0</column>
+<column name="shl_ln229_reg_5668">4, 0, 4, 0</column>
 <column name="tmp_10_reg_5277">1, 0, 1, 0</column>
 <column name="tmp_12_reg_5314">1, 0, 1, 0</column>
 <column name="tmp_14_reg_5346">1, 0, 1, 0</column>
@@ -580,7 +580,7 @@
 <column name="trunc_ln16_38_reg_5438">5, 0, 5, 0</column>
 <column name="trunc_ln16_6_reg_5181">5, 0, 5, 0</column>
 <column name="trunc_ln16_reg_5115">15, 0, 15, 0</column>
-<column name="trunc_ln218_reg_5047">2, 0, 2, 0</column>
+<column name="trunc_ln229_reg_5047">2, 0, 2, 0</column>
 <column name="valid_reg_5458">1, 0, 1, 0</column>
 <column name="value_1_fu_406">32, 0, 32, 0</column>
 <column name="xor_ln14_10_reg_5320">26, 0, 26, 0</column>

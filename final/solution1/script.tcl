@@ -15,4 +15,4 @@ config_export -format xo -output /home1/s/swang01/Documents/ese532_code/lzw_comp
 #csim_design
 csynth_design
 #cosim_design
-export_design -rtl verilog -format xo -output /home1/s/swang01/Documents/ese532_code/lzw_compress.xo
+export_design -rtl verilog -format xo -output /mnt/castor/seas_home/s/swang01/Documents/ese532_code/lzw_compress.xo

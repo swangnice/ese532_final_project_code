@@ -1,7 +1,7 @@
 <profile>
 
 <section name = "Vitis HLS Report for 'lzw_compress'" level="0">
-<item name = "Date">Mon Dec  9 07:13:28 2024
+<item name = "Date">Mon Dec  9 08:44:36 2024
 </item>
 <item name = "Version">2020.2 (Build 3064766 on Wed Nov 18 09:12:47 MST 2020)</item>
 <item name = "Project">final</item>
@@ -35,9 +35,9 @@
 </item>
 <item name = "Loop"><table name="" hasTotal="0">
 <keys size="8">Loop Name, min, max, Latency, achieved, target, Count, Pipelined</keys>
-<column name="- VITIS_LOOP_176_1">32768, 32768, 1, 1, 1, 32768, yes</column>
-<column name="- VITIS_LOOP_181_2">512, 512, 1, 1, 1, 512, yes</column>
-<column name="- VITIS_LOOP_195_3">?, ?, 155, 85, 1, ?, yes</column>
+<column name="- VITIS_LOOP_173_1">32768, 32768, 1, 1, 1, 32768, yes</column>
+<column name="- VITIS_LOOP_178_2">512, 512, 1, 1, 1, 512, yes</column>
+<column name="- VITIS_LOOP_200_3">?, ?, 155, 85, 1, ?, yes</column>
 </table>
 </item>
 </section>

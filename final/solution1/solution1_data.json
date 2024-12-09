@@ -135,6 +135,9 @@
   "HlsSolution": {
     "FlowTarget": "vitis",
     "ConfigTcl": [
+      "config_export -format=xo",
+      "config_export -output=\/home1\/s\/swang01\/Documents\/ese532_code\/lzw_compress.xo",
+      "config_export -rtl=verilog",
       "config_interface -m_axi_latency=64",
       "config_interface -m_axi_alignment_byte_size=64",
       "config_interface -m_axi_max_widen_bitwidth=512",
@@ -957,21 +960,21 @@
         },
         "Loops": [
           {
-            "Name": "VITIS_LOOP_176_1",
+            "Name": "VITIS_LOOP_173_1",
             "TripCount": "32768",
             "Latency": "32768",
             "PipelineII": "1",
             "PipelineDepth": "1"
           },
           {
-            "Name": "VITIS_LOOP_181_2",
+            "Name": "VITIS_LOOP_178_2",
             "TripCount": "512",
             "Latency": "512",
             "PipelineII": "1",
             "PipelineDepth": "1"
           },
           {
-            "Name": "VITIS_LOOP_195_3",
+            "Name": "VITIS_LOOP_200_3",
             "TripCount": "",
             "Latency": "",
             "PipelineII": "85",
@@ -1000,7 +1003,7 @@
   "GenerateBdFiles": "0",
   "GenData": {
     "DataVersion": "0.2",
-    "Time": "2024-12-09 07:13:36 EST",
+    "Time": "2024-12-09 08:44:43 EST",
     "ToolName": "vivado_hls",
     "ToolVersion": "2020.2"
   }

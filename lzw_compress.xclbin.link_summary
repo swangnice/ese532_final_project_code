@@ -9,10 +9,10 @@
 <ENTRY>
 {
  "type": "ET_CmdStep",
- "dateTimestamp": "Mon Dec  9 08:13:22 2024",
- "timestampMillis": "1733750002467",
+ "dateTimestamp": "Mon Dec  9 08:47:53 2024",
+ "timestampMillis": "1733752073538",
  "buildStep": {
-  "cmdId": "a4941289-7b4e-4bed-9606-98beeaa049a5",
+  "cmdId": "408bbea3-eeb2-4840-a701-6cb3f3f357e7",
   "name": "v++",
   "logFile": "/mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/_x/link/link.steps.log",
   "commandLine": "/mnt/pollux/software/xilinx/2020.2/Vitis/2020.2/bin/unwrapped/lnx64.o/v++  --xp \"vivado_prop:run.__KERNEL__.{STEPS.SYNTH_DESIGN.ARGS.MORE OPTIONS}={-directive sdx_optimization_effort_high}\" --xp \"misc:report=type report_timing_summary name impl_report_timing_summary_route_design_summary steps {route_design} runs {impl_1} options {-max_paths 10}\" --xp \"misc:report=type report_timing_summary name impl_report_timing_summary_post_route_phys_opt_design_summary steps {post_route_phys_opt_design} runs {impl_1} options {-max_paths 10}\" --target hw --link --config ./hls/design.cfg -olzw_compress.xclbin lzw_compress.xo ",
@@ -38,10 +38,10 @@
 <ENTRY>
 {
  "type": "ET_Status",
- "dateTimestamp": "Mon Dec  9 08:13:22 2024",
- "timestampMillis": "1733750002470",
+ "dateTimestamp": "Mon Dec  9 08:47:53 2024",
+ "timestampMillis": "1733752073540",
  "status": {
-  "cmdId": "a4941289-7b4e-4bed-9606-98beeaa049a5",
+  "cmdId": "408bbea3-eeb2-4840-a701-6cb3f3f357e7",
   "state": "CS_RUNNING"
  }
 }
@@ -49,8 +49,8 @@
 <ENTRY>
 {
  "type": "ET_FlowMetaData",
- "dateTimestamp": "Mon Dec  9 08:13:25 2024",
- "timestampMillis": "1733750005543",
+ "dateTimestamp": "Mon Dec  9 08:47:55 2024",
+ "timestampMillis": "1733752075838",
  "buildSummary": {
   "hardwarePlatform": "u96v2_sbc_base.xpfm",
   "hardwareDsa": "u96v2_sbc_base.xsa",
@@ -97,10 +97,10 @@
 <ENTRY>
 {
  "type": "ET_SubCmdStep",
- "dateTimestamp": "Mon Dec  9 08:13:25 2024",
- "timestampMillis": "1733750005822",
+ "dateTimestamp": "Mon Dec  9 08:47:56 2024",
+ "timestampMillis": "1733752076201",
  "buildStep": {
-  "cmdId": "eecdea33-bbd3-416b-94dd-3ef3321b3600",
+  "cmdId": "87386a30-0b9c-4f48-8649-6e4bda4bef0a",
   "name": "system_link",
   "logFile": "",
   "commandLine": "system_link --xo /mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/lzw_compress.xo -keep --config /mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/_x/link/int/syslinkConfig.ini --xpfm /home1/e/ese5320/u96v2_sbc_crypto_base/u96v2_sbc_base.xpfm --target hw --output_dir /mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/_x/link/int --temp_dir /mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/_x/link/sys_link",
@@ -132,10 +132,10 @@
 <ENTRY>
 {
  "type": "ET_Status",
- "dateTimestamp": "Mon Dec  9 08:13:25 2024",
- "timestampMillis": "1733750005823",
+ "dateTimestamp": "Mon Dec  9 08:47:56 2024",
+ "timestampMillis": "1733752076202",
  "status": {
-  "cmdId": "eecdea33-bbd3-416b-94dd-3ef3321b3600",
+  "cmdId": "87386a30-0b9c-4f48-8649-6e4bda4bef0a",
   "state": "CS_RUNNING"
  }
 }
@@ -143,10 +143,10 @@
 <ENTRY>
 {
  "type": "ET_Status",
- "dateTimestamp": "Mon Dec  9 08:13:35 2024",
- "timestampMillis": "1733750015108",
+ "dateTimestamp": "Mon Dec  9 08:48:03 2024",
+ "timestampMillis": "1733752083924",
  "status": {
-  "cmdId": "eecdea33-bbd3-416b-94dd-3ef3321b3600",
+  "cmdId": "87386a30-0b9c-4f48-8649-6e4bda4bef0a",
   "state": "CS_PASSED"
  }
 }
@@ -154,10 +154,10 @@
 <ENTRY>
 {
  "type": "ET_SubCmdStep",
- "dateTimestamp": "Mon Dec  9 08:13:35 2024",
- "timestampMillis": "1733750015120",
+ "dateTimestamp": "Mon Dec  9 08:48:03 2024",
+ "timestampMillis": "1733752083935",
  "buildStep": {
-  "cmdId": "36cf0d58-499a-4be8-b571-6b190132dd27",
+  "cmdId": "02401011-465a-4c0e-b0af-ae3f505a473b",
   "name": "cf2sw",
   "logFile": "",
   "commandLine": "cf2sw -sdsl /mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/_x/link/int/sdsl.dat -rtd /mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/_x/link/int/cf2sw.rtd -nofilter /mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/_x/link/int/cf2sw_full.rtd -xclbin /mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/_x/link/int/xclbin_orig.xml -o /mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/_x/link/int/xclbin_orig.1.xml",
@@ -181,10 +181,10 @@
 <ENTRY>
 {
  "type": "ET_Status",
- "dateTimestamp": "Mon Dec  9 08:13:35 2024",
- "timestampMillis": "1733750015121",
+ "dateTimestamp": "Mon Dec  9 08:48:03 2024",
+ "timestampMillis": "1733752083935",
  "status": {
-  "cmdId": "36cf0d58-499a-4be8-b571-6b190132dd27",
+  "cmdId": "02401011-465a-4c0e-b0af-ae3f505a473b",
   "state": "CS_RUNNING"
  }
 }
@@ -192,10 +192,10 @@
 <ENTRY>
 {
  "type": "ET_Status",
- "dateTimestamp": "Mon Dec  9 08:13:36 2024",
- "timestampMillis": "1733750016399",
+ "dateTimestamp": "Mon Dec  9 08:48:05 2024",
+ "timestampMillis": "1733752085120",
  "status": {
-  "cmdId": "36cf0d58-499a-4be8-b571-6b190132dd27",
+  "cmdId": "02401011-465a-4c0e-b0af-ae3f505a473b",
   "state": "CS_PASSED"
  }
 }
@@ -203,10 +203,10 @@
 <ENTRY>
 {
  "type": "ET_SubCmdStep",
- "dateTimestamp": "Mon Dec  9 08:13:36 2024",
- "timestampMillis": "1733750016416",
+ "dateTimestamp": "Mon Dec  9 08:48:05 2024",
+ "timestampMillis": "1733752085128",
  "buildStep": {
-  "cmdId": "cb932988-f0ae-4ee4-9967-0b0e02e0cfcd",
+  "cmdId": "99d34318-c562-4f0a-9aa4-2db485bc4689",
   "name": "rtd2_system_diagram",
   "logFile": "",
   "commandLine": "rtd2SystemDiagram",
@@ -219,10 +219,10 @@
 <ENTRY>
 {
  "type": "ET_Status",
- "dateTimestamp": "Mon Dec  9 08:13:36 2024",
- "timestampMillis": "1733750016418",
+ "dateTimestamp": "Mon Dec  9 08:48:05 2024",
+ "timestampMillis": "1733752085129",
  "status": {
-  "cmdId": "cb932988-f0ae-4ee4-9967-0b0e02e0cfcd",
+  "cmdId": "99d34318-c562-4f0a-9aa4-2db485bc4689",
   "state": "CS_RUNNING"
  }
 }
@@ -230,8 +230,8 @@
 <ENTRY>
 {
  "type": "ET_Report",
- "dateTimestamp": "Mon Dec  9 08:13:37 2024",
- "timestampMillis": "1733750017312",
+ "dateTimestamp": "Mon Dec  9 08:48:06 2024",
+ "timestampMillis": "1733752086011",
  "report": {
   "path": "/mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/_x/link/int/systemDiagramModel.json",
   "name": "",
@@ -243,10 +243,10 @@
 <ENTRY>
 {
  "type": "ET_Status",
- "dateTimestamp": "Mon Dec  9 08:13:37 2024",
- "timestampMillis": "1733750017316",
+ "dateTimestamp": "Mon Dec  9 08:48:06 2024",
+ "timestampMillis": "1733752086022",
  "status": {
-  "cmdId": "cb932988-f0ae-4ee4-9967-0b0e02e0cfcd",
+  "cmdId": "99d34318-c562-4f0a-9aa4-2db485bc4689",
   "state": "CS_PASSED"
  }
 }
@@ -254,10 +254,10 @@
 <ENTRY>
 {
  "type": "ET_SubCmdStep",
- "dateTimestamp": "Mon Dec  9 08:13:37 2024",
- "timestampMillis": "1733750017333",
+ "dateTimestamp": "Mon Dec  9 08:48:06 2024",
+ "timestampMillis": "1733752086070",
  "buildStep": {
-  "cmdId": "e955ffdf-7fe6-4969-bd25-a3a1dbb564fa",
+  "cmdId": "1d833ea1-8739-43ba-a150-0bc7a5f930e8",
   "name": "vpl",
   "logFile": "",
   "commandLine": "vpl -t hw -f u96v2_sbc_base -g --remote_ip_cache /mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/.ipcache -s --output_dir /mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/_x/link/int --log_dir /mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/_x/logs/link --report_dir /mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/_x/reports/link --config /mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/_x/link/int/vplConfig.ini -k /mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/_x/link/int/kernel_info.dat --webtalk_flag Vitis --temp_dir /mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/_x/link --no-info --iprepo /mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/_x/link/int/xo/ip_repo/xilinx_com_hls_lzw_compress_1_0 --messageDb /mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/_x/link/run_link/vpl.pb /mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/_x/link/int/dr.bd.tcl",
@@ -304,10 +304,10 @@
 <ENTRY>
 {
  "type": "ET_Status",
- "dateTimestamp": "Mon Dec  9 08:13:37 2024",
- "timestampMillis": "1733750017334",
+ "dateTimestamp": "Mon Dec  9 08:48:06 2024",
+ "timestampMillis": "1733752086071",
  "status": {
-  "cmdId": "e955ffdf-7fe6-4969-bd25-a3a1dbb564fa",
+  "cmdId": "1d833ea1-8739-43ba-a150-0bc7a5f930e8",
   "state": "CS_RUNNING"
  }
 }
@@ -315,10 +315,10 @@
 <ENTRY>
 {
  "type": "ET_CmdStep",
- "dateTimestamp": "Mon Dec  9 08:13:38 2024",
- "timestampMillis": "1733750018721",
+ "dateTimestamp": "Mon Dec  9 08:48:07 2024",
+ "timestampMillis": "1733752087270",
  "buildStep": {
-  "cmdId": "acc2c657-3888-4b66-985d-4240d06110ea",
+  "cmdId": "1426914c-64f6-4fdf-af56-0d86ce1a778f",
   "name": "vpl",
   "logFile": "/mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/_x/link/link.steps.log",
   "commandLine": "/mnt/pollux/software/xilinx/2020.2/Vitis/2020.2/bin/unwrapped/lnx64.o/vpl -t hw -f u96v2_sbc_base -g --remote_ip_cache /mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/.ipcache -s --output_dir /mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/_x/link/int --log_dir /mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/_x/logs/link --report_dir /mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/_x/reports/link --config /mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/_x/link/int/vplConfig.ini -k /mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/_x/link/int/kernel_info.dat --webtalk_flag Vitis --temp_dir /mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/_x/link --no-info --iprepo /mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/_x/link/int/xo/ip_repo/xilinx_com_hls_lzw_compress_1_0 --messageDb /mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/_x/link/run_link/vpl.pb /mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/_x/link/int/dr.bd.tcl ",
@@ -331,10 +331,10 @@
 <ENTRY>
 {
  "type": "ET_Status",
- "dateTimestamp": "Mon Dec  9 08:13:38 2024",
- "timestampMillis": "1733750018721",
+ "dateTimestamp": "Mon Dec  9 08:48:07 2024",
+ "timestampMillis": "1733752087271",
  "status": {
-  "cmdId": "acc2c657-3888-4b66-985d-4240d06110ea",
+  "cmdId": "1426914c-64f6-4fdf-af56-0d86ce1a778f",
   "state": "CS_RUNNING"
  }
 }
@@ -342,8 +342,8 @@
 <ENTRY>
 {
  "type": "ET_VivadoProject",
- "dateTimestamp": "Mon Dec  9 08:14:01 2024",
- "timestampMillis": "1733750041169",
+ "dateTimestamp": "Mon Dec  9 08:48:21 2024",
+ "timestampMillis": "1733752101919",
  "vivadoProject": {
   "openDir": "/mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/_x/link/vivado/vpl",
   "openScript": "openprj.tcl",
@@ -354,10 +354,10 @@
 <ENTRY>
 {
  "type": "ET_SubCmdStep",
- "dateTimestamp": "Mon Dec  9 08:14:01 2024",
- "timestampMillis": "1733750041176",
+ "dateTimestamp": "Mon Dec  9 08:48:21 2024",
+ "timestampMillis": "1733752101929",
  "buildStep": {
-  "cmdId": "cfe8a2b5-aa36-4bfa-8551-712484371f67",
+  "cmdId": "dfce6667-d4cb-4f57-928b-e4b51b965788",
   "name": "vivado",
   "logFile": "/mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/_x/link/vivado/vpl/vivado.log",
   "commandLine": "vivado -log vivado.log -applog -m64 -messageDb vivado.pb -mode batch -source vpl.tcl -notrace",
@@ -382,10 +382,10 @@
 <ENTRY>
 {
  "type": "ET_Status",
- "dateTimestamp": "Mon Dec  9 08:14:01 2024",
- "timestampMillis": "1733750041179",
+ "dateTimestamp": "Mon Dec  9 08:48:21 2024",
+ "timestampMillis": "1733752101932",
  "status": {
-  "cmdId": "cfe8a2b5-aa36-4bfa-8551-712484371f67",
+  "cmdId": "dfce6667-d4cb-4f57-928b-e4b51b965788",
   "state": "CS_RUNNING"
  }
 }
@@ -393,10 +393,10 @@
 <ENTRY>
 {
  "type": "ET_Status",
- "dateTimestamp": "Mon Dec  9 08:29:03 2024",
- "timestampMillis": "1733750943713",
+ "dateTimestamp": "Mon Dec  9 09:02:51 2024",
+ "timestampMillis": "1733752971850",
  "status": {
-  "cmdId": "cfe8a2b5-aa36-4bfa-8551-712484371f67",
+  "cmdId": "dfce6667-d4cb-4f57-928b-e4b51b965788",
   "state": "CS_PASSED"
  }
 }
@@ -404,8 +404,8 @@
 <ENTRY>
 {
  "type": "ET_Report",
- "dateTimestamp": "Mon Dec  9 08:29:05 2024",
- "timestampMillis": "1733750945021",
+ "dateTimestamp": "Mon Dec  9 09:02:53 2024",
+ "timestampMillis": "1733752973654",
  "report": {
   "path": "/mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/_x/reports/link/imp/impl_1_kernel_util_synthed.xutil",
   "name": "",
@@ -417,8 +417,8 @@
 <ENTRY>
 {
  "type": "ET_Report",
- "dateTimestamp": "Mon Dec  9 08:29:05 2024",
- "timestampMillis": "1733750945033",
+ "dateTimestamp": "Mon Dec  9 09:02:53 2024",
+ "timestampMillis": "1733752973664",
  "report": {
   "path": "/mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/_x/reports/link/imp/impl_1_kernel_util_synthed.rpt",
   "name": "",
@@ -430,8 +430,8 @@
 <ENTRY>
 {
  "type": "ET_Report",
- "dateTimestamp": "Mon Dec  9 08:29:05 2024",
- "timestampMillis": "1733750945043",
+ "dateTimestamp": "Mon Dec  9 09:02:53 2024",
+ "timestampMillis": "1733752973674",
  "report": {
   "path": "/mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/_x/reports/link/imp/impl_1_full_util_synthed.rpt",
   "name": "",
@@ -443,8 +443,8 @@
 <ENTRY>
 {
  "type": "ET_Report",
- "dateTimestamp": "Mon Dec  9 08:29:05 2024",
- "timestampMillis": "1733750945052",
+ "dateTimestamp": "Mon Dec  9 09:02:53 2024",
+ "timestampMillis": "1733752973683",
  "report": {
   "path": "/mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/_x/reports/link/imp/impl_1_full_util_synthed.pb",
   "name": "",
@@ -456,8 +456,8 @@
 <ENTRY>
 {
  "type": "ET_Report",
- "dateTimestamp": "Mon Dec  9 08:29:05 2024",
- "timestampMillis": "1733750945063",
+ "dateTimestamp": "Mon Dec  9 09:02:53 2024",
+ "timestampMillis": "1733752973694",
  "report": {
   "path": "/mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/_x/reports/link/imp/impl_1_kernel_util_placed.xutil",
   "name": "",
@@ -469,8 +469,8 @@
 <ENTRY>
 {
  "type": "ET_Report",
- "dateTimestamp": "Mon Dec  9 08:29:05 2024",
- "timestampMillis": "1733750945077",
+ "dateTimestamp": "Mon Dec  9 09:02:53 2024",
+ "timestampMillis": "1733752973704",
  "report": {
   "path": "/mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/_x/reports/link/imp/impl_1_kernel_util_placed.rpt",
   "name": "",
@@ -482,8 +482,8 @@
 <ENTRY>
 {
  "type": "ET_Report",
- "dateTimestamp": "Mon Dec  9 08:29:05 2024",
- "timestampMillis": "1733750945090",
+ "dateTimestamp": "Mon Dec  9 09:02:53 2024",
+ "timestampMillis": "1733752973714",
  "report": {
   "path": "/mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/_x/reports/link/imp/impl_1_slr_util_placed.rpt",
   "name": "",
@@ -495,8 +495,8 @@
 <ENTRY>
 {
  "type": "ET_Report",
- "dateTimestamp": "Mon Dec  9 08:29:05 2024",
- "timestampMillis": "1733750945101",
+ "dateTimestamp": "Mon Dec  9 09:02:53 2024",
+ "timestampMillis": "1733752973723",
  "report": {
   "path": "/mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/_x/reports/link/imp/impl_1_slr_util_placed.pb",
   "name": "",
@@ -508,8 +508,8 @@
 <ENTRY>
 {
  "type": "ET_Report",
- "dateTimestamp": "Mon Dec  9 08:29:05 2024",
- "timestampMillis": "1733750945130",
+ "dateTimestamp": "Mon Dec  9 09:02:53 2024",
+ "timestampMillis": "1733752973750",
  "report": {
   "path": "/mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/_x/reports/link/imp/impl_1_kernel_util_routed.xutil",
   "name": "",
@@ -521,8 +521,8 @@
 <ENTRY>
 {
  "type": "ET_Report",
- "dateTimestamp": "Mon Dec  9 08:29:05 2024",
- "timestampMillis": "1733750945140",
+ "dateTimestamp": "Mon Dec  9 09:02:53 2024",
+ "timestampMillis": "1733752973763",
  "report": {
   "path": "/mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/_x/reports/link/imp/impl_1_kernel_util_routed.rpt",
   "name": "",
@@ -534,8 +534,8 @@
 <ENTRY>
 {
  "type": "ET_Report",
- "dateTimestamp": "Mon Dec  9 08:29:05 2024",
- "timestampMillis": "1733750945150",
+ "dateTimestamp": "Mon Dec  9 09:02:53 2024",
+ "timestampMillis": "1733752973773",
  "report": {
   "path": "/mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/_x/reports/link/imp/impl_1_slr_util_routed.rpt",
   "name": "",
@@ -547,8 +547,8 @@
 <ENTRY>
 {
  "type": "ET_Report",
- "dateTimestamp": "Mon Dec  9 08:29:05 2024",
- "timestampMillis": "1733750945160",
+ "dateTimestamp": "Mon Dec  9 09:02:53 2024",
+ "timestampMillis": "1733752973781",
  "report": {
   "path": "/mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/_x/reports/link/imp/impl_1_slr_util_routed.pb",
   "name": "",
@@ -560,8 +560,8 @@
 <ENTRY>
 {
  "type": "ET_Report",
- "dateTimestamp": "Mon Dec  9 08:29:05 2024",
- "timestampMillis": "1733750945170",
+ "dateTimestamp": "Mon Dec  9 09:02:53 2024",
+ "timestampMillis": "1733752973792",
  "report": {
   "path": "/mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/_x/reports/link/imp/impl_1_full_util_routed.rpt",
   "name": "",
@@ -573,8 +573,8 @@
 <ENTRY>
 {
  "type": "ET_Report",
- "dateTimestamp": "Mon Dec  9 08:29:05 2024",
- "timestampMillis": "1733750945179",
+ "dateTimestamp": "Mon Dec  9 09:02:53 2024",
+ "timestampMillis": "1733752973802",
  "report": {
   "path": "/mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/_x/reports/link/imp/impl_1_full_util_routed.pb",
   "name": "",
@@ -586,8 +586,8 @@
 <ENTRY>
 {
  "type": "ET_Report",
- "dateTimestamp": "Mon Dec  9 08:29:05 2024",
- "timestampMillis": "1733750945197",
+ "dateTimestamp": "Mon Dec  9 09:02:53 2024",
+ "timestampMillis": "1733752973823",
  "report": {
   "path": "/mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/_x/reports/link/syn/u96v2_sbc_base_zynq_ultra_ps_e_0_0_synth_1_u96v2_sbc_base_zynq_ultra_ps_e_0_0_utilization_synth.rpt",
   "name": "",
@@ -599,8 +599,8 @@
 <ENTRY>
 {
  "type": "ET_Report",
- "dateTimestamp": "Mon Dec  9 08:29:05 2024",
- "timestampMillis": "1733750945207",
+ "dateTimestamp": "Mon Dec  9 09:02:53 2024",
+ "timestampMillis": "1733752973833",
  "report": {
   "path": "/mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/_x/reports/link/syn/u96v2_sbc_base_axi_intc_0_0_synth_1_u96v2_sbc_base_axi_intc_0_0_utilization_synth.rpt",
   "name": "",
@@ -612,21 +612,8 @@
 <ENTRY>
 {
  "type": "ET_Report",
- "dateTimestamp": "Mon Dec  9 08:29:05 2024",
- "timestampMillis": "1733750945218",
- "report": {
-  "path": "/mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/_x/reports/link/syn/u96v2_sbc_base_xbar_0_synth_1_u96v2_sbc_base_xbar_0_utilization_synth.rpt",
-  "name": "",
-  "fileType": "TEXT",
-  "reportType": "GLOBAL_REPORT_UTILIZATION"
- }
-}
-</ENTRY>
-<ENTRY>
-{
- "type": "ET_Report",
- "dateTimestamp": "Mon Dec  9 08:29:05 2024",
- "timestampMillis": "1733750945228",
+ "dateTimestamp": "Mon Dec  9 09:02:53 2024",
+ "timestampMillis": "1733752973842",
  "report": {
   "path": "/mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/_x/reports/link/syn/u96v2_sbc_base_lzw_compress_1_0_synth_1_u96v2_sbc_base_lzw_compress_1_0_utilization_synth.rpt",
   "name": "lzw_compress",
@@ -638,8 +625,21 @@
 <ENTRY>
 {
  "type": "ET_Report",
- "dateTimestamp": "Mon Dec  9 08:29:05 2024",
- "timestampMillis": "1733750945236",
+ "dateTimestamp": "Mon Dec  9 09:02:53 2024",
+ "timestampMillis": "1733752973851",
+ "report": {
+  "path": "/mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/_x/reports/link/syn/u96v2_sbc_base_xbar_0_synth_1_u96v2_sbc_base_xbar_0_utilization_synth.rpt",
+  "name": "",
+  "fileType": "TEXT",
+  "reportType": "GLOBAL_REPORT_UTILIZATION"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Report",
+ "dateTimestamp": "Mon Dec  9 09:02:53 2024",
+ "timestampMillis": "1733752973861",
  "report": {
   "path": "/mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/_x/reports/link/syn/u96v2_sbc_base_auto_ds_3_synth_1_u96v2_sbc_base_auto_ds_3_utilization_synth.rpt",
   "name": "",
@@ -651,8 +651,8 @@
 <ENTRY>
 {
  "type": "ET_Report",
- "dateTimestamp": "Mon Dec  9 08:29:05 2024",
- "timestampMillis": "1733750945245",
+ "dateTimestamp": "Mon Dec  9 09:02:53 2024",
+ "timestampMillis": "1733752973872",
  "report": {
   "path": "/mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/_x/reports/link/syn/u96v2_sbc_base_auto_pc_3_synth_1_u96v2_sbc_base_auto_pc_3_utilization_synth.rpt",
   "name": "",
@@ -664,8 +664,8 @@
 <ENTRY>
 {
  "type": "ET_Report",
- "dateTimestamp": "Mon Dec  9 08:29:05 2024",
- "timestampMillis": "1733750945259",
+ "dateTimestamp": "Mon Dec  9 09:02:53 2024",
+ "timestampMillis": "1733752973883",
  "report": {
   "path": "/mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/_x/reports/link/syn/u96v2_sbc_base_auto_ds_7_synth_1_u96v2_sbc_base_auto_ds_7_utilization_synth.rpt",
   "name": "",
@@ -677,8 +677,8 @@
 <ENTRY>
 {
  "type": "ET_Report",
- "dateTimestamp": "Mon Dec  9 08:29:05 2024",
- "timestampMillis": "1733750945268",
+ "dateTimestamp": "Mon Dec  9 09:02:53 2024",
+ "timestampMillis": "1733752973893",
  "report": {
   "path": "/mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/_x/reports/link/syn/u96v2_sbc_base_auto_pc_7_synth_1_u96v2_sbc_base_auto_pc_7_utilization_synth.rpt",
   "name": "",
@@ -690,8 +690,8 @@
 <ENTRY>
 {
  "type": "ET_Report",
- "dateTimestamp": "Mon Dec  9 08:29:05 2024",
- "timestampMillis": "1733750945277",
+ "dateTimestamp": "Mon Dec  9 09:02:53 2024",
+ "timestampMillis": "1733752973903",
  "report": {
   "path": "/mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/_x/reports/link/syn/u96v2_sbc_base_auto_ds_9_synth_1_u96v2_sbc_base_auto_ds_9_utilization_synth.rpt",
   "name": "",
@@ -703,8 +703,8 @@
 <ENTRY>
 {
  "type": "ET_Report",
- "dateTimestamp": "Mon Dec  9 08:29:05 2024",
- "timestampMillis": "1733750945286",
+ "dateTimestamp": "Mon Dec  9 09:02:53 2024",
+ "timestampMillis": "1733752973912",
  "report": {
   "path": "/mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/_x/reports/link/syn/u96v2_sbc_base_auto_pc_9_synth_1_u96v2_sbc_base_auto_pc_9_utilization_synth.rpt",
   "name": "",
@@ -716,8 +716,8 @@
 <ENTRY>
 {
  "type": "ET_Report",
- "dateTimestamp": "Mon Dec  9 08:29:05 2024",
- "timestampMillis": "1733750945295",
+ "dateTimestamp": "Mon Dec  9 09:02:53 2024",
+ "timestampMillis": "1733752973923",
  "report": {
   "path": "/mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/_x/reports/link/syn/u96v2_sbc_base_auto_us_0_synth_1_u96v2_sbc_base_auto_us_0_utilization_synth.rpt",
   "name": "",
@@ -729,8 +729,8 @@
 <ENTRY>
 {
  "type": "ET_Report",
- "dateTimestamp": "Mon Dec  9 08:29:05 2024",
- "timestampMillis": "1733750945318",
+ "dateTimestamp": "Mon Dec  9 09:02:53 2024",
+ "timestampMillis": "1733752973945",
  "report": {
   "path": "/mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/_x/reports/link/imp/impl_1_u96v2_sbc_base_wrapper_timing_summary_routed.rpt",
   "name": "",
@@ -742,8 +742,8 @@
 <ENTRY>
 {
  "type": "ET_Report",
- "dateTimestamp": "Mon Dec  9 08:29:05 2024",
- "timestampMillis": "1733750945355",
+ "dateTimestamp": "Mon Dec  9 09:02:53 2024",
+ "timestampMillis": "1733752973969",
  "report": {
   "path": "/mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/_x/reports/link/imp/impl_1_u96v2_sbc_base_wrapper_timing_summary_routed.rpx",
   "name": "",
@@ -755,10 +755,10 @@
 <ENTRY>
 {
  "type": "ET_Status",
- "dateTimestamp": "Mon Dec  9 08:29:05 2024",
- "timestampMillis": "1733750945403",
+ "dateTimestamp": "Mon Dec  9 09:02:54 2024",
+ "timestampMillis": "1733752974013",
  "status": {
-  "cmdId": "acc2c657-3888-4b66-985d-4240d06110ea",
+  "cmdId": "1426914c-64f6-4fdf-af56-0d86ce1a778f",
   "state": "CS_PASSED"
  }
 }
@@ -766,10 +766,10 @@
 <ENTRY>
 {
  "type": "ET_Status",
- "dateTimestamp": "Mon Dec  9 08:29:05 2024",
- "timestampMillis": "1733750945440",
+ "dateTimestamp": "Mon Dec  9 09:02:54 2024",
+ "timestampMillis": "1733752974037",
  "status": {
-  "cmdId": "e955ffdf-7fe6-4969-bd25-a3a1dbb564fa",
+  "cmdId": "1d833ea1-8739-43ba-a150-0bc7a5f930e8",
   "state": "CS_PASSED"
  }
 }
@@ -777,10 +777,10 @@
 <ENTRY>
 {
  "type": "ET_SubCmdStep",
- "dateTimestamp": "Mon Dec  9 08:29:05 2024",
- "timestampMillis": "1733750945505",
+ "dateTimestamp": "Mon Dec  9 09:02:54 2024",
+ "timestampMillis": "1733752974082",
  "buildStep": {
-  "cmdId": "6510167d-cb71-4ee3-9de0-9405df3a72a5",
+  "cmdId": "68ab8873-6e40-45ae-847b-15329bc110fb",
   "name": "rtdgen",
   "logFile": "",
   "commandLine": "rtdgen",
@@ -793,10 +793,10 @@
 <ENTRY>
 {
  "type": "ET_Status",
- "dateTimestamp": "Mon Dec  9 08:29:05 2024",
- "timestampMillis": "1733750945506",
+ "dateTimestamp": "Mon Dec  9 09:02:54 2024",
+ "timestampMillis": "1733752974084",
  "status": {
-  "cmdId": "6510167d-cb71-4ee3-9de0-9405df3a72a5",
+  "cmdId": "68ab8873-6e40-45ae-847b-15329bc110fb",
   "state": "CS_RUNNING"
  }
 }
@@ -804,8 +804,8 @@
 <ENTRY>
 {
  "type": "ET_Report",
- "dateTimestamp": "Mon Dec  9 08:29:05 2024",
- "timestampMillis": "1733750945530",
+ "dateTimestamp": "Mon Dec  9 09:02:54 2024",
+ "timestampMillis": "1733752974092",
  "report": {
   "path": "/mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/_x/link/int/lzw_compress_xml.rtd",
   "name": "",
@@ -817,10 +817,10 @@
 <ENTRY>
 {
  "type": "ET_SubCmdStep",
- "dateTimestamp": "Mon Dec  9 08:29:05 2024",
- "timestampMillis": "1733750945611",
+ "dateTimestamp": "Mon Dec  9 09:02:54 2024",
+ "timestampMillis": "1733752974105",
  "buildStep": {
-  "cmdId": "3b6c88ef-7f50-4cae-ab56-1faa917118d0",
+  "cmdId": "c1097d7b-a926-4806-9425-9d1c256af0f3",
   "name": "cf2sw",
   "logFile": "",
   "commandLine": "cf2sw -a /mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/_x/link/int/address_map.xml -sdsl /mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/_x/link/int/sdsl.dat -xclbin /mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/_x/link/int/xclbin_orig.xml -rtd /mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/_x/link/int/lzw_compress.rtd -o /mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/_x/link/int/lzw_compress.xml",
@@ -844,10 +844,10 @@
 <ENTRY>
 {
  "type": "ET_Status",
- "dateTimestamp": "Mon Dec  9 08:29:05 2024",
- "timestampMillis": "1733750945613",
+ "dateTimestamp": "Mon Dec  9 09:02:54 2024",
+ "timestampMillis": "1733752974106",
  "status": {
-  "cmdId": "3b6c88ef-7f50-4cae-ab56-1faa917118d0",
+  "cmdId": "c1097d7b-a926-4806-9425-9d1c256af0f3",
   "state": "CS_RUNNING"
  }
 }
@@ -855,10 +855,10 @@
 <ENTRY>
 {
  "type": "ET_Status",
- "dateTimestamp": "Mon Dec  9 08:29:06 2024",
- "timestampMillis": "1733750946795",
+ "dateTimestamp": "Mon Dec  9 09:02:55 2024",
+ "timestampMillis": "1733752975373",
  "status": {
-  "cmdId": "3b6c88ef-7f50-4cae-ab56-1faa917118d0",
+  "cmdId": "c1097d7b-a926-4806-9425-9d1c256af0f3",
   "state": "CS_PASSED"
  }
 }
@@ -866,8 +866,8 @@
 <ENTRY>
 {
  "type": "ET_Report",
- "dateTimestamp": "Mon Dec  9 08:29:06 2024",
- "timestampMillis": "1733750946800",
+ "dateTimestamp": "Mon Dec  9 09:02:55 2024",
+ "timestampMillis": "1733752975381",
  "report": {
   "path": "/mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/_x/link/int/systemDiagramModelSlrBaseAddress.json",
   "name": "",
@@ -879,10 +879,10 @@
 <ENTRY>
 {
  "type": "ET_SubCmdStep",
- "dateTimestamp": "Mon Dec  9 08:29:06 2024",
- "timestampMillis": "1733750946801",
+ "dateTimestamp": "Mon Dec  9 09:02:55 2024",
+ "timestampMillis": "1733752975381",
  "buildStep": {
-  "cmdId": "db7143bb-9bba-4969-a5bc-39e8739cdf10",
+  "cmdId": "e5587f19-f42f-49e1-b385-948c4bbef2d9",
   "name": "rtdgen",
   "logFile": "",
   "commandLine": "writeSystemDiagram",
@@ -898,10 +898,10 @@
 <ENTRY>
 {
  "type": "ET_Status",
- "dateTimestamp": "Mon Dec  9 08:29:06 2024",
- "timestampMillis": "1733750946801",
+ "dateTimestamp": "Mon Dec  9 09:02:55 2024",
+ "timestampMillis": "1733752975382",
  "status": {
-  "cmdId": "db7143bb-9bba-4969-a5bc-39e8739cdf10",
+  "cmdId": "e5587f19-f42f-49e1-b385-948c4bbef2d9",
   "state": "CS_RUNNING"
  }
 }
@@ -909,10 +909,10 @@
 <ENTRY>
 {
  "type": "ET_Status",
- "dateTimestamp": "Mon Dec  9 08:29:06 2024",
- "timestampMillis": "1733750946805",
+ "dateTimestamp": "Mon Dec  9 09:02:55 2024",
+ "timestampMillis": "1733752975387",
  "status": {
-  "cmdId": "db7143bb-9bba-4969-a5bc-39e8739cdf10",
+  "cmdId": "e5587f19-f42f-49e1-b385-948c4bbef2d9",
   "state": "CS_PASSED"
  }
 }
@@ -920,10 +920,10 @@
 <ENTRY>
 {
  "type": "ET_Status",
- "dateTimestamp": "Mon Dec  9 08:29:06 2024",
- "timestampMillis": "1733750946808",
+ "dateTimestamp": "Mon Dec  9 09:02:55 2024",
+ "timestampMillis": "1733752975390",
  "status": {
-  "cmdId": "6510167d-cb71-4ee3-9de0-9405df3a72a5",
+  "cmdId": "68ab8873-6e40-45ae-847b-15329bc110fb",
   "state": "CS_PASSED"
  }
 }
@@ -931,10 +931,10 @@
 <ENTRY>
 {
  "type": "ET_SubCmdStep",
- "dateTimestamp": "Mon Dec  9 08:29:06 2024",
- "timestampMillis": "1733750946821",
+ "dateTimestamp": "Mon Dec  9 09:02:55 2024",
+ "timestampMillis": "1733752975410",
  "buildStep": {
-  "cmdId": "6e868406-34ba-4b16-bdbb-a1f201838c6a",
+  "cmdId": "073c3215-6ec0-42bf-a8b7-a517bc7eb84a",
   "name": "xclbinutil",
   "logFile": "",
   "commandLine": "xclbinutil --add-section BITSTREAM:RAW:/mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/_x/link/int/system.bit --force --target hw --key-value SYS:dfx_enable:false --add-section :JSON:/mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/_x/link/int/lzw_compress.rtd --add-section CLOCK_FREQ_TOPOLOGY:JSON:/mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/_x/link/int/lzw_compress_xml.rtd --add-section BUILD_METADATA:JSON:/mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/_x/link/int/lzw_compress_build.rtd --add-section EMBEDDED_METADATA:RAW:/mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/_x/link/int/lzw_compress.xml --add-section SYSTEM_METADATA:RAW:/mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/_x/link/int/systemDiagramModelSlrBaseAddress.json --key-value SYS:PlatformVBNV:avnet.com_u96v2_sbc_base_u96v2_sbc_base_1_0 --output /mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/lzw_compress.xclbin",
@@ -969,10 +969,10 @@
 <ENTRY>
 {
  "type": "ET_Status",
- "dateTimestamp": "Mon Dec  9 08:29:06 2024",
- "timestampMillis": "1733750946822",
+ "dateTimestamp": "Mon Dec  9 09:02:55 2024",
+ "timestampMillis": "1733752975410",
  "status": {
-  "cmdId": "6e868406-34ba-4b16-bdbb-a1f201838c6a",
+  "cmdId": "073c3215-6ec0-42bf-a8b7-a517bc7eb84a",
   "state": "CS_RUNNING"
  }
 }
@@ -980,10 +980,10 @@
 <ENTRY>
 {
  "type": "ET_Status",
- "dateTimestamp": "Mon Dec  9 08:29:07 2024",
- "timestampMillis": "1733750947744",
+ "dateTimestamp": "Mon Dec  9 09:02:56 2024",
+ "timestampMillis": "1733752976459",
  "status": {
-  "cmdId": "6e868406-34ba-4b16-bdbb-a1f201838c6a",
+  "cmdId": "073c3215-6ec0-42bf-a8b7-a517bc7eb84a",
   "state": "CS_PASSED"
  }
 }
@@ -991,10 +991,10 @@
 <ENTRY>
 {
  "type": "ET_SubCmdStep",
- "dateTimestamp": "Mon Dec  9 08:29:07 2024",
- "timestampMillis": "1733750947757",
+ "dateTimestamp": "Mon Dec  9 09:02:56 2024",
+ "timestampMillis": "1733752976477",
  "buildStep": {
-  "cmdId": "32d01373-5e37-448c-aaca-93edf3aae4be",
+  "cmdId": "558e3f49-bc3e-4ba3-8dd6-a184e8785900",
   "name": "xclbinutilinfo",
   "logFile": "",
   "commandLine": "xclbinutil --quiet --force --info /mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/lzw_compress.xclbin.info --input /mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/lzw_compress.xclbin",
@@ -1014,10 +1014,10 @@
 <ENTRY>
 {
  "type": "ET_Status",
- "dateTimestamp": "Mon Dec  9 08:29:07 2024",
- "timestampMillis": "1733750947758",
+ "dateTimestamp": "Mon Dec  9 09:02:56 2024",
+ "timestampMillis": "1733752976478",
  "status": {
-  "cmdId": "32d01373-5e37-448c-aaca-93edf3aae4be",
+  "cmdId": "558e3f49-bc3e-4ba3-8dd6-a184e8785900",
   "state": "CS_RUNNING"
  }
 }
@@ -1025,10 +1025,10 @@
 <ENTRY>
 {
  "type": "ET_Status",
- "dateTimestamp": "Mon Dec  9 08:29:08 2024",
- "timestampMillis": "1733750948567",
+ "dateTimestamp": "Mon Dec  9 09:02:57 2024",
+ "timestampMillis": "1733752977435",
  "status": {
-  "cmdId": "32d01373-5e37-448c-aaca-93edf3aae4be",
+  "cmdId": "558e3f49-bc3e-4ba3-8dd6-a184e8785900",
   "state": "CS_PASSED"
  }
 }
@@ -1036,10 +1036,10 @@
 <ENTRY>
 {
  "type": "ET_SubCmdStep",
- "dateTimestamp": "Mon Dec  9 08:29:08 2024",
- "timestampMillis": "1733750948735",
+ "dateTimestamp": "Mon Dec  9 09:02:57 2024",
+ "timestampMillis": "1733752977448",
  "buildStep": {
-  "cmdId": "b5a1e265-db24-40e2-a3e7-9eda3943e9f3",
+  "cmdId": "4721f5f3-0853-4583-a0f1-9cbb8a44832e",
   "name": "generate_sc_driver",
   "logFile": "",
   "commandLine": "",
@@ -1052,10 +1052,10 @@
 <ENTRY>
 {
  "type": "ET_Status",
- "dateTimestamp": "Mon Dec  9 08:29:08 2024",
- "timestampMillis": "1733750948737",
+ "dateTimestamp": "Mon Dec  9 09:02:57 2024",
+ "timestampMillis": "1733752977449",
  "status": {
-  "cmdId": "b5a1e265-db24-40e2-a3e7-9eda3943e9f3",
+  "cmdId": "4721f5f3-0853-4583-a0f1-9cbb8a44832e",
   "state": "CS_RUNNING"
  }
 }
@@ -1063,10 +1063,10 @@
 <ENTRY>
 {
  "type": "ET_Status",
- "dateTimestamp": "Mon Dec  9 08:29:08 2024",
- "timestampMillis": "1733750948751",
+ "dateTimestamp": "Mon Dec  9 09:02:57 2024",
+ "timestampMillis": "1733752977461",
  "status": {
-  "cmdId": "b5a1e265-db24-40e2-a3e7-9eda3943e9f3",
+  "cmdId": "4721f5f3-0853-4583-a0f1-9cbb8a44832e",
   "state": "CS_PASSED"
  }
 }
@@ -1074,8 +1074,8 @@
 <ENTRY>
 {
  "type": "ET_Report",
- "dateTimestamp": "Mon Dec  9 08:29:08 2024",
- "timestampMillis": "1733750948787",
+ "dateTimestamp": "Mon Dec  9 09:02:57 2024",
+ "timestampMillis": "1733752977526",
  "report": {
   "path": "/mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/_x/reports/link/system_estimate_lzw_compress.xtxt",
   "name": "",
@@ -1087,8 +1087,8 @@
 <ENTRY>
 {
  "type": "ET_Report",
- "dateTimestamp": "Mon Dec  9 08:29:08 2024",
- "timestampMillis": "1733750948873",
+ "dateTimestamp": "Mon Dec  9 09:02:57 2024",
+ "timestampMillis": "1733752977728",
  "report": {
   "path": "/mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/_x/reports/link/v++_link_lzw_compress_guidance.html",
   "name": "",
@@ -1100,8 +1100,8 @@
 <ENTRY>
 {
  "type": "ET_Report",
- "dateTimestamp": "Mon Dec  9 08:29:08 2024",
- "timestampMillis": "1733750948874",
+ "dateTimestamp": "Mon Dec  9 09:02:57 2024",
+ "timestampMillis": "1733752977729",
  "report": {
   "path": "/mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/_x/v++_link_lzw_compress_guidance.pb",
   "name": "",
@@ -1113,8 +1113,8 @@
 <ENTRY>
 {
  "type": "ET_Report",
- "dateTimestamp": "Mon Dec  9 08:29:08 2024",
- "timestampMillis": "1733750948883",
+ "dateTimestamp": "Mon Dec  9 09:02:57 2024",
+ "timestampMillis": "1733752977743",
  "report": {
   "path": "/mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/_x/logs/optraceViewer.html",
   "name": "",
@@ -1126,10 +1126,10 @@
 <ENTRY>
 {
  "type": "ET_Status",
- "dateTimestamp": "Mon Dec  9 08:29:08 2024",
- "timestampMillis": "1733750948890",
+ "dateTimestamp": "Mon Dec  9 09:02:57 2024",
+ "timestampMillis": "1733752977755",
  "status": {
-  "cmdId": "a4941289-7b4e-4bed-9606-98beeaa049a5",
+  "cmdId": "408bbea3-eeb2-4840-a701-6cb3f3f357e7",
   "state": "CS_PASSED"
  }
 }
