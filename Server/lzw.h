@@ -31,6 +31,30 @@ typedef struct
     unsigned int fill;         // tells us how many entries we've currently stored 
 } assoc_mem;
 
+/*========================================================================================================================================*/
+#define MAX_DICT_SIZE 4096 
+#define INIT_DICT_SIZE 256 
+#define MAX_KEY_LENGTH 16  
+
+typedef struct {
+    char key[MAX_KEY_LENGTH]; 
+    int value;         
+} DictEntry;
+
+
+typedef struct {
+    DictEntry entries[MAX_DICT_SIZE];
+    int size;              
+} Dictionary;
+
+
+void init_dictionary(Dictionary *dict);
+int find_in_dict(Dictionary *dict, const char *key);
+void add_to_dict(Dictionary *dict, const char *key);
+
+
+/*========================================================================================================================================*/
+
 // 定义哈希表操作和关联存储器操作的相关函数
 void hash_insert(unsigned long* hash_table, unsigned int key, unsigned int value, bool* collision);
 void hash_lookup(unsigned long* hash_table, unsigned int key, bool* hit, unsigned int* result);

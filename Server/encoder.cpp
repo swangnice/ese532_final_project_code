@@ -254,7 +254,19 @@ int main(int argc, char* argv[]) {
     unsigned int temp_out_buffer_size = 0;
     size_t out_offset = 0;
     for (unsigned int i = 0; i < chunk_count; i++) {
-		lzw_compress_v2(chunks[i], &chunk_sizes[i], &dup_flag[i], &dup_index[i], temp_out_buffer, &temp_out_buffer_size);
+		if (dup_flag[i] == 0) {
+			
+			lzw_compress_v2(chunks[i], &chunk_sizes[i], &dup_flag[i], &dup_index[i], temp_out_buffer, &temp_out_buffer_size);
+			// memcpy(out_buffer + out_offset, temp_out_buffer, temp_out_buffer_size);
+			// out_offset += temp_out_buffer_size;
+		}
+		else{
+			temp_out_buffer[0] = ((dup_index[i]<<1) | 0x00000001) & 0xff;
+			temp_out_buffer[1] = (((dup_index[i]<<1) | 0x00000001) >> 8) & 0xff;
+			temp_out_buffer[2] = (((dup_index[i]<<1) | 0x00000001) >> 16) & 0xff;
+			temp_out_buffer[3] = (((dup_index[i]<<1) | 0x00000001) >> 24) & 0xff;
+			temp_out_buffer_size = 4;
+		}
         memcpy(out_buffer + out_offset, temp_out_buffer, temp_out_buffer_size);
         out_offset += temp_out_buffer_size;
     }

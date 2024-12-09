@@ -511,8 +511,86 @@ int convert_output(uint16_t in[], uint8_t out[], int input_size){
     return output_size;
 }
 
+/*========================================================================================================================================*/
+void init_dictionary(Dictionary *dict) {
+    dict->size = 0;
+
+
+    for (int i = 0; i < INIT_DICT_SIZE; i++) {
+        dict->entries[i].key[0] = (char)i;
+        dict->entries[i].key[1] = '\0';
+        dict->entries[i].value = i;
+    }
+    dict->size = INIT_DICT_SIZE;
+}
+
+
+int find_in_dict(Dictionary *dict, const char *key) {
+    for (int i = 0; i < dict->size; i++) {
+        if (strcmp(dict->entries[i].key, key) == 0) {
+            return dict->entries[i].value;
+        }
+    }
+    return -1; // Not found
+}
+
+
+void add_to_dict(Dictionary *dict, const char *key) {
+    if (dict->size < MAX_DICT_SIZE) {
+        strncpy(dict->entries[dict->size].key, key, MAX_KEY_LENGTH);
+        dict->entries[dict->size].key[MAX_KEY_LENGTH - 1] = '\0'; // 确保字符串结束符
+        dict->entries[dict->size].value = dict->size;
+        dict->size++;
+    }
+}
+
 void lzw_compress_v10086(unsigned char* s1, int* length, int *is_dup, int *dup_index,  uint8_t *temp_out_buffer, unsigned int *temp_out_buffer_size){
-    
+    Dictionary dict;
+    init_dictionary(&dict);
+
+    char current[MAX_KEY_LENGTH] = {0};
+    char next[MAX_KEY_LENGTH] = {0};
+
+    int current_len = 0;
+    unsigned int output_index = 0;
+
+    // 遍历输入字符串
+    for (int i = 0; i < length; i++) {
+        current[current_len] = s1[i];
+        current[current_len + 1] = '\0';
+
+        if (find_in_dict(&dict, current) != -1) {
+            current_len++;
+        } else {
+            // 输出当前序列的编码
+            current[current_len] = '\0';
+            int code = find_in_dict(&dict, current);
+            if (output_index < *temp_out_buffer_size) {
+                temp_out_buffer[output_index++] = (uint8_t)code;
+            }
+
+            // 添加新序列到字典
+            next[0] = s1[i];
+            next[1] = '\0';
+            strcat(current, next);
+            add_to_dict(&dict, current);
+
+            // 重置当前序列
+            current[0] = s1[i];
+            current[1] = '\0';
+            current_len = 1;
+        }
+    }
+
+    // 输出最后一个序列
+    if (current_len > 0) {
+        int code = find_in_dict(&dict, current);
+        if (output_index < *temp_out_buffer_size) {
+            temp_out_buffer[output_index++] = (uint8_t)code;
+        }
+    }
+
+    *temp_out_buffer_size = output_index;
 }
 
 
