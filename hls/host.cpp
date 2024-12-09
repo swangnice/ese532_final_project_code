@@ -164,7 +164,8 @@ int main(int argc, char** argv)
 	chunk_count = 0;
     chunk_sizes = (int *)malloc(sizeof(int) * estimated_chunks);
 	cdc_timer.start();
-	rabin_fingerprint_cdc(&buffer[HEADER], length, &chunks, &chunk_count, &chunk_sizes);
+	//rabin_fingerprint_cdc(&buffer[HEADER], length, &chunks, &chunk_count, &chunk_sizes);
+    gear_based_fastcdc(&buffer[HEADER], length, &chunks, &chunk_count, &chunk_sizes);
 	cdc_timer.stop();
 	offset += length;
 	writer++;
@@ -191,7 +192,8 @@ int main(int argc, char** argv)
 		//printf("length: %d offset %d\n",length,offset);
 		memcpy(&file[offset], &buffer[HEADER], length);
 		cdc_timer.start();
-		rabin_fingerprint_cdc(&buffer[HEADER], length, &chunks, &chunk_count, &chunk_sizes);
+		gear_based_fastcdc(&buffer[HEADER], length, &chunks, &chunk_count, &chunk_sizes);
+        //rabin_fingerprint_cdc(&buffer[HEADER], length, &chunks, &chunk_count, &chunk_sizes);
 		cdc_timer.stop();
 		
 		offset += length;
