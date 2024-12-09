@@ -19,7 +19,7 @@ unsigned int my_hash(unsigned long key)
     hashed ^= hashed >> 11;
     hashed += hashed << 15;
     return hashed & 0x7FFF;          // hash output is 15 bits
-    //return hashed & 0xFFF;   
+    //return hashed & 0xFFF;
 }
 
 void hash_lookup(unsigned long* hash_table, unsigned int key, bool* hit, unsigned int* result)
@@ -221,8 +221,7 @@ void lzw_compress(unsigned char* s1, int* length, uint16_t* out_code, int *out_l
         i += 1;
     }
     *out_len = j;
-
-} 
+}
 
 /*
 Input:
@@ -510,6 +509,10 @@ int convert_output(uint16_t in[], uint8_t out[], int input_size){
     
 
     return output_size;
+}
+
+void lzw_compress_v10086(unsigned char* s1, int* length, int *is_dup, int *dup_index,  uint8_t *temp_out_buffer, unsigned int *temp_out_buffer_size){
+    
 }
 
 
