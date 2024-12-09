@@ -240,7 +240,6 @@ void lzw_compress_v2(unsigned char* s1, int* length, int *is_dup, int *dup_index
     //printf("Begin lzw_compress_v2\n");
     // printf("is_dup: %d\n", *is_dup);
     // printf("dup_index: %d\n", *dup_index);
-	if (*is_dup == 0){
 	        unsigned long hash_table[CAPACITY];
 	        assoc_mem my_assoc_mem;
 	        uint16_t out_code[CAPACITY];
@@ -323,15 +322,7 @@ void lzw_compress_v2(unsigned char* s1, int* length, int *is_dup, int *dup_index
 	        temp_out_buffer[3] = ((output_size << 1) >> 24) & 0xff;
 	        *temp_out_buffer_size = output_size + 4;
 	    //printf("End build buffer\n");
-	    }
-	    if (*is_dup == 1){
-	        // Generate header and combine with output
-	        temp_out_buffer[0] = ((*dup_index<<1) | 0x00000001) & 0xff;
-	        temp_out_buffer[1] = (((*dup_index<<1) | 0x00000001) >> 8) & 0xff;
-	        temp_out_buffer[2] = (((*dup_index<<1) | 0x00000001) >> 16) & 0xff;
-	        temp_out_buffer[3] = (((*dup_index<<1) | 0x00000001) >> 24) & 0xff;
-	        *temp_out_buffer_size = 4;
-	    }
+
 } 
 //out_code -> in
 
@@ -545,35 +536,31 @@ void add_to_dict(Dictionary *dict, const char *key) {
 }
 
 void lzw_compress_v10086(unsigned char* s1, int* length, int *is_dup, int *dup_index,  uint8_t *temp_out_buffer, unsigned int *temp_out_buffer_size){
-    Dictionary dict;
-    init_dictionary(&dict);
+    char current[32] = {0};
+    char next[32] = {0};
 
-    char current[MAX_KEY_LENGTH] = {0};
-    char next[MAX_KEY_LENGTH] = {0};
-
+    uint16_t output_index = 0;
     int current_len = 0;
-    unsigned int output_index = 0;
 
-    // 遍历输入字符串
-    for (int i = 0; i < *length; i++) {
+    for (int i = 0; i < length; i++) {
         current[current_len] = s1[i];
         current[current_len + 1] = '\0';
 
-        if (find_in_dict(&dict, current) != -1) {
+        if (find_in_dict(current) != -1) {
             current_len++;
         } else {
             // 输出当前序列的编码
             current[current_len] = '\0';
-            int code = find_in_dict(&dict, current);
+            int code = find_in_dict(current);
             if (output_index < *temp_out_buffer_size) {
-                temp_out_buffer[output_index++] = (uint8_t)code;
+                temp_out_buffer[output_index++] = (uint16_t)code;
             }
 
             // 添加新序列到字典
             next[0] = s1[i];
             next[1] = '\0';
             strcat(current, next);
-            add_to_dict(&dict, current);
+            add_to_dict(current);
 
             // 重置当前序列
             current[0] = s1[i];
@@ -584,9 +571,9 @@ void lzw_compress_v10086(unsigned char* s1, int* length, int *is_dup, int *dup_i
 
     // 输出最后一个序列
     if (current_len > 0) {
-        int code = find_in_dict(&dict, current);
+        int code = find_in_dict(current);
         if (output_index < *temp_out_buffer_size) {
-            temp_out_buffer[output_index++] = (uint8_t)code;
+            temp_out_buffer[output_index++] = (uint16_t)code;
         }
     }
 
