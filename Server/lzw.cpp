@@ -555,7 +555,7 @@ void lzw_compress_v10086(unsigned char* s1, int* length, int *is_dup, int *dup_i
     unsigned int output_index = 0;
 
     // 遍历输入字符串
-    for (int i = 0; i < length; i++) {
+    for (int i = 0; i < *length; i++) {
         current[current_len] = s1[i];
         current[current_len + 1] = '\0';
 
