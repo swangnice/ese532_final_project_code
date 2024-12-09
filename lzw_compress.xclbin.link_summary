@@ -1,0 +1,1136 @@
+<ENTRY>
+{
+ "thisFile": "/mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/lzw_compress.xclbin.link_summary",
+ "connectId": "",
+ "serverToken": "",
+ "timestamp": "0"
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_CmdStep",
+ "dateTimestamp": "Mon Dec  9 08:13:22 2024",
+ "timestampMillis": "1733750002467",
+ "buildStep": {
+  "cmdId": "a4941289-7b4e-4bed-9606-98beeaa049a5",
+  "name": "v++",
+  "logFile": "/mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/_x/link/link.steps.log",
+  "commandLine": "/mnt/pollux/software/xilinx/2020.2/Vitis/2020.2/bin/unwrapped/lnx64.o/v++  --xp \"vivado_prop:run.__KERNEL__.{STEPS.SYNTH_DESIGN.ARGS.MORE OPTIONS}={-directive sdx_optimization_effort_high}\" --xp \"misc:report=type report_timing_summary name impl_report_timing_summary_route_design_summary steps {route_design} runs {impl_1} options {-max_paths 10}\" --xp \"misc:report=type report_timing_summary name impl_report_timing_summary_post_route_phys_opt_design_summary steps {post_route_phys_opt_design} runs {impl_1} options {-max_paths 10}\" --target hw --link --config ./hls/design.cfg -olzw_compress.xclbin lzw_compress.xo ",
+  "args": [
+   "--target",
+   "hw",
+   "--link",
+   "--config",
+   "./hls/design.cfg",
+   "-olzw_compress.xclbin",
+   "lzw_compress.xo"
+  ],
+  "iniFiles": [
+   {
+    "path": "/mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/hls/design.cfg",
+    "content": "platform=u96v2_sbc_base\ndebug=1\nsave-temps=1\n\n[connectivity]\nnk=lzw_compress:1:lzw_compress_1\n\n# sp=lzw_compress_1.s1:HP0\n# sp=lzw_compress_1.length:HP0\n# sp=lzw_compress_1.out_code:HP0\n# sp=lzw_compress_1.out_lrngth:HP0\n"
+   }
+  ],
+  "cwd": "/mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Status",
+ "dateTimestamp": "Mon Dec  9 08:13:22 2024",
+ "timestampMillis": "1733750002470",
+ "status": {
+  "cmdId": "a4941289-7b4e-4bed-9606-98beeaa049a5",
+  "state": "CS_RUNNING"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_FlowMetaData",
+ "dateTimestamp": "Mon Dec  9 08:13:25 2024",
+ "timestampMillis": "1733750005543",
+ "buildSummary": {
+  "hardwarePlatform": "u96v2_sbc_base.xpfm",
+  "hardwareDsa": "u96v2_sbc_base.xsa",
+  "platformDirectory": "/home1/e/ese5320/u96v2_sbc_crypto_base",
+  "runtime": "OpenCL",
+  "systemConfig": "Linux",
+  "flow": "BF_LINK",
+  "target": "TT_HW",
+  "binaryContainer": {
+   "base": {
+    "type": "BT_UKNOWN",
+    "name": "lzw_compress",
+    "file": "/mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/lzw_compress.xclbin",
+    "reports": [],
+    "uuid": ""
+   },
+   "kernels": []
+  },
+  "kernels": [
+   {
+    "base": {
+     "type": "KERNEL",
+     "name": "lzw_compress",
+     "file": "/mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/lzw_compress.xo",
+     "reports": [],
+     "uuid": ""
+    },
+    "sources": [
+     "/mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/_x/link/int/xo/lzw_compress/lzw_compress/cpu_sources/lzw.cpp"
+    ],
+    "psSources": [],
+    "cuNames": [
+     "lzw_compress_1"
+    ],
+    "type": "HLS",
+    "frequency": 0,
+    "freqUnits": ""
+   }
+  ],
+  "toolVersion": "Vitis V++ Compiler Release 2020.2. SW Build (by xbuild) on 2020-11-18-05:13:29"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_SubCmdStep",
+ "dateTimestamp": "Mon Dec  9 08:13:25 2024",
+ "timestampMillis": "1733750005822",
+ "buildStep": {
+  "cmdId": "eecdea33-bbd3-416b-94dd-3ef3321b3600",
+  "name": "system_link",
+  "logFile": "",
+  "commandLine": "system_link --xo /mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/lzw_compress.xo -keep --config /mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/_x/link/int/syslinkConfig.ini --xpfm /home1/e/ese5320/u96v2_sbc_crypto_base/u96v2_sbc_base.xpfm --target hw --output_dir /mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/_x/link/int --temp_dir /mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/_x/link/sys_link",
+  "args": [
+   "--xo",
+   "/mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/lzw_compress.xo",
+   "-keep",
+   "--config",
+   "/mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/_x/link/int/syslinkConfig.ini",
+   "--xpfm",
+   "/home1/e/ese5320/u96v2_sbc_crypto_base/u96v2_sbc_base.xpfm",
+   "--target",
+   "hw",
+   "--output_dir",
+   "/mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/_x/link/int",
+   "--temp_dir",
+   "/mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/_x/link/sys_link"
+  ],
+  "iniFiles": [
+   {
+    "path": "/mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/_x/link/int/syslinkConfig.ini",
+    "content": "nk=lzw_compress:1:lzw_compress_1\n\n"
+   }
+  ],
+  "cwd": "/mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Status",
+ "dateTimestamp": "Mon Dec  9 08:13:25 2024",
+ "timestampMillis": "1733750005823",
+ "status": {
+  "cmdId": "eecdea33-bbd3-416b-94dd-3ef3321b3600",
+  "state": "CS_RUNNING"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Status",
+ "dateTimestamp": "Mon Dec  9 08:13:35 2024",
+ "timestampMillis": "1733750015108",
+ "status": {
+  "cmdId": "eecdea33-bbd3-416b-94dd-3ef3321b3600",
+  "state": "CS_PASSED"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_SubCmdStep",
+ "dateTimestamp": "Mon Dec  9 08:13:35 2024",
+ "timestampMillis": "1733750015120",
+ "buildStep": {
+  "cmdId": "36cf0d58-499a-4be8-b571-6b190132dd27",
+  "name": "cf2sw",
+  "logFile": "",
+  "commandLine": "cf2sw -sdsl /mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/_x/link/int/sdsl.dat -rtd /mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/_x/link/int/cf2sw.rtd -nofilter /mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/_x/link/int/cf2sw_full.rtd -xclbin /mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/_x/link/int/xclbin_orig.xml -o /mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/_x/link/int/xclbin_orig.1.xml",
+  "args": [
+   "-sdsl",
+   "/mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/_x/link/int/sdsl.dat",
+   "-rtd",
+   "/mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/_x/link/int/cf2sw.rtd",
+   "-nofilter",
+   "/mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/_x/link/int/cf2sw_full.rtd",
+   "-xclbin",
+   "/mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/_x/link/int/xclbin_orig.xml",
+   "-o",
+   "/mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/_x/link/int/xclbin_orig.1.xml"
+  ],
+  "iniFiles": [],
+  "cwd": "/mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Status",
+ "dateTimestamp": "Mon Dec  9 08:13:35 2024",
+ "timestampMillis": "1733750015121",
+ "status": {
+  "cmdId": "36cf0d58-499a-4be8-b571-6b190132dd27",
+  "state": "CS_RUNNING"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Status",
+ "dateTimestamp": "Mon Dec  9 08:13:36 2024",
+ "timestampMillis": "1733750016399",
+ "status": {
+  "cmdId": "36cf0d58-499a-4be8-b571-6b190132dd27",
+  "state": "CS_PASSED"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_SubCmdStep",
+ "dateTimestamp": "Mon Dec  9 08:13:36 2024",
+ "timestampMillis": "1733750016416",
+ "buildStep": {
+  "cmdId": "cb932988-f0ae-4ee4-9967-0b0e02e0cfcd",
+  "name": "rtd2_system_diagram",
+  "logFile": "",
+  "commandLine": "rtd2SystemDiagram",
+  "args": [],
+  "iniFiles": [],
+  "cwd": "/mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Status",
+ "dateTimestamp": "Mon Dec  9 08:13:36 2024",
+ "timestampMillis": "1733750016418",
+ "status": {
+  "cmdId": "cb932988-f0ae-4ee4-9967-0b0e02e0cfcd",
+  "state": "CS_RUNNING"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Report",
+ "dateTimestamp": "Mon Dec  9 08:13:37 2024",
+ "timestampMillis": "1733750017312",
+ "report": {
+  "path": "/mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/_x/link/int/systemDiagramModel.json",
+  "name": "",
+  "fileType": "JSON",
+  "reportType": "SYSTEM_DIAGRAM"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Status",
+ "dateTimestamp": "Mon Dec  9 08:13:37 2024",
+ "timestampMillis": "1733750017316",
+ "status": {
+  "cmdId": "cb932988-f0ae-4ee4-9967-0b0e02e0cfcd",
+  "state": "CS_PASSED"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_SubCmdStep",
+ "dateTimestamp": "Mon Dec  9 08:13:37 2024",
+ "timestampMillis": "1733750017333",
+ "buildStep": {
+  "cmdId": "e955ffdf-7fe6-4969-bd25-a3a1dbb564fa",
+  "name": "vpl",
+  "logFile": "",
+  "commandLine": "vpl -t hw -f u96v2_sbc_base -g --remote_ip_cache /mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/.ipcache -s --output_dir /mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/_x/link/int --log_dir /mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/_x/logs/link --report_dir /mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/_x/reports/link --config /mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/_x/link/int/vplConfig.ini -k /mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/_x/link/int/kernel_info.dat --webtalk_flag Vitis --temp_dir /mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/_x/link --no-info --iprepo /mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/_x/link/int/xo/ip_repo/xilinx_com_hls_lzw_compress_1_0 --messageDb /mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/_x/link/run_link/vpl.pb /mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/_x/link/int/dr.bd.tcl",
+  "args": [
+   "-t",
+   "hw",
+   "-f",
+   "u96v2_sbc_base",
+   "-g",
+   "--remote_ip_cache",
+   "/mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/.ipcache",
+   "-s",
+   "--output_dir",
+   "/mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/_x/link/int",
+   "--log_dir",
+   "/mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/_x/logs/link",
+   "--report_dir",
+   "/mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/_x/reports/link",
+   "--config",
+   "/mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/_x/link/int/vplConfig.ini",
+   "-k",
+   "/mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/_x/link/int/kernel_info.dat",
+   "--webtalk_flag",
+   "Vitis",
+   "--temp_dir",
+   "/mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/_x/link",
+   "--no-info",
+   "--iprepo",
+   "/mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/_x/link/int/xo/ip_repo/xilinx_com_hls_lzw_compress_1_0",
+   "--messageDb",
+   "/mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/_x/link/run_link/vpl.pb",
+   "/mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/_x/link/int/dr.bd.tcl"
+  ],
+  "iniFiles": [
+   {
+    "path": "/mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/_x/link/int/vplConfig.ini",
+    "content": "[advanced]\nmisc=report=type report_timing_summary name impl_report_timing_summary_route_design_summary steps {route_design} runs {impl_1} options {-max_paths 10}\nmisc=report=type report_timing_summary name impl_report_timing_summary_post_route_phys_opt_design_summary steps {post_route_phys_opt_design} runs {impl_1} options {-max_paths 10}\nparam=compiler.enablePerformanceTrace=1\nparam=hw_emu.enableDebugWaveform=1\nparam=hw_emu.enableProfiling=1\nparam=compiler.vppCurrentWorkingDir=/mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code\nmisc=BinaryName=lzw_compress\n\n[connectivity]\nnk=lzw_compress:1:lzw_compress_1\n\n[vivado]\nprop=run.__KERNEL__.{STEPS.SYNTH_DESIGN.ARGS.MORE OPTIONS}={-directive sdx_optimization_effort_high}\n\n"
+   }
+  ],
+  "cwd": "/mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Status",
+ "dateTimestamp": "Mon Dec  9 08:13:37 2024",
+ "timestampMillis": "1733750017334",
+ "status": {
+  "cmdId": "e955ffdf-7fe6-4969-bd25-a3a1dbb564fa",
+  "state": "CS_RUNNING"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_CmdStep",
+ "dateTimestamp": "Mon Dec  9 08:13:38 2024",
+ "timestampMillis": "1733750018721",
+ "buildStep": {
+  "cmdId": "acc2c657-3888-4b66-985d-4240d06110ea",
+  "name": "vpl",
+  "logFile": "/mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/_x/link/link.steps.log",
+  "commandLine": "/mnt/pollux/software/xilinx/2020.2/Vitis/2020.2/bin/unwrapped/lnx64.o/vpl -t hw -f u96v2_sbc_base -g --remote_ip_cache /mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/.ipcache -s --output_dir /mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/_x/link/int --log_dir /mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/_x/logs/link --report_dir /mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/_x/reports/link --config /mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/_x/link/int/vplConfig.ini -k /mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/_x/link/int/kernel_info.dat --webtalk_flag Vitis --temp_dir /mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/_x/link --no-info --iprepo /mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/_x/link/int/xo/ip_repo/xilinx_com_hls_lzw_compress_1_0 --messageDb /mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/_x/link/run_link/vpl.pb /mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/_x/link/int/dr.bd.tcl ",
+  "args": [],
+  "iniFiles": [],
+  "cwd": "/mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/_x/link/run_link"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Status",
+ "dateTimestamp": "Mon Dec  9 08:13:38 2024",
+ "timestampMillis": "1733750018721",
+ "status": {
+  "cmdId": "acc2c657-3888-4b66-985d-4240d06110ea",
+  "state": "CS_RUNNING"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_VivadoProject",
+ "dateTimestamp": "Mon Dec  9 08:14:01 2024",
+ "timestampMillis": "1733750041169",
+ "vivadoProject": {
+  "openDir": "/mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/_x/link/vivado/vpl",
+  "openScript": "openprj.tcl",
+  "relativeProject": "prj/prj.xpr"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_SubCmdStep",
+ "dateTimestamp": "Mon Dec  9 08:14:01 2024",
+ "timestampMillis": "1733750041176",
+ "buildStep": {
+  "cmdId": "cfe8a2b5-aa36-4bfa-8551-712484371f67",
+  "name": "vivado",
+  "logFile": "/mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/_x/link/vivado/vpl/vivado.log",
+  "commandLine": "vivado -log vivado.log -applog -m64 -messageDb vivado.pb -mode batch -source vpl.tcl -notrace",
+  "args": [
+   "-log",
+   "vivado.log",
+   "-applog",
+   " -m64",
+   "-messageDb",
+   "vivado.pb",
+   "-mode",
+   "batch",
+   "-source",
+   "vpl.tcl",
+   "-notrace"
+  ],
+  "iniFiles": [],
+  "cwd": "/mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/_x/link/run_link"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Status",
+ "dateTimestamp": "Mon Dec  9 08:14:01 2024",
+ "timestampMillis": "1733750041179",
+ "status": {
+  "cmdId": "cfe8a2b5-aa36-4bfa-8551-712484371f67",
+  "state": "CS_RUNNING"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Status",
+ "dateTimestamp": "Mon Dec  9 08:29:03 2024",
+ "timestampMillis": "1733750943713",
+ "status": {
+  "cmdId": "cfe8a2b5-aa36-4bfa-8551-712484371f67",
+  "state": "CS_PASSED"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Report",
+ "dateTimestamp": "Mon Dec  9 08:29:05 2024",
+ "timestampMillis": "1733750945021",
+ "report": {
+  "path": "/mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/_x/reports/link/imp/impl_1_kernel_util_synthed.xutil",
+  "name": "",
+  "fileType": "XUTIL",
+  "reportType": "KERNEL_UTILIZATION_SYNTHESIS"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Report",
+ "dateTimestamp": "Mon Dec  9 08:29:05 2024",
+ "timestampMillis": "1733750945033",
+ "report": {
+  "path": "/mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/_x/reports/link/imp/impl_1_kernel_util_synthed.rpt",
+  "name": "",
+  "fileType": "TEXT",
+  "reportType": "KERNEL_UTILIZATION_SYNTHESIS"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Report",
+ "dateTimestamp": "Mon Dec  9 08:29:05 2024",
+ "timestampMillis": "1733750945043",
+ "report": {
+  "path": "/mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/_x/reports/link/imp/impl_1_full_util_synthed.rpt",
+  "name": "",
+  "fileType": "TEXT",
+  "reportType": "GLOBAL_UTILIZATION_SYNTHESIS"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Report",
+ "dateTimestamp": "Mon Dec  9 08:29:05 2024",
+ "timestampMillis": "1733750945052",
+ "report": {
+  "path": "/mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/_x/reports/link/imp/impl_1_full_util_synthed.pb",
+  "name": "",
+  "fileType": "BINARY_PROTOBUF",
+  "reportType": "GLOBAL_UTILIZATION_SYNTHESIS"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Report",
+ "dateTimestamp": "Mon Dec  9 08:29:05 2024",
+ "timestampMillis": "1733750945063",
+ "report": {
+  "path": "/mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/_x/reports/link/imp/impl_1_kernel_util_placed.xutil",
+  "name": "",
+  "fileType": "XUTIL",
+  "reportType": "KERNEL_UTILIZATION_PLACEMENT"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Report",
+ "dateTimestamp": "Mon Dec  9 08:29:05 2024",
+ "timestampMillis": "1733750945077",
+ "report": {
+  "path": "/mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/_x/reports/link/imp/impl_1_kernel_util_placed.rpt",
+  "name": "",
+  "fileType": "TEXT",
+  "reportType": "KERNEL_UTILIZATION_PLACEMENT"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Report",
+ "dateTimestamp": "Mon Dec  9 08:29:05 2024",
+ "timestampMillis": "1733750945090",
+ "report": {
+  "path": "/mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/_x/reports/link/imp/impl_1_slr_util_placed.rpt",
+  "name": "",
+  "fileType": "TEXT",
+  "reportType": "GLOBAL_SLR_UTIL_PLACED"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Report",
+ "dateTimestamp": "Mon Dec  9 08:29:05 2024",
+ "timestampMillis": "1733750945101",
+ "report": {
+  "path": "/mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/_x/reports/link/imp/impl_1_slr_util_placed.pb",
+  "name": "",
+  "fileType": "BINARY_PROTOBUF",
+  "reportType": "GLOBAL_SLR_UTIL_PLACED"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Report",
+ "dateTimestamp": "Mon Dec  9 08:29:05 2024",
+ "timestampMillis": "1733750945130",
+ "report": {
+  "path": "/mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/_x/reports/link/imp/impl_1_kernel_util_routed.xutil",
+  "name": "",
+  "fileType": "XUTIL",
+  "reportType": "KERNEL_UTILIZATION_ROUTE"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Report",
+ "dateTimestamp": "Mon Dec  9 08:29:05 2024",
+ "timestampMillis": "1733750945140",
+ "report": {
+  "path": "/mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/_x/reports/link/imp/impl_1_kernel_util_routed.rpt",
+  "name": "",
+  "fileType": "TEXT",
+  "reportType": "KERNEL_UTILIZATION_ROUTE"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Report",
+ "dateTimestamp": "Mon Dec  9 08:29:05 2024",
+ "timestampMillis": "1733750945150",
+ "report": {
+  "path": "/mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/_x/reports/link/imp/impl_1_slr_util_routed.rpt",
+  "name": "",
+  "fileType": "TEXT",
+  "reportType": "GLOBAL_SLR_UTIL_ROUTED"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Report",
+ "dateTimestamp": "Mon Dec  9 08:29:05 2024",
+ "timestampMillis": "1733750945160",
+ "report": {
+  "path": "/mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/_x/reports/link/imp/impl_1_slr_util_routed.pb",
+  "name": "",
+  "fileType": "BINARY_PROTOBUF",
+  "reportType": "GLOBAL_SLR_UTIL_ROUTED"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Report",
+ "dateTimestamp": "Mon Dec  9 08:29:05 2024",
+ "timestampMillis": "1733750945170",
+ "report": {
+  "path": "/mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/_x/reports/link/imp/impl_1_full_util_routed.rpt",
+  "name": "",
+  "fileType": "TEXT",
+  "reportType": "GLOBAL_UTILIZATION_ROUTE"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Report",
+ "dateTimestamp": "Mon Dec  9 08:29:05 2024",
+ "timestampMillis": "1733750945179",
+ "report": {
+  "path": "/mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/_x/reports/link/imp/impl_1_full_util_routed.pb",
+  "name": "",
+  "fileType": "BINARY_PROTOBUF",
+  "reportType": "GLOBAL_UTILIZATION_ROUTE"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Report",
+ "dateTimestamp": "Mon Dec  9 08:29:05 2024",
+ "timestampMillis": "1733750945197",
+ "report": {
+  "path": "/mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/_x/reports/link/syn/u96v2_sbc_base_zynq_ultra_ps_e_0_0_synth_1_u96v2_sbc_base_zynq_ultra_ps_e_0_0_utilization_synth.rpt",
+  "name": "",
+  "fileType": "TEXT",
+  "reportType": "GLOBAL_REPORT_UTILIZATION"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Report",
+ "dateTimestamp": "Mon Dec  9 08:29:05 2024",
+ "timestampMillis": "1733750945207",
+ "report": {
+  "path": "/mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/_x/reports/link/syn/u96v2_sbc_base_axi_intc_0_0_synth_1_u96v2_sbc_base_axi_intc_0_0_utilization_synth.rpt",
+  "name": "",
+  "fileType": "TEXT",
+  "reportType": "GLOBAL_REPORT_UTILIZATION"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Report",
+ "dateTimestamp": "Mon Dec  9 08:29:05 2024",
+ "timestampMillis": "1733750945218",
+ "report": {
+  "path": "/mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/_x/reports/link/syn/u96v2_sbc_base_xbar_0_synth_1_u96v2_sbc_base_xbar_0_utilization_synth.rpt",
+  "name": "",
+  "fileType": "TEXT",
+  "reportType": "GLOBAL_REPORT_UTILIZATION"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Report",
+ "dateTimestamp": "Mon Dec  9 08:29:05 2024",
+ "timestampMillis": "1733750945228",
+ "report": {
+  "path": "/mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/_x/reports/link/syn/u96v2_sbc_base_lzw_compress_1_0_synth_1_u96v2_sbc_base_lzw_compress_1_0_utilization_synth.rpt",
+  "name": "lzw_compress",
+  "fileType": "TEXT",
+  "reportType": "GLOBAL_REPORT_UTILIZATION"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Report",
+ "dateTimestamp": "Mon Dec  9 08:29:05 2024",
+ "timestampMillis": "1733750945236",
+ "report": {
+  "path": "/mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/_x/reports/link/syn/u96v2_sbc_base_auto_ds_3_synth_1_u96v2_sbc_base_auto_ds_3_utilization_synth.rpt",
+  "name": "",
+  "fileType": "TEXT",
+  "reportType": "GLOBAL_REPORT_UTILIZATION"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Report",
+ "dateTimestamp": "Mon Dec  9 08:29:05 2024",
+ "timestampMillis": "1733750945245",
+ "report": {
+  "path": "/mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/_x/reports/link/syn/u96v2_sbc_base_auto_pc_3_synth_1_u96v2_sbc_base_auto_pc_3_utilization_synth.rpt",
+  "name": "",
+  "fileType": "TEXT",
+  "reportType": "GLOBAL_REPORT_UTILIZATION"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Report",
+ "dateTimestamp": "Mon Dec  9 08:29:05 2024",
+ "timestampMillis": "1733750945259",
+ "report": {
+  "path": "/mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/_x/reports/link/syn/u96v2_sbc_base_auto_ds_7_synth_1_u96v2_sbc_base_auto_ds_7_utilization_synth.rpt",
+  "name": "",
+  "fileType": "TEXT",
+  "reportType": "GLOBAL_REPORT_UTILIZATION"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Report",
+ "dateTimestamp": "Mon Dec  9 08:29:05 2024",
+ "timestampMillis": "1733750945268",
+ "report": {
+  "path": "/mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/_x/reports/link/syn/u96v2_sbc_base_auto_pc_7_synth_1_u96v2_sbc_base_auto_pc_7_utilization_synth.rpt",
+  "name": "",
+  "fileType": "TEXT",
+  "reportType": "GLOBAL_REPORT_UTILIZATION"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Report",
+ "dateTimestamp": "Mon Dec  9 08:29:05 2024",
+ "timestampMillis": "1733750945277",
+ "report": {
+  "path": "/mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/_x/reports/link/syn/u96v2_sbc_base_auto_ds_9_synth_1_u96v2_sbc_base_auto_ds_9_utilization_synth.rpt",
+  "name": "",
+  "fileType": "TEXT",
+  "reportType": "GLOBAL_REPORT_UTILIZATION"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Report",
+ "dateTimestamp": "Mon Dec  9 08:29:05 2024",
+ "timestampMillis": "1733750945286",
+ "report": {
+  "path": "/mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/_x/reports/link/syn/u96v2_sbc_base_auto_pc_9_synth_1_u96v2_sbc_base_auto_pc_9_utilization_synth.rpt",
+  "name": "",
+  "fileType": "TEXT",
+  "reportType": "GLOBAL_REPORT_UTILIZATION"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Report",
+ "dateTimestamp": "Mon Dec  9 08:29:05 2024",
+ "timestampMillis": "1733750945295",
+ "report": {
+  "path": "/mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/_x/reports/link/syn/u96v2_sbc_base_auto_us_0_synth_1_u96v2_sbc_base_auto_us_0_utilization_synth.rpt",
+  "name": "",
+  "fileType": "TEXT",
+  "reportType": "GLOBAL_REPORT_UTILIZATION"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Report",
+ "dateTimestamp": "Mon Dec  9 08:29:05 2024",
+ "timestampMillis": "1733750945318",
+ "report": {
+  "path": "/mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/_x/reports/link/imp/impl_1_u96v2_sbc_base_wrapper_timing_summary_routed.rpt",
+  "name": "",
+  "fileType": "TEXT",
+  "reportType": "GLOBAL_REPORT_TIMING_SUMMARY"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Report",
+ "dateTimestamp": "Mon Dec  9 08:29:05 2024",
+ "timestampMillis": "1733750945355",
+ "report": {
+  "path": "/mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/_x/reports/link/imp/impl_1_u96v2_sbc_base_wrapper_timing_summary_routed.rpx",
+  "name": "",
+  "fileType": "BINARY_PROTOBUF",
+  "reportType": "GLOBAL_REPORT_TIMING_SUMMARY"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Status",
+ "dateTimestamp": "Mon Dec  9 08:29:05 2024",
+ "timestampMillis": "1733750945403",
+ "status": {
+  "cmdId": "acc2c657-3888-4b66-985d-4240d06110ea",
+  "state": "CS_PASSED"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Status",
+ "dateTimestamp": "Mon Dec  9 08:29:05 2024",
+ "timestampMillis": "1733750945440",
+ "status": {
+  "cmdId": "e955ffdf-7fe6-4969-bd25-a3a1dbb564fa",
+  "state": "CS_PASSED"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_SubCmdStep",
+ "dateTimestamp": "Mon Dec  9 08:29:05 2024",
+ "timestampMillis": "1733750945505",
+ "buildStep": {
+  "cmdId": "6510167d-cb71-4ee3-9de0-9405df3a72a5",
+  "name": "rtdgen",
+  "logFile": "",
+  "commandLine": "rtdgen",
+  "args": [],
+  "iniFiles": [],
+  "cwd": "/mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Status",
+ "dateTimestamp": "Mon Dec  9 08:29:05 2024",
+ "timestampMillis": "1733750945506",
+ "status": {
+  "cmdId": "6510167d-cb71-4ee3-9de0-9405df3a72a5",
+  "state": "CS_RUNNING"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Report",
+ "dateTimestamp": "Mon Dec  9 08:29:05 2024",
+ "timestampMillis": "1733750945530",
+ "report": {
+  "path": "/mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/_x/link/int/lzw_compress_xml.rtd",
+  "name": "",
+  "fileType": "JSON",
+  "reportType": "XCLBIN_INFO"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_SubCmdStep",
+ "dateTimestamp": "Mon Dec  9 08:29:05 2024",
+ "timestampMillis": "1733750945611",
+ "buildStep": {
+  "cmdId": "3b6c88ef-7f50-4cae-ab56-1faa917118d0",
+  "name": "cf2sw",
+  "logFile": "",
+  "commandLine": "cf2sw -a /mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/_x/link/int/address_map.xml -sdsl /mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/_x/link/int/sdsl.dat -xclbin /mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/_x/link/int/xclbin_orig.xml -rtd /mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/_x/link/int/lzw_compress.rtd -o /mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/_x/link/int/lzw_compress.xml",
+  "args": [
+   "-a",
+   "/mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/_x/link/int/address_map.xml",
+   "-sdsl",
+   "/mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/_x/link/int/sdsl.dat",
+   "-xclbin",
+   "/mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/_x/link/int/xclbin_orig.xml",
+   "-rtd",
+   "/mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/_x/link/int/lzw_compress.rtd",
+   "-o",
+   "/mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/_x/link/int/lzw_compress.xml"
+  ],
+  "iniFiles": [],
+  "cwd": "/mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Status",
+ "dateTimestamp": "Mon Dec  9 08:29:05 2024",
+ "timestampMillis": "1733750945613",
+ "status": {
+  "cmdId": "3b6c88ef-7f50-4cae-ab56-1faa917118d0",
+  "state": "CS_RUNNING"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Status",
+ "dateTimestamp": "Mon Dec  9 08:29:06 2024",
+ "timestampMillis": "1733750946795",
+ "status": {
+  "cmdId": "3b6c88ef-7f50-4cae-ab56-1faa917118d0",
+  "state": "CS_PASSED"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Report",
+ "dateTimestamp": "Mon Dec  9 08:29:06 2024",
+ "timestampMillis": "1733750946800",
+ "report": {
+  "path": "/mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/_x/link/int/systemDiagramModelSlrBaseAddress.json",
+  "name": "",
+  "fileType": "JSON",
+  "reportType": "SYSTEM_DIAGRAM_PLUS"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_SubCmdStep",
+ "dateTimestamp": "Mon Dec  9 08:29:06 2024",
+ "timestampMillis": "1733750946801",
+ "buildStep": {
+  "cmdId": "db7143bb-9bba-4969-a5bc-39e8739cdf10",
+  "name": "rtdgen",
+  "logFile": "",
+  "commandLine": "writeSystemDiagram",
+  "args": [
+   "/mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/_x/link/int/lzw_compress.rtd",
+   "/mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/_x/link/int/systemDiagramModelSlrBaseAddress.json"
+  ],
+  "iniFiles": [],
+  "cwd": "/mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Status",
+ "dateTimestamp": "Mon Dec  9 08:29:06 2024",
+ "timestampMillis": "1733750946801",
+ "status": {
+  "cmdId": "db7143bb-9bba-4969-a5bc-39e8739cdf10",
+  "state": "CS_RUNNING"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Status",
+ "dateTimestamp": "Mon Dec  9 08:29:06 2024",
+ "timestampMillis": "1733750946805",
+ "status": {
+  "cmdId": "db7143bb-9bba-4969-a5bc-39e8739cdf10",
+  "state": "CS_PASSED"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Status",
+ "dateTimestamp": "Mon Dec  9 08:29:06 2024",
+ "timestampMillis": "1733750946808",
+ "status": {
+  "cmdId": "6510167d-cb71-4ee3-9de0-9405df3a72a5",
+  "state": "CS_PASSED"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_SubCmdStep",
+ "dateTimestamp": "Mon Dec  9 08:29:06 2024",
+ "timestampMillis": "1733750946821",
+ "buildStep": {
+  "cmdId": "6e868406-34ba-4b16-bdbb-a1f201838c6a",
+  "name": "xclbinutil",
+  "logFile": "",
+  "commandLine": "xclbinutil --add-section BITSTREAM:RAW:/mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/_x/link/int/system.bit --force --target hw --key-value SYS:dfx_enable:false --add-section :JSON:/mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/_x/link/int/lzw_compress.rtd --add-section CLOCK_FREQ_TOPOLOGY:JSON:/mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/_x/link/int/lzw_compress_xml.rtd --add-section BUILD_METADATA:JSON:/mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/_x/link/int/lzw_compress_build.rtd --add-section EMBEDDED_METADATA:RAW:/mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/_x/link/int/lzw_compress.xml --add-section SYSTEM_METADATA:RAW:/mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/_x/link/int/systemDiagramModelSlrBaseAddress.json --key-value SYS:PlatformVBNV:avnet.com_u96v2_sbc_base_u96v2_sbc_base_1_0 --output /mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/lzw_compress.xclbin",
+  "args": [
+   "--add-section",
+   "BITSTREAM:RAW:/mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/_x/link/int/system.bit",
+   "--force",
+   "--target",
+   "hw",
+   "--key-value",
+   "SYS:dfx_enable:false",
+   "--add-section",
+   ":JSON:/mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/_x/link/int/lzw_compress.rtd",
+   "--add-section",
+   "CLOCK_FREQ_TOPOLOGY:JSON:/mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/_x/link/int/lzw_compress_xml.rtd",
+   "--add-section",
+   "BUILD_METADATA:JSON:/mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/_x/link/int/lzw_compress_build.rtd",
+   "--add-section",
+   "EMBEDDED_METADATA:RAW:/mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/_x/link/int/lzw_compress.xml",
+   "--add-section",
+   "SYSTEM_METADATA:RAW:/mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/_x/link/int/systemDiagramModelSlrBaseAddress.json",
+   "--key-value",
+   "SYS:PlatformVBNV:avnet.com_u96v2_sbc_base_u96v2_sbc_base_1_0",
+   "--output",
+   "/mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/lzw_compress.xclbin"
+  ],
+  "iniFiles": [],
+  "cwd": "/mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Status",
+ "dateTimestamp": "Mon Dec  9 08:29:06 2024",
+ "timestampMillis": "1733750946822",
+ "status": {
+  "cmdId": "6e868406-34ba-4b16-bdbb-a1f201838c6a",
+  "state": "CS_RUNNING"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Status",
+ "dateTimestamp": "Mon Dec  9 08:29:07 2024",
+ "timestampMillis": "1733750947744",
+ "status": {
+  "cmdId": "6e868406-34ba-4b16-bdbb-a1f201838c6a",
+  "state": "CS_PASSED"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_SubCmdStep",
+ "dateTimestamp": "Mon Dec  9 08:29:07 2024",
+ "timestampMillis": "1733750947757",
+ "buildStep": {
+  "cmdId": "32d01373-5e37-448c-aaca-93edf3aae4be",
+  "name": "xclbinutilinfo",
+  "logFile": "",
+  "commandLine": "xclbinutil --quiet --force --info /mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/lzw_compress.xclbin.info --input /mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/lzw_compress.xclbin",
+  "args": [
+   "--quiet",
+   "--force",
+   "--info",
+   "/mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/lzw_compress.xclbin.info",
+   "--input",
+   "/mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/lzw_compress.xclbin"
+  ],
+  "iniFiles": [],
+  "cwd": "/mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Status",
+ "dateTimestamp": "Mon Dec  9 08:29:07 2024",
+ "timestampMillis": "1733750947758",
+ "status": {
+  "cmdId": "32d01373-5e37-448c-aaca-93edf3aae4be",
+  "state": "CS_RUNNING"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Status",
+ "dateTimestamp": "Mon Dec  9 08:29:08 2024",
+ "timestampMillis": "1733750948567",
+ "status": {
+  "cmdId": "32d01373-5e37-448c-aaca-93edf3aae4be",
+  "state": "CS_PASSED"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_SubCmdStep",
+ "dateTimestamp": "Mon Dec  9 08:29:08 2024",
+ "timestampMillis": "1733750948735",
+ "buildStep": {
+  "cmdId": "b5a1e265-db24-40e2-a3e7-9eda3943e9f3",
+  "name": "generate_sc_driver",
+  "logFile": "",
+  "commandLine": "",
+  "args": [],
+  "iniFiles": [],
+  "cwd": "/mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Status",
+ "dateTimestamp": "Mon Dec  9 08:29:08 2024",
+ "timestampMillis": "1733750948737",
+ "status": {
+  "cmdId": "b5a1e265-db24-40e2-a3e7-9eda3943e9f3",
+  "state": "CS_RUNNING"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Status",
+ "dateTimestamp": "Mon Dec  9 08:29:08 2024",
+ "timestampMillis": "1733750948751",
+ "status": {
+  "cmdId": "b5a1e265-db24-40e2-a3e7-9eda3943e9f3",
+  "state": "CS_PASSED"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Report",
+ "dateTimestamp": "Mon Dec  9 08:29:08 2024",
+ "timestampMillis": "1733750948787",
+ "report": {
+  "path": "/mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/_x/reports/link/system_estimate_lzw_compress.xtxt",
+  "name": "",
+  "fileType": "TEXT",
+  "reportType": "GLOBAL_SYSTEM_ESTIMATE"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Report",
+ "dateTimestamp": "Mon Dec  9 08:29:08 2024",
+ "timestampMillis": "1733750948873",
+ "report": {
+  "path": "/mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/_x/reports/link/v++_link_lzw_compress_guidance.html",
+  "name": "",
+  "fileType": "HTML",
+  "reportType": "GLOBAL_RULECHECK_GUIDANCE"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Report",
+ "dateTimestamp": "Mon Dec  9 08:29:08 2024",
+ "timestampMillis": "1733750948874",
+ "report": {
+  "path": "/mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/_x/v++_link_lzw_compress_guidance.pb",
+  "name": "",
+  "fileType": "BINARY_PROTOBUF",
+  "reportType": "GLOBAL_RULECHECK_GUIDANCE"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Report",
+ "dateTimestamp": "Mon Dec  9 08:29:08 2024",
+ "timestampMillis": "1733750948883",
+ "report": {
+  "path": "/mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/_x/logs/optraceViewer.html",
+  "name": "",
+  "fileType": "HTML",
+  "reportType": "OPERATION_TRACE"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Status",
+ "dateTimestamp": "Mon Dec  9 08:29:08 2024",
+ "timestampMillis": "1733750948890",
+ "status": {
+  "cmdId": "a4941289-7b4e-4bed-9606-98beeaa049a5",
+  "state": "CS_PASSED"
+ }
+}
+</ENTRY>

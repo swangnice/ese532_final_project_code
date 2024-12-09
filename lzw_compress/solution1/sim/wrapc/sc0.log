@@ -1,6 +1,0 @@
-   Build using "/mnt/pollux/software/xilinx/2020.2/Vitis_HLS/2020.2/tps/lnx64/gcc-6.2.0/bin/g++"
-   Compiling test.cpp_pre.cpp.tb.cpp
-   Compiling lzw.cpp_pre.cpp.tb.cpp
-   Compiling apatb_lzw_compress_hw.cpp
-   Compiling apatb_lzw_compress_hw_ir.ll
-   Generating cosim.tv.exe

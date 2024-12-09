@@ -1,0 +1,233 @@
+<ENTRY>
+{
+ "thisFile": "/mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/lzw_compress.xo.compile_summary",
+ "connectId": "",
+ "serverToken": "",
+ "timestamp": "0"
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_CmdStep",
+ "dateTimestamp": "Mon Dec  9 08:12:02 2024",
+ "timestampMillis": "1733749922139",
+ "buildStep": {
+  "cmdId": "2a2af28f-a563-4501-9d9c-20875bbca785",
+  "name": "v++",
+  "logFile": "/mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/_x/lzw_compress/lzw_compress.steps.log",
+  "commandLine": "/mnt/pollux/software/xilinx/2020.2/Vitis/2020.2/bin/unwrapped/lnx64.o/v++  --xp \"vivado_prop:run.__KERNEL__.{STEPS.SYNTH_DESIGN.ARGS.MORE OPTIONS}={-directive sdx_optimization_effort_high}\" --xp \"misc:report=type report_timing_summary name impl_report_timing_summary_route_design_summary steps {route_design} runs {impl_1} options {-max_paths 10}\" --xp \"misc:report=type report_timing_summary name impl_report_timing_summary_post_route_phys_opt_design_summary steps {post_route_phys_opt_design} runs {impl_1} options {-max_paths 10}\" --target hw -k lzw_compress --compile -IServer --config ./hls/design.cfg -olzw_compress.xo Server/lzw.cpp ",
+  "args": [
+   "--target",
+   "hw",
+   "-k",
+   "lzw_compress",
+   "--compile",
+   "-IServer",
+   "--config",
+   "./hls/design.cfg",
+   "-olzw_compress.xo",
+   "Server/lzw.cpp"
+  ],
+  "iniFiles": [
+   {
+    "path": "/mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/hls/design.cfg",
+    "content": "platform=u96v2_sbc_base\ndebug=1\nsave-temps=1\n\n[connectivity]\nnk=lzw_compress:1:lzw_compress_1\n\n# sp=lzw_compress_1.s1:HP0\n# sp=lzw_compress_1.length:HP0\n# sp=lzw_compress_1.out_code:HP0\n# sp=lzw_compress_1.out_lrngth:HP0\n"
+   }
+  ],
+  "cwd": "/mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Status",
+ "dateTimestamp": "Mon Dec  9 08:12:02 2024",
+ "timestampMillis": "1733749922141",
+ "status": {
+  "cmdId": "2a2af28f-a563-4501-9d9c-20875bbca785",
+  "state": "CS_RUNNING"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_FlowMetaData",
+ "dateTimestamp": "Mon Dec  9 08:12:04 2024",
+ "timestampMillis": "1733749924028",
+ "buildSummary": {
+  "hardwarePlatform": "u96v2_sbc_base.xpfm",
+  "hardwareDsa": "u96v2_sbc_base.xsa",
+  "platformDirectory": "/home1/e/ese5320/u96v2_sbc_crypto_base",
+  "runtime": "OpenCL",
+  "systemConfig": "Linux",
+  "flow": "BF_COMPILE",
+  "target": "TT_HW",
+  "kernels": [
+   {
+    "base": {
+     "type": "KERNEL",
+     "name": "lzw_compress",
+     "file": "/mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/lzw_compress.xo",
+     "reports": [],
+     "uuid": ""
+    },
+    "sources": [
+     "/mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/Server/lzw.cpp"
+    ],
+    "psSources": [],
+    "cuNames": [],
+    "type": "HLS",
+    "frequency": 0,
+    "freqUnits": ""
+   }
+  ],
+  "toolVersion": "Vitis V++ Compiler Release 2020.2. SW Build (by xbuild) on 2020-11-18-05:13:29"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_SubCmdStep",
+ "dateTimestamp": "Mon Dec  9 08:12:04 2024",
+ "timestampMillis": "1733749924054",
+ "buildStep": {
+  "cmdId": "bb8b97c3-e033-4371-9af6-4ff7a49ca29a",
+  "name": "vitis_hls",
+  "logFile": "/mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/_x/lzw_compress/lzw_compress/vitis_hls.log",
+  "commandLine": "vitis_hls -f /mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/_x/lzw_compress/lzw_compress/lzw_compress.tcl -messageDb vitis_hls.pb",
+  "args": [
+   "vitis_hls",
+   "-f",
+   "/mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/_x/lzw_compress/lzw_compress/lzw_compress.tcl",
+   "-messageDb",
+   "vitis_hls.pb"
+  ],
+  "iniFiles": [],
+  "cwd": "/mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Status",
+ "dateTimestamp": "Mon Dec  9 08:12:04 2024",
+ "timestampMillis": "1733749924055",
+ "status": {
+  "cmdId": "bb8b97c3-e033-4371-9af6-4ff7a49ca29a",
+  "state": "CS_RUNNING"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Status",
+ "dateTimestamp": "Mon Dec  9 08:13:09 2024",
+ "timestampMillis": "1733749989920",
+ "status": {
+  "cmdId": "bb8b97c3-e033-4371-9af6-4ff7a49ca29a",
+  "state": "CS_PASSED"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Report",
+ "dateTimestamp": "Mon Dec  9 08:13:10 2024",
+ "timestampMillis": "1733749990382",
+ "report": {
+  "path": "/mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/_x/lzw_compress/lzw_compress/lzw_compress/solution/.autopilot/db/lzw_compress.design.xml",
+  "name": "lzw_compress",
+  "fileType": "XML",
+  "reportType": "KERNEL_HLS_REPORT"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Report",
+ "dateTimestamp": "Mon Dec  9 08:13:10 2024",
+ "timestampMillis": "1733749990385",
+ "report": {
+  "path": "/mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/_x/lzw_compress/lzw_compress/lzw_compress/solution/.autopilot/db/.message_syn.xml",
+  "name": "lzw_compress",
+  "fileType": "XML",
+  "reportType": "KERNEL_HLS_DRC_SYNTHESIS"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Report",
+ "dateTimestamp": "Mon Dec  9 08:13:10 2024",
+ "timestampMillis": "1733749990416",
+ "report": {
+  "path": "/mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/_x/reports/lzw_compress/hls_reports/lzw_compress_csynth.rpt",
+  "name": "lzw_compress",
+  "fileType": "TEXT",
+  "reportType": "KERNEL_HLS_CSYNTH"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Report",
+ "dateTimestamp": "Mon Dec  9 08:13:10 2024",
+ "timestampMillis": "1733749990417",
+ "report": {
+  "path": "/mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/_x/lzw_compress/lzw_compress/lzw_compress/solution/syn/report/lzw_compress_csynth.xml",
+  "name": "lzw_compress",
+  "fileType": "XML",
+  "reportType": "KERNEL_HLS_CSYNTH"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Report",
+ "dateTimestamp": "Mon Dec  9 08:13:10 2024",
+ "timestampMillis": "1733749990434",
+ "report": {
+  "path": "/mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/_x/reports/lzw_compress/system_estimate_lzw_compress.xtxt",
+  "name": "",
+  "fileType": "TEXT",
+  "reportType": "GLOBAL_SYSTEM_ESTIMATE"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Report",
+ "dateTimestamp": "Mon Dec  9 08:13:10 2024",
+ "timestampMillis": "1733749990942",
+ "report": {
+  "path": "/mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/_x/reports/lzw_compress/v++_compile_lzw_compress_guidance.html",
+  "name": "",
+  "fileType": "HTML",
+  "reportType": "GLOBAL_RULECHECK_GUIDANCE"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Report",
+ "dateTimestamp": "Mon Dec  9 08:13:10 2024",
+ "timestampMillis": "1733749990950",
+ "report": {
+  "path": "/mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/_x/v++_compile_lzw_compress_guidance.pb",
+  "name": "",
+  "fileType": "BINARY_PROTOBUF",
+  "reportType": "GLOBAL_RULECHECK_GUIDANCE"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Status",
+ "dateTimestamp": "Mon Dec  9 08:13:10 2024",
+ "timestampMillis": "1733749990989",
+ "status": {
+  "cmdId": "2a2af28f-a563-4501-9d9c-20875bbca785",
+  "state": "CS_PASSED"
+ }
+}
+</ENTRY>

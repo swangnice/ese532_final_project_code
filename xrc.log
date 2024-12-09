@@ -1,10 +1,10 @@
-Sun Dec  8 18:15:52 2024: Server was asked to start on port: '46317'
-Sun Dec  8 18:15:52 2024: Server is using token UUID: 'efebfa6c-45d3-4380-8636-dc714f04bfe6'
-Sun Dec  8 18:15:52 2024: Attempting to start server on port '46317'
-Sun Dec  8 18:15:52 2024: XRC main fifo: created main fifo '/tmp/xrcmainefebfa6c-45d3-4380-8636-dc714f04bfe6', fd read = 13
-Sun Dec  8 18:15:52 2024: Running Rule Check Server
-Sun Dec  8 18:15:52 2024: Version 1.6.1
-Sun Dec  8 18:15:52 2024: Rule Check Server: Accepted socket connection from client
-Sun Dec  8 18:15:52 2024: EXCHANGE_TOKEN received, server token: efebfa6c-45d3-4380-8636-dc714f04bfe6, passed token: efebfa6c-45d3-4380-8636-dc714f04bfe6
-Sun Dec  8 18:15:52 2024: SESSION_MGR: creating session with session uuid: 'd139b6c0-b766-43d3-88b5-ff8b1f958d6c' and name 'v++_package_a'
-Sun Dec  8 18:18:25 2024: SESSION_MGR: closing session for UUID 'd139b6c0-b766-43d3-88b5-ff8b1f958d6c' with name 'v++_package_a'
+Mon Dec  9 08:29:20 2024: Server was asked to start on port: '37169'
+Mon Dec  9 08:29:20 2024: Server is using token UUID: '043e0430-2130-426f-966f-6eb9dd93b247'
+Mon Dec  9 08:29:20 2024: Attempting to start server on port '37169'
+Mon Dec  9 08:29:20 2024: XRC main fifo: created main fifo '/tmp/xrcmain043e0430-2130-426f-966f-6eb9dd93b247', fd read = 13
+Mon Dec  9 08:29:20 2024: Running Rule Check Server
+Mon Dec  9 08:29:20 2024: Version 1.6.1
+Mon Dec  9 08:29:21 2024: Rule Check Server: Accepted socket connection from client
+Mon Dec  9 08:29:21 2024: EXCHANGE_TOKEN received, server token: 043e0430-2130-426f-966f-6eb9dd93b247, passed token: 043e0430-2130-426f-966f-6eb9dd93b247
+Mon Dec  9 08:29:21 2024: SESSION_MGR: creating session with session uuid: '255c0cf2-8335-43d7-8701-88d1baf7c57d' and name 'v++_package_a'
+Mon Dec  9 08:31:17 2024: SESSION_MGR: closing session for UUID '255c0cf2-8335-43d7-8701-88d1baf7c57d' with name 'v++_package_a'
