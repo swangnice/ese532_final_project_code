@@ -31,30 +31,6 @@ typedef struct
     unsigned int fill;         // tells us how many entries we've currently stored 
 } assoc_mem;
 
-/*========================================================================================================================================*/
-#define MAX_DICT_SIZE 4096 
-#define INIT_DICT_SIZE 256 
-#define MAX_KEY_LENGTH 16  
-
-typedef struct {
-    char key[MAX_KEY_LENGTH]; 
-    int value;         
-} DictEntry;
-
-
-typedef struct {
-    DictEntry entries[MAX_DICT_SIZE];
-    int size;              
-} Dictionary;
-
-
-void init_dictionary(Dictionary *dict);
-int find_in_dict(Dictionary *dict, const char *key);
-void add_to_dict(Dictionary *dict, const char *key);
-
-
-/*========================================================================================================================================*/
-
 // 定义哈希表操作和关联存储器操作的相关函数
 void hash_insert(unsigned long* hash_table, unsigned int key, unsigned int value, bool* collision);
 void hash_lookup(unsigned long* hash_table, unsigned int key, bool* hit, unsigned int* result);
@@ -68,21 +44,5 @@ void lookup(unsigned long* hash_table, assoc_mem* mem, unsigned int key, bool* h
 void lzw_compress(unsigned char* s1, int* length, uint16_t* out_code, int *out_len);
 int convert_output(uint16_t in[], uint8_t out[], int input_size);
 
-void lzw_compress_v1(unsigned char* s1, int* length, int *is_dup, int *dup_index,  uint8_t *temp_out_buffer, unsigned int *temp_out_buffer_size);
 
-void lzw_compress_v2(unsigned char* s1, int* length, int *is_dup, int *dup_index,  uint8_t *temp_out_buffer, unsigned int *temp_out_buffer_size);
-
-void lzw_compress_v10086(unsigned char* s1, int* length, int *is_dup, int *dup_index,  uint8_t *temp_out_buffer, unsigned int *temp_out_buffer_size);
-
-
-#ifdef __cplusplus
-extern "C" {
-#endif
-void lzw_compress_hw(unsigned char* s1, int* length, int *is_dup, int *dup_index,  uint8_t *temp_out_buffer, unsigned int *temp_out_buffer_size);
-
-
-
-#ifdef __cplusplus
-}
-#endif
 #endif // LZW_COMPRESS_H 

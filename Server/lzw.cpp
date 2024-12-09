@@ -19,7 +19,7 @@ unsigned int my_hash(unsigned long key)
     hashed ^= hashed >> 11;
     hashed += hashed << 15;
     return hashed & 0x7FFF;          // hash output is 15 bits
-    //return hashed & 0xFFF;
+    //return hashed & 0xFFF;   
 }
 
 void hash_lookup(unsigned long* hash_table, unsigned int key, bool* hit, unsigned int* result)
@@ -164,9 +164,6 @@ void lookup(unsigned long* hash_table, assoc_mem* mem, unsigned int key, bool* h
 }
 //****************************************************************************************************************
 
-/*
-
-*/
 void lzw_compress(unsigned char* s1, int* length, uint16_t* out_code, int *out_len)
 {
     unsigned long hash_table[CAPACITY];
@@ -185,6 +182,14 @@ void lzw_compress(unsigned char* s1, int* length, uint16_t* out_code, int *out_l
         my_assoc_mem.lower_key_mem[i] = 0;
     }
 
+    // init the memories with the first 256 codes
+    // Ezra told us this can be discard
+    // for(unsigned long i = 0; i < 256; i++)
+    // {
+    //     bool collision = 0;
+    //     unsigned int key = (i << 8) + 0UL; // lower 8 bits are the next char, the upper bits are the prefix code
+    //     insert(hash_table, &my_assoc_mem, key, i, &collision);
+    // }
     int next_code = 256;
 
     int prefix_code = s1[0];
@@ -197,14 +202,20 @@ void lzw_compress(unsigned char* s1, int* length, uint16_t* out_code, int *out_l
         next_char = s1[i + 1];
 
         bool hit = 0;
+        //std::cout << "prefix_code " << prefix_code << " next_char " << next_char << std::endl;
         lookup(hash_table, &my_assoc_mem, (prefix_code << 8) + next_char, &hit, &code);
         if(!hit)
         {
+//            std::cout << prefix_code;
             out_code[j++] = prefix_code;
+            // out_code[i]=prefix_code;
+//            std::cout << "\n";
+
             bool collision = 0;
             insert(hash_table, &my_assoc_mem, (prefix_code << 8) + next_char, next_code, &collision);
             if(collision)
             {
+//                std::cout << "ERROR: FAILED TO INSERT! NO MORE ROOM IN ASSOC MEM!" << std::endl;
                 return;
             }
             next_code += 1;
@@ -216,248 +227,17 @@ void lzw_compress(unsigned char* s1, int* length, uint16_t* out_code, int *out_l
             prefix_code = code;
             if(i + 1 == *length){
                 out_code[j++] = prefix_code;
+//            	std::cout << prefix_code;
+//            	std::cout << "\n";
             }
+
         }
         i += 1;
     }
     *out_len = j;
-}
-
-/*
-Input:
-    unsigned char* s1: input data
-    int* length: length of input data
-    uint8_t is_dup: flag to indicate if the input data is duplicated 0: not duplicated, 1: duplicated
-    int dup_index
-Output:
-    uint8_t *temp_out_buffer: output buffer, Allocated 2KB
-    unsigned int *temp_out_buffer_size: size of output buffer
-
-*/
-
-void lzw_compress_v2(unsigned char* s1, int* length, int *is_dup, int *dup_index,  uint8_t *temp_out_buffer, unsigned int *temp_out_buffer_size)
-{
-    //printf("Begin lzw_compress_v2\n");
-    // printf("is_dup: %d\n", *is_dup);
-    // printf("dup_index: %d\n", *dup_index);
-	        unsigned long hash_table[CAPACITY];
-	        assoc_mem my_assoc_mem;
-	        uint16_t out_code[CAPACITY];
-
-	        // make sure the memories are clear
-	        for(int i = 0; i < CAPACITY; i++)
-	        {
-	            hash_table[i] = 0;
-	        }
-	        my_assoc_mem.fill = 0;
-	        for(int i = 0; i < 512; i++)
-	        {
-	            my_assoc_mem.upper_key_mem[i] = 0;
-	            my_assoc_mem.middle_key_mem[i] = 0;
-	            my_assoc_mem.lower_key_mem[i] = 0;
-	        }
-
-	        int next_code = 256;
-
-	        int prefix_code = s1[0];
-	        unsigned int code = 0;
-	        char next_char = 0;
-
-	        int i = 0, j = 0;
-	        while(i < *length)
-	        {
-	            next_char = s1[i + 1];
-
-	            bool hit = 0;
-	            lookup(hash_table, &my_assoc_mem, (prefix_code << 8) + next_char, &hit, &code);
-	            if(!hit)
-	            {
-	                out_code[j++] = prefix_code;
-	                bool collision = 0;
-	                insert(hash_table, &my_assoc_mem, (prefix_code << 8) + next_char, next_code, &collision);
-	                if(collision)
-	                {
-	                    return;
-	                }
-	                next_code += 1;
-
-	                prefix_code = next_char;
-	            }
-	            else
-	            {
-	                prefix_code = code;
-	                if(i + 1 == *length){
-	                    out_code[j++] = prefix_code;
-	                }
-	            }
-	            i += 1;
-	        }
-	        //printf("End lzw_compress\n");
-	        //*out_len = j;
-	        // Convert Output
-	        int output_size = 0;
-	        int adjusted_input_size = j - (j % 2);
-	        for(int i = 0; i < adjusted_input_size; i+=2){
-	            temp_out_buffer[output_size+4] = (out_code[i]>>4) & 0xff;
-	            //printf("temp_out_buffer[1]: %u\n", static_cast<unsigned int>(temp_out_buffer[output_size]));
-	            output_size++;
-	            temp_out_buffer[output_size+4] = ((out_code[i] << 4) & 0xf0) | ((out_code[i+1] >> 8) & 0x0f);
-	            //printf("temp_out_buffer[2]: %u\n", static_cast<unsigned int>(temp_out_buffer[output_size]));
-	            output_size++;
-	            temp_out_buffer[output_size+4] = (out_code[i+1]) & 0xff;
-	            //printf("temp_out_buffer[3]: %u\n", static_cast<unsigned int>(temp_out_buffer[output_size]));
-	            output_size++;
-	        }
-	        if (j % 2 != 0) {
-	            temp_out_buffer[output_size+4] = (out_code[adjusted_input_size] >> 4) & 0xFF;
-	            output_size++;
-	            temp_out_buffer[output_size+4] = (out_code[adjusted_input_size] << 4) & 0xF0;
-	            output_size++;
-	        }
-	    //printf("End convert_output\n");
-	        // Generate header and combine with output
-	        temp_out_buffer[0] = ((output_size << 1)) & 0xff;
-	        temp_out_buffer[1] = ((output_size << 1) >> 8) & 0xff;
-	        temp_out_buffer[2] = ((output_size << 1) >> 16) & 0xff;
-	        temp_out_buffer[3] = ((output_size << 1) >> 24) & 0xff;
-	        *temp_out_buffer_size = output_size + 4;
-	    //printf("End build buffer\n");
-
 } 
-//out_code -> in
-
-void lzw_compress_hw(unsigned char* s1, int* length, int *is_dup, int *dup_index,  uint8_t *temp_out_buffer, unsigned int *temp_out_buffer_size)
-{
-    //printf("Begin lzw_compress_v2\n");
-	/*
-#pragma HLS INTERFACE m_axi port=s1                 offset=slave bundle=gmem depth=2048
-#pragma HLS INTERFACE m_axi port=length             offset=slave bundle=gmem depth=1
-#pragma HLS INTERFACE m_axi port=is_dup             offset=slave bundle=gmem depth=1
-#pragma HLS INTERFACE m_axi port=dup_index          offset=slave bundle=gmem depth=1
-#pragma HLS INTERFACE m_axi port=temp_out_buffer    offset=slave bundle=gmem depth=2048
-#pragma HLS INTERFACE m_axi port=temp_out_buffer_size offset=slave bundle=gmem depth=1
-
-#pragma HLS INTERFACE s_axilite port=s1                bundle=control
-#pragma HLS INTERFACE s_axilite port=length            bundle=control
-#pragma HLS INTERFACE s_axilite port=is_dup            bundle=control
-#pragma HLS INTERFACE s_axilite port=dup_index         bundle=control
-#pragma HLS INTERFACE s_axilite port=temp_out_buffer   bundle=control
-#pragma HLS INTERFACE s_axilite port=temp_out_buffer_size bundle=control
-#pragma HLS INTERFACE s_axilite port=return            bundle=control
-*/
-	unsigned char s1_local[2048];
-	uint8_t temp_out_buffer_local[2048];
-
-//#pragma HLS array_partition variable=s1_local factor=64
-//#pragma HLS array_partition variable=temp_out_buffer_local factor=64
-
-//#pragma HLS INTERFACE m_axi port=s1 offset=slave bundle=gmem depth=2048
-//#pragma HLS INTERFACE m_axi port=temp_out_buffer offset=slave bundle=gmem depth=2048
-
-#pragma HLS INTERFACE s_axilite port=s1 bundle=control
-#pragma HLS INTERFACE s_axilite port=temp_out_buffer bundle=control
-#pragma HLS INTERFACE s_axilite port=length bundle=control
-#pragma HLS INTERFACE s_axilite port=is_dup bundle=control
-#pragma HLS INTERFACE s_axilite port=dup_index bundle=control
-#pragma HLS INTERFACE s_axilite port=temp_out_buffer_size bundle=control
-#pragma HLS INTERFACE s_axilite port=return bundle=control
-
-		loop_copy_in: for (int i=0; i<2048; i++){
-#pragma HLS PIPELINE
-			s1_local[i] = s1[i];
-		}
-        unsigned long hash_table[CAPACITY];
-        assoc_mem my_assoc_mem;
-        uint16_t out_code[CAPACITY];
-
-        // make sure the memories are clear
-        for(int i = 0; i < CAPACITY; i++)
-        {
-            hash_table[i] = 0;
-        }
-        my_assoc_mem.fill = 0;
-        for(int i = 0; i < 512; i++)
-        {
-            my_assoc_mem.upper_key_mem[i] = 0;
-            my_assoc_mem.middle_key_mem[i] = 0;
-            my_assoc_mem.lower_key_mem[i] = 0;
-        }
-
-        int next_code = 256;
-
-        int prefix_code = s1_local[0];
-        unsigned int code = 0;
-        char next_char = 0;
-
-        int i = 0, j = 0;
-        while(i < *length)
-        {
-            next_char = s1_local[i + 1];
-
-            bool hit = 0;
-            lookup(hash_table, &my_assoc_mem, (prefix_code << 8) + next_char, &hit, &code);
-            if(!hit)
-            {
-                out_code[j++] = prefix_code;
-                bool collision = 0;
-                insert(hash_table, &my_assoc_mem, (prefix_code << 8) + next_char, next_code, &collision);
-                if(collision)
-                {
-                    return;
-                }
-                next_code += 1;
-
-                prefix_code = next_char;
-            }
-            else
-            {
-                prefix_code = code;
-                if(i + 1 == *length){
-                    out_code[j++] = prefix_code;
-                }
-            }
-            i += 1;
-        }
-        //printf("End lzw_compress\n");
-        //*out_len = j;
-        // Convert Output
-        int output_size = 0;
-        int adjusted_input_size = j - (j % 2);
-        for(int i = 0; i < adjusted_input_size; i+=2){
-        	temp_out_buffer_local[output_size+4] = (out_code[i]>>4) & 0xff;
-            //printf("temp_out_buffer[1]: %u\n", static_cast<unsigned int>(temp_out_buffer[output_size]));
-            output_size++;
-            temp_out_buffer_local[output_size+4] = ((out_code[i] << 4) & 0xf0) | ((out_code[i+1] >> 8) & 0x0f);
-            //printf("temp_out_buffer[2]: %u\n", static_cast<unsigned int>(temp_out_buffer[output_size]));
-            output_size++;
-            temp_out_buffer_local[output_size+4] = (out_code[i+1]) & 0xff;
-            //printf("temp_out_buffer[3]: %u\n", static_cast<unsigned int>(temp_out_buffer[output_size]));
-            output_size++;
-        }
-        if (j % 2 != 0) {
-        	temp_out_buffer_local[output_size+4] = (out_code[adjusted_input_size] >> 4) & 0xFF;
-            output_size++;
-            temp_out_buffer_local[output_size+4] = (out_code[adjusted_input_size] << 4) & 0xF0;
-            output_size++;
-        }
-    //printf("End convert_output\n");
-        // Generate header and combine with output
-        temp_out_buffer_local[0] = ((output_size << 1)) & 0xff;
-        temp_out_buffer_local[1] = ((output_size << 1) >> 8) & 0xff;
-        temp_out_buffer_local[2] = ((output_size << 1) >> 16) & 0xff;
-        temp_out_buffer_local[3] = ((output_size << 1) >> 24) & 0xff;
-        *temp_out_buffer_size = output_size + 4;
-    //printf("End build buffer\n");
 
 
-	loop_copy_out: for (int i=0; i<2048; i++){
-#pragma HLS PIPELINE
-		temp_out_buffer[i] = temp_out_buffer_local[i];
-	}
-
-
-
-} 
 
 int convert_output(uint16_t in[], uint8_t out[], int input_size){
     //header
@@ -470,7 +250,7 @@ int convert_output(uint16_t in[], uint8_t out[], int input_size){
         //printf("in[i+1]: %hu\n", in[i+1]);
         
 
-        out[output_size] = (in[i] >> 4) & 0xff;
+        out[output_size] = (in[i]>>4) & 0xff;
         //printf("out[1]: %u\n", static_cast<unsigned int>(out[output_size]));
         output_size++;
         out[output_size] = ((in[i] << 4) & 0xf0) | ((in[i+1] >> 8) & 0x0f);
@@ -487,87 +267,7 @@ int convert_output(uint16_t in[], uint8_t out[], int input_size){
         out[output_size] = (in[adjusted_input_size] << 4) & 0xF0;
         output_size++;
     }
-    
 
     return output_size;
 }
-
-// /*========================================================================================================================================*/
-// void init_dictionary(Dictionary *dict) {
-//     dict->size = 0;
-
-
-//     for (int i = 0; i < INIT_DICT_SIZE; i++) {
-//         dict->entries[i].key[0] = (char)i;
-//         dict->entries[i].key[1] = '\0';
-//         dict->entries[i].value = i;
-//     }
-//     dict->size = INIT_DICT_SIZE;
-// }
-
-
-// int find_in_dict(Dictionary *dict, const char *key) {
-//     for (int i = 0; i < dict->size; i++) {
-//         if (strcmp(dict->entries[i].key, key) == 0) {
-//             return dict->entries[i].value;
-//         }
-//     }
-//     return -1; // Not found
-// }
-
-
-// void add_to_dict(Dictionary *dict, const char *key) {
-//     if (dict->size < MAX_DICT_SIZE) {
-//         strncpy(dict->entries[dict->size].key, key, MAX_KEY_LENGTH);
-//         dict->entries[dict->size].key[MAX_KEY_LENGTH - 1] = '\0'; // 确保字符串结束符
-//         dict->entries[dict->size].value = dict->size;
-//         dict->size++;
-//     }
-// }
-
-// void lzw_compress_v10086(unsigned char* s1, int* length, int *is_dup, int *dup_index,  uint8_t *temp_out_buffer, unsigned int *temp_out_buffer_size){
-//     char current[32] = {0};
-//     char next[32] = {0};
-
-//     uint16_t output_index = 0;
-//     int current_len = 0;
-
-//     for (int i = 0; i < length; i++) {
-//         current[current_len] = s1[i];
-//         current[current_len + 1] = '\0';
-
-//         if (find_in_dict(current) != -1) {
-//             current_len++;
-//         } else {
-//             // 输出当前序列的编码
-//             current[current_len] = '\0';
-//             int code = find_in_dict(current);
-//             if (output_index < *temp_out_buffer_size) {
-//                 temp_out_buffer[output_index++] = (uint16_t)code;
-//             }
-
-//             // 添加新序列到字典
-//             next[0] = s1[i];
-//             next[1] = '\0';
-//             strcat(current, next);
-//             add_to_dict(current);
-
-//             // 重置当前序列
-//             current[0] = s1[i];
-//             current[1] = '\0';
-//             current_len = 1;
-//         }
-//     }
-
-//     // 输出最后一个序列
-//     if (current_len > 0) {
-//         int code = find_in_dict(current);
-//         if (output_index < *temp_out_buffer_size) {
-//             temp_out_buffer[output_index++] = (uint16_t)code;
-//         }
-//     }
-
-//     *temp_out_buffer_size = output_index;
-// }
-
 
