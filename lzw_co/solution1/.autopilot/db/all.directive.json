@@ -1,6 +1,7 @@
 {"sourceFile": [{
       "name": "",
-      "directive": [{
+      "directive": [
+        {
           "functionName": "lzw_compress_hw",
           "label": "",
           "functionLabel": "",
@@ -11,5 +12,18 @@
                 "value": "lzw_compress_hw"
               }]
           }
-        }]
+        },
+        {
+          "functionName": "lzw_compress_hw",
+          "label": "",
+          "functionLabel": "",
+          "pragma": {
+            "name": "TOP",
+            "option": [{
+                "name": "name",
+                "value": "lzw_compress_hw"
+              }]
+          }
+        }
+      ]
     }]}

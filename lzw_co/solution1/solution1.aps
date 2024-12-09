@@ -7,7 +7,7 @@
     </downStreamTool>
     <config>
         <config_export format="xo" output="/home1/s/swang01/Documents/ese532_code/lzw_compress_hw.xo" rtl="verilog"/>
-        <config_interface m_axi_latency="64" m_axi_alignment_byte_size="64" m_axi_max_widen_bitwidth="512" default_interface="kernel" m_axi_offset="slave"/>
+        <config_interface default_interface="kernel" m_axi_alignment_byte_size="64" m_axi_latency="64" m_axi_max_widen_bitwidth="512" m_axi_offset="slave"/>
         <config_rtl register_reset_num="3"/>
     </config>
     <UIConfigurations>
@@ -73,7 +73,7 @@
         <library value="xilinx/zynquplus/zynquplus" name="DefaultPlatform"/>
     </libraryList>
     <clockList>
-        <clock default="false" name="default" period="150MHz"/>
+        <clock name="default" default="false" period="150MHz"/>
     </clockList>
 </solution>
 

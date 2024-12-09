@@ -34163,8 +34163,14 @@ __attribute__((sdx_kernel("lzw_compress_hw", 0))) void lzw_compress_hw(unsigned 
 # 340 "Server/lzw.cpp"
 
 # 358 "Server/lzw.cpp"
-#pragma HLS INTERFACE m_axi port=s1 offset=slave bundle=gmem depth=2048
-#pragma HLS INTERFACE m_axi port=temp_out_buffer offset=slave bundle=gmem depth=2048
+ unsigned char s1_local[2048];
+ uint8_t temp_out_buffer_local[2048];
+
+
+
+
+
+
 
 #pragma HLS INTERFACE s_axilite port=s1 bundle=control
 #pragma HLS INTERFACE s_axilite port=temp_out_buffer bundle=control
@@ -34174,18 +34180,23 @@ __attribute__((sdx_kernel("lzw_compress_hw", 0))) void lzw_compress_hw(unsigned 
 #pragma HLS INTERFACE s_axilite port=temp_out_buffer_size bundle=control
 #pragma HLS INTERFACE s_axilite port=return bundle=control
 
+ loop_copy_in: for (int i=0; i<2048; i++){
+#pragma HLS PIPELINE
+ s1_local[i] = s1[i];
+  }
+
  if (*is_dup == 0){
         unsigned long hash_table[32768];
         assoc_mem my_assoc_mem;
         uint16_t out_code[32768];
 
 
-        VITIS_LOOP_375_1: for(int i = 0; i < 32768; i++)
+        VITIS_LOOP_386_1: for(int i = 0; i < 32768; i++)
         {
             hash_table[i] = 0;
         }
         my_assoc_mem.fill = 0;
-        VITIS_LOOP_380_2: for(int i = 0; i < 512; i++)
+        VITIS_LOOP_391_2: for(int i = 0; i < 512; i++)
         {
             my_assoc_mem.upper_key_mem[i] = 0;
             my_assoc_mem.middle_key_mem[i] = 0;
@@ -34194,18 +34205,17 @@ __attribute__((sdx_kernel("lzw_compress_hw", 0))) void lzw_compress_hw(unsigned 
 
         int next_code = 256;
 
-        int prefix_code = s1[0];
+        int prefix_code = s1_local[0];
         unsigned int code = 0;
         char next_char = 0;
 
         int i = 0, j = 0;
-        VITIS_LOOP_394_3: while(i < *length)
+        VITIS_LOOP_405_3: while(i < *length)
         {
-            next_char = s1[i + 1];
+            next_char = s1_local[i + 1];
 
             bool hit = 0;
-#pragma HLS INTERFACE s_axilite port=return bundle=control
- lookup(hash_table, &my_assoc_mem, (prefix_code << 8) + next_char, &hit, &code);
+            lookup(hash_table, &my_assoc_mem, (prefix_code << 8) + next_char, &hit, &code);
             if(!hit)
             {
                 out_code[j++] = prefix_code;
@@ -34233,40 +34243,46 @@ __attribute__((sdx_kernel("lzw_compress_hw", 0))) void lzw_compress_hw(unsigned 
 
         int output_size = 0;
         int adjusted_input_size = j - (j % 2);
-        VITIS_LOOP_428_4: for(int i = 0; i < adjusted_input_size; i+=2){
-            temp_out_buffer[output_size+4] = (out_code[i]>>4) & 0xff;
+        VITIS_LOOP_438_4: for(int i = 0; i < adjusted_input_size; i+=2){
+         temp_out_buffer_local[output_size+4] = (out_code[i]>>4) & 0xff;
 
             output_size++;
-            temp_out_buffer[output_size+4] = ((out_code[i] << 4) & 0xf0) | ((out_code[i+1] >> 8) & 0x0f);
+            temp_out_buffer_local[output_size+4] = ((out_code[i] << 4) & 0xf0) | ((out_code[i+1] >> 8) & 0x0f);
 
             output_size++;
-            temp_out_buffer[output_size+4] = (out_code[i+1]) & 0xff;
+            temp_out_buffer_local[output_size+4] = (out_code[i+1]) & 0xff;
 
             output_size++;
         }
         if (j % 2 != 0) {
-            temp_out_buffer[output_size+4] = (out_code[adjusted_input_size] >> 4) & 0xFF;
+         temp_out_buffer_local[output_size+4] = (out_code[adjusted_input_size] >> 4) & 0xFF;
             output_size++;
-            temp_out_buffer[output_size+4] = (out_code[adjusted_input_size] << 4) & 0xF0;
+            temp_out_buffer_local[output_size+4] = (out_code[adjusted_input_size] << 4) & 0xF0;
             output_size++;
         }
 
 
-        temp_out_buffer[0] = ((output_size << 1)) & 0xff;
-        temp_out_buffer[1] = ((output_size << 1) >> 8) & 0xff;
-        temp_out_buffer[2] = ((output_size << 1) >> 16) & 0xff;
-        temp_out_buffer[3] = ((output_size << 1) >> 24) & 0xff;
+        temp_out_buffer_local[0] = ((output_size << 1)) & 0xff;
+        temp_out_buffer_local[1] = ((output_size << 1) >> 8) & 0xff;
+        temp_out_buffer_local[2] = ((output_size << 1) >> 16) & 0xff;
+        temp_out_buffer_local[3] = ((output_size << 1) >> 24) & 0xff;
         *temp_out_buffer_size = output_size + 4;
 
     }
     if (*is_dup == 1){
 
-        temp_out_buffer[0] = ((*dup_index<<1) | 0x00000001) & 0xff;
-        temp_out_buffer[1] = (((*dup_index<<1) | 0x00000001) >> 8) & 0xff;
-        temp_out_buffer[2] = (((*dup_index<<1) | 0x00000001) >> 16) & 0xff;
-        temp_out_buffer[3] = (((*dup_index<<1) | 0x00000001) >> 24) & 0xff;
+     temp_out_buffer_local[0] = ((*dup_index<<1) | 0x00000001) & 0xff;
+        temp_out_buffer_local[1] = (((*dup_index<<1) | 0x00000001) >> 8) & 0xff;
+        temp_out_buffer_local[2] = (((*dup_index<<1) | 0x00000001) >> 16) & 0xff;
+        temp_out_buffer_local[3] = (((*dup_index<<1) | 0x00000001) >> 24) & 0xff;
         *temp_out_buffer_size = 4;
     }
+
+ loop_copy_out: for (int i=0; i<2048; i++){
+#pragma HLS PIPELINE
+ temp_out_buffer[i] = temp_out_buffer_local[i];
+ }
+
 
 
 }
@@ -34277,7 +34293,7 @@ int convert_output(uint16_t in[], uint8_t out[], int input_size){
 
     int adjusted_input_size = input_size - (input_size % 2);
 
-    VITIS_LOOP_472_1: for(int i = 0; i < adjusted_input_size; i+=2){
+    VITIS_LOOP_488_1: for(int i = 0; i < adjusted_input_size; i+=2){
 
 
 

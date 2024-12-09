@@ -9,20 +9,20 @@
 <ENTRY>
 {
  "type": "ET_CmdStep",
- "dateTimestamp": "Mon Dec  9 09:03:09 2024",
- "timestampMillis": "1733752989104",
+ "dateTimestamp": "Mon Dec  9 10:55:46 2024",
+ "timestampMillis": "1733759746018",
  "buildStep": {
-  "cmdId": "12c1263d-288b-4b3a-9334-2f80e4215319",
+  "cmdId": "799d534e-571b-4a12-89e0-014996ead301",
   "name": "v++",
   "logFile": "/mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/package.build/package/package.steps.log",
-  "commandLine": "/mnt/pollux/software/xilinx/2020.2/Vitis/2020.2/bin/unwrapped/lnx64.o/v++  --xp \"vivado_prop:run.__KERNEL__.{STEPS.SYNTH_DESIGN.ARGS.MORE OPTIONS}={-directive sdx_optimization_effort_high}\" --xp \"misc:report=type report_timing_summary name impl_report_timing_summary_route_design_summary steps {route_design} runs {impl_1} options {-max_paths 10}\" --xp \"misc:report=type report_timing_summary name impl_report_timing_summary_post_route_phys_opt_design_summary steps {post_route_phys_opt_design} runs {impl_1} options {-max_paths 10}\" --package --target hw --config ./hls/package.cfg lzw_compress.xclbin --package.out_dir package --package.sd_file host --package.kernel_image /home1/e/ese5320/u96v2_sbc_crypto_base/sw/u96v2_sbc_base/PetaLinux/image/image.ub --package.rootfs /home1/e/ese5320/u96v2_sbc_crypto_base/sw/u96v2_sbc_base/PetaLinux/rootfs/rootfs.ext4 --package.sd_file lzw_compress.xclbin --package.sd_file ./hls/xrt.ini ",
+  "commandLine": "/mnt/pollux/software/xilinx/2020.2/Vitis/2020.2/bin/unwrapped/lnx64.o/v++  --xp \"vivado_prop:run.__KERNEL__.{STEPS.SYNTH_DESIGN.ARGS.MORE OPTIONS}={-directive sdx_optimization_effort_high}\" --xp \"misc:report=type report_timing_summary name impl_report_timing_summary_route_design_summary steps {route_design} runs {impl_1} options {-max_paths 10}\" --xp \"misc:report=type report_timing_summary name impl_report_timing_summary_post_route_phys_opt_design_summary steps {post_route_phys_opt_design} runs {impl_1} options {-max_paths 10}\" --package --target hw --config ./hls/package.cfg lzw_compress_hw.xclbin --package.out_dir package --package.sd_file host --package.kernel_image /home1/e/ese5320/u96v2_sbc_crypto_base/sw/u96v2_sbc_base/PetaLinux/image/image.ub --package.rootfs /home1/e/ese5320/u96v2_sbc_crypto_base/sw/u96v2_sbc_base/PetaLinux/rootfs/rootfs.ext4 --package.sd_file lzw_compress_hw.xclbin --package.sd_file ./hls/xrt.ini ",
   "args": [
    "--package",
    "--target",
    "hw",
    "--config",
    "./hls/package.cfg",
-   "lzw_compress.xclbin",
+   "lzw_compress_hw.xclbin",
    "--package.out_dir",
    "package",
    "--package.sd_file",
@@ -32,7 +32,7 @@
    "--package.rootfs",
    "/home1/e/ese5320/u96v2_sbc_crypto_base/sw/u96v2_sbc_base/PetaLinux/rootfs/rootfs.ext4",
    "--package.sd_file",
-   "lzw_compress.xclbin",
+   "lzw_compress_hw.xclbin",
    "--package.sd_file",
    "./hls/xrt.ini"
   ],
@@ -49,10 +49,10 @@
 <ENTRY>
 {
  "type": "ET_Status",
- "dateTimestamp": "Mon Dec  9 09:03:09 2024",
- "timestampMillis": "1733752989107",
+ "dateTimestamp": "Mon Dec  9 10:55:46 2024",
+ "timestampMillis": "1733759746019",
  "status": {
-  "cmdId": "12c1263d-288b-4b3a-9334-2f80e4215319",
+  "cmdId": "799d534e-571b-4a12-89e0-014996ead301",
   "state": "CS_RUNNING"
  }
 }
@@ -60,8 +60,8 @@
 <ENTRY>
 {
  "type": "ET_FlowMetaData",
- "dateTimestamp": "Mon Dec  9 09:03:12 2024",
- "timestampMillis": "1733752992747",
+ "dateTimestamp": "Mon Dec  9 10:55:49 2024",
+ "timestampMillis": "1733759749494",
  "buildSummary": {
   "hardwarePlatform": "u96v2_sbc_base.xpfm",
   "hardwareDsa": "u96v2_sbc_base.xsa",
@@ -85,10 +85,10 @@
   "inputBinaryContainer": {
    "base": {
     "type": "BT_UKNOWN",
-    "name": "lzw_compress",
-    "file": "/mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/lzw_compress.xclbin",
+    "name": "lzw_compress_hw",
+    "file": "/mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/lzw_compress_hw.xclbin",
     "reports": [],
-    "uuid": "408bbea3-eeb2-4840-a701-6cb3f3f357e7"
+    "uuid": "09b23965-78c7-43b5-91ef-27942874aa29"
    },
    "kernels": []
   }
@@ -98,8 +98,8 @@
 <ENTRY>
 {
  "type": "ET_Report",
- "dateTimestamp": "Mon Dec  9 09:04:40 2024",
- "timestampMillis": "1733753080862",
+ "dateTimestamp": "Mon Dec  9 10:57:28 2024",
+ "timestampMillis": "1733759848310",
  "report": {
   "path": "/mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/package.build/reports/package/v++_package_a_guidance.html",
   "name": "",
@@ -111,8 +111,8 @@
 <ENTRY>
 {
  "type": "ET_Report",
- "dateTimestamp": "Mon Dec  9 09:04:40 2024",
- "timestampMillis": "1733753080864",
+ "dateTimestamp": "Mon Dec  9 10:57:28 2024",
+ "timestampMillis": "1733759848311",
  "report": {
   "path": "/mnt/castor/seas_home/s/swang01/Documents/ese532_code/ese532_final_project_code/package.build/v++_package_a_guidance.pb",
   "name": "",
@@ -124,10 +124,10 @@
 <ENTRY>
 {
  "type": "ET_Status",
- "dateTimestamp": "Mon Dec  9 09:04:40 2024",
- "timestampMillis": "1733753080879",
+ "dateTimestamp": "Mon Dec  9 10:57:28 2024",
+ "timestampMillis": "1733759848333",
  "status": {
-  "cmdId": "12c1263d-288b-4b3a-9334-2f80e4215319",
+  "cmdId": "799d534e-571b-4a12-89e0-014996ead301",
   "state": "CS_PASSED"
  }
 }
