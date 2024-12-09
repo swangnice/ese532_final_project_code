@@ -13,8 +13,7 @@
 #define WIN_SIZE 16    // Window size for hashing
 #define PRIME 3      // Prime number for hash calculation
 #define MODULUS 512  // Modulus for chunk split condition
-#define TARGET1 47    // Target hash value for chunk splitting
-#define TARGET2 67    // Target hash value for chunk splitting
+#define TARGET1 256    // Target hash value for chunk splitting
 //Macro Definitions for Gear Based CDC(FastCDC)
 #define FASTCDC_MIN_CHUNK 8
 #define FASTCDC_AVG_CHUNK 256
