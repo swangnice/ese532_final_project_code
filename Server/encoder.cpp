@@ -143,6 +143,8 @@ int main(int argc, char* argv[]) {
 		gear_based_fastcdc(&buffer[HEADER], length, &chunks, &chunk_count, &chunk_sizes);
 		cdc_timer.stop();
 		
+
+		
 		offset += length;
 		writer++;
 	}
