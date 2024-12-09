@@ -81,7 +81,7 @@ int main(int argc, char** argv)
     cl::Program program(context, devices, bins, NULL, &err);
     cl::CommandQueue q(context, device, CL_QUEUE_PROFILING_ENABLE, &err);
     
-    cl::Kernel lzw_kernel = cl::Kernel(program,"lzw_compress", &err);
+    cl::Kernel lzw_kernel = cl::Kernel(program,"lzw_compress_hw", &err);
     
 // ------------------------------------------------------------------------------------
 // Step 2: Create buffers and initialize test values
@@ -89,18 +89,24 @@ int main(int argc, char** argv)
 
     unsigned char* lzw_s1;
     int *lzw_length;
-    uint16_t* lzw_out_code;
-    int *lzw_out_len;
+    int *lzw_is_dup;
+    int *lzw_dup_index;
+	uint8_t* lzw_temp_out_buffer;
+	unsigned int *lzw_temp_out_buffer_size;
 
     cl::Buffer lzw_s1_buf = cl::Buffer(context, CL_MEM_ALLOC_HOST_PTR | CL_MEM_READ_ONLY,  sizeof(unsigned char) * 2048, NULL, &err);
     cl::Buffer lzw_length_buf = cl::Buffer(context, CL_MEM_ALLOC_HOST_PTR | CL_MEM_READ_ONLY, sizeof(int), NULL, &err);
-    cl::Buffer lzw_out_code_buf = cl::Buffer(context, CL_MEM_ALLOC_HOST_PTR | CL_MEM_WRITE_ONLY,  sizeof(uint16_t) * 2048, NULL, &err);
-    cl::Buffer lzw_out_len_buf = cl::Buffer(context, CL_MEM_ALLOC_HOST_PTR | CL_MEM_WRITE_ONLY,  sizeof(int) , NULL, &err);
+	cl::Buffer lzw_is_dup_buf = cl::Buffer(context, CL_MEM_ALLOC_HOST_PTR | CL_MEM_READ_ONLY, sizeof(int), NULL, &err);
+	cl::Buffer lzw_dup_index_buf = cl::Buffer(context, CL_MEM_ALLOC_HOST_PTR | CL_MEM_READ_ONLY, sizeof(int), NULL, &err);
+	cl::Buffer lzw_temp_out_buffer_buf = cl::Buffer(context, CL_MEM_ALLOC_HOST_PTR | CL_MEM_WRITE_ONLY, sizeof(uint8_t) * 2048, NULL, &err);
+	cl::Buffer lzw_temp_out_buffer_size_buf = cl::Buffer(context, CL_MEM_ALLOC_HOST_PTR | CL_MEM_WRITE_ONLY, sizeof(unsigned int), NULL, &err);
 	
     lzw_s1 = (unsigned char *)q.enqueueMapBuffer(lzw_s1_buf, CL_TRUE, CL_MAP_WRITE, 0, sizeof(unsigned char) * 2048);
-    lzw_length = (int*)q.enqueueMapBuffer(lzw_length_buf, CL_TRUE, CL_MAP_WRITE, 0, sizeof(int));
-    lzw_out_code = (uint16_t*)q.enqueueMapBuffer(lzw_out_code_buf, CL_TRUE, CL_MAP_READ, 0, sizeof(uint16_t) * 2048);
-    lzw_out_len = (int*)q.enqueueMapBuffer(lzw_out_len_buf, CL_TRUE, CL_MAP_READ, 0, sizeof(int));
+    lzw_length = (int *)q.enqueueMapBuffer(lzw_length_buf, CL_TRUE, CL_MAP_WRITE, 0, sizeof(int));
+	lzw_is_dup = (int *)q.enqueueMapBuffer(lzw_is_dup_buf, CL_TRUE, CL_MAP_WRITE, 0, sizeof(int));
+	lzw_dup_index = (int *)q.enqueueMapBuffer(lzw_dup_index_buf, CL_TRUE, CL_MAP_WRITE, 0, sizeof(int));
+	lzw_temp_out_buffer = (uint8_t *)q.enqueueMapBuffer(lzw_temp_out_buffer_buf, CL_TRUE, CL_MAP_READ, 0, sizeof(uint8_t) * 2048);
+	lzw_temp_out_buffer_size = (unsigned int *)q.enqueueMapBuffer(lzw_temp_out_buffer_size_buf, CL_TRUE, CL_MAP_READ, 0, sizeof(unsigned int));
 	
 // ------------------------------------------------------------------------------------
 // Step 3: Run the kernel
@@ -165,6 +171,7 @@ int main(int argc, char** argv)
     chunk_sizes = (int *)malloc(sizeof(int) * estimated_chunks);
 	cdc_timer.start();
 	gear_based_fastcdc(&buffer[HEADER], length, &chunks, &chunk_count, &chunk_sizes);
+	//rabin_fingerprint_cdc(&buffer[HEADER], length, &chunks, &chunk_count, &chunk_sizes);
 	cdc_timer.stop();
 	offset += length;
 	writer++;
@@ -191,6 +198,7 @@ int main(int argc, char** argv)
 		//printf("length: %d offset %d\n",length,offset);
 		memcpy(&file[offset], &buffer[HEADER], length);
 		cdc_timer.start();
+		//rabin_fingerprint_cdc(&buffer[HEADER], length, &chunks, &chunk_count, &chunk_sizes);
 		gear_based_fastcdc(&buffer[HEADER], length, &chunks, &chunk_count, &chunk_sizes);
 		cdc_timer.stop();
 		
@@ -204,16 +212,16 @@ int main(int argc, char** argv)
 	fclose(outfd);
 
 	//print all chunks
-	printf("Chunk count: %u\n", chunk_count);
-	printf("Chunk sizes:\n");
-	for (unsigned int i = 0; i < chunk_count; i++) {
-		printf("Chunk %u size: %u bytes\n", i, chunk_sizes[i]);
-	}
-	printf("Chunk data (as string):\n");
-	for (unsigned int i = 0; i < chunk_count; i++) {
-		printf("Chunk %u: ", i);
-		printf("%.*s\n", chunk_sizes[i], (char *)chunks[i]);
-	}
+	// printf("Chunk count: %u\n", chunk_count);
+	// printf("Chunk sizes:\n");
+	// for (unsigned int i = 0; i < chunk_count; i++) {
+	// 	printf("Chunk %u size: %u bytes\n", i, chunk_sizes[i]);
+	// }
+	// printf("Chunk data (as string):\n");
+	// for (unsigned int i = 0; i < chunk_count; i++) {
+	// 	printf("Chunk %u: ", i);
+	// 	printf("%.*s\n", chunk_sizes[i], (char *)chunks[i]);
+	// }
 
     //SHA256 hash
 	sha_timer.start();
@@ -241,8 +249,8 @@ int main(int argc, char** argv)
 
     // Deduplication
 	dedup_timer.start();
-	uint8_t dup_flag[chunk_count];
-	int dup_index[chunk_count];
+	int *dup_flag = (int *)malloc(sizeof(int) * chunk_count);
+	int *dup_index = (int *)malloc(sizeof(int) * chunk_count);
 	dup_flag[0] = 0;	
 	dup_index[0] = 0;
 	int undup_count = 1;
@@ -263,32 +271,45 @@ int main(int argc, char** argv)
 	}
 	dedup_timer.stop();
 
-    // LZW on HW
-	lzw_timer.start();
-    uint16_t temp_lzw_compressed_output[chunk_count][MAX_CHUNK_SIZE]; // 假设 MAX_CHUNK_SIZE 是单个块的最大大小
-    int temp_output_index[chunk_count];
-    uint8_t lzw_compressed_output[undup_count][2048];
-    int compressed_data_size[undup_count];
+	for (unsigned int i = 0; i < chunk_count; i++) {
+		if (dup_flag[i] == 0) {
+			printf("Chunk %u:", i);
+			printf("chunk size: %d\n", chunk_sizes[i]);
+		}
+	}
 
-    // for (unsigned int i = 0; i < chunk_count; i++) {
-    //     memcpy(&lzw_s1[i * MAX_CHUNK_SIZE], chunks[i], chunk_sizes[i]);
-    //     lzw_length[i] = chunk_sizes[i];
-    // }
+    // LZW on HW
+    // uint16_t temp_lzw_compressed_output[chunk_count][2048]; // 假设 MAX_CHUNK_SIZE 是单个块的最大大小
+    // int temp_output_index[chunk_count];
+    // uint8_t lzw_compressed_output[undup_count][2048];
+    // int compressed_data_size[undup_count];
+    lzw_timer.start();
+    uint8_t *out_buffer;
+    out_buffer = (uint8_t *)malloc(sizeof(uint8_t) * 1024 * 512); //    512KB Here, we assume that the maximum size of the whole compressed data is 512KB
+    uint8_t *temp_out_buffer;
+    temp_out_buffer = (uint8_t *)malloc(sizeof(uint8_t) * 1024 * 2); //   2KB Here, we assume that the maximum size of the compressed data of one chunk is 2KB
+    unsigned int temp_out_buffer_size = 0;
+    size_t out_offset = 0;
 
     for (unsigned int i = 0; i < chunk_count; i++) {
         if (dup_flag[i] == 0) {
-            //lzw_compress(chunks[i], &chunk_sizes[i], temp_lzw_compressed_output[i], &temp_output_index[i]);
-            memcpy(&lzw_s1[i], chunks[i], chunk_sizes[i]);
-			//printf("chunk size: %d\n", chunk_sizes[i]);
-            *lzw_length = chunk_sizes[i];
-			printf("chunk size: %d\n", *lzw_length);
+            memcpy(lzw_s1, chunks[i], chunk_sizes[i]);
 
-			//printf("begin to write in buffer\n");
+            *lzw_length = chunk_sizes[i];
+
+            *lzw_is_dup = dup_flag[i];
+
+            *lzw_dup_index = dup_index[i];
+
 
 			lzw_kernel.setArg(0, lzw_s1_buf);
             lzw_kernel.setArg(1, lzw_length_buf);
-			lzw_kernel.setArg(2, lzw_out_code_buf);
-			lzw_kernel.setArg(3, lzw_out_len_buf);
+            lzw_kernel.setArg(2, lzw_is_dup_buf);
+            lzw_kernel.setArg(3, lzw_dup_index_buf);
+            lzw_kernel.setArg(4, lzw_temp_out_buffer_buf);
+            lzw_kernel.setArg(5, lzw_temp_out_buffer_size_buf);
+
+            //printf("set kernel args end\n");
 
             std::vector<cl::Event> write_events;
             std::vector<cl::Event> exec_events;
@@ -296,81 +317,55 @@ int main(int argc, char** argv)
             cl::Event write_ev;
             cl::Event exec_ev;
             cl::Event read_ev;
+            //printf("begin queue\n");
 
-			printf("begin queue\n");
-            q.enqueueMigrateMemObjects({lzw_s1_buf, lzw_length_buf}, 0, NULL, &write_ev);
+			//printf("begin queue\n");
+            q.enqueueMigrateMemObjects({lzw_s1_buf, lzw_length_buf, lzw_is_dup_buf, lzw_dup_index_buf}, 0, NULL, &write_ev);
+            //printf("test 1");
 
+            
+            
             
             // Create a vector for the event dependency
             write_events.push_back(write_ev);
             q.enqueueTask(lzw_kernel, &write_events, &exec_ev);
-
+            //printf("test 2");
             
             // Create another vector for the event dependency
             exec_events.push_back(exec_ev);
-            q.enqueueMigrateMemObjects({lzw_out_code_buf, lzw_out_len_buf}, CL_MIGRATE_MEM_OBJECT_HOST, &exec_events, &read_ev);
-
-            // 等待完成
+            q.enqueueMigrateMemObjects({lzw_temp_out_buffer_buf, lzw_temp_out_buffer_size_buf}, CL_MIGRATE_MEM_OBJECT_HOST, &exec_events, &read_ev);
+            //printf("test 3");
+            // Wait for all kernels to finish
             q.finish();
-
-			memcpy(temp_lzw_compressed_output[i], lzw_out_code, sizeof(uint16_t) * 2048);
-			temp_output_index[i] = *lzw_out_len;
-			printf("temp_output_index: %d\n", temp_output_index[i]);
+            //printf("finished queue\n");
+        }   else {
+            //printf("Chunk %u is duplicated with %d\n", i, dup_index[i]);
         }
+
+        memcpy(out_buffer + out_offset, lzw_temp_out_buffer, *lzw_temp_out_buffer_size);
+        out_offset += *lzw_temp_out_buffer_size;
+			//printf("temp_output_index: %d\n", temp_output_index[i]);
+        //}
     }
-	//delete[] fileBuf;
-    // q.enqueueUnmapMemObject(lzw_s1_buf, lzw_s1);
-    // q.enqueueUnmapMemObject(lzw_length_buf, lzw_length);
-    // q.enqueueUnmapMemObject(lzw_out_code_buf, lzw_out_code);
-    // q.enqueueUnmapMemObject(lzw_out_len_buf, lzw_out_len);
-    // q.finish();
 	lzw_timer.stop();
 
-    for (unsigned int i = 0; i < chunk_count; i++) {
-        if (dup_flag[i] == 0) {
-            int output_index = convert_output(temp_lzw_compressed_output[i], lzw_compressed_output[i], temp_output_index[i]);
-            compressed_data_size[i] = output_index;
-        }
-    }
 	overall_timer.stop();
 
 
-    uint32_t header[chunk_count];
-	for (unsigned int i = 0; i < chunk_count; i++) {
 
-		header[i] = 0;
-		if (dup_flag[i] == 0) {
-			header[i] = compressed_data_size[i] << 1;
-		} else {
-			header[i] = (dup_index[i]<<1) | 0x00000001;
-		}
-		//header[i] = (temp_header << 24) & 0xff000000 | (temp_header<<8)&0x00ff0000 | (temp_header>>8)&0x0000ff00 | (temp_header>>24)&0x000000ff;
-
-		//printf("chunk: %u, Header: %#010x\n", i, header[i]);
-		//printf("chunk: %u, Header: %#010x\n", i, temp_header);
-	}
-
-
-
-
-	printf("begin to write in file\n");
+//Store in a file
     FILE* out_file = fopen("compressed_data.bin", "wb");
-	if (file == NULL) {
+    if (out_file == NULL) {
         perror("Failed to open file");
-        
     }
-	for (unsigned int i = 0; i < chunk_count; i++) {
-		fwrite(&header[i], sizeof(uint32_t), 1, out_file);
-		printf("%#010x", header[i]);
-		if (dup_flag[i] == 0) {
-			for (int j = 0; j < compressed_data_size[i]; j++) {
-				fwrite(&lzw_compressed_output[i][j], sizeof(uint8_t), 1, out_file);
-				printf("%02X ", lzw_compressed_output[i][j]);
-			}
-		}
-	}
-	fclose(out_file);
-	printf("begin to free\n");
+    size_t written = fwrite(out_buffer, 1, out_offset, out_file);
+    if (written != out_offset) {
+        perror("Failed to write the entire compressed data to file");
+    }
+    fclose(out_file);
+
+
+
 
 
     for (int i = 0; i < NUM_PACKETS; i++) {
