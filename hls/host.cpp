@@ -266,17 +266,17 @@ int main(int argc, char** argv)
 		}
 		undup_count++;
 	}
-	// for (unsigned int i = 0; i < chunk_count; i++) {
-	// 	printf("Chunk %u: %d, duplicated with %d\n", i, dup_flag[i], dup_index[i]);
-	// }
+	for (unsigned int i = 0; i < chunk_count; i++) {
+		printf("Chunk %u: %d, duplicated with %d\n", i, dup_flag[i], dup_index[i]);
+	}
 	dedup_timer.stop();
 
-	// for (unsigned int i = 0; i < chunk_count; i++) {
-	// 	if (dup_flag[i] == 0) {
-	// 		printf("Chunk %u:", i);
-	// 		printf("chunk size: %d\n", chunk_sizes[i]);
-	// 	}
-	// }
+	for (unsigned int i = 0; i < chunk_count; i++) {
+		if (dup_flag[i] == 0) {
+			printf("Chunk %u:", i);
+			printf("chunk size: %d\n", chunk_sizes[i]);
+		}
+	}
 
     // LZW on HW
     // uint16_t temp_lzw_compressed_output[chunk_count][2048]; // 假设 MAX_CHUNK_SIZE 是单个块的最大大小
@@ -291,25 +291,25 @@ int main(int argc, char** argv)
     unsigned int temp_out_buffer_size = 0;
     size_t out_offset = 0;
 
-
-
     for (unsigned int i = 0; i < chunk_count; i++) {
         if (dup_flag[i] == 0) {
             memcpy(lzw_s1, chunks[i], chunk_sizes[i]);
 
             *lzw_length = chunk_sizes[i];
 
-            *lzw_is_dup = 0;
+            *lzw_is_dup = dup_flag[i];
 
-            *lzw_dup_index = 0;
+            *lzw_dup_index = dup_index[i];
 
-                lzw_kernel.setArg(0, lzw_s1_buf);
-    lzw_kernel.setArg(1, lzw_length_buf);
-    lzw_kernel.setArg(2, lzw_is_dup_buf);
-    lzw_kernel.setArg(3, lzw_dup_index_buf);
-    lzw_kernel.setArg(4, lzw_temp_out_buffer_buf);
-    lzw_kernel.setArg(5, lzw_temp_out_buffer_size_buf);
 
+			lzw_kernel.setArg(0, lzw_s1_buf);
+            lzw_kernel.setArg(1, lzw_length_buf);
+            lzw_kernel.setArg(2, lzw_is_dup_buf);
+            lzw_kernel.setArg(3, lzw_dup_index_buf);
+            lzw_kernel.setArg(4, lzw_temp_out_buffer_buf);
+            lzw_kernel.setArg(5, lzw_temp_out_buffer_size_buf);
+
+            //printf("set kernel args end\n");
 
             std::vector<cl::Event> write_events;
             std::vector<cl::Event> exec_events;
@@ -338,8 +338,7 @@ int main(int argc, char** argv)
             // Wait for all kernels to finish
             q.finish();
             //printf("finished queue\n");
-        }   
-        else {
+        }   else {
             //printf("Chunk %u is duplicated with %d\n", i, dup_index[i]);
 			temp_out_buffer[0] = ((dup_index[i]<<1) | 0x00000001) & 0xff;
 	        temp_out_buffer[1] = (((dup_index[i]<<1) | 0x00000001) >> 8) & 0xff;
@@ -347,8 +346,11 @@ int main(int argc, char** argv)
 	        temp_out_buffer[3] = (((dup_index[i]<<1) | 0x00000001) >> 24) & 0xff;
 	        temp_out_buffer_size = 4;
         }
+
         memcpy(out_buffer + out_offset, lzw_temp_out_buffer, *lzw_temp_out_buffer_size);
         out_offset += *lzw_temp_out_buffer_size;
+			//printf("temp_output_index: %d\n", temp_output_index[i]);
+        //}
     }
 	lzw_timer.stop();
 
