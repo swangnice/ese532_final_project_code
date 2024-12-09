@@ -366,8 +366,6 @@ void lzw_compress_hw(unsigned char* s1, int* length, int *is_dup, int *dup_index
 #pragma HLS PIPELINE
 			s1_local[i] = s1[i];
 		}
-
-	if (*is_dup == 0){
         unsigned long hash_table[CAPACITY];
         assoc_mem my_assoc_mem;
         uint16_t out_code[CAPACITY];
@@ -450,15 +448,7 @@ void lzw_compress_hw(unsigned char* s1, int* length, int *is_dup, int *dup_index
         temp_out_buffer_local[3] = ((output_size << 1) >> 24) & 0xff;
         *temp_out_buffer_size = output_size + 4;
     //printf("End build buffer\n");
-    } 
-    if (*is_dup == 1){
-        // Generate header and combine with output
-    	temp_out_buffer_local[0] = ((*dup_index<<1) | 0x00000001) & 0xff;
-        temp_out_buffer_local[1] = (((*dup_index<<1) | 0x00000001) >> 8) & 0xff;
-        temp_out_buffer_local[2] = (((*dup_index<<1) | 0x00000001) >> 16) & 0xff;
-        temp_out_buffer_local[3] = (((*dup_index<<1) | 0x00000001) >> 24) & 0xff;
-        *temp_out_buffer_size = 4;
-    }
+
 
 	loop_copy_out: for (int i=0; i<2048; i++){
 #pragma HLS PIPELINE
