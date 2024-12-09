@@ -291,12 +291,7 @@ int main(int argc, char** argv)
     unsigned int temp_out_buffer_size = 0;
     size_t out_offset = 0;
 
-    lzw_kernel.setArg(0, lzw_s1_buf);
-    lzw_kernel.setArg(1, lzw_length_buf);
-    lzw_kernel.setArg(2, lzw_is_dup_buf);
-    lzw_kernel.setArg(3, lzw_dup_index_buf);
-    lzw_kernel.setArg(4, lzw_temp_out_buffer_buf);
-    lzw_kernel.setArg(5, lzw_temp_out_buffer_size_buf);
+
 
     for (unsigned int i = 0; i < chunk_count; i++) {
         if (dup_flag[i] == 0) {
@@ -307,6 +302,13 @@ int main(int argc, char** argv)
             *lzw_is_dup = 0;
 
             *lzw_dup_index = 0;
+
+                lzw_kernel.setArg(0, lzw_s1_buf);
+    lzw_kernel.setArg(1, lzw_length_buf);
+    lzw_kernel.setArg(2, lzw_is_dup_buf);
+    lzw_kernel.setArg(3, lzw_dup_index_buf);
+    lzw_kernel.setArg(4, lzw_temp_out_buffer_buf);
+    lzw_kernel.setArg(5, lzw_temp_out_buffer_size_buf);
 
 
             std::vector<cl::Event> write_events;
