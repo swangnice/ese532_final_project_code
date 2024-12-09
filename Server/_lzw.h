@@ -44,13 +44,5 @@ void lookup(unsigned long* hash_table, assoc_mem* mem, unsigned int key, bool* h
 void lzw_compress(unsigned char* s1, int* length, uint16_t* out_code, int *out_len);
 int convert_output(uint16_t in[], uint8_t out[], int input_size);
 
-void lzw_compress_v2(unsigned char* s1, int* length, int *is_dup, int *dup_index,  uint8_t *temp_out_buffer, unsigned int *temp_out_buffer_size);
-#ifdef __cplusplus
-extern "C" {
-#endif
-void lzw_compress_hw(unsigned char* s1, int* length, int *is_dup, int *dup_index,  uint8_t *temp_out_buffer, unsigned int *temp_out_buffer_size);
 
-#ifdef __cplusplus
-}
-#endif
 #endif // LZW_COMPRESS_H 
