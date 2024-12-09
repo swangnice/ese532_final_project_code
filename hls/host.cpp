@@ -292,27 +292,15 @@ int main(int argc, char** argv)
     size_t out_offset = 0;
 
     for (unsigned int i = 0; i < chunk_count; i++) {
-        //TODO: Seperate dep and undep chunks
-        //if (dup_flag[i] == 0) {
-            //lzw_compress(chunks[i], &chunk_sizes[i], temp_lzw_compressed_output[i], &temp_output_index[i]);
+        if (dup_flag[i] == 0) {
             memcpy(lzw_s1, chunks[i], chunk_sizes[i]);
-			//printf("chunk size: %d\n", chunk_sizes[i]);
+
             *lzw_length = chunk_sizes[i];
-            //printf("chunk size: %d\n", *lzw_length);
+
             *lzw_is_dup = dup_flag[i];
-            //printf("dup_flag: %d\n", *lzw_is_dup);
+
             *lzw_dup_index = dup_index[i];
-            //printf("dup_index: %d\n", *lzw_dup_index);
 
-            //printf("passed in lzw_compress\n");
-			//printf("chunk size: %d\n", *lzw_length);
-			// printf("Chunk %u:", i);
-			// for (int j = 0; j < *lzw_length; j++) { // `total_size` 是 lzw_s1 的总长度
-			// 	printf("%c", lzw_s1[j]);
-			// }
-			// printf("\n");
-
-			//printf("begin to write in buffer\n");
 
 			lzw_kernel.setArg(0, lzw_s1_buf);
             lzw_kernel.setArg(1, lzw_length_buf);
@@ -321,7 +309,7 @@ int main(int argc, char** argv)
             lzw_kernel.setArg(4, lzw_temp_out_buffer_buf);
             lzw_kernel.setArg(5, lzw_temp_out_buffer_size_buf);
 
-            printf("set kernel args end\n");
+            //printf("set kernel args end\n");
 
             std::vector<cl::Event> write_events;
             std::vector<cl::Event> exec_events;
@@ -350,6 +338,9 @@ int main(int argc, char** argv)
             // Wait for all kernels to finish
             q.finish();
             //printf("finished queue\n");
+        }   else {
+            //printf("Chunk %u is duplicated with %d\n", i, dup_index[i]);
+        }
 
         memcpy(out_buffer + out_offset, lzw_temp_out_buffer, *lzw_temp_out_buffer_size);
         out_offset += *lzw_temp_out_buffer_size;
